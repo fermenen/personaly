@@ -1,0 +1,65 @@
+{% extends 'html/app/base_app.html' %}
+{% load static %}
+{% block title %}{{ contact.name }}{% endblock %}
+
+{% block content_main %}
+
+
+
+
+
+    <div class="content" style="margin-top: 60px">
+
+        <div class="card-summary-info">
+            <div class="firstinfo">
+                <div class="img-sumary">
+                    <img src="https://s3.amazonaws.com/uifaces/faces/twitter/mrvanz/128.jpg"/>
+                </div>
+                <div class="profileinfo">
+                    <h1>{{ contact.name }} {{ contact.surnames }}</h1>
+                    <div class="row" style="margin: auto">
+                        <div class="sumary-location "><i class="fas fa-map-marker-alt"></i> {{ contact.city }}</div>
+                        <div class="sumary-phone "><i class="fas fa-phone-alt"></i> {{ contact.phone }} </div>
+                    </div>
+                    <p class="bio">tags</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-header">
+                Featured
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                Featured
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                Featured
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+{% endblock %}

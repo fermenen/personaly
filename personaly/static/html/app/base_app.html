@@ -1,0 +1,39 @@
+{% extends "html/minimal.html" %}
+{% load i18n %}
+{% load static %}
+
+
+{% block content %}
+
+    <div class="uk-navbar-container navbar-app-web" uk-navbar>
+    <div class="uk-navbar-left">
+{#        <a class="uk-navbar-toggle" uk-navbar-toggle-icon href=""></a>#}
+        <a href="{% url 'app' %}" class="uk-navbar-item uk-logo navbar-brand">personaly</a>
+
+    </div>
+        <div class="uk-navbar-right">
+            <a class="navbar-item navbar-link" href="{% url 'app' %}"><i class="fas fa-calendar-alt uk-icon uk-margin-small-right"></i>{% translate "Dashboard" %}</a>
+            <a class="navbar-item navbar-link" href="{% url 'app' %}"><i class="fas fa-address-book uk-icon uk-margin-small-right"></i>{% translate "Contactos" %}</a>
+            <a class="navbar-item navbar-link" href="{% url 'app' %}"><i class="fas fa-address-book uk-icon uk-margin-small-right"></i>{% translate "Contactos" %}</a>
+            <a class="navbar-item navbar-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt uk-icon uk-margin-small-right"></i>{% translate "Cerrar Sesión" %}</a>
+    </div>
+
+</div>
+
+
+
+
+    <div id="body"> {% block content_main %}{% endblock %}</div>
+
+    <footer id="footer">
+        <div class="container">
+            <p class="m-0 text-center text-white small">personaly 2020</p>
+        </div>
+    </footer>
+
+
+{% endblock %}
+
+
+
+

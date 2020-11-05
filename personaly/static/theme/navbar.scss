@@ -1,0 +1,37 @@
+@import 'base';
+
+#header {
+    min-height: 60px;
+    height: 60px;
+
+}
+
+.navbar-app-web {
+    //padding-top: 1rem;
+    //padding-bottom: 1rem;
+    background-color: $color-blue-1 !important;
+}
+
+.navbar-app-web .navbar-brand {
+    //font-size: 1.35rem;
+    //letter-spacing: 0.1rem;
+    //font-weight: 400;
+    color: $color-white;
+    //font-family: 'Roboto';
+    //line-height: 24px;
+
+}
+
+.navbar-app-web .navbar-item .navbar-link {
+    text-transform: uppercase !important;
+    margin-right: 15px;
+    font-size: 0.8rem;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    color: $color-white !important;
+}
+
+.navbar-link:active, .navbar-link:focus, .navbar-link:hover {
+    color: $color-gray-1 !important;
+}

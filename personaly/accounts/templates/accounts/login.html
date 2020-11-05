@@ -1,0 +1,89 @@
+{% extends "html/app/minimal_app.html" %}
+
+
+{% block content %}
+
+
+<div class="container login-container">
+    <div class="md-6 login-form-1">
+        <h3>Login</h3>
+        {% if error_login %}
+        <div class="alert alert-danger" role="alert">
+            Error, comprueba los datos introducidos
+        </div>
+        {% endif %}
+        <form method="POST">
+            <div class="form-group">
+                <input type="text" id="email" name="email" class="form-control" placeholder="Your Email *" value=""/>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Your Password *" value=""/>
+            </div>
+            <div class="form-group">
+                <input type="hidden" id="next" name="next" value="{{ next }}"/>
+            </div>
+            <div class="form-group">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary btn-user btn-block">Iniciar sesión</button>
+            </div>
+            <div class="form-group">
+                <a href="#" class="ForgetPwd">Forget Password?</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+<!--<div class="container">-->
+<!--    &lt;!&ndash; Outer Row &ndash;&gt;-->
+<!--    <div class="row justify-content-center">-->
+<!--        <div class="col-xl-10 col-lg-12 col-md-9">-->
+<!--            <div class="card o-hidden border-0 shadow-lg my-5">-->
+<!--                <div class="card-body p-0">-->
+<!--                    &lt;!&ndash; Nested Row within Card Body &ndash;&gt;-->
+<!--                    <div class="row justify-content-center">-->
+<!--                        <div class="col-lg-6">-->
+<!--                            <div class="p-5">-->
+<!--                                <div class="text-center">-->
+<!--                                    <h1 class="h4 text-gray-900 mb-4">Data & Analytics - Betterplace</h1>-->
+<!--                                    {% if error_login %}-->
+<!--                                    <div class="alert alert-danger" role="alert">-->
+<!--                                        Error, comprueba los datos-->
+<!--                                        introducidos-->
+<!--                                    </div>-->
+<!--                                    {% endif %}-->
+<!--                                </div>-->
+<!--                                <br>-->
+<!--                                <form class="user" method="POST" action="{% url 'login' %}">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <input type="text" class="form-control form-control-user" id="email"-->
+<!--                                               name="email" aria-describedby="emailHelp"-->
+<!--                                               placeholder="Dirección de correo electrónico betterplace...">-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <input type="password" class="form-control form-control-user" id="password"-->
+<!--                                               name="password" placeholder="Contraseña">-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <input type="hidden" id="next" name="next" value="{{ next }}"/>-->
+<!--                                    </div>-->
+<!--                                    {% csrf_token %}-->
+<!--                                    <button type="submit" class="btn btn-primary btn-user btn-block">-->
+<!--                                        Iniciar sesión-->
+<!--                                    </button>-->
+<!--                                </form>-->
+<!--                                <hr>-->
+<!--                                <i class="fas fa-fw fa-unlock-alt">-->
+<!--                                </i><span><a-->
+<!--                                    class="small"> Contacta con el dpto. de data si no puedes acceder</a></span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->

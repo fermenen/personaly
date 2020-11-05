@@ -1,0 +1,24 @@
+{% extends 'html/app/base_app.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content_main %}
+
+<section>
+<div class="container-fluid overflow-auto" style="margin-top: 150px">
+  <div class="row">
+      {% for contact in contact_list %}
+      {{ contact.name }}
+    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
+
+    {% endfor %}
+
+  </div>
+</div>
+
+
+
+</section>
+
+
+{% endblock %}
