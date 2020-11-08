@@ -1,8 +1,14 @@
 {% extends 'html/app/base_app.html' %}
 {% load static %}
-{% block title %}Dashboard{% endblock %}
+{% block title %}Dashboard | {% endblock %}
 
 {% block content_main %}
+
+
+<div class="uk-alert-success" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p>Cuenta creado satisfactoriamente.</p>
+</div>
 
 <section>
 <div class="container-fluid overflow-auto" style="margin-top: 150px">

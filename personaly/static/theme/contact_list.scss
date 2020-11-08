@@ -1,0 +1,18 @@
+
+.app-button-contact {
+
+  text-transform: capitalize !important;
+  text-align: left !important;
+
+}
+
+.btn-actions-contact {
+  position: absolute !important;
+  right: 0 !important;
+  margin-right: 35px !important;
+  display: none !important;
+
+}
+.app-button-contact:hover .btn-actions-contact{
+  display: inline-block !important;
+}

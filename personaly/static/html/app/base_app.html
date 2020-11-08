@@ -5,22 +5,23 @@
 
 {% block content %}
 
-    <div class="uk-navbar-container navbar-app-web" uk-navbar>
-    <div class="uk-navbar-left">
-{#        <a class="uk-navbar-toggle" uk-navbar-toggle-icon href=""></a>#}
-        <a href="{% url 'app' %}" class="uk-navbar-item uk-logo navbar-brand">personaly</a>
-
-    </div>
-        <div class="uk-navbar-right">
-            <a class="navbar-item navbar-link" href="{% url 'app' %}"><i class="fas fa-calendar-alt uk-icon uk-margin-small-right"></i>{% translate "Dashboard" %}</a>
-            <a class="navbar-item navbar-link" href="{% url 'app' %}"><i class="fas fa-address-book uk-icon uk-margin-small-right"></i>{% translate "Contactos" %}</a>
-            <a class="navbar-item navbar-link" href="{% url 'app' %}"><i class="fas fa-address-book uk-icon uk-margin-small-right"></i>{% translate "Contactos" %}</a>
-            <a class="navbar-item navbar-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt uk-icon uk-margin-small-right"></i>{% translate "Cerrar Sesión" %}</a>
-    </div>
-
-</div>
-
-
+    <nav class="uk-navbar-container navbar-app-web  uk-flex-top" data-uk-navbar data-uk-toggle="media: @s; cls: uk-flex-row uk-flex-top; mode: media">
+        <div class="uk-navbar-left">
+            <button type="button" data-uk-toggle="target: .navbar-collapse; cls: hidden-up-to-s"
+                class="uk-navbar-toggle uk-hidden@s" data-uk-navbar-toggle-icon></button>
+            <a href="{% url 'app' %}" class="uk-navbar-item uk-logo navbar-brand">personaly</a>
+        </div>
+        <div class="navbar-collapse hidden-up-to-s">
+            <div class="navbar-app-web-right ">
+                <ul data-uk-toggle="media: @s; cls: uk-navbar-nav uk-padding-remove; mode: media"  class="navbar-item uk-nav uk-nav-primary uk-padding-small">
+                    <li><a class="navbar-item navbar-link" href="{% url 'app' %}"><i class="fas fa-home uk-icon uk-margin-small-right"></i>{% translate "Inicio" %}</a></li>
+                    <li><a class="navbar-item navbar-link" href="{% url 'contacts' %}"><i class="fas fa-address-book uk-icon uk-margin-small-right"></i>{% translate "Contactos" %}</a></li>
+                    <li><a class="navbar-item navbar-link" href="{% url 'app' %}"><i class="fas fa-cog uk-icon uk-margin-small-right"></i>{% translate "Ajustes" %}</a></li>
+                    <li><a class="navbar-item navbar-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt uk-margin-small-right"></i>{% translate "Cerrar Sesión" %}</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 
     <div id="body"> {% block content_main %}{% endblock %}</div>

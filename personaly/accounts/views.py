@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect("dashboard_app")
+        return redirect("app")
     elif request.method == "POST":
         next_url = request.POST['next']
         email = request.POST['email']
@@ -14,7 +14,7 @@ def login_view(request):
             login(request, user)
             if next_url != "None":
                 return redirect(next_url)
-            return redirect("dashboard_app")
+            return redirect("app")
         else:
             return render(request, 'accounts/login.html', {'error_login': True, 'next': next_url})
     else:

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-02 13:46+0100\n"
+"POT-Creation-Date: 2020-11-08 19:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: static/html/app/base_app.html:18
-msgid "Dashboard"
+#: static/html/app/base_app.html:17
+msgid "Inicio"
 msgstr "Dashboard"
 
-#: static/html/app/base_app.html:21
+#: static/html/app/base_app.html:18
 msgid "Contactos"
 msgstr "Contacts"
 
-#: static/html/app/base_app.html:24
-msgid "Configuración"
+#: static/html/app/base_app.html:19
+msgid "Ajustes"
 msgstr "Settings"
 
-#: static/html/app/base_app.html:27
+#: static/html/app/base_app.html:20
 msgid "Cerrar Sesión"
-msgstr "Logout"
+msgstr "Sign out"
+
+#: static/html/web/base_web.html:22
+msgid "Inicia sesión"
+msgstr ""

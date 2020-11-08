@@ -14,6 +14,11 @@ def index(request):
     return render(request, 'dashboard/index.html', {'contact_list': contacts})
 
 
+@login_required
+def contacts_list(request):
+    contacts_list = Contact.objects.filter(owner=request.user)
+    return render(request, 'dashboard/contacts_list.html', {'contact_list': contacts_list})
+
 
 @login_required
 def contact_view(request, url):
@@ -25,3 +30,5 @@ def contact_view(request, url):
     except Contact.DoesNotExist:
         return redirect("dashboard_app")
     return redirect("dashboard_app")
+
+

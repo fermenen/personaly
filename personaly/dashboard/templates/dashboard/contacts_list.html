@@ -1,0 +1,42 @@
+{% extends 'html/app/base_app.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% translate "Contactos" %} | {% endblock %}
+
+{% block content_main %}
+
+
+
+    <div class="uk-container uk-container-large ">
+        <div class="uk-flex uk-flex-center">
+            <div class="uk-card uk-card-default uk-card-body  uk-width-1-2@m">
+                <h3 class="uk-card-title">{% translate "Contactos" %}</h3>
+                <br>
+                {% for contact in contact_list %}
+                    <div class="uk-margin-bottom">
+                        <a href="{% url 'contact' contact.url %}">
+                            <div class="uk-button app-button-contact uk-width-1-1 ">
+                                <div class="uk-flex-inline uk-flex-middle">
+                                    <div class="uk-flex-left uk-flex-inline uk-flex-bottom"><img class="uk-border-circle" width="50"
+                                                                                  height="50"
+                                                                                  src="/media/{{ contact.image_contact }}"
+                                                                                  alt="{{ contact.name }} {{ contact.surnames }} ">
+                                        <div class="uk-border-circle uk-margin-left uk-flex-middle"
+                                             id="info">{{ contact.name }} {{ contact.surnames }}</div>
+                                    </div>
+                                    <div class="btn-actions-contact uk-flex-right uk-flex-inline uk-flex-middle">
+                                        <a href="#" class="uk-icon-link uk-margin-small-right"  uk-icon="file-edit" uk-tooltip="title: {% translate "Editar contacto" %}; pos: bottom-left"></a>
+                                        <a href="#" class="uk-icon-link uk-margin-small-right" uk-icon="future" uk-tooltip="title: {% translate "Programar" %}; pos: bottom-left"></a>
+                                        <a href="#" class="uk-icon-link uk-margin-small-right" uk-icon="more-vertical" uk-tooltip="title: {% translate "Más acciones" %}; pos: bottom-left"></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
