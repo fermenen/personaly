@@ -13,18 +13,20 @@
 }
 
 .navbar-app-web .navbar-brand {
-  font-size: 1.70rem;
+  font-size: 1.66rem;
   letter-spacing: 0.05rem;
-  font-weight: 400;
+  font-weight: 405;
   color: $color-white;
   font-family: 'Roboto';
   line-height: 24px;
 }
 
 .navbar-item .navbar-link {
+  font-size: 1.05rem;
+  font-weight: 404;
   color: $color-white !important;
-  letter-spacing: 0.023rem;
-  font-weight: 410;
+  letter-spacing: 0.024rem;
+  text-transform: uppercase;
 }
 
 .navbar-item:focus, .navbar-item:hover {
@@ -46,5 +48,8 @@
   .navbar-app-web-right {
     position: absolute !important;
     right: 0 !important;
+  }
+  .navbar-item {
+    font-size: 0.87rem !important;
   }
 }

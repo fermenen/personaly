@@ -1,0 +1,53 @@
+{% load i18n %}
+<div class="uk-modal-dialog">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <div class="uk-modal-header">
+        <h2 class="uk-modal-title">{% translate "Añadir contacto" %}</h2>
+    </div>
+    <form class="form uk-form-stacked" action="{% url 'api_add_contact' %}" method="POST">
+        <div class="uk-modal-body">
+
+
+            <div class="uk-margin">
+                <label class="uk-form-label" for="form-stacked-text">Nombre</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input" id="form_name" name="form_name" type="text" placeholder="Elena ..." required>
+                </div>
+            </div>
+
+            <div class="uk-margin">
+                <label class="uk-form-label" for="form-stacked-text">Apellidos</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input" id="form_surname" name="form_surname" type="text" placeholder="Fernandez ..." required>
+                </div>
+            </div>
+
+
+            <div class="uk-margin">
+                <label class="uk-form-label" for="form-stacked-text">Estar en contacto</label>
+                <select class="uk-select" name="form_select" id="form_select">
+                    <option>Option 01</option>
+                    <option>Option 02</option>
+                </select>
+            </div>
+
+            <div class="uk-margin">
+                <div uk-form-custom>
+                    <input type="file" name="form_photo" id="form_photo">
+                    <button class="uk-button uk-button-default" type="button" tabindex="-1">Foto perfil</button>
+                </div>
+            </div>
+
+
+        </div>
+
+        {% csrf_token %}
+
+        <div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">{% translate "Cancelar" %}</button>
+            <button class="uk-button uk-button-primary" type="submit">{% translate "Crear" %}</button>
+        </div>
+
+    </form>
+
+</div>

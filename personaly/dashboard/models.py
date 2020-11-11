@@ -8,6 +8,7 @@ from uuid import uuid4
 from PIL import Image
 
 
+
 class Contact(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.TextField()
@@ -42,3 +43,11 @@ class Contact(models.Model):
         return f"({self.owner} - {self.owner_id}) {self.name} {self.surnames}"
 
 
+class TagContact(models.Model):
+    icon = models.CharField(blank=False, max_length=10)
+    text = models.TextField(blank=False, max_length=20)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"({self.icon} - {self.text})"

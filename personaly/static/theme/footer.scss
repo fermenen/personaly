@@ -1,0 +1,16 @@
+@import "base";
+
+#footer {
+  background-color: $color-black;
+  height: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-copyright {
+  color: $color-gray-1;
+}
+
+
+

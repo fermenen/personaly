@@ -8,23 +8,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
-     <title>{% block title %}{% endblock %}personaly</title>
-
+    <title>{% block title %}{% endblock %}personaly</title>
     <link href="{% static 'css/app.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'vendor/uikit/css/uikit.min.css' %}">
 
-    <link rel="stylesheet" href="{% static 'vendor/uikit/css/uikit.min.css' %}" >
+    <link rel="stylesheet" href="https://use.typekit.net/pxy8mka.css">
+    <link href="{% static 'vendor/fontawesome/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
     <script src="{% static 'vendor/uikit/js/uikit.min.js' %}"></script>
     <script src="{% static 'vendor/uikit/js/uikit-icons.min.js' %}"></script>
-
-    <link href="{% static 'vendor/fontawesome/css/all.min.css' %}" rel="stylesheet" type="text/css">
 
 
 </head>
 
-    <body id="app">
-    {% block content %} {% endblock %}
-    </body>
-
+<body id="app">
+{% block content %} {% endblock %}
+</body>
 
 
 </html>

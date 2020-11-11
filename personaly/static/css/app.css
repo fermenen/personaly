@@ -14,15 +14,6 @@
   padding-bottom: 65px;
 }
 
-#footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 65px;
-  min-height: 65px;
-  background-color: #000 !important;
-}
-
 #header {
   min-height: 55px;
   height: 55px;
@@ -34,18 +25,20 @@
 }
 
 .navbar-app-web .navbar-brand {
-  font-size: 1.7rem;
+  font-size: 1.66rem;
   letter-spacing: 0.05rem;
-  font-weight: 400;
+  font-weight: 405;
   color: #FFFF;
   font-family: "Roboto";
   line-height: 24px;
 }
 
 .navbar-item .navbar-link {
+  font-size: 1.05rem;
+  font-weight: 404;
   color: #FFFF !important;
-  letter-spacing: 0.023rem;
-  font-weight: 410;
+  letter-spacing: 0.024rem;
+  text-transform: uppercase;
 }
 
 .navbar-item:focus, .navbar-item:hover {
@@ -70,10 +63,45 @@
     position: absolute !important;
     right: 0 !important;
   }
+
+  .navbar-item {
+    font-size: 0.87rem !important;
+  }
 }
+#app {
+  position: relative;
+  min-height: calc(100vh - 60px);
+  background-color: rgba(166, 153, 138, 0.02) !important;
+}
+
+#web {
+  position: relative;
+  min-height: 100vh;
+  background-color: rgba(166, 153, 138, 0.02) !important;
+}
+
+#body {
+  padding-bottom: 65px;
+}
+
+.card-contact-list {
+  width: 100% !important;
+}
+
+a:link {
+  text-decoration: none !important;
+}
+
 .app-button-contact {
   text-transform: capitalize !important;
   text-align: left !important;
+  text-decoration: none !important;
+}
+
+.btn-actions-tittle {
+  position: absolute;
+  right: 0;
+  margin-right: 35px !important;
 }
 
 .btn-actions-contact {
@@ -83,8 +111,106 @@
   display: none !important;
 }
 
-.app-button-contact:hover .btn-actions-contact {
-  display: inline-block !important;
+.app-button-contact:hover .text-button-contact {
+  color: #05AFF2 !important;
+}
+.app-button-contact:hover .image-contact {
+  border: 2px solid #05AFF2;
+}
+
+.text-button-contact {
+  font-family: nunito;
+  font-size: 1.05rem;
+  font-weight: 400;
+  font-style: normal;
+  color: #000;
+}
+
+.tag-contact {
+  background: #144673 !important;
+  font-family: nunito;
+  font-size: 0.75rem;
+  font-weight: 350;
+  font-style: normal;
+  line-height: 1.6 !important;
+  justify-content: center;
+  margin-left: 10px !important;
+  display: none !important;
+  border-radius: 3px !important;
+}
+
+.tag-emoji {
+  margin-right: 4px !important;
+}
+
+@media (min-width: 980px) {
+  .card-contact-list {
+    width: 65% !important;
+  }
+
+  .tag-contact {
+    display: flex !important;
+  }
+
+  .app-button-contact:hover .btn-actions-contact {
+    display: inline-block !important;
+  }
+}
+#app {
+  position: relative;
+  min-height: calc(100vh - 60px);
+  background-color: rgba(166, 153, 138, 0.02) !important;
+}
+
+#web {
+  position: relative;
+  min-height: 100vh;
+  background-color: rgba(166, 153, 138, 0.02) !important;
+}
+
+#body {
+  padding-bottom: 65px;
+}
+
+#footer {
+  background-color: #000;
+  height: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-copyright {
+  color: #DFEDF2;
+}
+
+#app {
+  position: relative;
+  min-height: calc(100vh - 60px);
+  background-color: rgba(166, 153, 138, 0.02) !important;
+}
+
+#web {
+  position: relative;
+  min-height: 100vh;
+  background-color: rgba(166, 153, 138, 0.02) !important;
+}
+
+#body {
+  padding-bottom: 65px;
+}
+
+.uk-button-primary {
+  background-color: #021F59 !important;
+  transition: 0.2s ease-in-out !important;
+}
+
+.uk-button-primary:hover {
+  background-color: #144673 !important;
+}
+
+.uk-input:focus {
+  border-color: #021F59 !important;
 }
 
 /*# sourceMappingURL=app.css.map */

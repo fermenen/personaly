@@ -1,0 +1,15 @@
+@import "base";
+
+.uk-button-primary {
+  background-color: $color-blue-1 !important;
+  transition: .2s ease-in-out !important;
+}
+
+.uk-button-primary:hover {
+  background-color: $color-blue-2 !important;
+
+}
+
+.uk-input:focus {
+  border-color: $color-blue-1 !important;
+}

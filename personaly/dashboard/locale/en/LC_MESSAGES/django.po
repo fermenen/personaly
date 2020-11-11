@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-08 19:27+0100\n"
+"POT-Creation-Date: 2020-11-11 16:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,18 +19,48 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: dashboard/templates/dashboard/contacts_list.html:4
-#: dashboard/templates/dashboard/contacts_list.html:13
+#: dashboard/templates/dashboard/contacts_list.html:12
 msgid "Contactos"
 msgstr "Contacts"
 
-#: dashboard/templates/dashboard/contacts_list.html:28
+#: dashboard/templates/dashboard/contacts_list.html:15
+#, fuzzy
+#| msgid "Editar contacto"
+msgid "Buscar contacto"
+msgstr "Edit contact"
+
+#: dashboard/templates/dashboard/contacts_list.html:17
+#: dashboard/templates/dashboard/modal/add_contact.html:4
+#, fuzzy
+#| msgid "Editar contacto"
+msgid "Añadir contacto"
+msgstr "Edit contact"
+
+#: dashboard/templates/dashboard/contacts_list.html:48
 msgid "Editar contacto"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contacts_list.html:29
+#: dashboard/templates/dashboard/contacts_list.html:51
 msgid "Programar"
 msgstr "Schedule"
 
-#: dashboard/templates/dashboard/contacts_list.html:30
+#: dashboard/templates/dashboard/contacts_list.html:54
 msgid "Más acciones"
 msgstr "More Actions"
+
+#: dashboard/templates/dashboard/modal/add_contact.html:10
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: dashboard/templates/dashboard/modal/add_contact.html:11
+msgid "Crear"
+msgstr "Create"
+
+#: dashboard/templates/dashboard/settings.html:4
+msgid "Ajustes"
+msgstr ""
+
+#, fuzzy
+#~| msgid "Contactos"
+#~ msgid "contactos/"
+#~ msgstr "contacts/"
