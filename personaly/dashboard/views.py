@@ -17,9 +17,11 @@ def index(request):
 @login_required
 def contacts_list_view(request, form_add_contact=None):
     owner = request.user
-    list_contacts = Contact.objects.filter(owner=owner).order_by('name')
+    list_contacts = Contact.objects.filter(owner=owner, active=True).order_by('name')
+    count_contacts = len(list_contacts)
     list_tags = TagContact.objects.filter(owner=owner)
-    return render(request, 'dashboard/contacts_list.html', {'contact_list': list_contacts, 'tags_list': list_tags, 'form_add_contact': form_add_contact })
+    return render(request, 'dashboard/contacts_list.html', {'contact_list': list_contacts, 'tags_list': list_tags,
+                                                            'form_add_contact': form_add_contact, 'count_contacts': count_contacts})
 
 
 @login_required

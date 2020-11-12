@@ -8,7 +8,6 @@ from uuid import uuid4
 from PIL import Image
 
 
-
 class Contact(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.TextField()
@@ -17,16 +16,18 @@ class Contact(models.Model):
     phone = PhoneField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
     url = models.SlugField(blank=True, max_length=255)
-
     image_contact = models.ImageField(upload_to='images_contacts', blank=True, null=True, verbose_name='imagecontact', default='images_contacts/placeholder.jpg')
+    active = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
+
         user = User.objects.get(id=self.owner.id)
         user.contacts_created += 1
         user.save()
         self.url = slugify(f"{self.name}-{self.surnames}-{user.contacts_created}")
         self.image_contact = self.get_transform_image()
         super(Contact, self).save(*args, **kwargs)
+
 
     def get_transform_image(self):
         basewidth = 400

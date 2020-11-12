@@ -7,19 +7,20 @@ $color-white: #FFFF;
 $color-black: #000;
 
 
-#app {
-    position: relative;
-    min-height: calc(100vh - 60px);
-    background-color: rgba(166, 153, 138, 0.020) !important;
+html, body {
+  height: 100%;
 }
 
-#web {
-    position: relative;
-    min-height: 100vh;
-    background-color: rgba(166, 153, 138, 0.020) !important;
+body {
+  display: flex;
+  flex-direction: column;
 }
 
+.content {
+  background-color: rgba(166, 153, 138, 0.020) !important;
+  flex: 1 0 auto;
+}
 
-#body {
-    padding-bottom: 65px;
+.footer {
+  flex-shrink: 0;
 }

@@ -11,56 +11,79 @@
                 <div class="card-title uk-flex-inline uk-margin-left uk-margin-bottom">
                     <h3 class="uk-card-title uk-h2 uk-flex-left">{% translate "Contactos" %}</h3>
                     <ul class="uk-iconnav btn-actions-tittle uk-flex-right">
-                        <li><a href="#" class="uk-icon-link" uk-icon="icon: search"
-                               uk-tooltip="title: {% translate "Buscar contacto" %}; pos: bottom-left"></a>
+{#                        <li><a href="#" class="uk-icon-link" uk-icon="icon: search"#}
+{#                               uk-tooltip="title: {% translate "Buscar contacto" %}; pos: bottom-left"></a>#}
                         <li><a href="#add_contact" class="uk-icon-link" uk-icon="icon: plus"
                                uk-tooltip="title: {% translate "Añadir contacto" %}; pos: bottom-left" uk-toggle></a>
+
                     </ul>
                 </div>
-                {% for contact in contact_list %}
-                    <div class="uk-margin-bottom">
-                        <a href="{% url 'contact' contact.url %}">
-                            <div class="uk-button app-button-contact uk-width-1-1 ">
-                                <div class="uk-flex-inline uk-flex-middle">
-                                    <div class="uk-flex-left uk-flex-inline uk-flex-bottom">
-                                        <div class="container-image-contact">
-                                            <img class="uk-border-circle image-contact" width="50" height="50"
-                                                 data-src="/media{{ contact.image_contact }}"
-                                                 alt="{{ contact.name }} {{ contact.surnames }}" uk-img>
-                                        </div>
-                                        <div class="text-button-contact uk-margin-left uk-flex-middle uk-margin-right"
-                                             id="info">{{ contact.name }} {{ contact.surnames }}</div>
+                {% if count_contacts == 0 %}
+                    <div class="uk-container">
 
-                                        {% for tag in tags_list %}
-                                            <div class="uk-container uk-flex-inline uk-flex-middle ">
-                                                {% if tag.contact == contact %}
-                                                    <div class="uk-label tag-contact">
-                                                        <span class="tag-emoji">{{ tag.icon }}</span>
-                                                        <span class="text-tag-contact">{{ tag.text }}</span>
-                                                    </div>
-                                                {% endif %}
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                    <div class="btn-actions-contact uk-flex-right uk-flex-inline uk-flex-middle">
-                                        <ul class="uk-iconnav">
-                                            <li><a href="#" class="uk-icon-link" uk-icon="file-edit"
-                                                   uk-tooltip="title: {% translate "Editar contacto" %}; pos: bottom-left"></a>
-                                            </li>
-                                            <li><a href="#" class="uk-icon-link" uk-icon="future"
-                                                   uk-tooltip="title: {% translate "Programar" %}; pos: bottom-left"></a>
-                                            </li>
-                                            <li><a href="#" class="uk-icon-link" uk-icon="more-vertical"
-                                                   uk-tooltip="title: {% translate "Más acciones" %}; pos: bottom-left"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                        <div class="uk-flex-middle uk-flex-first" uk-grid>
+                            <div class="uk-width-2-3@m">
+                                <p>No tienes contactos, anade y empieza a disfruatr de toda la experencia</p>
+{#                                <a href="#add_contact"><button class="uk-button uk-button-secondary uk-button-large">Añadir contacto</button></a>#}
 
-                                </div>
+                                <button class="uk-button uk-button-secondary uk-button-large" type="button" uk-toggle="target: #add_contact">Añadir contacto</button>
+
                             </div>
-                        </a>
+                            <div class="uk-width-1-3@m ">
+                                <img class="uk-preserve" width="400"
+                                     src="{% static 'img/app/add_contact.svg' %}" alt="Sin contactos" uk-svg>
+                            </div>
+                        </div>
+
+
+                        {#                        <img class="uk-preserve" uk-svg="stroke-animation: true" width="300" height="300" src="{% static 'img/app/add_contact.svg' %}" alt="Sin contactos" uk-svg>#}
                     </div>
-                {% endfor %}
+                {% else %}
+                    {% for contact in contact_list %}
+                        <div class="uk-margin-bottom">
+                            <a href="{% url 'contact' contact.url %}">
+                                <div class="uk-button app-button-contact uk-width-1-1 ">
+                                    <div class="uk-flex-inline uk-flex-middle">
+                                        <div class="uk-flex-left uk-flex-inline uk-flex-bottom">
+                                            <div class="container-image-contact">
+                                                <img class="uk-border-circle image-contact" width="50" height="50"
+                                                     data-src="/media{{ contact.image_contact }}"
+                                                     alt="{{ contact.name }} {{ contact.surnames }}" uk-img>
+                                            </div>
+                                            <div class="text-button-contact uk-margin-left uk-flex-middle uk-margin-right"
+                                                 id="info">{{ contact.name }} {{ contact.surnames }}</div>
+
+                                            {% for tag in tags_list %}
+                                                <div class="uk-container uk-flex-inline uk-flex-middle ">
+                                                    {% if tag.contact == contact %}
+                                                        <div class="uk-label tag-contact">
+                                                            <span class="tag-emoji">{{ tag.icon }}</span>
+                                                            <span class="text-tag-contact">{{ tag.text }}</span>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="btn-actions-contact uk-flex-right uk-flex-inline uk-flex-middle">
+                                            <ul class="uk-iconnav">
+                                                <li><a href="#" class="uk-icon-link" uk-icon="file-edit"
+                                                       uk-tooltip="title: {% translate "Editar contacto" %}; pos: bottom-left"></a>
+                                                </li>
+                                                <li><a href="#" class="uk-icon-link" uk-icon="future"
+                                                       uk-tooltip="title: {% translate "Programar" %}; pos: bottom-left"></a>
+                                                </li>
+                                                <li><a href="#" class="uk-icon-link" uk-icon="more-vertical"
+                                                       uk-tooltip="title: {% translate "Más acciones" %}; pos: bottom-left"></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
     </div>

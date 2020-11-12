@@ -13,3 +13,20 @@
 .uk-input:focus {
   border-color: $color-blue-1 !important;
 }
+
+
+.uk-button-secondary {
+  background-color: $color-black !important;
+}
+
+.uk-button-secondary:hover {
+  background-color: $color-blue-3 !important;
+}
+
+.text-line {
+  color: $color-gray-1 !important;
+
+}
+.text-line:before {
+   border-bottom: 1px solid $color-blue-2 !important;
+}

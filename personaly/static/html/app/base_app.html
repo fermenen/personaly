@@ -32,13 +32,18 @@
     </nav>
 
 
-    <div id="body"> {% block content_main %}{% endblock %}</div>
+    <div id="app" class="content"> {% block content_main %}{% endblock %}</div>
 
     <footer id="footer" class="footer uk-margin-top">
-        <div class="uk-flex-inline uk-flex-middle">
-                <div class="footer-copyright">
-                    personaly &copy 2020
-                </div>
+        <div class="uk-flex-inline uk-flex-middle" uk-grid>
+            <div class="footer-copyright uk-flex-first">
+                personaly &copy 2020
+            </div>
+            <div class="footer-right uk-flex-last">
+                <button class="uk-button uk-button-text text-line uk-margin-right">Aviso Legal</button>
+                <button class="uk-button uk-button-text text-line uk-margin-right">Política de Privacidad</button>
+                <button class="uk-button uk-button-text text-line uk-margin-right">Código de Conducta</button>
+            </div>
         </div>
     </footer>
 
