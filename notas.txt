@@ -4,4 +4,4 @@ python manage.py migrate
 python manage.py makemessages -l 'en'
 python manage.py compilemessages
 
-sass ./personaly/static/theme/app.scss ./personaly/static/css/app.css
+sass ./static/theme/app.scss ./static/css/app.css

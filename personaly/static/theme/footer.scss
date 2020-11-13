@@ -17,3 +17,16 @@
   position: absolute;
   right: 0;
 }
+
+.footer-left {
+  position: absolute;
+  left: 0;
+}
+
+.icon-footer{
+  color: $color-gray-1 !important;
+}
+
+.icon-footer:hover {
+  color: $color-blue-2 !important;
+}

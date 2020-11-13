@@ -2,49 +2,8 @@
 {% load i18n %}
 {% load static %}
 
-
 {% block content %}
-
-    <nav class="uk-navbar-container navbar-app-web  uk-flex-top" data-uk-navbar
-         data-uk-toggle="media: @s; cls: uk-flex-row uk-flex-top; mode: media">
-        <div class="uk-navbar-left">
-            <a href="{% url 'app' %}" class="navbar-brand uk-logo uk-navbar-item uk-margin-left">personaly</a>
-            <button type="button" aria-label="menu" data-uk-toggle="target: .navbar-collapse; cls: hidden-up-to-s"
-                    class="uk-navbar-toggle uk-hidden@s" data-uk-navbar-toggle-icon></button>
-        </div>
-        <div class="navbar-collapse hidden-up-to-s">
-            <div class="navbar-app-web-right uk-margin-right">
-                <ul data-uk-toggle="media: @s; cls: uk-navbar-nav uk-padding-remove; mode: media"
-                    class="navbar-item uk-nav uk-nav-primary uk-padding-small">
-                    <li><a class="navbar-item navbar-link" href="{% url 'app' %}"><i
-                            class="fas fa-home uk-icon uk-margin-small-right"></i>{% translate "Inicio" %}</a></li>
-                    <li><a class="navbar-item navbar-link" href="{% url 'contacts' %}"><i
-                            class="fas fa-address-book uk-icon uk-margin-small-right"></i>{% translate "Contactos" %}
-                    </a></li>
-                    <li><a class="navbar-item navbar-link" href="{% url 'settings' %}"><i
-                            class="fas fa-cog uk-icon uk-margin-small-right"></i>{% translate "Ajustes" %}</a></li>
-                    <li><a class="navbar-item navbar-link" href="{% url 'logout' %}"><i
-                            class="fas fa-sign-out-alt uk-margin-small-right"></i>{% translate "Cerrar Sesión" %}</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
+    {% include "html/app/nav_app.html" %}
     <div id="app" class="content"> {% block content_main %}{% endblock %}</div>
-
-    <footer id="footer" class="footer uk-margin-top">
-        <div class="uk-flex-inline uk-flex-middle" uk-grid>
-            <div class="footer-copyright uk-flex-first">
-                personaly &copy 2020
-            </div>
-            <div class="footer-right uk-flex-last">
-                <button class="uk-button uk-button-text text-line uk-margin-right">Aviso Legal</button>
-                <button class="uk-button uk-button-text text-line uk-margin-right">Política de Privacidad</button>
-                <button class="uk-button uk-button-text text-line uk-margin-right">Código de Conducta</button>
-            </div>
-        </div>
-    </footer>
-
+    {% include "html/app/footer_app.html" %}
 {% endblock %}
