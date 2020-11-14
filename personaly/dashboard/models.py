@@ -16,7 +16,7 @@ class Contact(models.Model):
     phone = PhoneField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     url = models.SlugField(blank=True, max_length=255)
-    image_contact = models.ImageField(blank=True, upload_to='images_contacts', null=True, verbose_name='imagecontact', default='images_contacts/placeholder.jpg')
+    image_contact = models.ImageField(blank=True, upload_to='images_contacts', null=True, verbose_name='imagecontact')
     active = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
@@ -25,7 +25,8 @@ class Contact(models.Model):
         user.contacts_created += 1
         user.save()
         self.url = slugify(f"{self.name}-{self.surnames}-{user.contacts_created}")
-        self.image_contact = self.get_transform_image()
+        if self.image_contact:
+            self.image_contact = self.get_transform_image()
         super(Contact, self).save(*args, **kwargs)
 
 

@@ -39,9 +39,6 @@
                                      src="{% static 'img/app/add_contact.svg' %}" alt="Sin contactos" uk-svg>
                             </div>
                         </div>
-
-
-                        {#                        <img class="uk-preserve" uk-svg="stroke-animation: true" width="300" height="300" src="{% static 'img/app/add_contact.svg' %}" alt="Sin contactos" uk-svg>#}
                     </div>
                 {% else %}
                     {% for contact in contact_list %}
@@ -51,9 +48,11 @@
                                     <div class="uk-flex-inline uk-flex-middle">
                                         <div class="uk-flex-left uk-flex-inline uk-flex-bottom">
                                             <div class="container-image-contact">
-                                                <img class="uk-border-circle image-contact" width="50" height="50"
-                                                     data-src="/media{{ contact.image_contact }}"
-                                                     alt="{{ contact.name }} {{ contact.surnames }}" uk-img>
+                                                {% if contact.image_contact %}
+                                                <img class="uk-border-circle image-contact" width="50" height="50" data-src="/media{{ contact.image_contact }}" alt="{{ contact.name }} {{ contact.surnames }}" uk-img>
+                                                 {% else %}
+                                                    <img class="uk-border-circle image-contact" width="50" height="50" data-src="{% static 'img/app/contact_default.svg' %}" alt="{{ contact.name }} {{ contact.surnames }}" uk-img>
+                                                {% endif %}
                                             </div>
                                             <div class="text-button-contact uk-margin-left uk-flex-middle uk-margin-right"
                                                  id="info">{{ contact.name }} {{ contact.surnames }}</div>

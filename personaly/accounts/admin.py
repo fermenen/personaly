@@ -1,6 +1,10 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
 
 from accounts.models import User
 
-admin.site.register(User, UserAdmin)
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ("id", "first_name", "last_name", "email", "contacts_created", "date_joined", "last_login", "is_active")
+    ist_filter = ("is_active",)
+

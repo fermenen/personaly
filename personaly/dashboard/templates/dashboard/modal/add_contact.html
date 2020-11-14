@@ -25,41 +25,42 @@
             {% endif %}
 
 
-            {{ form.as_p }}
+            <div class="uk-flex">
+                <div class="uk-width-2-4 uk-flex-first">
+                    <label class="uk-form-label " for="{{ form.name.id_for_label }}">Nombre</label>
+                    <div class="uk-form-controls">
+                        {% if form.name.errors %}
+                            <input class="uk-input uk-form-danger uk-form-width-medium"
+                                   name={{ form.name.name }} type="text" required>
+                        {% else %}
+                            <input class="uk-input uk-form-width-medium" name={{ form.name.name }} type="text" required>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="uk-width-2-1 uk-flex-last">
+                    <label class="uk-form-label " for="{{ form.surnames.id_for_label }}">Apellidos</label>
+                    <div class="uk-form-controls">
+                        {% if form.surnames.errors %}
+                            <input class="uk-input uk-form-danger" name={{ form.surnames.name }} type="text" required>
+                        {% else %}
+                            <input class="uk-input" name={{ form.surnames.name }} type="text" required>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
 
-            {#            <div class="uk-margin">#}
-            {#                <label class="uk-form-label" for="form-stacked-text">Nombre</label>#}
-            {#                <div class="uk-form-controls">#}
-            {#                    <input class="uk-input" id="form_name" name="form_name" type="text" placeholder="Elena ..."#}
-            {#                           required>#}
-            {#                </div>#}
-            {#            </div>#}
-            {##}
-            {#            <div class="uk-margin">#}
-            {#                <label class="uk-form-label" for="form-stacked-text">Apellidos</label>#}
-            {#                <div class="uk-form-controls">#}
-            {#                    <input class="uk-input" id="form_surname" name="form_surname" type="text"#}
-            {#                           placeholder="Fernandez ..." required>#}
-            {#                </div>#}
-            {#            </div>#}
-            {##}
-            {##}
-            {#            <div class="uk-margin">#}
-            {#                <label class="uk-form-label" for="form-stacked-text">Estar en contacto</label>#}
-            {#                <select class="uk-select" name="form_select" id="form_select">#}
-            {#                    <option>Option 01</option>#}
-            {#                    <option>Option 02</option>#}
-            {#                </select>#}
-            {#            </div>#}
-            {##}
-            {#            <div class="uk-margin">#}
-            {#                <div uk-form-custom>#}
-            {#                    <input type="file" name="form_photo" id="form_photo">#}
-            {#                    <button class="uk-button uk-button-default" type="button" tabindex="-1">Foto perfil</button>#}
-            {#                </div>#}
-            {#            </div>#}
-            {##}
-            {##}
+            <div class="uk-margin uk-margin-bottom">
+                <label class="uk-form-label" for="form-stacked-text">Estar en contacto</label>
+                <select class="uk-select" name="form_select" id="form_select">
+                    <option>Cada semana</option>
+                    <option>Cada dos semana</option>
+                    <option>1 vez al mes</option>
+                    <option>Cada dos meses</option>
+                    <option>No recordar</option>
+                </select>
+            </div>
+
+
         </div>
 
         {% csrf_token %}

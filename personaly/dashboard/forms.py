@@ -29,6 +29,7 @@ def add_contact_view(request):
             contact.owner = request.user
             contact.save()
             messages.success(request, 'Contacto creado con exito!')
+
             return redirect('contacts')
         else:
             return views.contacts_list_view(request, form_add_contact=form, errors=True)

@@ -5,5 +5,11 @@ from dashboard.models import Contact
 
 from dashboard.models import TagContact
 
-admin.site.register(Contact)
 admin.site.register(TagContact)
+
+
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ("id", "name", "surnames", "owner", "created_at", "active")
+    list_filter = ("owner", "active")
+

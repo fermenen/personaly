@@ -244,6 +244,10 @@ body {
   border-color: #021F59 !important;
 }
 
+.uk-select:focus {
+  border-color: #021F59 !important;
+}
+
 .uk-button-secondary {
   background-color: #000 !important;
 }

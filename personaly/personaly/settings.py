@@ -82,7 +82,6 @@ MESSAGE_TAGS = {
     messages.ERROR: 'uk-alert-danger',
 }
 
-
 WSGI_APPLICATION = 'personaly.wsgi.application'
 
 # Database
