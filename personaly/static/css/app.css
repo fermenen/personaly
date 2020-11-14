@@ -14,6 +14,11 @@ body {
   flex: 1 0 auto;
 }
 
+.content-web {
+  background-color: rgba(166, 153, 138, 0.02) !important;
+  flex: 1 0 auto;
+}
+
 .footer {
   flex-shrink: 0;
 }
@@ -82,6 +87,11 @@ body {
 
 .content {
   margin-top: 70px !important;
+  background-color: rgba(166, 153, 138, 0.02) !important;
+  flex: 1 0 auto;
+}
+
+.content-web {
   background-color: rgba(166, 153, 138, 0.02) !important;
   flex: 1 0 auto;
 }
@@ -177,6 +187,11 @@ body {
   flex: 1 0 auto;
 }
 
+.content-web {
+  background-color: rgba(166, 153, 138, 0.02) !important;
+  flex: 1 0 auto;
+}
+
 .footer {
   flex-shrink: 0;
 }
@@ -227,6 +242,11 @@ body {
   flex: 1 0 auto;
 }
 
+.content-web {
+  background-color: rgba(166, 153, 138, 0.02) !important;
+  flex: 1 0 auto;
+}
+
 .footer {
   flex-shrink: 0;
 }
@@ -266,6 +286,94 @@ body {
 
 .uk-heading-medium {
   font-size: 2.1rem !important;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  margin-top: 70px !important;
+  background-color: rgba(166, 153, 138, 0.02) !important;
+  flex: 1 0 auto;
+}
+
+.content-web {
+  background-color: rgba(166, 153, 138, 0.02) !important;
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+}
+
+.headboard {
+  height: 550px;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 7rem;
+}
+
+.image-head {
+  height: 150%;
+  position: relative;
+  overflow: hidden;
+  background-image: url("/static/img/3.jpeg");
+  -webkit-filter: blur(1.5px);
+  -moz-filter: blur(1.5px);
+  -o-filter: blur(1.5px);
+  -ms-filter: blur(1.5px);
+  filter: blur(1.5px);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+.text-head {
+  color: #FFFF !important;
+  font-size: 65px;
+  font-weight: 700 !important;
+}
+
+.bg-circle {
+  z-index: 0;
+  position: absolute;
+  border-radius: 100%;
+  background: linear-gradient(0deg, #05AFF2 0%, #144673 100%);
+}
+
+.bg-circle-1 {
+  height: 90rem;
+  width: 90rem;
+  bottom: -55rem;
+  left: -63rem;
+}
+
+.bg-circle-2 {
+  height: 50rem;
+  width: 50rem;
+  top: -25rem;
+  right: -25rem;
+}
+
+.bg-circle-3 {
+  height: 20rem;
+  width: 20rem;
+  bottom: -10rem;
+  right: 5%;
+}
+
+.bg-circle-4 {
+  height: 30rem;
+  width: 30rem;
+  top: -5rem;
+  right: 35%;
 }
 
 /*! UIkit 3.5.9 | https://www.getuikit.com | (c) 2014 - 2020 YOOtheme | MIT License */

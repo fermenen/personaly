@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 
 from dashboard.models import Contact, TagContact
 from .forms import AddContactForm
+from django.shortcuts import get_list_or_404, get_object_or_404
 
 
 @login_required
@@ -29,14 +30,11 @@ def contacts_list_view(request, form_add_contact=AddContactForm, errors=False):
 
 @login_required
 def contact_view(request, url):
-
     try:
-        for contact in Contact.objects.filter(url=url):
-            if contact.owner.id == request.user.id:
-                return render(request, 'dashboard/contact.html', {'contact': contact})
-    except Contact.DoesNotExist:
-        return redirect("dashboard_app")
-    return redirect("dashboard_app")
+        contact = get_object_or_404(Contact, url=url, owner=request.user, active=True)
+        return render(request, 'dashboard/contact.html', {'contact': contact})
+    except Exception:
+        return redirect("contacts")
 
 
 @login_required

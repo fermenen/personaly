@@ -6,33 +6,25 @@
 {% block content %}
 
 
-    <nav id="header" class="navbar navbar-app-web navbar-expand-lg fixed-top navbar-fixed-top" role="navigation">
-        <div class="container">
-            <a class="navbar-brand" href="#">personaly</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar navbar-toggler-icon"><i class="fas fa-bars"></i></span>
-                {#                <span class="navbar-toggler-icon"></span>#}
-            </button>
-            <div class="collapse navbar-collapse navbar-ex1-collapse" id="navbarResponsive">
-                <ul class="nav navbar-nav ml-auto">
-                    <li class="navbar-item">
-                        <a class="navbar-link" href="{% url 'login' %}"><i
-                                class="fas fa-sign-in-alt"></i>{% translate "Inicia sesión" %}</a>
-                    </li>
-                </ul>
+{% include "html/web/nav_web.html" %}
+
+
+    <div id="web" class="content-web"> {% block content_main %}{% endblock %}</div>
+
+    <footer id="footer" class="footer uk-margin-top">
+        <div class="uk-flex-inline uk-flex-middle" uk-grid>
+            <ul class="footer-left uk-iconnav uk-margin-left">
+                <li><a href="#" class="icon-footer" uk-icon="icon: twitter"></a></li>
+                <li><a href="#" class="icon-footer" uk-icon="icon: linkedin"></a></li>
+            </ul>
+            <div class="footer-copyright uk-flex-first">
+                personaly &copy 2020
             </div>
-        </div>
-    </nav>
-
-
-
-    <div id="body">{% block content_main %}{% endblock %}</div>
-
-    <footer id="footer">
-        <div class="container">
-            <p class="m-0 text-center text-white small">personaly 2020</p>
+            <div class="footer-right uk-flex-last">
+                <button class="uk-button uk-button-text text-line uk-margin-right">{% translate "Aviso Legal" %}</button>
+                <button class="uk-button uk-button-text text-line uk-margin-right">{% translate "Política de Privacidad" %}</button>
+                <button class="uk-button uk-button-text text-line uk-margin-right">{% translate "Código de Conducta" %}</button>
+            </div>
         </div>
     </footer>
 

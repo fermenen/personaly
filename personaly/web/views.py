@@ -8,6 +8,8 @@ from django.utils.translation import (
 
 
 def web(request):
+    if request.user.is_authenticated:
+        return redirect("app")
     return render(request, 'web/index.html')
 
 
