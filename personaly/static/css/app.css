@@ -9,6 +9,7 @@ body {
 }
 
 .content {
+  margin-top: 70px !important;
   background-color: rgba(166, 153, 138, 0.02) !important;
   flex: 1 0 auto;
 }
@@ -24,7 +25,6 @@ body {
 
 .navbar-app-web {
   background-color: #021F59 !important;
-  margin-bottom: 70px !important;
 }
 
 .navbar-app-web .navbar-brand {
@@ -81,6 +81,7 @@ body {
 }
 
 .content {
+  margin-top: 70px !important;
   background-color: rgba(166, 153, 138, 0.02) !important;
   flex: 1 0 auto;
 }
@@ -171,6 +172,7 @@ body {
 }
 
 .content {
+  margin-top: 70px !important;
   background-color: rgba(166, 153, 138, 0.02) !important;
   flex: 1 0 auto;
 }
@@ -220,6 +222,7 @@ body {
 }
 
 .content {
+  margin-top: 70px !important;
   background-color: rgba(166, 153, 138, 0.02) !important;
   flex: 1 0 auto;
 }

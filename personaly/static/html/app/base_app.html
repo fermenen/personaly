@@ -3,7 +3,9 @@
 {% load static %}
 
 {% block content %}
+
     {% include "html/app/nav_app.html" %}
     <div id="app" class="content"> {% block content_main %}{% endblock %}</div>
     {% include "html/app/footer_app.html" %}
+
 {% endblock %}

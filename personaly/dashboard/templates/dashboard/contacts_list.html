@@ -94,10 +94,10 @@
     </div>
 
     <div id="add_contact" target uk-modal>
-        {% include "dashboard/modal/add_contact.html" %}
+        {% include "dashboard/modal/add_contact.html" with form=form_add_contact %}
     </div>
 
-    {% if form_add_contact %}
+    {% if errors %}
         <script>
             UIkit.modal(add_contact).show();
         </script>

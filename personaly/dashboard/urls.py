@@ -8,7 +8,7 @@ urlpatterns = [
     path('contact/<slug:url>/', views.contact_view, name='contact'),
     path('settings/', views.settings_view, name='settings'),
 
-    path('add_contact', forms.add_contact, name='api_add_contact'),
+    path('add_contact', forms.add_contact_view, name='api_add_contact'),
 ]
 
 

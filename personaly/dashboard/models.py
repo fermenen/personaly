@@ -12,11 +12,11 @@ class Contact(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.TextField()
     surnames = models.TextField()
-    city = models.TextField()
+    city = models.TextField(blank=True)
     phone = PhoneField(blank=True)
-    created = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     url = models.SlugField(blank=True, max_length=255)
-    image_contact = models.ImageField(upload_to='images_contacts', blank=True, null=True, verbose_name='imagecontact', default='images_contacts/placeholder.jpg')
+    image_contact = models.ImageField(blank=True, upload_to='images_contacts', null=True, verbose_name='imagecontact', default='images_contacts/placeholder.jpg')
     active = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):

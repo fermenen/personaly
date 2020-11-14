@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from dashboard.models import Contact, TagContact
+from .forms import AddContactForm
 
 
 @login_required
@@ -15,13 +16,15 @@ def index(request):
 
 
 @login_required
-def contacts_list_view(request, form_add_contact=None):
+def contacts_list_view(request, form_add_contact=AddContactForm, errors=False):
     owner = request.user
     list_contacts = Contact.objects.filter(owner=owner, active=True).order_by('name')
     count_contacts = len(list_contacts)
     list_tags = TagContact.objects.filter(owner=owner)
     return render(request, 'dashboard/contacts_list.html', {'contact_list': list_contacts, 'tags_list': list_tags,
-                                                            'form_add_contact': form_add_contact, 'count_contacts': count_contacts})
+                                                            'form_add_contact': form_add_contact,
+                                                            'count_contacts': count_contacts,
+                                                            'errors': errors})
 
 
 @login_required
