@@ -1,63 +1,62 @@
 {% extends 'html/app/base_app.html' %}
+{% load i18n %}
 {% load static %}
-{% block title %}{{ contact.name }}{% endblock %}
+{% block title %}{{ contact.name }} {{ contact.surnames }} | {% endblock %}
 
 {% block content_main %}
 
 
+    <div class="uk-container uk-container-large ">
+        <div class="uk-flex uk-flex-center">
+            <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m">
+                <ul class="uk-iconnav btn-actions-tittle uk-flex-right">
+                    <li><a href="#" class="uk-icon-link" uk-icon="icon: trash" uk-tooltip="title: {% translate "Eliminar contacto" %}; pos: bottom-left"></a>
+                    <li><a href="#" class="uk-icon-link" uk-icon="icon: pencil" uk-tooltip="title: {% translate "Editar contacto" %}; pos: bottom-left"></a>
 
+                </ul>
 
+                {% include "dashboard/contact/contact_header.html" with contact=contact tags_list=tags_list %}
 
-    <div class="content" style="margin-top: 60px">
+                <div class="uk-margin-large-top">
+                    <ul class="uk-child-width-expand" uk-tab>
+                        <li><a href="#"><span class="uk-margin-small-right" uk-icon="future"></span>Recordatorios</a></li>
+                    </ul>
 
-        <div class="card-summary-info">
-            <div class="firstinfo">
-                <div class="img-sumary">
-                    <img src="/media/{{ contact.image_contact }}"/>
+                    <ul class="uk-switcher uk-margin">
+                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.
+                        </li>
+                    </ul>
                 </div>
-                <div class="profileinfo">
-                    <h1>{{ contact.name }} {{ contact.surnames }}</h1>
-                    <div class="row" style="margin: auto">
-                        <div class="sumary-location "><i class="fas fa-map-marker-alt"></i> {{ contact.city }}</div>
-                        <div class="sumary-phone "><i class="fas fa-phone-alt"></i> {{ contact.phone }} </div>
-                    </div>
-                    <p class="bio">tags</p>
+
+
+                <div class="uk-margin-large-top">
+
+                    <ul class="uk-child-width-expand" uk-tab>
+                        <li><a href="#"><span class="uk-margin-small-right" uk-icon="comments"></span>Notas</a></li>
+                        <li><a href="#"><span class="uk-margin-small-right" uk-icon="bolt"></span>Cosas en comun</a></li>
+                        <li><a href="#"><span class="uk-margin-small-right" uk-icon="world"></span>Experiencias</a></li>
+                        <li><a href="#"><span class="uk-margin-small-right" uk-icon="user"></span>Familia</a></li>
+                    </ul>
+
+                    <ul class="uk-switcher uk-margin">
+                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.
+                        </li>
+                        <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo
+                            consequat.
+                        </li>
+                        <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                            pariatur, sed do eiusmod.
+                        </li>
+                        <li>Duis gggggg.
+                        </li>
+                    </ul>
                 </div>
+
             </div>
         </div>
-
-
-        <div class="card">
-            <div class="card-header">
-                Featured
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                Featured
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-header">
-                Featured
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            </div>
-        </div>
-
-
     </div>
 
 

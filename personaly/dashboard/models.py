@@ -12,7 +12,7 @@ class Contact(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.TextField()
     surnames = models.TextField()
-    city = models.TextField(blank=True)
+    location = models.TextField(blank=True)
     phone = PhoneField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     url = models.SlugField(blank=True, max_length=255)

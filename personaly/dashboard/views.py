@@ -31,9 +31,11 @@ def contacts_list_view(request, form_add_contact=AddContactForm, errors=False):
 @login_required
 def contact_view(request, url):
     try:
-        contact = get_object_or_404(Contact, url=url, owner=request.user, active=True)
-        return render(request, 'dashboard/contact.html', {'contact': contact})
-    except Exception:
+        owner = request.user
+        contact = get_object_or_404(Contact, url=url, owner=owner, active=True)
+        list_tags = TagContact.objects.filter(owner=owner, contact=contact)
+        return render(request, 'dashboard/contact.html', {'contact': contact, 'tags_list': list_tags})
+    except Exception as e:
         return redirect("contacts")
 
 

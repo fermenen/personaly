@@ -10,15 +10,10 @@
         <div class="navbar-app-web-right uk-margin-right">
             <ul data-uk-toggle="media: @s; cls: uk-navbar-nav uk-padding-remove; mode: media"
                 class="navbar-item uk-nav uk-nav-primary uk-padding-small">
-                <li><a class="navbar-item navbar-link" href="{% url 'app' %}"><i
-                        class="fas fa-home uk-icon uk-margin-small-right"></i>{% translate "Inicio" %}</a></li>
-                <li><a class="navbar-item navbar-link" href="{% url 'contacts' %}"><i
-                        class="fas fa-address-book uk-icon uk-margin-small-right"></i>{% translate "Contactos" %}
-                </a></li>
-                <li><a class="navbar-item navbar-link" href="{% url 'settings' %}"><i
-                        class="fas fa-cog uk-icon uk-margin-small-right"></i>{% translate "Ajustes" %}</a></li>
-                <li><a class="navbar-item navbar-link" href="{% url 'logout' %}"><i
-                        class="fas fa-sign-out-alt uk-margin-small-right"></i>{% translate "Cerrar Sesión" %}</a>
+                <li><a class="navbar-item navbar-link" href="{% url 'app' %}"><span class="uk-margin-small-right" uk-icon="icon: home"></span>{% translate "Inicio" %}</a></li>
+                <li><a class="navbar-item navbar-link" href="{% url 'contacts' %}"><span class="uk-margin-small-right" uk-icon="icon: users"></span>{% translate "Contactos" %}</a></li>
+                <li><a class="navbar-item navbar-link" href="{% url 'settings' %}"><span class="uk-margin-small-right" uk-icon="icon: settings"></span>{% translate "Ajustes" %}</a></li>
+                <li><a class="navbar-item navbar-link" href="{% url 'logout' %}"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span>{% translate "Cerrar Sesión" %}</a></li>
                 </li>
             </ul>
         </div>

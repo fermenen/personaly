@@ -6,7 +6,35 @@
 {% block content_main %}
 
 
-ajustes
+    <div class="uk-container uk-container-large ">
+        <div class="uk-flex uk-flex-center">
+            <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m">
+                <div class="card-title uk-flex-inline uk-margin-left uk-margin-bottom">
+
+                    <h1 class="uk-heading-medium">{% translate "Ajustes" %}</h1>
+
+                </div>
+
+                <div class="uk-margin-left">
+                <div>
+                    <ul class="uk-tab-right" data-uk-switcher="{connect:'#ajustes'}" uk-tab>
+                        <li class="uk-active"><a href="#">Right</a></li>
+                        <li><a href="#">Item</a></li>
+                        <li><a href="#">Item</a></li>
+                    </ul>
+                </div>
+
+                <ul id="ajustes" class="uk-switcher uk-margin">
+                    <li>Hello!</li>
+                    <li>Hello again!</li>
+                    <li>Bazinga!</li>
+                </ul>
+
+                    </div>
+
+            </div>
+        </div>
+    </div>
 
 
 {% endblock %}

@@ -376,6 +376,34 @@ body {
   right: 35%;
 }
 
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  margin-top: 70px !important;
+  background-color: rgba(166, 153, 138, 0.02) !important;
+  flex: 1 0 auto;
+}
+
+.content-web {
+  background-color: rgba(166, 153, 138, 0.02) !important;
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+}
+
+.uk-tab > .uk-active > a {
+  border-color: #05AFF2 !important;
+}
+
 /*! UIkit 3.5.9 | https://www.getuikit.com | (c) 2014 - 2020 YOOtheme | MIT License */
 /* ========================================================================
    Component: Base
