@@ -10,20 +10,33 @@
         <div class="navbar-app-web-right uk-margin-right">
             <ul data-uk-toggle="media: @s; cls: uk-navbar-nav uk-padding-remove; mode: media"
                 class="navbar-item uk-nav uk-nav-primary uk-padding-small">
-                <li><a class="navbar-item navbar-link" href="{% url 'app' %}"><span class="uk-margin-small-right" uk-icon="icon: home"></span>{% translate "Inicio" %}</a></li>
-                <li><a class="navbar-item navbar-link" href="{% url 'contacts' %}"><span class="uk-margin-small-right" uk-icon="icon: users"></span>{% translate "Contactos" %}</a></li>
-                <li><a class="navbar-item navbar-link" href="{% url 'settings' %}"><span class="uk-margin-small-right" uk-icon="icon: settings"></span>{% translate "Ajustes" %}</a></li>
-                <li><a class="navbar-item navbar-link" href="{% url 'logout' %}"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span>{% translate "Cerrar Sesión" %}</a></li>
+                <li><a class="navbar-item navbar-link" href="{% url 'app' %}"><span class="uk-margin-small-right"
+                                                                                    uk-icon="icon: home"></span>{% translate "Inicio" %}
+                </a></li>
+                <li><a class="navbar-item navbar-link" href="{% url 'contacts' %}"><span class="uk-margin-small-right"
+                                                                                         uk-icon="icon: users"></span>{% translate "Contactos" %}
+                </a></li>
+                <li><a class="navbar-item navbar-link" href="{% url 'settings' %}"><span class="uk-margin-small-right"
+                                                                                         uk-icon="icon: settings"></span>{% translate "Ajustes" %}
+                </a></li>
+                <li><a class="navbar-item navbar-link" href="{% url 'logout' %}"><span class="uk-margin-small-right"
+                                                                                       uk-icon="icon: sign-out"></span>{% translate "Cerrar Sesión" %}
+                </a></li>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
 <div class="nav-alerts">
     {% for message in messages %}
-        <div class="{{ message.tags }}" uk-alert>
-            <a class="uk-alert-close" uk-close></a>
-            <p class="uk-margin-left">{{ message }}</p>
-        </div>
+        <script>
+            UIkit.notification({
+                message: '{{ message }}',
+                status: '{{ message.tags }}',
+                pos: 'top-center',
+                timeout: 5000
+            });
+        </script>
     {% endfor %}
 </div>

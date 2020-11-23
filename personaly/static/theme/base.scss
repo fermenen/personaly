@@ -14,16 +14,17 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+  background: rgb(251, 251, 251) !important;
 }
 
 .content {
   margin-top: 70px !important;
-  background-color: rgba(166, 153, 138, 0.020) !important;
+  background: rgb(251, 251, 251) !important;
   flex: 1 0 auto;
 }
 
 .content-web {
-  background-color: rgba(166, 153, 138, 0.020) !important;
+  background: rgb(251, 251, 251) !important;
   flex: 1 0 auto;
 }
 

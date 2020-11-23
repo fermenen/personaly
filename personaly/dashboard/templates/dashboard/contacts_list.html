@@ -9,7 +9,6 @@
         <div class="uk-flex uk-flex-center">
             <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m">
                 <div class="card-title uk-flex-inline uk-margin-left uk-margin-bottom">
-{#                    <h1 class="uk-card-title uk-heading-medium uk-flex-left">{% translate "Contactos" %}</h1>#}
                     <h1 class="uk-heading-medium">{% translate "Contactos" %}</h1>
                     <ul class="uk-iconnav btn-actions-tittle uk-flex-right">
                         {#                        <li><a href="#" class="uk-icon-link" uk-icon="icon: search"#}
@@ -42,58 +41,11 @@
                     </div>
                 {% else %}
                     {% for contact in contact_list %}
-                        <div class="uk-margin-bottom">
-                            <a href="{% url 'contact' contact.url %}">
-                                <div class="uk-button app-button-contact uk-width-1-1 ">
-                                    <div class="uk-flex-inline uk-flex-middle">
-                                        <div class="uk-flex-left uk-flex-inline uk-flex-bottom">
-                                            <div class="container-image-contact">
-                                                {% if contact.image_contact %}
-                                                <img class="uk-border-circle image-contact" width="50" height="50" data-src="/media{{ contact.image_contact }}" alt="{{ contact.name }} {{ contact.surnames }}" uk-img>
-                                                 {% else %}
-                                                    <img class="uk-border-circle image-contact" width="50" height="50" data-src="{% static 'img/app/contact_default.svg' %}" alt="{{ contact.name }} {{ contact.surnames }}" uk-img>
-                                                {% endif %}
-                                            </div>
-                                            <div class="text-button-contact uk-margin-left uk-flex-middle uk-margin-right"
-                                                 id="info">{{ contact.name }} {{ contact.surnames }}</div>
-
-                                            {% for tag in tags_list %}
-                                                <div class="uk-container uk-flex-inline uk-flex-middle ">
-                                                    {% if tag.contact == contact %}
-                                                        <div class="uk-label tag-contact">
-                                                            <span class="tag-emoji">{{ tag.icon }}</span>
-                                                            <span class="text-tag-contact">{{ tag.text }}</span>
-                                                        </div>
-                                                    {% endif %}
-                                                </div>
-                                            {% endfor %}
-                                        </div>
-                                        <div class="btn-actions-contact uk-flex-right uk-flex-inline uk-flex-middle">
-                                            <ul class="uk-iconnav">
-                                                <li><a href="#" class="uk-icon-link" uk-icon="file-edit"
-                                                       uk-tooltip="title: {% translate "Editar contacto" %}; pos: bottom-left"></a>
-                                                </li>
-                                                <li><a href="#" class="uk-icon-link" uk-icon="future"
-                                                       uk-tooltip="title: {% translate "Programar" %}; pos: bottom-left"></a>
-                                                </li>
-                                                <li><a href="#" class="uk-icon-link" uk-icon="more-vertical"
-                                                       uk-tooltip="title: {% translate "Más acciones" %}; pos: bottom-left"></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
+                        {% include "dashboard/contact_list/contact_list_items.html" with contact=contact tags_list=tags_list %}
                     {% endfor %}
                 {% endif %}
             </div>
         </div>
-    </div>
-
-    <div id="add_contact" target uk-modal>
-        {% include "dashboard/modal/add_contact.html" with form=form_add_contact %}
     </div>
 
     {% if errors %}
@@ -101,6 +53,5 @@
             UIkit.modal(add_contact).show();
         </script>
     {% endif %}
-
 
 {% endblock %}

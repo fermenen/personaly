@@ -1,0 +1,19 @@
+{% load i18n %}
+<div>
+    <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"><span class="uk-margin-small-right" uk-icon="plus"></span>Añadir nota</button>
+    {% for note in list_notes %}
+        <div class="card-note-contact uk-card uk-card-small uk-box-shadow-small uk-card-default  uk-card-body uk-width-auto">
+            <div class="uk-flex uk-flex-center uk-flex-between">
+                <div>{{ note.text }} | {{ note.created_at }}</div>
+                <div>
+                    <ul class="uk-iconnav btn-actions-tittle uk-flex-center">
+                        <li><a class="uk-icon-link" onclick="" uk-icon="icon: trash"
+                               uk-tooltip="title: {% translate "Eliminar nota" %}; pos: bottom-left"></a>
+                        <li><a href="#" class="uk-icon-link" uk-icon="icon: pencil"
+                               uk-tooltip="title: {% translate "Editar nota" %}; pos: bottom-left"></a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

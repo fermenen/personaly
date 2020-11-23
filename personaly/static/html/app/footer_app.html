@@ -9,9 +9,9 @@
                 personaly &copy 2020
             </div>
             <div class="footer-right uk-flex-last">
-                <button class="uk-button uk-button-text text-line uk-margin-right">{% translate "Aviso Legal" %}</button>
-                <button class="uk-button uk-button-text text-line uk-margin-right">{% translate "Política de Privacidad" %}</button>
-                <button class="uk-button uk-button-text text-line uk-margin-right">{% translate "Código de Conducta" %}</button>
+                <a href="{% url 'legal_warning' %}" class="uk-button uk-button-text text-line uk-margin-right">{% translate "Aviso Legal" %}</a>
+                <a href="{% url 'privacy_policy' %}" class="uk-button uk-button-text text-line uk-margin-right">{% translate "Política de Privacidad" %}</a>
+                <a href="{% url 'code_conduct' %}" class="uk-button uk-button-text text-line uk-margin-right">{% translate "Código de Conducta" %}</a>
             </div>
         </div>
     </footer>

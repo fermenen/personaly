@@ -6,9 +6,11 @@ from accounts.models import User
 import os
 from uuid import uuid4
 from PIL import Image
+import uuid
 
 
 class Contact(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.TextField()
     surnames = models.TextField()
@@ -20,10 +22,7 @@ class Contact(models.Model):
     active = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
-
         user = User.objects.get(id=self.owner.id)
-        user.contacts_created += 1
-        user.save()
         self.url = slugify(f"{self.name}-{self.surnames}-{user.contacts_created}")
         if self.image_contact:
             self.image_contact = self.get_transform_image()
@@ -53,3 +52,13 @@ class TagContact(models.Model):
 
     def __str__(self):
         return f"({self.icon} - {self.text})"
+
+
+class NoteContact(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+

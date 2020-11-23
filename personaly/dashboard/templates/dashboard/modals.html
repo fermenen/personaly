@@ -1,0 +1,25 @@
+{#CREAR_CONTACTO#}
+<div id="add_contact" target uk-modal>
+    {% include "dashboard/modal/add_contact.html" with form=form_add_contact %}
+</div>
+{#END_CREAR_CONTACTO#}
+
+{#BORRAR CONTACTO#}
+<div id="modal_delete_contact" target uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Eliminar el contacto</h2>
+        <p>¿Estás seguro de que quieres borrar a <span id="contact_name" class="uk-text-bold"></span>?</p>
+        <p>Todos los datos relacionados serán eliminados y esta acción no puede deshacerse.</p>
+        <form action="{% url 'api_delete_contact' %}" method="POST">
+            <input id="contact_id" name="contact_id" type="hidden">
+            {% csrf_token %}
+            <p class="uk-text-right">
+                <button class="uk-button uk-button-danger" type="submit"><span class="uk-margin-small-right" uk-icon="trash"></span>Borrar</button>
+                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+            </p>
+        </form>
+
+
+    </div>
+</div>
+{#END_BORRAR_CONTACTO#}

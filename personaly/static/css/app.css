@@ -6,16 +6,17 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+  background: #fbfbfb !important;
 }
 
 .content {
   margin-top: 70px !important;
-  background-color: rgba(166, 153, 138, 0.02) !important;
+  background: #fbfbfb !important;
   flex: 1 0 auto;
 }
 
 .content-web {
-  background-color: rgba(166, 153, 138, 0.02) !important;
+  background: #fbfbfb !important;
   flex: 1 0 auto;
 }
 
@@ -42,7 +43,7 @@ body {
 }
 
 .navbar-item .navbar-link {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 404;
   color: #FFFF !important;
   letter-spacing: 0.024rem;
@@ -73,7 +74,7 @@ body {
   }
 
   .navbar-item {
-    font-size: 0.87rem !important;
+    font-size: 0.81rem !important;
   }
 }
 html, body {
@@ -83,16 +84,17 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+  background: #fbfbfb !important;
 }
 
 .content {
   margin-top: 70px !important;
-  background-color: rgba(166, 153, 138, 0.02) !important;
+  background: #fbfbfb !important;
   flex: 1 0 auto;
 }
 
 .content-web {
-  background-color: rgba(166, 153, 138, 0.02) !important;
+  background: #fbfbfb !important;
   flex: 1 0 auto;
 }
 
@@ -179,16 +181,17 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+  background: #fbfbfb !important;
 }
 
 .content {
   margin-top: 70px !important;
-  background-color: rgba(166, 153, 138, 0.02) !important;
+  background: #fbfbfb !important;
   flex: 1 0 auto;
 }
 
 .content-web {
-  background-color: rgba(166, 153, 138, 0.02) !important;
+  background: #fbfbfb !important;
   flex: 1 0 auto;
 }
 
@@ -234,16 +237,17 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+  background: #fbfbfb !important;
 }
 
 .content {
   margin-top: 70px !important;
-  background-color: rgba(166, 153, 138, 0.02) !important;
+  background: #fbfbfb !important;
   flex: 1 0 auto;
 }
 
 .content-web {
-  background-color: rgba(166, 153, 138, 0.02) !important;
+  background: #fbfbfb !important;
   flex: 1 0 auto;
 }
 
@@ -295,16 +299,17 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+  background: #fbfbfb !important;
 }
 
 .content {
   margin-top: 70px !important;
-  background-color: rgba(166, 153, 138, 0.02) !important;
+  background: #fbfbfb !important;
   flex: 1 0 auto;
 }
 
 .content-web {
-  background-color: rgba(166, 153, 138, 0.02) !important;
+  background: #fbfbfb !important;
   flex: 1 0 auto;
 }
 
@@ -383,16 +388,17 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
+  background: #fbfbfb !important;
 }
 
 .content {
   margin-top: 70px !important;
-  background-color: rgba(166, 153, 138, 0.02) !important;
+  background: #fbfbfb !important;
   flex: 1 0 auto;
 }
 
 .content-web {
-  background-color: rgba(166, 153, 138, 0.02) !important;
+  background: #fbfbfb !important;
   flex: 1 0 auto;
 }
 
@@ -402,6 +408,12 @@ body {
 
 .uk-tab > .uk-active > a {
   border-color: #05AFF2 !important;
+}
+
+.card-note-contact {
+  margin-bottom: 14px !important;
+  border-left: 2px solid;
+  border-color: #021F59;
 }
 
 /*! UIkit 3.5.9 | https://www.getuikit.com | (c) 2014 - 2020 YOOtheme | MIT License */

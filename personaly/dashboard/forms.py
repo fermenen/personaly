@@ -6,6 +6,7 @@ from django import forms
 
 from . import views
 from .models import Contact
+from .services import ContactService
 
 
 class AddContactForm(forms.ModelForm):
@@ -14,10 +15,7 @@ class AddContactForm(forms.ModelForm):
         model = Contact
         fields = ('name', 'surnames')
 
-    # form_name = forms.CharField(label='Nombre', max_length=100, required=True)
-    # form_surname = forms.CharField(label='Apellido', max_length=100,  required=True)
-    # form_select = forms.ChoiceField(required=False)
-    # form_photo = forms.ImageField(required=False)
+
 
 
 @login_required
@@ -26,13 +24,29 @@ def add_contact_view(request):
         form = AddContactForm(request.POST)
         if form.is_valid():
             contact = form.save(commit=False)
-            contact.owner = request.user
-            contact.save()
-            messages.success(request, 'Contacto creado con exito!')
-
-            return redirect('contacts')
+            response = ContactService().add_contact_service(contact, request)
+            if response[0] == 200:
+                messages.success(request, 'Contacto creado con exito!')
+                return redirect('contacts')
+            else:
+                messages.error(request, 'problema')
+                return redirect('contacts')
         else:
             return views.contacts_list_view(request, form_add_contact=form, errors=True)
     return redirect('contacts')
 
 
+@login_required
+def delete_contact_view(request):
+    if request.method == 'POST':
+        contact = Contact.objects.get(id=request.POST.get("contact_id"))
+        response = ContactService().remove_contact_service(contact, request)
+        if response[0] == 200:
+            messages.success(request, 'Contacto borrado con exito!')
+            return redirect('contacts')
+        else:
+            messages.error(request, 'problema')
+            return redirect('contacts')
+    else:
+        return views.contacts_list_view(request, form_add_contact=form, errors=True)
+    return redirect('contacts')

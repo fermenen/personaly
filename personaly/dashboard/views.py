@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+import uuid
 
-from dashboard.models import Contact, TagContact
+from dashboard.models import Contact, TagContact, NoteContact
 from .forms import AddContactForm
 from django.shortcuts import get_list_or_404, get_object_or_404
 
@@ -34,7 +35,8 @@ def contact_view(request, url):
         owner = request.user
         contact = get_object_or_404(Contact, url=url, owner=owner, active=True)
         list_tags = TagContact.objects.filter(owner=owner, contact=contact)
-        return render(request, 'dashboard/contact.html', {'contact': contact, 'tags_list': list_tags})
+        list_notes = NoteContact.objects.filter(contact=contact, owner=owner, active=True)
+        return render(request, 'dashboard/contact.html', {'contact': contact, 'tags_list': list_tags, 'list_notes': list_notes})
     except Exception as e:
         return redirect("contacts")
 
@@ -42,3 +44,18 @@ def contact_view(request, url):
 @login_required
 def settings_view(request):
     return render(request, 'dashboard/settings.html')
+
+
+@login_required
+def legal_warning_view(request):
+    return render(request, 'dashboard/legal/legal_warning.html')
+
+
+@login_required
+def privacy_policy_view(request):
+    return render(request, 'dashboard/legal/privacy_policy.html')
+
+
+@login_required
+def code_conduct_view(request):
+    return render(request, 'dashboard/legal/code_conduct.html')

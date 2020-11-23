@@ -75,11 +75,11 @@ TEMPLATES = [
 ]
 
 MESSAGE_TAGS = {
-    messages.DEBUG: 'uk-alert-primary',
-    messages.INFO: 'uk-alert-primary',
-    messages.SUCCESS: 'uk-alert-success',
-    messages.WARNING: 'uk-alert-warning',
-    messages.ERROR: 'uk-alert-danger',
+    messages.DEBUG: 'primary',
+    messages.INFO: 'primary',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
 }
 
 WSGI_APPLICATION = 'personaly.wsgi.application'
