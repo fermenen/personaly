@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<div class="uk-flex-row uk-flex-center">
+    <div id="header-common" class="uk-margin-top">
+        <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"><span
+                class="uk-margin-small-right"
+                uk-icon="plus"></span>Añadir cosa en comun
+        </button>
+    </div>
+    <div class="uk-margin-top">
+        {% for common in list_common %}
+        <span class="badge-contact-common uk-badge">{{ common.text }}</span>
+        {% endfor %}
+    </div>
+
+</div>

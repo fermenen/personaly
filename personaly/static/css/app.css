@@ -24,6 +24,10 @@ body {
   flex-shrink: 0;
 }
 
+.li-settings {
+  margin-bottom: 10px !important;
+}
+
 #header {
   min-height: 55px;
   height: 55px;
@@ -100,6 +104,10 @@ body {
 
 .footer {
   flex-shrink: 0;
+}
+
+.li-settings {
+  margin-bottom: 10px !important;
 }
 
 .card-contact-list {
@@ -199,6 +207,10 @@ body {
   flex-shrink: 0;
 }
 
+.li-settings {
+  margin-bottom: 10px !important;
+}
+
 .footer {
   background-color: #000;
   height: 85px;
@@ -253,6 +265,10 @@ body {
 
 .footer {
   flex-shrink: 0;
+}
+
+.li-settings {
+  margin-bottom: 10px !important;
 }
 
 .uk-button-primary {
@@ -315,6 +331,10 @@ body {
 
 .footer {
   flex-shrink: 0;
+}
+
+.li-settings {
+  margin-bottom: 10px !important;
 }
 
 .headboard {
@@ -406,6 +426,10 @@ body {
   flex-shrink: 0;
 }
 
+.li-settings {
+  margin-bottom: 10px !important;
+}
+
 .uk-tab > .uk-active > a {
   border-color: #05AFF2 !important;
 }
@@ -414,6 +438,51 @@ body {
   margin-bottom: 14px !important;
   border-left: 2px solid;
   border-color: #021F59;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: #fbfbfb !important;
+}
+
+.content {
+  margin-top: 70px !important;
+  background: #fbfbfb !important;
+  flex: 1 0 auto;
+}
+
+.content-web {
+  background: #fbfbfb !important;
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex-shrink: 0;
+}
+
+.li-settings {
+  margin-bottom: 10px !important;
+}
+
+.badge-contact-common {
+  background: #021F59 !important;
+  margin-right: 15px;
+  padding: 0 9px !important;
+  text-transform: capitalize;
+  font-size: 1.1rem !important;
+}
+
+.experience-image-size {
+  height: 250px !important;
+}
+
+.panel-experience {
+  height: 250px !important;
 }
 
 /*! UIkit 3.5.9 | https://www.getuikit.com | (c) 2014 - 2020 YOOtheme | MIT License */
@@ -6968,7 +7037,8 @@ ul.uk-nav-sub {
  * 1. Reset Gutter
  */
 .uk-tab-left,
-.uk-tab-right {
+.uk-tab-right,
+.tab-contact-mobile {
   flex-direction: column;
   /* 1 */
   margin-left: 0;
@@ -6976,7 +7046,8 @@ ul.uk-nav-sub {
 
 /* 1 */
 .uk-tab-left > *,
-.uk-tab-right > * {
+.uk-tab-right > *,
+.tab-contact-mobile > * {
   padding-left: 0;
 }
 
@@ -6989,7 +7060,7 @@ ul.uk-nav-sub {
   border-bottom: none;
 }
 
-.uk-tab-right::before {
+.uk-tab-right::before, .tab-contact-mobile::before {
   top: 0;
   bottom: 0;
   left: 0;
@@ -7004,7 +7075,7 @@ ul.uk-nav-sub {
   border-bottom: none;
 }
 
-.uk-tab-right > * > a {
+.uk-tab-right > * > a, .tab-contact-mobile > * > a {
   text-align: left;
   border-left: 1px solid transparent;
   border-bottom: none;
@@ -7920,7 +7991,7 @@ ul.uk-nav-sub {
  *    Using `1px` instead of `0`, so items still wrap into the next line,
  *    if they have zero width and padding and the predecessor is 100% wide.
  */
-.uk-child-width-expand > :not([class*=uk-width]) {
+.uk-child-width-expand > :not([class*=uk-width]), .tab-contact-desktop > :not([class*=uk-width]) {
   flex: 1;
   /* 1 */
   min-width: 1px;

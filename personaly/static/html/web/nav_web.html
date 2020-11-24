@@ -2,7 +2,7 @@
 <nav class="uk-navbar-container navbar-app-web  uk-flex-top" data-uk-navbar
      data-uk-toggle="media: @s; cls: uk-flex-row uk-flex-top; mode: media">
     <div class="uk-navbar-left">
-        <a href="{% url 'app' %}" class="navbar-brand uk-logo uk-navbar-item uk-margin-left">personaly</a>
+        <a href="{% url 'web' %}" class="navbar-brand uk-logo uk-navbar-item uk-margin-left">personaly</a>
         <button type="button" aria-label="menu" data-uk-toggle="target: .navbar-collapse; cls: hidden-up-to-s"
                 class="uk-navbar-toggle uk-hidden@s" data-uk-navbar-toggle-icon></button>
     </div>
@@ -10,11 +10,12 @@
         <div class="navbar-app-web-right uk-margin-right">
             <ul data-uk-toggle="media: @s; cls: uk-navbar-nav uk-padding-remove; mode: media"
                 class="navbar-item uk-nav uk-nav-primary uk-padding-small">
-                <li><a class="navbar-item navbar-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt uk-margin-small-right"></i>{% translate "Iniciar Sesión" %}</a>
+                <li><a class="navbar-item navbar-link" href="{% url 'login' %}"><span class="uk-margin-small-right" uk-icon="icon: sign-in"></span>{% translate "Iniciar Sesión" %}</a></li>
             </ul>
         </div>
     </div>
 </nav>
+
 <div class="nav-alerts">
     {% for message in messages %}
         <div class="{{ message.tags }}" uk-alert>

@@ -14,23 +14,29 @@
                     <h1 class="uk-heading-medium">{% translate "Ajustes" %}</h1>
 
                 </div>
-
-                <div class="uk-margin-left">
-                <div>
-                    <ul class="uk-tab-right" data-uk-switcher="{connect:'#ajustes'}" uk-tab>
-                        <li class="uk-active"><a href="#">Right</a></li>
-                        <li><a href="#">Item</a></li>
-                        <li><a href="#">Item</a></li>
-                    </ul>
-                </div>
-
-                <ul id="ajustes" class="uk-switcher uk-margin">
-                    <li>Hello!</li>
-                    <li>Hello again!</li>
-                    <li>Bazinga!</li>
-                </ul>
-
+                <div class="uk-flex uk-flex-row">
+                    <div class="uk-margin-left">
+                        <ul class="uk-tab-right" uk-tab="connect: #ajustes;">
+                            <li class="uk-active uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right" uk-icon="user"></span>Cuenta</a>
+                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right" uk-icon="cog"></span>General</a></li>
+                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right" uk-icon="credit-card"></span>Suscripción</a></li>
+                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right" uk-icon="bell"></span>Notificaciones</a></li>
+                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right" uk-icon="lifesaver"></span>Soporte</a></li>
+                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right" uk-icon="info"></span>Atajos de teclado</a></li></ul>
                     </div>
+                    <div>
+                        <ul id="ajustes" class="uk-switcher uk-margin">
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                            <li>5</li>
+                            <li>6</li>
+                        </ul>
+                    </div>
+
+
+                </div>
 
             </div>
         </div>

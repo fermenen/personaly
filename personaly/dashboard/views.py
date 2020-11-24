@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 import uuid
 
-from dashboard.models import Contact, TagContact, NoteContact
+from dashboard.models import Contact, TagContact, NoteContact, ThingCommonContact, ExperienceContact
 from .forms import AddContactForm
 from django.shortcuts import get_list_or_404, get_object_or_404
 
@@ -36,7 +36,11 @@ def contact_view(request, url):
         contact = get_object_or_404(Contact, url=url, owner=owner, active=True)
         list_tags = TagContact.objects.filter(owner=owner, contact=contact)
         list_notes = NoteContact.objects.filter(contact=contact, owner=owner, active=True)
-        return render(request, 'dashboard/contact.html', {'contact': contact, 'tags_list': list_tags, 'list_notes': list_notes})
+        list_common = ThingCommonContact.objects.filter(contact=contact, owner=owner, active=True)
+        list_experiences = ExperienceContact.objects.filter(contact=contact, owner=owner, active=True)
+        return render(request, 'dashboard/contact.html', {'contact': contact, 'tags_list': list_tags,
+                                                          'list_notes': list_notes, 'list_common': list_common,
+                                                          'list_experiences': list_experiences})
     except Exception as e:
         return redirect("contacts")
 
