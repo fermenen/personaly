@@ -1,9 +1,11 @@
 {% extends 'html/web/base_web.html' %}
+{% load static %}
 {% load i18n %}
 
 {% block title %}{% translate "Registrarse" %} | {% endblock %}
 
 {% block content_main %}
+    <script src="{% static 'js/register.js' %}"></script>
 
     <div class="uk-container uk-container-large" style="margin-top: 70px">
         <div class="uk-flex uk-flex-center">
@@ -14,7 +16,7 @@
                     </div>
 
                     <div class="uk-flex uk-flex-center uk-width-2-4 uk-animation-fade" style="margin: 0 auto">
-                        <form method="POST">
+                        <form id="register_form">
                             <div class="uk-margin" style="margin-bottom: 30px">
                                 <div class="uk-inline uk-width-1-1">
                                     <span class="uk-form-icon" uk-icon="icon: cart"></span>
@@ -41,7 +43,7 @@
 
                             {% csrf_token %}
                             <div class="uk-margin">
-                                <button type="submit" class="uk-button uk-button-primary uk-button-large uk-width-1-1">
+                                <button onclick="registerUser('{% url 'api_register_user' %}')" class="uk-button uk-button-primary uk-button-large uk-width-1-1">
                                     Registrarme
                                 </button>
                             </div>

@@ -23,12 +23,14 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('es/app/admin/', admin.site.urls),
+    path('api/', include('api.urls')),
 ]
 
 urlpatterns += i18n_patterns(
     path('app/', include('dashboard.urls')),
     path('accounts/', include('accounts.urls')),
     path('', include('web.urls')),
+
 
 )
 

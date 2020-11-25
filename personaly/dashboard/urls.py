@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import views, forms
+from . import views, forms, services
 
 urlpatterns = [
     path('', views.index, name='app'),
@@ -14,6 +14,7 @@ urlpatterns = [
     path('legal-warning/', views.legal_warning_view, name='legal_warning'),
     path('privacy-policy/', views.privacy_policy_view, name='privacy_policy'),
     path('code-of-conduct/', views.code_conduct_view, name='code_conduct'),
+
 
 ]
 

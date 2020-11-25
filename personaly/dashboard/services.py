@@ -1,6 +1,7 @@
 from typing import Tuple
 
 
+
 class ContactService:
 
     def add_contact_service(self, contact, request) -> Tuple[int, str]:
@@ -27,5 +28,3 @@ class ContactService:
                 raise UserWarning
         except Exception:
             return 500, "contacto no borrado"
-
-
