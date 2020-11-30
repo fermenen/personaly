@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['localhost', '192.168.3.18', '*']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -41,6 +42,11 @@ INSTALLED_APPS = [
     'dashboard',
     'accounts',
     'web',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 
 ]
 
@@ -65,6 +71,7 @@ ROOT_URLCONF = 'personaly.urls'
 #     os.path.join(SETTINGS_PATH, 'templates'),
 # )
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -80,6 +87,31 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'APP': {
+            'client_id': '1045874502684-e6vnuhph66pdqa8fg51nslg6pa8r2hml.apps.googleusercontent.com',
+            'secret': 'Vc2PYRm8WL2HpAAOEYh_x1WE',
+            'key': ''
+        },
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/app'
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'primary',
@@ -126,13 +158,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = 'accounts.User'
 
-
 EMAIL_HOST = 'smtp.googlemail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'personalyapp@gmail.com'
 EMAIL_HOST_PASSWORD = 'Yb&y6RDhT6'
 EMAIL_USE_TLS = True
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

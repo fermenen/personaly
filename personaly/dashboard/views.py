@@ -47,7 +47,8 @@ def contact_view(request, url):
 
 @login_required
 def settings_view(request):
-    return render(request, 'dashboard/settings.html')
+    user = request.user
+    return render(request, 'dashboard/settings.html', {'user': user})
 
 
 @login_required

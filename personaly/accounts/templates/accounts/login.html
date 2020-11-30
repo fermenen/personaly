@@ -1,4 +1,5 @@
 {% extends 'html/web/base_web.html' %}
+{% load socialaccount %}
 {% load i18n %}
 
 {% block title %}{% translate "Iniciar sesion" %} | {% endblock %}
@@ -34,16 +35,21 @@
                                 <div class="uk-margin">
                                     <button type="submit"
                                             class="uk-button uk-button-primary uk-button-large uk-width-1-1">Iniciar
-                                        sesion
+                                        sesión
                                     </button>
                                 </div>
                             </form>
                             <hr class="">
                             <div class="uk-margin">
-                                <button type="submit" class="uk-button uk-button-default uk-button-large uk-width-1-1">
-                                    <span class="uk-margin-small-right" uk-icon="icon: google"></span>Continuar con
-                                    Google
-                                </button>
+
+                                <a class="uk-button uk-button-default uk-button-large uk-width-1-1" href="{% provider_login_url 'google' %}"><span class="uk-margin-small-right" uk-icon="icon: google"></span>Continuar con
+                                    Google</a>
+
+
+{#                                <button  class="uk-button uk-button-default uk-button-large uk-width-1-1">#}
+{#                                    <span class="uk-margin-small-right" uk-icon="icon: google"></span>Continuar con#}
+{#                                    Google#}
+{#                                </button>#}
                             </div>
                             <hr class="uk-divider-small uk-text-center">
                             <div class="uk-text-small uk-text-center">

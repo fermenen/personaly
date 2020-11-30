@@ -5,7 +5,9 @@
 
 {% block content_main %}
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <meta name="Description" content="personaly, crm-personal, personal-crm, gestionar contactos">
+
+
     <div class="headboard">
         <div class="image-head"></div>
         <div class="uk-container">
@@ -17,23 +19,26 @@
             <h1 class="text-head">{% translate "Construya relaciones personales más sólidas" %}</h1>
             {#            <a href="#" class="">{% translate "Regístrate ya gratis" %}</a>#}
         </div>
-
     </div>
 
 
 
-        <section>
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 order-lg-2">
-                    <div class="p-5">
-                        <img class="img-fluid" src="{% static 'img/app/notes_contact.svg' %}" width="300">
-                    </div>
+
+        <section id="1" class="uk-margin-large-top">
+        <div class="uk-container">
+            <div class="uk-child-width-expand@s" uk-grid>
+                <div>
+                    <h2 class="uk-heading-large">{% translate "Recuerda lo que es importante" %}</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip  ex ea commodo consequat.
+                    </p>
                 </div>
-                <div class="col-lg-6 order-lg-1">
-                    <div class="p-5">
-                        <h2 class="display-4">{% translate "Recuerda lo que es importante" %}</h2>
-                        <p>Vea una línea de tiempo unificada y busque notas para recordar lo digno de mención.</p>
+                <div class="uk-grid-item-match">
+                    <div class="uk-align-right">
+                        <img class="uk-preserve uk-animation-fade" width="300" src="{% static 'img/app/notes_contact.svg' %}" alt="notes" uk-svg>
                     </div>
                 </div>
             </div>
@@ -41,40 +46,44 @@
     </section>
 
 
-    <section>
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="p-5">
-                        <img class="img-fluid" src="{% static 'img/app/secure.svg' %}" width="300">
+
+    <section id="2" class="uk-margin-xlarge-top">
+        <div class="uk-container">
+            <div class="uk-child-width-expand@s" uk-grid>
+                <div class="uk-grid-item-match">
+                    <div class="uk-align-right">
+                        <img class="uk-preserve uk-animation-fade" width="300" src="{% static 'img/app/secure.svg' %}" alt="secure" uk-svg>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="p-5">
-                        <h2 class="display-4">{% translate "Completamente seguro" %}</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam
-                            sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione
-                            voluptatum molestiae adipisci, beatae obcaecati.</p>
-                    </div>
+                <div class="">
+                    <h2 class="uk-heading-large">{% translate "Completamente seguro" %}</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip  ex ea commodo consequat.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section>
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 order-lg-2">
-                    <div class="p-5">
-                        <img class="img-fluid" src="{% static 'img/app/hang_out.svg' %}" width="300">
-                    </div>
+
+        <section id="3" class="uk-margin-xlarge-top uk-margin-xlarge-bottom">
+        <div class="uk-container">
+            <div class="uk-child-width-expand@s" uk-grid>
+                <div>
+                    <h2 class="uk-heading-large">{% translate "Crea lazos más fuertes" %}</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip  ex ea commodo consequat.
+                    </p>
                 </div>
-                <div class="col-lg-6 order-lg-1">
-                    <div class="p-5">
-                        <h2 class="display-4">{% translate "Crea lazos más fuertes" %}</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam
-                            sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione
-                            voluptatum molestiae adipisci, beatae obcaecati.</p>
+                <div class="uk-grid-item-match">
+                    <div class="uk-align-right">
+                        <img class="uk-preserve uk-animation-fade" width="300" src="{% static 'img/app/hang_out.svg' %}" alt="notes" uk-svg>
                     </div>
                 </div>
             </div>
