@@ -59,10 +59,16 @@ LANGUAGE_COOKIE_NAME = 'language_app'
 
 ROOT_URLCONF = 'personaly.urls'
 
+# PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+# TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, 'templates'),)
+# TEMPLATE_DIRS = (
+#     os.path.join(SETTINGS_PATH, 'templates'),
+# )
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'static')],
+        'DIRS': [os.path.join(BASE_DIR, 'static'), os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,6 +125,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
+
+
+EMAIL_HOST = 'smtp.googlemail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'personalyapp@gmail.com'
+EMAIL_HOST_PASSWORD = 'Yb&y6RDhT6'
+EMAIL_USE_TLS = True
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

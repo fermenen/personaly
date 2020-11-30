@@ -1,83 +1,21 @@
 {% extends 'html/app/base_app.html' %}
+{% load i18n %}
 {% load static %}
 {% block title %}Dashboard | {% endblock %}
 
 {% block content_main %}
 
+    <div class="uk-container uk-container-large ">
+        <div class="uk-flex uk-flex-center">
+            <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m">
+                <div class="card-title uk-flex-inline uk-margin-left uk-margin-bottom">
 
-<div class="uk-alert-success" uk-alert>
-    <a class="uk-alert-close" uk-close></a>
-    <p>Cuenta creado satisfactoriamente.</p>
-</div>
-
-<section>
-<div class="container-fluid overflow-auto" style="margin-top: 150px">
-  <div class="row">
-      {% for contact in contact_list %}
-      {{ contact.name }}
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-
-    {% endfor %}
-
-  </div>
-
- <div class="row">
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-  </div>
-
- <div class="row">
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-  </div>
-
- <div class="row">
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-  </div>
- <div class="row">
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-  </div>
- <div class="row">
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-  </div>
- <div class="row">
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-  </div>
- <div class="row">
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-  </div>
- <div class="row">
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-  </div>
- <div class="row">
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-  </div>
- <div class="row">
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-  </div>
- <div class="row">
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-  </div>
- <div class="row">
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-  </div>
- <div class="row">
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-  </div>
- <div class="row">
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-  </div>
- <div class="row">
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-  </div>
- <div class="row">
-    <a href="contact/{{ contact.url }}"><div class="col"><img class="img-fluid rounded-circle avatar-person" width="200" src="{% static 'img/1.jpeg' %}"  alt=""></div></a>
-  </div>
+                    <h1 class="uk-heading-medium">{% translate "Hoy" %}</h1>
 
 
-</div>
-
-
-
-</section>
-
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

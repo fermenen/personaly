@@ -9,6 +9,11 @@ class User(AbstractUser):
 
     contacts_created = models.IntegerField(default=0)
 
+    validated_mail = models.BooleanField(default=False)
+    code_validated_mail = models.SmallIntegerField(blank=True, null=True)
+
+
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 

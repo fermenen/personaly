@@ -24,10 +24,6 @@ body {
   flex-shrink: 0;
 }
 
-.li-settings {
-  margin-bottom: 10px !important;
-}
-
 #header {
   min-height: 55px;
   height: 55px;
@@ -104,10 +100,6 @@ body {
 
 .footer {
   flex-shrink: 0;
-}
-
-.li-settings {
-  margin-bottom: 10px !important;
 }
 
 .card-contact-list {
@@ -207,10 +199,6 @@ body {
   flex-shrink: 0;
 }
 
-.li-settings {
-  margin-bottom: 10px !important;
-}
-
 .footer {
   background-color: #000;
   height: 85px;
@@ -267,10 +255,6 @@ body {
   flex-shrink: 0;
 }
 
-.li-settings {
-  margin-bottom: 10px !important;
-}
-
 .uk-button-primary {
   background-color: #021F59 !important;
   transition: 0.2s ease-in-out !important;
@@ -304,6 +288,30 @@ body {
   border-bottom: 1px solid #144673 !important;
 }
 
+.button-link {
+  text-transform: capitalize !important;
+  color: #021F59 !important;
+}
+
+.button-link :before {
+  border-bottom: 1px solid #144673 !important;
+}
+
+.input-check-mail {
+  height: 85px !important;
+  width: 245px !important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .uk-heading-medium {
   font-size: 2.1rem !important;
 }
@@ -331,10 +339,6 @@ body {
 
 .footer {
   flex-shrink: 0;
-}
-
-.li-settings {
-  margin-bottom: 10px !important;
 }
 
 .headboard {
@@ -426,10 +430,6 @@ body {
   flex-shrink: 0;
 }
 
-.li-settings {
-  margin-bottom: 10px !important;
-}
-
 .uk-tab > .uk-active > a {
   border-color: #05AFF2 !important;
 }
@@ -463,10 +463,6 @@ body {
 
 .footer {
   flex-shrink: 0;
-}
-
-.li-settings {
-  margin-bottom: 10px !important;
 }
 
 .badge-contact-common {

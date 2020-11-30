@@ -5,28 +5,29 @@
 
 {% block content_main %}
 
-
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <div class="headboard">
         <div class="image-head"></div>
-         <div class="uk-container">
+        <div class="uk-container">
             <div class="bg-circle-1 bg-circle"></div>
             <div class="bg-circle-2 bg-circle"></div>
             <div class="bg-circle-3 bg-circle"></div>
         </div>
         <div class="uk-container uk-position-cover uk-flex uk-flex-center uk-flex-middle">
             <h1 class="text-head">{% translate "Construya relaciones personales más sólidas" %}</h1>
-{#            <a href="#" class="">{% translate "Regístrate ya gratis" %}</a>#}
+            {#            <a href="#" class="">{% translate "Regístrate ya gratis" %}</a>#}
         </div>
 
     </div>
 
-    <section>
+
+
+        <section>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 order-lg-2">
                     <div class="p-5">
-
-                        <img class="img-fluid rounded-circle" src="{% static 'img/01.jpg' %}" alt="">
+                        <img class="img-fluid" src="{% static 'img/app/notes_contact.svg' %}" width="300">
                     </div>
                 </div>
                 <div class="col-lg-6 order-lg-1">
@@ -39,12 +40,13 @@
         </div>
     </section>
 
+
     <section>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="p-5">
-                        <img class="img-fluid rounded-circle" src="img/02.jpg" alt="">
+                        <img class="img-fluid" src="{% static 'img/app/secure.svg' %}" width="300">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -64,7 +66,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 order-lg-2">
                     <div class="p-5">
-                        <img class="img-fluid rounded-circle" src="img/03.jpg" alt="">
+                        <img class="img-fluid" src="{% static 'img/app/hang_out.svg' %}" width="300">
                     </div>
                 </div>
                 <div class="col-lg-6 order-lg-1">

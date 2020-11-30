@@ -11,9 +11,7 @@ router = routers.DefaultRouter()
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('', include(router.urls)),
-    path('v1/account/register', views.UserCreate.as_view(), name='api_register_user')
+    path('v1/account/register', views.UserCreate.as_view(), name='api_register_user'),
+    path('v1/mail/send_code_user', views.SendCodeMailUser.as_view(), name='api_send_mail_code'),
+    path('v1/mail/check_code_user', views.CheckCodeMailUser.as_view(), name='api_check_mail_code'),
 ]
-
-
-
-# path('api/v1/add-user', services.add_user, name='api_add_user'),

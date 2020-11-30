@@ -1,40 +1,104 @@
+// Button 1 register
+function step1register(url) {
+    disabledButton('#button-register')
+    registerUser(url)
+}
+// Button 2 confirm
+function step2register(url) {
+    disabledButton('#button-confirm')
+    checkMailCode()
+}
 
 
-function registerUser(url){
-    $.ajax({
-    url : url,
+function registerUser(url) {
+    let requestRegister = $.ajax({
+        url: url,
+        data: {
+            plan: 1, email: $('#email').val(), password: $('#password').val(), terms: $('#terms').prop('checked'),
+            csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+        },
+        type: 'POST',
+        dataType: 'json',
+        success: function (json) {
+            showStep2Mail()
+        },
+        error: function (jqXHR, status, error) {
+            alert("Disculpe, existió un problema " + error);
+        },
+    });
+    requestRegister.done(function (json) {
+        $('#userId').text(json['id'])
+        sendCode();
+    })
+}
 
-    // la información a enviar
-    // (también es posible utilizar una cadena de datos)
-    // data : { id : 123 },
+function sendCode() {
+    console.log('Enviando mail a ' + $('#userId').text())
+    let requestSendCode = $.ajax({
+        url: 'http://127.0.0.1:8000/api/v1/mail/send_code_user',
+        data: {
+            id: $('#userId').text(), csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+        },
+        type: 'POST',
+        dataType: 'json',
+        success: function (json) {
 
-    // especifica si será una petición POST o GET
-    type : 'POST',
+        },
+        error: function (jqXHR, status, error) {
+            alert("Disculpe, existió un problema " + error);
+        },
+    });
 
-    // el tipo de información que se espera de respuesta
-    dataType : 'json',
+}
 
-    // código a ejecutar si la petición es satisfactoria;
-    // la respuesta es pasada como argumento a la función
-    success : function(json) {
-        $('<h1/>').text(json.title).appendTo('body');
-        $('<div class="content"/>')
-            .html(json.html).appendTo('body');
-    },
+function checkMailCode(){
 
-    // código a ejecutar si la petición falla;
-    // son pasados como argumentos a la función
-    // el objeto jqXHR (extensión de XMLHttpRequest), un texto con el estatus
-    // de la petición y un texto con la descripción del error que haya dado el servidor
-    error : function(jqXHR, status, error) {
-        alert('Disculpe, existió un problema');
-    },
-
-    // código a ejecutar sin importar si la petición falló o no
-    complete : function(jqXHR, status) {
-        alert('Petición realizada');
-    }
-});
+    console.log('compirbo el codugo')
 
 
+    let requestSendCode = $.ajax({
+        url: 'http://127.0.0.1:8000/api/v1/mail/check_code_user',
+        data: {
+            code: $('#code').val(), id: $('#userId').text(), csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+        },
+        type: 'POST',
+        dataType: 'json',
+        success: function (json) {
+            // login();
+            window.location.replace("http://127.0.0.1:8000/es/app/");
+        },
+        error: function (jqXHR, status, error) {
+            alert("Dise, existió un problema " + error);
+        },
+    });
+
+}
+
+function login(){
+
+    let requestSendCode = $.ajax({
+        url: 'http://127.0.0.1:8000/es/accounts/login',
+        data: {
+            next: '', email: $('#email').val() , password: $('#password').val()
+        },
+        type: 'POST',
+        error: function (jqXHR, status, error) {
+            alert("existió un problema " + error);
+        },
+    });
+
+}
+
+
+// aux
+
+function disabledButton(name) {
+    $(name).html('<div uk-spinner></div>')
+    $(name).addClass('uk-disabled')
+
+}
+
+function showStep2Mail() {
+    $('#step2-register').removeClass('uk-hidden ')
+    $('#step1-register').addClass('uk-hidden ')
 }

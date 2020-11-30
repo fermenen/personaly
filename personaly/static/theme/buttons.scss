@@ -14,7 +14,7 @@
   border-color: $color-blue-1 !important;
 }
 
-.uk-select:focus{
+.uk-select:focus {
   border-color: $color-blue-1 !important;
 }
 
@@ -30,6 +30,32 @@
   color: $color-gray-1 !important;
 
 }
+
 .text-line:before {
-   border-bottom: 1px solid $color-blue-2 !important;
+  border-bottom: 1px solid $color-blue-2 !important;
+}
+
+.button-link {
+  text-transform: capitalize !important;
+  color: $color-blue-1 !important;
+
+}
+
+.button-link :before {
+  border-bottom: 1px solid $color-blue-2 !important;
+}
+
+.input-check-mail {
+  height: 85px !important;
+  width: 245px !important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }
