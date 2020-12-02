@@ -345,32 +345,15 @@ body {
   flex-shrink: 0;
 }
 
-.headboard {
-  height: 550px;
+.cover {
+  height: 555px !important;
   position: relative;
   overflow: hidden;
-  padding-bottom: 7rem;
-}
-
-.image-head {
-  height: 150%;
-  position: relative;
-  overflow: hidden;
-  background-image: url("/static/img/personal-crm.webp");
-  -webkit-filter: blur(1.5px);
-  -moz-filter: blur(1.5px);
-  -o-filter: blur(1.5px);
-  -ms-filter: blur(1.5px);
-  filter: blur(1.5px);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: scroll;
-  background-size: cover;
 }
 
 .text-head {
   color: #FFFF !important;
-  font-size: 65px;
+  font-size: 3.5rem !important;
   font-weight: 700 !important;
 }
 
@@ -384,18 +367,19 @@ body {
 .bg-circle-1 {
   height: 90rem;
   width: 90rem;
-  bottom: -55rem;
+  bottom: -58rem;
   left: -63rem;
 }
 
 .bg-circle-2 {
   height: 50rem;
   width: 50rem;
-  top: -25rem;
+  top: -28rem;
   right: -25rem;
 }
 
 .bg-circle-3 {
+  display: none;
   height: 20rem;
   width: 20rem;
   bottom: -10rem;
@@ -409,6 +393,11 @@ body {
   right: 35%;
 }
 
+@media (min-width: 992px) {
+  .bg-circle-3 {
+    display: block !important;
+  }
+}
 html, body {
   height: 100%;
 }

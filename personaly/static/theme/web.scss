@@ -1,33 +1,15 @@
 @import "base";
 
-.headboard{
-  height: 550px;
+
+.cover {
+  height: 555px !important;
   position: relative;
   overflow: hidden;
-  padding-bottom: 7rem;
 }
 
-.image-head{
-  height: 150%;
-  position: relative;
-  overflow: hidden;
-  background-image: url("/static/img/personal-crm.webp");
-  -webkit-filter: blur(1.5px);
-     -moz-filter: blur(1.5px);
-     -o-filter: blur(1.5px);
-     -ms-filter: blur(1.5px);
-     filter: blur(1.5px);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: scroll;
-  background-size: cover;
-
-
-}
-
-.text-head{
+.text-head {
   color: $color-white !important;
-  font-size: 65px;
+  font-size: 3.5rem !important;
   font-weight: 700 !important;
 
 }
@@ -44,18 +26,19 @@
 .bg-circle-1 {
   height: 90rem;
   width: 90rem;
-  bottom: -55rem;
+  bottom: -58rem;
   left: -63rem;
 }
 
 .bg-circle-2 {
   height: 50rem;
   width: 50rem;
-  top: -25rem;
+  top: -28rem;
   right: -25rem;
 }
 
 .bg-circle-3 {
+  display: none;
   height: 20rem;
   width: 20rem;
   bottom: -10rem;
@@ -70,54 +53,10 @@
 }
 
 
+@media (min-width: 992px) {
 
-//.btn-xl {
-//  text-transform: uppercase;
-//  padding: 1.5rem 3rem;
-//  font-size: 0.9rem;
-//  font-weight: 700;
-//  letter-spacing: 0.1rem;
-//}
-//
-//.bg-black {
-//  background-color: #000 !important;
-//}
-//
-//.rounded-pill {
-//  border-radius: 5rem;
-//}
-//
-//
-//
-//
-//header.masthead .masthead-content {
-//  z-index: 1;
-//  position: relative;
-//}
-//
-//header.masthead .masthead-content .masthead-heading {
-//  font-size: 4rem;
-//}
-//
-//header.masthead .masthead-content .masthead-subheading {
-//  font-size: 2rem;
-//}
-//
-//
-//
-//
-//
-//
-//
-//@media (min-width: 992px) {
-//  header.masthead {
-//    padding-top: calc(10rem + 55px);
-//    padding-bottom: 10rem;
-//  }
-//  header.masthead .masthead-content .masthead-heading {
-//    font-size: 6rem;
-//  }
-//  header.masthead .masthead-content .masthead-subheading {
-//    font-size: 4rem;
-//  }
-//}
+  .bg-circle-3 {
+    display: block !important;
+  }
+
+}

@@ -4,27 +4,32 @@
 {% block title %}{% endblock %}
 
 {% block content_main %}
-
+    <script src="{% static 'js/web.js' %}"></script>
     <meta name="Description" content="personaly, crm-personal, personal-crm, gestionar contactos">
 
 
-    <div class="headboard">
-        <div class="image-head"></div>
-        <div class="uk-container">
+    <div class="cover uk-height-medium uk-flex uk-flex-center uk-flex-middle uk-background-cover"
+         data-src="{% static 'img/personal-crm.webp' %}" uk-img>
+        <div id="circles" class="uk-container">
             <div class="bg-circle-1 bg-circle"></div>
             <div class="bg-circle-2 bg-circle"></div>
             <div class="bg-circle-3 bg-circle"></div>
         </div>
-        <div class="uk-container uk-position-cover uk-flex uk-flex-center uk-flex-middle">
-            <h1 class="text-head">{% translate "Construya relaciones personales más sólidas" %}</h1>
-            {#            <a href="#" class="">{% translate "Regístrate ya gratis" %}</a>#}
+        <div id="caption"
+             class="uk-container uk-position-cover uk-flex-inline uk-flex-column uk-flex-center uk-text-center">
+            <div>
+                <h1 class="text-head uk-animation-fade">{% translate "Construya relaciones personales más sólidas" %}</h1>
+            </div>
+            <div>
+                <a href="{% url 'register' %}"
+                   class="uk-button uk-button-secondary uk-button-large">{% translate "Regístrate ya gratis" %}</a>
+            </div>
         </div>
+
     </div>
 
 
-
-
-        <section id="1" class="uk-margin-large-top">
+    <section id="1" class="uk-margin-large-top">
         <div class="uk-container">
             <div class="uk-child-width-expand@s" uk-grid>
                 <div>
@@ -32,13 +37,15 @@
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                         labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip  ex ea commodo consequat.
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        ut
+                        aliquip ex ea commodo consequat.
                     </p>
                 </div>
                 <div class="uk-grid-item-match">
-                    <div class="uk-align-right">
-                        <img class="uk-preserve uk-animation-fade" width="300" src="{% static 'img/app/notes_contact.svg' %}" alt="notes" uk-svg>
+                    <div class="uk-align-left">
+                        <img class="uk-preserve uk-animation-fade" width="300"
+                             src="{% static 'img/app/notes_contact.svg' %}" alt="notes" uk-svg>
                     </div>
                 </div>
             </div>
@@ -52,16 +59,18 @@
             <div class="uk-child-width-expand@s" uk-grid>
                 <div class="uk-grid-item-match">
                     <div class="uk-align-right">
-                        <img class="uk-preserve uk-animation-fade" width="300" src="{% static 'img/app/secure.svg' %}" alt="secure" uk-svg>
+                        <img class="uk-preserve uk-animation-fade" width="300" src="{% static 'img/app/secure.svg' %}"
+                             alt="secure" uk-svg>
                     </div>
                 </div>
-                <div class="">
+                <div id="text-2-web">
                     <h2 class="uk-heading-large">{% translate "Completamente seguro" %}</h2>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                         labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip  ex ea commodo consequat.
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        ut
+                        aliquip ex ea commodo consequat.
                     </p>
                 </div>
             </div>
@@ -69,7 +78,7 @@
     </section>
 
 
-        <section id="3" class="uk-margin-xlarge-top uk-margin-xlarge-bottom">
+    <section id="3" class="uk-margin-xlarge-top uk-margin-xlarge-bottom">
         <div class="uk-container">
             <div class="uk-child-width-expand@s" uk-grid>
                 <div>
@@ -77,13 +86,15 @@
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                         labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip  ex ea commodo consequat.
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        ut
+                        aliquip ex ea commodo consequat.
                     </p>
                 </div>
                 <div class="uk-grid-item-match">
-                    <div class="uk-align-right">
-                        <img class="uk-preserve uk-animation-fade" width="300" src="{% static 'img/app/hang_out.svg' %}" alt="notes" uk-svg>
+                    <div class="uk-align-left">
+                        <img class="uk-preserve uk-animation-fade" width="300" src="{% static 'img/app/hang_out.svg' %}"
+                             alt="notes" uk-svg>
                     </div>
                 </div>
             </div>
