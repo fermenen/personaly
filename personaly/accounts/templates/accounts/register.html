@@ -18,12 +18,17 @@
 
                     <div class="uk-flex uk-flex-center uk-width-2-4 uk-animation-fade" style="margin: 0 auto">
                         <div id="register_form">
-                            <div class="uk-margin" style="margin-bottom: 30px">
-                                <div class="uk-inline uk-width-1-1">
-                                    <span class="uk-form-icon" uk-icon="icon: cart"></span>
-                                    <input class="uk-input uk-form-medium" value="Tarifa Gratis 0€/mes " type="text"
-                                           disabled>
-                                    <input id="plan" name="plan" class="uk-hidden" value="free" type="text" disabled>
+                            <div class="uk-margin" style="margin-bottom: 35px">
+                                <div class="card-plan-signup uk-card uk-card-default uk-card-body">
+                                    <div class="uk-card-title uk-flex">
+                                        <div>{% translate "Plan Basic" %}</div>
+                                        <div class="uk-margin-large-left text-blue3">{% translate "0€/mes" %}</div>
+                                    </div>
+                                    <ul class="uk-list uk-list-bullet">
+                                        <li>{% translate "Hasta 80 contactos" %}</li>
+                                        <li>{% translate "Notas ilimitadas" %}</li>
+                                        <li>{% translate "Notificaciones vía email" %}</li>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="uk-margin">
@@ -43,7 +48,7 @@
                             <div class="uk-margin">
                                 <div class="uk-inline uk-width-1-1">
                                     <input id="terms" class="uk-checkbox" type="checkbox" required>
-                                    {% translate "Estoy de acuerdo con los" %} {% translate "Términos y Condiciones" %}.
+                                    {% translate "Estoy de acuerdo con los" %}<a href="" class="text-blue2" style="margin-left: 3px">{% translate "Términos y Condiciones" %}</a>.
                                 </div>
                             </div>
                             {% csrf_token %}

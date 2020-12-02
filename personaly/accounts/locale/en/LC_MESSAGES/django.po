@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-02 12:12+0100\n"
+"POT-Creation-Date: 2020-12-02 13:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,12 +27,12 @@ msgid "¡Bienvenido de nuevo!"
 msgstr "Welcome back!"
 
 #: accounts/templates/accounts/login.html:23
-#: accounts/templates/accounts/register.html:33
+#: accounts/templates/accounts/register.html:38
 msgid "Correo electrónico"
 msgstr "Email address"
 
 #: accounts/templates/accounts/login.html:30
-#: accounts/templates/accounts/register.html:40
+#: accounts/templates/accounts/register.html:45
 msgid "Contraseña"
 msgstr "Password"
 
@@ -64,38 +64,58 @@ msgstr "Sign up"
 msgid "Crea tu cuenta"
 msgstr "Create your account"
 
-#: accounts/templates/accounts/register.html:46
+#: accounts/templates/accounts/register.html:24
+msgid "Plan Basic"
+msgstr "Basic plan"
+
+#: accounts/templates/accounts/register.html:25
+msgid "0€/mes"
+msgstr "0€/month"
+
+#: accounts/templates/accounts/register.html:28
+msgid "Hasta 80 contactos"
+msgstr "Up to 80 contacts"
+
+#: accounts/templates/accounts/register.html:29
+msgid "Notas ilimitadas"
+msgstr "Unlimited notes"
+
+#: accounts/templates/accounts/register.html:30
+msgid "Notificaciones vía email"
+msgstr "Notifications via email"
+
+#: accounts/templates/accounts/register.html:51
 msgid "Estoy de acuerdo con los"
 msgstr "I agree to the"
 
-#: accounts/templates/accounts/register.html:46
+#: accounts/templates/accounts/register.html:51
 msgid "Términos y Condiciones"
 msgstr "Terms and Conditions"
 
-#: accounts/templates/accounts/register.html:53
+#: accounts/templates/accounts/register.html:58
 #, fuzzy
 #| msgid "Registrarse"
 msgid "Registrarme"
 msgstr "Sign up"
 
-#: accounts/templates/accounts/register.html:61
+#: accounts/templates/accounts/register.html:66
 #, fuzzy
 #| msgid "Continuar con Google"
 msgid "Registrarme con Google"
 msgstr "Sign up with Google"
 
-#: accounts/templates/accounts/register.html:66
+#: accounts/templates/accounts/register.html:71
 #, fuzzy
 #| msgid "¿No tienes una cuenta?"
 msgid "¿Tienes una cuenta?"
 msgstr "Do you have an account?"
 
-#: accounts/templates/accounts/register.html:68
+#: accounts/templates/accounts/register.html:73
 #, fuzzy
 #| msgid "Iniciar sesión"
 msgid "Inicia sesión"
 msgstr "Login"
 
-#: accounts/templates/accounts/register.html:80
+#: accounts/templates/accounts/register.html:85
 msgid "Confirma tu correo"
 msgstr "Confirm your email"

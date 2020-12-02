@@ -1,57 +1,18 @@
-//.card-summary-info {
-//    width: 600px;
-//    min-height: 100px;
-//    padding: 20px;
-//    border-radius: 5px;
-//    background-color: white;
-//    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-//    position: relative;
-//    overflow: hidden;
-//    margin-bottom: 15px;
-//}
-//
-//.card-summary-info:after {
-//    content: '';
-//    display: block;
-//    width: 190px;
-//    height: 300px;
-//    background: #F2A81D;
-//    position: absolute;
-//    margin-bottom: 10px;
-//    animation: rotatemagic 0.75s cubic-bezier(0.425, 1.04, 0.47, 1.105) 1s both;
-//}
-//
-//.card {
-//    width: 600px;
-//    min-height: 100px;
-//    padding: 20px;
-//    border-radius: 5px;
-//    background-color: white;
-//    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-//    position: relative;
-//    overflow: hidden;
-//    margin-bottom: 10px;
-//}
-//
-//.sumary-location {
-//    font-size: 1.2em;
-//    color: #A6998A;
-//    margin-right: 10px;
-//}
-//.sumary-phone {
-//    font-size: 1.2em;
-//    color: #A6998A;
-//    font-style: italic;
-//    margin-right: 4px;
-//}
-//
-//.img-sumary{
-//    pointer-events: none;
-//}
-
 
 .card-note-contact {
     margin-bottom: 14px !important;
     border-left: 2px solid;
     border-color: $color-blue-1;
+}
+
+.card-plan-signup {
+    border-top: 4px solid;
+    border-color: $color-blue-2;
+    padding: 20px 30px !important;
+}
+
+.uk-list-bullet>li::before {
+    top: 2px;
+    background-size: 50%;
+    background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20fill%3D%22%23666666%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20d%3D%22M173.898%20439.404l-166.4-166.4c-9.997-9.997-9.997-26.206%200-36.204l36.203-36.204c9.997-9.998%2026.207-9.998%2036.204%200L192%20312.69%20432.095%2072.596c9.997-9.997%2026.207-9.997%2036.204%200l36.203%2036.204c9.997%209.997%209.997%2026.206%200%2036.204l-294.4%20294.401c-9.998%209.997-26.207%209.997-36.204-.001z%22%2F%3E%3C%2Fsvg%3E);
 }
