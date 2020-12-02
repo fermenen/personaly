@@ -10,7 +10,7 @@
             <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m">
                 <div class="uk-flex uk-flex-column uk-flex-center">
                     <div class="card-title uk-text-center uk-margin-left uk-margin-bottom">
-                        <h1 class="uk-heading-medium">{% translate "Bienvenido de nuevo!" %}</h1>
+                        <h1 class="uk-heading-medium">{% translate "¡Bienvenido de nuevo!" %}</h1>
                     </div>
 
                     <div class="uk-flex uk-flex-center uk-width-2-4 uk-animation-fade" style="margin: 0 auto">
@@ -20,44 +20,38 @@
                                     <div class="uk-inline uk-width-1-1">
                                         <span class="uk-form-icon" uk-icon="icon: mail"></span>
                                         <input id="email" name="email" class="uk-input uk-form-large" type="email"
-                                               placeholder="Correo electrónico" required>
+                                               placeholder={% translate "Correo electrónico" %} required>
                                     </div>
                                 </div>
                                 <div class="uk-margin">
                                     <div class="uk-inline uk-width-1-1">
                                         <span class="uk-form-icon" uk-icon="icon: lock"></span>
                                         <input id="password" name="password" class="uk-input uk-form-large"
-                                               type="password" placeholder="Contraseña" required>
+                                               type="password" placeholder={% translate "Contraseña" %} required>
                                     </div>
                                 </div>
                                 {% csrf_token %}
                                 <input type="hidden" id="next" name="next" value="{{ next }}"/>
                                 <div class="uk-margin">
                                     <button type="submit"
-                                            class="uk-button uk-button-primary uk-button-large uk-width-1-1">Iniciar
-                                        sesión
+                                            class="uk-button uk-button-primary uk-button-large uk-width-1-1">{% translate "Iniciar sesión" %}
                                     </button>
                                 </div>
                             </form>
                             <hr class="">
                             <div class="uk-margin">
-
-                                <a class="uk-button uk-button-default uk-button-large uk-width-1-1" href="{% provider_login_url 'google' %}"><span class="uk-margin-small-right" uk-icon="icon: google"></span>Continuar con
-                                    Google</a>
-
-
-{#                                <button  class="uk-button uk-button-default uk-button-large uk-width-1-1">#}
-{#                                    <span class="uk-margin-small-right" uk-icon="icon: google"></span>Continuar con#}
-{#                                    Google#}
-{#                                </button>#}
+                                <a class="uk-button uk-button-default uk-button-large uk-width-1-1"
+                                   href="{% provider_login_url 'google' %}"><span class="uk-margin-small-right"
+                                                                                  uk-icon="icon: google"></span>{% translate "Continuar con Google" %}
+                                </a>
                             </div>
                             <hr class="uk-divider-small uk-text-center">
                             <div class="uk-text-small uk-text-center">
                                 <div><a href="{% url 'web' %}"
                                         class="uk-button uk-button-text button-link">{% translate "¿Olvidaste tu contraseña?" %}</a>
                                 </div>
-                                <div>¿No tienes una cuenta? <a href="{% url 'register' %}"
-                                                               class="uk-button uk-button-text button-link">{% translate "Regístrate gratis" %}</a>
+                                <div>{% translate "¿No tienes una cuenta?" %}<a href="{% url 'register' %}"
+                                                                                class="uk-button uk-button-text button-link" style="margin-left: 3px">{% translate "Regístrate gratis" %}</a>
                                 </div>
                             </div>
                         </div>
@@ -66,73 +60,5 @@
             </div>
         </div>
     </div>
-
-
-    {#    <div class="md-6 login-form-1">#}
-    {#                    {% if error_login %}#}
-    {#                        <div class="alert alert-danger" role="alert">#}
-    {#                            Error, comprueba los datos introducidos#}
-    {#                        </div>#}
-    {#                    {% endif %}#}
-    {#                    <form method="POST">#}
-    {#                        <div class="form-group">#}
-    {#                            <input type="text" id="email" name="email" class="form-control" placeholder="Your Email *"#}
-    {#                                   value=""/>#}
-    {#                        </div>#}
-    {#                        <div class="form-group">#}
-    {#                            <input type="password" id="password" name="password" class="form-control"#}
-    {#                                   placeholder="Your Password *" value=""/>#}
-    {#                        </div>#}
-    {#                        <div class="form-group">#}
-    {#                            <input type="hidden" id="next" name="next" value="{{ next }}"/>#}
-    {#                        </div>#}
-    {#                        <div class="form-group">#}
-    {#                            {% csrf_token %}#}
-    {#                            <button type="submit" class="btn btn-primary btn-user btn-block">Iniciar sesión</button>#}
-    {#                        </div>#}
-    {#                        <div class="form-group">#}
-    {#                            <a href="#" class="ForgetPwd">Forget Password?</a>#}
-    {#                        </div>#}
-    {#                    </form>#}
-    {#                </div>#}
-
-
-
-
-
-
-
-    {#    <div class="container login-container">#}
-    {#        <div class="md-6 login-form-1">#}
-    {#            <h3>Login</h3>#}
-    {#            {% if error_login %}#}
-    {#                <div class="alert alert-danger" role="alert">#}
-    {#                    Error, comprueba los datos introducidos#}
-    {#                </div>#}
-    {#            {% endif %}#}
-    {#            <form method="POST">#}
-    {#                <div class="form-group">#}
-    {#                    <input type="text" id="email" name="email" class="form-control" placeholder="Your Email *"#}
-    {#                           value=""/>#}
-    {#                </div>#}
-    {#                <div class="form-group">#}
-    {#                    <input type="password" id="password" name="password" class="form-control"#}
-    {#                           placeholder="Your Password *" value=""/>#}
-    {#                </div>#}
-    {#                <div class="form-group">#}
-    {#                    <input type="hidden" id="next" name="next" value="{{ next }}"/>#}
-    {#                </div>#}
-    {#                <div class="form-group">#}
-    {#                    {% csrf_token %}#}
-    {#                    <button type="submit" class="btn btn-primary btn-user btn-block">Iniciar sesión</button>#}
-    {#                </div>#}
-    {#                <div class="form-group">#}
-    {#                    <a href="#" class="ForgetPwd">Forget Password?</a>#}
-    {#                </div>#}
-    {#            </form>#}
-    {#        </div>#}
-    {#    </div>#}
-
-
 {% endblock %}
 

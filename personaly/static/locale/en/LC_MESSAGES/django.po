@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 22:17+0100\n"
+"POT-Creation-Date: 2020-12-02 12:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,34 +18,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: static/html/app/base_app.html:20
-msgid "Inicio"
-msgstr "Dashboard"
-
-#: static/html/app/base_app.html:22
-msgid "Contactos"
-msgstr "Contacts"
-
-#: static/html/app/base_app.html:25
-msgid "Ajustes"
-msgstr "Settings"
-
-#: static/html/app/base_app.html:27
-msgid "Cerrar Sesión"
-msgstr "Sign out"
-
-#: static/html/app/base_app.html:48
+#: static/html/app/footer_app.html:12 static/html/web/base_web.html:24
 msgid "Aviso Legal"
 msgstr "Legal Notice"
 
-#: static/html/app/base_app.html:49
+#: static/html/app/footer_app.html:13 static/html/web/base_web.html:25
 msgid "Política de Privacidad"
 msgstr "Privacy Policy"
 
-#: static/html/app/base_app.html:50
+#: static/html/app/footer_app.html:14 static/html/web/base_web.html:26
 msgid "Código de Conducta"
 msgstr "Code of Conduct"
 
-#: static/html/web/base_web.html:22
-msgid "Inicia sesión"
+#: static/html/app/nav_app.html:14
+msgid "Inicio"
+msgstr "Dashboard"
+
+#: static/html/app/nav_app.html:17
+msgid "Contactos"
+msgstr "Contacts"
+
+#: static/html/app/nav_app.html:20
+msgid "Ajustes"
+msgstr "Settings"
+
+#: static/html/app/nav_app.html:23
+msgid "Cerrar Sesión"
+msgstr "Sign out"
+
+#: static/html/web/nav_web.html:14
+#, fuzzy
+#| msgid "Inicia sesión"
+msgid "Iniciar Sesión"
 msgstr "Sign in"

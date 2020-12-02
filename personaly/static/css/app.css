@@ -280,6 +280,10 @@ body {
   background-color: #05AFF2 !important;
 }
 
+.uk-radio:checked {
+  background-color: #05AFF2 !important;
+}
+
 .text-line {
   color: #DFEDF2 !important;
 }

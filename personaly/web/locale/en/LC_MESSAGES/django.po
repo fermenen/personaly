@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 22:17+0100\n"
+"POT-Creation-Date: 2020-12-02 12:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,22 +18,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: web/templates/web/index.html:11
+#: web/templates/web/index.html:21
 msgid "Construya relaciones personales más sólidas"
 msgstr "Build stronger personal relationships"
 
-#: web/templates/web/index.html:13
+#: web/templates/web/index.html:25
 msgid "Regístrate ya gratis"
 msgstr "Sign up now for free"
 
-#: web/templates/web/index.html:33
+#: web/templates/web/index.html:36
 msgid "Recuerda lo que es importante"
 msgstr "Remember what is important"
 
-#: web/templates/web/index.html:51
+#: web/templates/web/index.html:67
 msgid "Completamente seguro"
 msgstr "Completely sure"
 
-#: web/templates/web/index.html:69
+#: web/templates/web/index.html:85
 msgid "Crea lazos más fuertes"
 msgstr "Create stronger bonds"

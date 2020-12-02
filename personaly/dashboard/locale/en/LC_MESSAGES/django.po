@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-12 22:17+0100\n"
+"POT-Creation-Date: 2020-12-02 12:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,41 +18,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: dashboard/templates/dashboard/contact.html:16
+#: dashboard/templates/dashboard/contact_list/contact_list_items.html:35
+#, fuzzy
+#| msgid "Editar contacto"
+msgid "Eliminar contacto"
+msgstr "Edit contact"
+
+#: dashboard/templates/dashboard/contact.html:18
+#: dashboard/templates/dashboard/contact_list/contact_list_items.html:37
+msgid "Editar contacto"
+msgstr "Edit contact"
+
+#: dashboard/templates/dashboard/contact/contact_notes.html:11
+msgid "Eliminar nota"
+msgstr ""
+
+#: dashboard/templates/dashboard/contact/contact_notes.html:13
+#, fuzzy
+#| msgid "Editar contacto"
+msgid "Editar nota"
+msgstr "Edit contact"
+
+#: dashboard/templates/dashboard/contact_list/contact_list_items.html:39
+msgid "Programar"
+msgstr "Schedule"
+
 #: dashboard/templates/dashboard/contacts_list.html:4
 #: dashboard/templates/dashboard/contacts_list.html:12
 msgid "Contactos"
 msgstr "Contacts"
 
 #: dashboard/templates/dashboard/contacts_list.html:17
+#: dashboard/templates/dashboard/contacts_list.html:32
 #: dashboard/templates/dashboard/modal/add_contact.html:5
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Añadir contacto"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contacts_list.html:70
-msgid "Editar contacto"
-msgstr "Edit contact"
+#: dashboard/templates/dashboard/index.html:13
+msgid "Hoy"
+msgstr ""
 
-#: dashboard/templates/dashboard/contacts_list.html:73
-msgid "Programar"
-msgstr "Schedule"
+#: dashboard/templates/dashboard/legal/code_conduct.html:4
+#: dashboard/templates/dashboard/legal/code_conduct.html:12
+msgid "Código de Conducta"
+msgstr ""
 
-#: dashboard/templates/dashboard/contacts_list.html:76
-msgid "Más acciones"
-msgstr "More Actions"
+#: dashboard/templates/dashboard/legal/legal_warning.html:4
+#: dashboard/templates/dashboard/legal/legal_warning.html:12
+msgid "Aviso Legal"
+msgstr ""
 
-#: dashboard/templates/dashboard/modal/add_contact.html:47
+#: dashboard/templates/dashboard/legal/privacy_policy.html:4
+#: dashboard/templates/dashboard/legal/privacy_policy.html:12
+msgid "Política de Privacidad"
+msgstr ""
+
+#: dashboard/templates/dashboard/modal/add_contact.html:70
 msgid "Cancelar"
 msgstr "Cancel"
 
-#: dashboard/templates/dashboard/modal/add_contact.html:48
+#: dashboard/templates/dashboard/modal/add_contact.html:71
 msgid "Crear"
 msgstr "Create"
 
 #: dashboard/templates/dashboard/settings.html:4
+#: dashboard/templates/dashboard/settings.html:14
 msgid "Ajustes"
 msgstr ""
+
+#~ msgid "Más acciones"
+#~ msgstr "More Actions"
 
 #, fuzzy
 #~| msgid "Editar contacto"

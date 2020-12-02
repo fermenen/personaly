@@ -1,0 +1,101 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-02 12:12+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: accounts/templates/accounts/login.html:5
+msgid "Iniciar sesion"
+msgstr "Login"
+
+#: accounts/templates/accounts/login.html:13
+msgid "¡Bienvenido de nuevo!"
+msgstr "Welcome back!"
+
+#: accounts/templates/accounts/login.html:23
+#: accounts/templates/accounts/register.html:33
+msgid "Correo electrónico"
+msgstr "Email address"
+
+#: accounts/templates/accounts/login.html:30
+#: accounts/templates/accounts/register.html:40
+msgid "Contraseña"
+msgstr "Password"
+
+#: accounts/templates/accounts/login.html:37
+msgid "Iniciar sesión"
+msgstr "Login"
+
+#: accounts/templates/accounts/login.html:45
+msgid "Continuar con Google"
+msgstr "Continue with Google"
+
+#: accounts/templates/accounts/login.html:51
+msgid "¿Olvidaste tu contraseña?"
+msgstr "Forgotten your password?"
+
+#: accounts/templates/accounts/login.html:53
+msgid "¿No tienes una cuenta?"
+msgstr "Don't have an account?"
+
+#: accounts/templates/accounts/login.html:54
+msgid "Regístrate gratis"
+msgstr "Sign up for free"
+
+#: accounts/templates/accounts/register.html:6
+msgid "Registrarse"
+msgstr "Sign up"
+
+#: accounts/templates/accounts/register.html:16
+msgid "Crea tu cuenta"
+msgstr "Create your account"
+
+#: accounts/templates/accounts/register.html:46
+msgid "Estoy de acuerdo con los"
+msgstr "I agree to the"
+
+#: accounts/templates/accounts/register.html:46
+msgid "Términos y Condiciones"
+msgstr "Terms and Conditions"
+
+#: accounts/templates/accounts/register.html:53
+#, fuzzy
+#| msgid "Registrarse"
+msgid "Registrarme"
+msgstr "Sign up"
+
+#: accounts/templates/accounts/register.html:61
+#, fuzzy
+#| msgid "Continuar con Google"
+msgid "Registrarme con Google"
+msgstr "Sign up with Google"
+
+#: accounts/templates/accounts/register.html:66
+#, fuzzy
+#| msgid "¿No tienes una cuenta?"
+msgid "¿Tienes una cuenta?"
+msgstr "Do you have an account?"
+
+#: accounts/templates/accounts/register.html:68
+#, fuzzy
+#| msgid "Iniciar sesión"
+msgid "Inicia sesión"
+msgstr "Login"
+
+#: accounts/templates/accounts/register.html:80
+msgid "Confirma tu correo"
+msgstr "Confirm your email"
