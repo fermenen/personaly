@@ -4,7 +4,8 @@
 {% block title %}{{ contact.name }} {{ contact.surnames }} | {% endblock %}
 
 {% block content_main %}
-
+    <script src="{% static 'js/contact.js' %}"></script>
+    <input id="id_contact" class="uk-input uk-hidden" type="text" value="{{ contact.id }}">
 
     <div class="uk-container uk-container-large ">
         <div class="uk-flex uk-flex-center">
@@ -44,7 +45,7 @@
                     </ul>
                     <ul id="switcher" class="uk-switcher uk-margin">
                         <li>{% include "dashboard/contact/contact_notes.html" with list_notes=list_notes %}</li>
-                        <li>{% include "dashboard/contact/contact_common.html" with list_common=list_common%}</li>
+                        <li>{% include "dashboard/contact/contact_common.html" with list_common=list_common %}</li>
                         <li>{% include "dashboard/contact/contact_experiences.html" with list_experiences=list_experiences %}</li>
                         <li>{% include "dashboard/contact/contact_music.html" %}</li>
                         <li>{% include "dashboard/contact/contact_family.html" %}</li>

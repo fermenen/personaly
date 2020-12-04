@@ -1,9 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 
-from .serializers import UserSerializer
+from .serializers import UserSerializer, NoteSerializer
 from rest_framework.views import APIView
 from django.http import JsonResponse
+from django.core import serializers
 
 from dashboard.services import send_code_user
 
@@ -32,7 +33,6 @@ class SendCodeMailUser(APIView):
         return JsonResponse({'ok': 'true'}, status=200)
 
 
-
 class CheckCodeMailUser(APIView):
 
     def post(self, request):
@@ -51,4 +51,13 @@ class CheckCodeMailUser(APIView):
             return JsonResponse({'ok': 'codigo incorrecto'}, status=404)
 
 
+class CreateNoteContact(APIView):
 
+    def post(self, request):
+        note_serializer = NoteSerializer(data=request.data)
+        if note_serializer.is_valid():
+            note = note_serializer.save()
+            noteSe = serializers.serialize('json', [note, ])
+            return JsonResponse({'ok': 'true', 'note': noteSe}, status=201)
+        else:
+            return JsonResponse({'ok': 'false'}, status=500)

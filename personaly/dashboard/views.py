@@ -35,7 +35,7 @@ def contact_view(request, url):
         owner = request.user
         contact = get_object_or_404(Contact, url=url, owner=owner, active=True)
         list_tags = TagContact.objects.filter(owner=owner, contact=contact)
-        list_notes = NoteContact.objects.filter(contact=contact, owner=owner, active=True)
+        list_notes = NoteContact.objects.filter(contact=contact, owner=owner, active=True).order_by('-created_at')
         list_common = ThingCommonContact.objects.filter(contact=contact, owner=owner, active=True)
         list_experiences = ExperienceContact.objects.filter(contact=contact, owner=owner, active=True)
         return render(request, 'dashboard/contact.html', {'contact': contact, 'tags_list': list_tags,

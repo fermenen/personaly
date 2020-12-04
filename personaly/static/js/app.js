@@ -4,3 +4,10 @@ function deleteContact(contactId, contactName) {
         UIkit.modal(modal_delete_contact).show();
 }
 
+function disabledButton(name) {
+    $(name).addClass('uk-disabled')
+}
+
+function loadingButton(name) {
+    $(name).html('<div uk-spinner></div>')
+}

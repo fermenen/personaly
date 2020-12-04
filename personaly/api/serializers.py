@@ -2,6 +2,8 @@ from rest_framework import serializers
 
 from accounts.models import User
 
+from dashboard.models import NoteContact
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,3 +18,15 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+
+class NoteSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = NoteContact
+        fields = ('text', 'contact', 'owner')
+
+    def create(self, validated_data):
+        note = NoteContact(**validated_data)
+        note.save()
+        return note

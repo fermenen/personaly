@@ -24,59 +24,24 @@ body {
   flex-shrink: 0;
 }
 
-#header {
-  min-height: 55px;
-  height: 55px;
-}
-
 .navbar-app-web {
   background-color: #021F59 !important;
 }
 
-.navbar-app-web .navbar-brand {
-  font-size: 1.66rem;
-  letter-spacing: 0.05rem;
-  font-weight: 405;
-  color: #FFFF;
-  font-family: "Roboto";
-  line-height: 24px;
-}
-
-.navbar-item .navbar-link {
-  font-size: 1rem;
-  font-weight: 404;
+.navbar-item {
   color: #FFFF !important;
   letter-spacing: 0.024rem;
-  text-transform: uppercase;
 }
 
 .navbar-item:focus, .navbar-item:hover {
   color: #05AFF2 !important;
 }
 
-.navbar-app-web-right {
-  position: unset !important;
+.navbar-item-canvas {
+  text-transform: uppercase !important;
+  font-size: 1rem !important;
 }
 
-.hidden-up-to-s {
-  display: none;
-}
-
-@media (min-width: 640px) {
-  /* @breakpoint-small */
-  .hidden-up-to-s {
-    display: block;
-  }
-
-  .navbar-app-web-right {
-    position: absolute !important;
-    right: 0 !important;
-  }
-
-  .navbar-item {
-    font-size: 0.81rem !important;
-  }
-}
 html, body {
   height: 100%;
 }

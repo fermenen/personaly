@@ -1,52 +1,24 @@
 @import 'base';
 
-#header {
-  min-height: 55px;
-  height: 55px;
-}
+//#header {
+//  min-height: 55px;
+//  height: 55px;
+//}
 
 .navbar-app-web {
   background-color: $color-blue-1 !important;
 }
-
-.navbar-app-web .navbar-brand {
-  font-size: 1.66rem;
-  letter-spacing: 0.05rem;
-  font-weight: 405;
-  color: $color-white;
-  font-family: 'Roboto';
-  line-height: 24px;
-}
-
-.navbar-item .navbar-link {
-  font-size: 1.00rem;
-  font-weight: 404;
+.navbar-item {
+  //font-size: 1.00rem;
   color: $color-white !important;
   letter-spacing: 0.024rem;
-  text-transform: uppercase;
 }
 
 .navbar-item:focus, .navbar-item:hover {
   color: $color-blue-3 !important;
 }
 
-.navbar-app-web-right {
-  position: unset !important;
-}
-
-.hidden-up-to-s {
-  display: none;
-}
-
-@media (min-width: 640px) { /* @breakpoint-small */
-  .hidden-up-to-s {
-    display: block;
-  }
-  .navbar-app-web-right {
-    position: absolute !important;
-    right: 0 !important;
-  }
-  .navbar-item {
-    font-size: 0.81rem !important;
-  }
+.navbar-item-canvas {
+  text-transform: uppercase !important;
+  font-size: 1.00rem !important;
 }
