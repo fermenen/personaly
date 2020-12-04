@@ -5,6 +5,7 @@
 {% block content %}
 
     {% include "html/app/nav_app.html" %}
+    {% csrf_token %}
     <div id="app" class="content"> {% block content_main %}{% endblock %}</div>
     {% include "html/app/footer_app.html" %}
     {% include "dashboard/modals.html" %}

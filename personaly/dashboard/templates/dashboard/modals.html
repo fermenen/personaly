@@ -1,3 +1,4 @@
+{% load i18n %}
 {#CREAR_CONTACTO#}
 <div id="add_contact" target uk-modal>
     {% include "dashboard/modal/add_contact.html" with form=form_add_contact %}
@@ -27,18 +28,23 @@
 {#END_BORRAR_CONTACTO#}
 
 {#ANADIR NOTA CONTACTO#}
-<div id="modal_create_contact_note" target uk-modal>
-    <div class="uk-modal-dialog uk-modal-body">
-        <h2 class="uk-modal-title">Crear nota</h2>
+<div id="modal_create_contact_note" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">{% translate "Crear nota" %}</h2>
+        </div>
         <div class="uk-modal-body">
             <div class="uk-margin">
-                <textarea id="text_note" class="uk-textarea" rows="5" placeholder="Nota"></textarea>
+                <textarea id="text_note" class="uk-textarea" rows="5" style="resize: none" placeholder="Nota"></textarea>
             </div>
         </div>
         <div class="uk-modal-footer uk-text-right">
-            <button id="button_cancel_contact_note" class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
-            <button id="button_save_contact_note" class="uk-button uk-button-primary" onclick="createContactNote()" type="button">Guardar</button>
+            <button class="uk-button uk-button-default uk-modal-close"
+                    type="button">{% translate "Cancelar" %}</button>
+            <button id="button_save_contact_note" class="uk-button uk-button-primary" data-value='{% translate "Guardar" %}' onclick="createContactNote()"
+                    type="button">{% translate "Guardar" %}</button>
         </div>
-
     </div>
 </div>
+{#END ANADIR NOTA CONTACTO#}

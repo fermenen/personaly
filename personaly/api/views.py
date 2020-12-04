@@ -60,4 +60,5 @@ class CreateNoteContact(APIView):
             noteSe = serializers.serialize('json', [note, ])
             return JsonResponse({'ok': 'true', 'note': noteSe}, status=201)
         else:
-            return JsonResponse({'ok': 'false'}, status=500)
+            return JsonResponse({'ok': 'false', 'message': 'A problem occurred, try again. Contact support if persist'},
+                                status=400)

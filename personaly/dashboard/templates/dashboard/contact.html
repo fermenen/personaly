@@ -5,7 +5,8 @@
 
 {% block content_main %}
     <script src="{% static 'js/contact.js' %}"></script>
-    <input id="id_contact" class="uk-input uk-hidden" type="text" value="{{ contact.id }}">
+    <input id="id_contact" class="uk-input uk-hidden" type="hidden" value="{{ contact.id }}">
+    <input id="id_owner" class="uk-input uk-hidden" type="hidden" value="{{ owner.id }}">
 
     <div class="uk-container uk-container-large ">
         <div class="uk-flex uk-flex-center">
