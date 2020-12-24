@@ -1,17 +1,23 @@
-{% extends 'html/app/base_app.html' %}
+{% extends 'app/base_app.html' %}
 {% load i18n %}
 {% load static %}
 {% block title %}Dashboard | {% endblock %}
 
 {% block content_main %}
 
-    <div class="uk-container uk-container-large ">
+    <div class="container-app uk-container uk-container-large">
         <div class="uk-flex uk-flex-center">
             <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m">
                 <div class="card-title uk-flex-inline uk-margin-left uk-margin-bottom">
 
-                    <h1 class="uk-heading-medium">{% translate "Hoy" %}</h1>
+                    <div class="uk-text-middle uk-flex">
+                        <h1 class="uk-heading-medium">{% translate "Hoy" %}</h1>
+                        <span>{{ date_today | date:"D j b" | lower }}</span>
+                    </div>
 
+                    <div class="uk-card-body">
+                        <div>No tienes ninguna tarea pendiente</div>
+                    </div>
 
                 </div>
             </div>

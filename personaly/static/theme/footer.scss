@@ -1,14 +1,19 @@
-@import "base";
+@use "base";
 
-.footer {
+#footer_app {
   background-color: $color-black;
-  height: 85px;
+  color: $color-gray-1;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 4.2rem;
 }
 
-.footer-copyright {
+#footer_web {
+  background-color: $color-black;
   color: $color-gray-1;
 }
 

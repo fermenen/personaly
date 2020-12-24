@@ -1,7 +1,6 @@
 {% load static %}
 {% load i18n %}
 
-<!--HEADER-->
 <header class="navbar-app-web">
     <div class="uk-container">
         <nav class="" data-uk-navbar>
@@ -20,8 +19,7 @@
         </nav>
     </div>
 </header>
-<!--/HEADER-->
-<!-- OFFCANVAS -->
+
 <div id="offcanvas-nav" data-uk-offcanvas="flip: true; overlay: true">
     <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
         <button class="uk-offcanvas-close uk-close uk-icon navbar-item" type="button" data-uk-close></button>
@@ -35,7 +33,7 @@
         </ul>
     </div>
 </div>
-<!-- /OFFCANVAS -->
+
 <div class="nav-alerts">
     {% for message in messages %}
         <script>

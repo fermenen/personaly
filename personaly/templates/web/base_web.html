@@ -1,0 +1,16 @@
+{% extends "minimal.html" %}
+{% load i18n %}
+{% load static %}
+
+
+{% block content %}
+
+    {% include "web/nav_web.html" %}
+    <div id="web" class="content-web"> {% block content_main %}{% endblock %}</div>
+    {% include "web/footer_web.html" %}
+
+{% endblock %}
+
+
+
+

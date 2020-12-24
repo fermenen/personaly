@@ -1,9 +1,4 @@
-@import 'base';
-
-//#header {
-//  min-height: 55px;
-//  height: 55px;
-//}
+@use 'base';
 
 .navbar-app-web {
   background-color: $color-blue-1 !important;

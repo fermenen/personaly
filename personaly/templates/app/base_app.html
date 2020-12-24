@@ -1,0 +1,17 @@
+{% extends "minimal.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+    {% include "app/nav_app.html" %}
+
+    <body id="app">
+    {% csrf_token %}
+    {% block content_main %}{% endblock %}
+    </body>
+
+    {% include "dashboard/modals.html" %}
+    {% include "app/footer_app.html" %}
+
+{% endblock %}

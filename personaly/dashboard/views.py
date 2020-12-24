@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 import uuid
-
+import datetime
 from dashboard.models import Contact, TagContact, NoteContact, ThingCommonContact, ExperienceContact
 from .forms import AddContactForm
 from django.shortcuts import get_list_or_404, get_object_or_404
@@ -9,12 +9,9 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 
 @login_required
 def index(request):
+    date = datetime.date.today()
 
-    contacts = Contact.objects.filter(owner=request.user)
-
-    print(contacts)
-
-    return render(request, 'dashboard/index.html', {'contact_list': contacts})
+    return render(request, 'dashboard/index.html', {'date_today': date})
 
 
 @login_required

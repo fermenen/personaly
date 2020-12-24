@@ -1,4 +1,4 @@
-{% extends 'html/app/base_app.html' %}
+{% extends 'app/base_app.html' %}
 {% load i18n %}
 {% load static %}
 {% block title %}{{ contact.name }} {{ contact.surnames }} | {% endblock %}
@@ -8,7 +8,7 @@
     <input id="id_contact" class="uk-input uk-hidden" type="hidden" value="{{ contact.id }}">
     <input id="id_owner" class="uk-input uk-hidden" type="hidden" value="{{ owner.id }}">
 
-    <div class="uk-container uk-container-large ">
+    <div class="container-app uk-container uk-container-large ">
         <div class="uk-flex uk-flex-center">
             <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m">
                 <ul class="uk-iconnav btn-actions-tittle uk-flex-right">
@@ -35,7 +35,6 @@
                     </ul>
                 </div>
 
-
                 <div class="uk-margin-large-top">
                     <ul class="uk-child-width-expand" uk-tab="connect: #switcher">
                         <li><a href="#"><span class="uk-margin-small-right" uk-icon="comments"></span>Notas</a></li>
@@ -50,14 +49,12 @@
                         <li>{% include "dashboard/contact/contact_experiences.html" with list_experiences=list_experiences %}</li>
                         <li>{% include "dashboard/contact/contact_music.html" %}</li>
                         <li>{% include "dashboard/contact/contact_family.html" %}</li>
-
                     </ul>
                 </div>
 
             </div>
         </div>
     </div>
-
 
 
 {% endblock %}
