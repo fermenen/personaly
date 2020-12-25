@@ -16,34 +16,24 @@
                            onclick="deleteContact('{{ contact.id }}','{{ contact.name }} {{ contact.surnames }}')"
                            uk-icon="icon: trash"
                            uk-tooltip="title: {% translate "Eliminar contacto" %}; pos: bottom-left"></a>
-                    <li><a href="#" class="uk-icon-link" uk-icon="icon: pencil"
+                    <li><a class="uk-icon-link"
+                           onclick="editContact('{{ contact.name }}','{{ contact.surnames }}')"
+                           uk-icon="icon: pencil"
                            uk-tooltip="title: {% translate "Editar contacto" %}; pos: bottom-left"></a>
                 </ul>
 
                 {% include "dashboard/contact/contact_header.html" with contact=contact tags_list=tags_list %}
-
+                {% include "dashboard/contact/contact_reminders.html" %}
                 <div class="uk-margin-large-top">
-                    <ul class="uk-child-width-expand" uk-tab>
-                        <li><a href="#"><span class="uk-margin-small-right" uk-icon="future"></span>Recordatorios</a>
+                    <ul uk-tab class="uk-child-width-expand" uk-tab="connect: #switcher_contact">
+                        <li><a href="#notes"><span class="uk-margin-small-right" uk-icon="comments"></span>Notas</a>
                         </li>
+                        <li><a href="#common"><span class="uk-margin-small-right" uk-icon="bolt"></span>En comun</a>
+                        <li><a href=""><span class="uk-margin-small-right" uk-icon="world"></span>Experiencias</a></li>
+                        <li><a href=""><span class="uk-margin-small-right" uk-icon="play-circle"></span>Musica</a></li>
+                        <li><a href=""><span class="uk-margin-small-right" uk-icon="user"></span>Familia</a></li>
                     </ul>
-
-                    <ul class="uk-switcher uk-margin">
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="uk-margin-large-top">
-                    <ul class="uk-child-width-expand" uk-tab="connect: #switcher">
-                        <li><a href="#"><span class="uk-margin-small-right" uk-icon="comments"></span>Notas</a></li>
-                        <li><a href="#"><span class="uk-margin-small-right" uk-icon="bolt"></span>En comun</a>
-                        <li><a href="#"><span class="uk-margin-small-right" uk-icon="world"></span>Experiencias</a></li>
-                        <li><a href="#"><span class="uk-margin-small-right" uk-icon="play-circle"></span>Musica</a></li>
-                        <li><a href="#"><span class="uk-margin-small-right" uk-icon="user"></span>Familia</a></li>
-                    </ul>
-                    <ul id="switcher" class="uk-switcher uk-margin">
+                    <ul id="switcher_contact" class="uk-switcher uk-margin">
                         <li>{% include "dashboard/contact/contact_notes.html" with list_notes=list_notes %}</li>
                         <li>{% include "dashboard/contact/contact_common.html" with list_common=list_common %}</li>
                         <li>{% include "dashboard/contact/contact_experiences.html" with list_experiences=list_experiences %}</li>
@@ -51,10 +41,8 @@
                         <li>{% include "dashboard/contact/contact_family.html" %}</li>
                     </ul>
                 </div>
-
             </div>
         </div>
     </div>
-
 
 {% endblock %}

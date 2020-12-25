@@ -6,7 +6,6 @@
     </div>
     <form class="form uk-form-stacked" action="{% url 'api_add_contact' %}" method="POST">
         <div class="uk-modal-body">
-
             {% if form.errors %}
                 {% for field in form %}
                     {% for error in field.errors %}
@@ -23,8 +22,6 @@
                     </div>
                 {% endfor %}
             {% endif %}
-
-
             <div class="uk-flex">
                 <div class="uk-width-2-4 uk-flex-first">
                     <label class="uk-form-label " for="{{ form.name.id_for_label }}">Nombre</label>
@@ -48,7 +45,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="uk-margin uk-margin-bottom">
                 <label class="uk-form-label" for="form-stacked-text">Estar en contacto</label>
                 <select class="uk-select" name="form_select" id="form_select">
@@ -59,8 +55,6 @@
                     <option>No recordar</option>
                 </select>
             </div>
-
-
         </div>
         {% csrf_token %}
         <div class="uk-modal-footer uk-text-right">
@@ -68,7 +62,5 @@
                     type="button">{% translate "Cancelar" %}</button>
             <button class="uk-button uk-button-primary" type="submit">{% translate "Crear" %}</button>
         </div>
-
     </form>
-
 </div>

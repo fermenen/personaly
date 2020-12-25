@@ -12,11 +12,12 @@
 
                     <div class="uk-text-middle uk-flex">
                         <h1 class="uk-heading-medium">{% translate "Hoy" %}</h1>
-                        <span>{{ date_today | date:"D j b" | lower }}</span>
+                        <div class="uk-margin-small-left"><span>{{ date_today | date:"D j b" | lower }}</span></div>
+
                     </div>
 
-                    <div class="uk-card-body">
-                        <div>No tienes ninguna tarea pendiente</div>
+                    <div class="uk-card-body uk-text-center">
+                        <span>No tienes ninguna tarea pendiente</span>
                     </div>
 
                 </div>

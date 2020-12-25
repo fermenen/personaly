@@ -4,12 +4,12 @@
     {% include "dashboard/modal/add_contact.html" with form=form_add_contact %}
 </div>
 {#END_CREAR_CONTACTO#}
-
 {#BORRAR CONTACTO#}
 <div id="modal_delete_contact" target uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
         <h2 class="uk-modal-title">Eliminar el contacto</h2>
-        <p>¿Estás seguro de que quieres borrar a <span id="contact_name" class="uk-text-bold"></span>?</p>
+        <p>¿Estás seguro de que quieres borrar a <span id="contact_name" class="uk-text-bold uk-text-capitalize"></span>?
+        </p>
         <p>Todos los datos relacionados serán eliminados y esta acción no puede deshacerse.</p>
         <form action="{% url 'api_delete_contact' %}" method="POST">
             <input id="contact_id" name="contact_id" type="hidden">
@@ -26,7 +26,6 @@
     </div>
 </div>
 {#END_BORRAR_CONTACTO#}
-
 {#ANADIR NOTA CONTACTO#}
 <div id="modal_create_contact_note" uk-modal>
     <div class="uk-modal-dialog">
@@ -36,15 +35,45 @@
         </div>
         <div class="uk-modal-body">
             <div class="uk-margin">
-                <textarea id="text_note" class="uk-textarea" rows="5" style="resize: none" placeholder="Nota"></textarea>
+                <textarea id="text_note" class="uk-textarea" rows="5" style="resize: none"
+                          placeholder="Nota"></textarea>
             </div>
         </div>
         <div class="uk-modal-footer uk-text-right">
             <button class="uk-button uk-button-default uk-modal-close"
                     type="button">{% translate "Cancelar" %}</button>
-            <button id="button_save_contact_note" class="uk-button uk-button-primary" data-value='{% translate "Guardar" %}' onclick="createContactNote()"
+            <button id="button_save_contact_note" class="uk-button uk-button-primary"
+                    data-value='{% translate "Guardar" %}' onclick="createContactNote()"
                     type="button">{% translate "Guardar" %}</button>
         </div>
     </div>
 </div>
 {#END ANADIR NOTA CONTACTO#}
+{#ANADIR COSA COMUN#}
+<div id="modal_create_common" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">{% translate "Añadir cosa en comun" %}</h2>
+        </div>
+        <div class="uk-modal-body">
+            <div class="uk-margin">
+                <textarea id="text_common" class="uk-input" rows="5" style="resize: none"
+                          placeholder="Cosa en comun"></textarea>
+            </div>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close"
+                    type="button">{% translate "Cancelar" %}</button>
+            <button id="button_save_contact_common" class="uk-button uk-button-primary"
+                    data-value='{% translate "Guardar" %}' onclick="createContactCommon()"
+                    type="button">{% translate "Guardar" %}</button>
+        </div>
+    </div>
+</div>
+{#END ANADIR COSA COMUN#}
+{#EDITAR CONTACTO#}
+<div id="modal_edit_contact" uk-modal>
+     {% include "dashboard/modal/edit_contact.html"  %}
+</div>
+{#END EDITAR CONTACTO#}

@@ -40,8 +40,8 @@ class Contact(models.Model):
         img_new.save(os.path.join('media/images_contacts', image_name), quality=quality, optimize=True)
         return os.path.join('/images_contacts', image_name)
 
-    def __str__(self):
-        return f"({self.owner} - {self.owner_id}) {self.name} {self.surnames}"
+    # def __str__(self):
+    #     return f"({self.owner} - {self.owner_id}) {self.name} {self.surnames}"
 
 
 class TagContact(models.Model):

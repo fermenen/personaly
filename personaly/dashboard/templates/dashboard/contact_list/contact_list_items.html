@@ -33,7 +33,7 @@
                 <div class="btn-actions-contact uk-flex-right uk-flex-inline uk-flex-middle">
                     <ul class="uk-iconnav">
                         <li><a class="uk-icon-link"  onclick="deleteContact('{{ contact.id }}','{{ contact.name }} {{ contact.surnames }}')" uk-icon="icon: trash" uk-tooltip="title: {% translate "Eliminar contacto" %}; pos: bottom-left" ></a>
-                        <li><a href="#" class="uk-icon-link" uk-icon="file-edit"
+                        <li><a  class="uk-icon-link" onclick="editContact('{{ contact.name }}','{{ contact.surname }}')" uk-icon="file-edit"
                                uk-tooltip="title: {% translate "Editar contacto" %}; pos: bottom-left"></a>
                         <li><a href="#" class="uk-icon-link" uk-icon="future"
                                uk-tooltip="title: {% translate "Programar" %}; pos: bottom-left"></a>

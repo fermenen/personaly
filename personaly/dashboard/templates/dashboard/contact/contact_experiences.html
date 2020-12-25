@@ -5,6 +5,10 @@
         experiencia
     </button>
 
+    <div class="uk-text-center uk-margin-top">
+        <span>🌎 Registra viajes y exprencias que has hecho con {{ contact.name }} en el pasado.</span>
+    </div>
+
     {% for experience in list_experiences %}
         <div class="uk-card uk-card-default uk-card-body uk-width-1-1 uk-margin-top">
             <h3 class="uk-card-title">{{ experience.tittle }} | {{ experience.location }} | {{ experience.date }}</h3>

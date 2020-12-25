@@ -1,24 +1,31 @@
 {% load static %}
 <div id="contact_header" class="uk-flex uk-flex-row uk-flex-nowrap ">
     <div class="uk-flex">
-{#        <img class="uk-border-rounded" src="/media{{ contact.image_contact }}" width="120" height="120" alt="{{ contact.name }} {{ contact.surnames }}">#}
+        {#        <img class="uk-border-rounded" src="/media{{ contact.image_contact }}" width="120" height="120" alt="{{ contact.name }} {{ contact.surnames }}">#}
 
         {% if contact.image_contact %}
-                            <img class="uk-border-rounded" src="/media{{ contact.image_contact }}" width="120" height="120" alt="{{ contact.name }} {{ contact.surnames }}">
-                        {% else %}
-            <img class="uk-border-rounded" src="{% static 'img/app/contact_default.svg' %}" width="120" height="120" alt="{{ contact.name }} {{ contact.surnames }}">
-{#                            <img class="uk-border-circle image-contact" width="50" height="50"#}
-{#                                 data-src="{% static 'img/app/contact_default.svg' %}"#}
-{#                                 alt="{{ contact.name }} {{ contact.surnames }}" uk-img>#}
-                        {% endif %}
+            <img class="uk-border-rounded" src="/media{{ contact.image_contact }}" width="120" height="120"
+                 alt="{{ contact.name }} {{ contact.surnames }}">
+        {% else %}
+            <img class="uk-border-rounded" src="{% static 'img/app/contact_default.svg' %}" width="120" height="120"
+                 alt="{{ contact.name }} {{ contact.surnames }}">
+            {#                            <img class="uk-border-circle image-contact" width="50" height="50"#}
+            {#                                 data-src="{% static 'img/app/contact_default.svg' %}"#}
+            {#                                 alt="{{ contact.name }} {{ contact.surnames }}" uk-img>#}
+        {% endif %}
 
 
     </div>
     <div class="uk-flex uk-flex-column uk-flex-nowrap uk-flex-between uk-flex-center uk-margin-large-left">
-        <div class=""><h1 class="uk-heading-medium ">{{ contact.name }} {{ contact.surnames }}</h1></div>
+        <div class=""><h1 class="uk-heading-medium ">{{ contact.name |title }} {{ contact.surnames | title}}</h1></div>
         <div class="uk-flex-inline">
-            <span class="uk-margin-small-right" uk-icon="icon: receiver"></span>{{ contact.phone }}
-            <span class="uk-margin-left uk-margin-small-right" uk-icon="icon: location"></span>{{ contact.location }}
+            {% if contact.phone %}
+                <span class="uk-margin-small-right" uk-icon="icon: receiver"></span>{{ contact.phone }}
+            {% endif %}
+            {% if contact.location %}
+                <span class="uk-margin-left uk-margin-small-right" uk-icon="icon: location"></span>
+                {{ contact.location }}
+            {% endif %}
         </div>
         <div class="uk-flex-inline">
             {% for tag in tags_list %}

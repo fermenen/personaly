@@ -2,7 +2,9 @@ from rest_framework import serializers
 
 from accounts.models import User
 
-from dashboard.models import NoteContact
+from dashboard.models import NoteContact, ThingCommonContact
+
+
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -30,3 +32,14 @@ class NoteSerializer(serializers.ModelSerializer):
         note = NoteContact(**validated_data)
         note.save()
         return note
+
+class CommonSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ThingCommonContact
+        fields = ('text', 'contact', 'owner')
+
+    def create(self, validated_data):
+        common = ThingCommonContact(**validated_data)
+        common.save()
+        return common

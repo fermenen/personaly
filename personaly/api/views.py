@@ -1,10 +1,14 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 
-from .serializers import UserSerializer, NoteSerializer
+from .serializers import UserSerializer, NoteSerializer, CommonSerializer
 from rest_framework.views import APIView
 from django.http import JsonResponse
 from django.core import serializers
+import os
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from django.conf import settings
 
 from dashboard.services import send_code_user
 
@@ -62,3 +66,25 @@ class CreateNoteContact(APIView):
         else:
             return JsonResponse({'ok': 'false', 'message': 'A problem occurred, try again. Contact support if persist'},
                                 status=400)
+
+
+class CreateCommonContact(APIView):
+
+    def post(self, request):
+        common_serializer = CommonSerializer(data=request.data)
+        if common_serializer.is_valid():
+            common = common_serializer.save()
+            return JsonResponse({'ok': 'true'}, status=201)
+        else:
+            return JsonResponse({'ok': 'false', 'message': 'A problem occurred, try again. Contact support if persist'}, status=400)
+
+
+class UploadPhoto(APIView):
+
+
+    def post(self, request):
+        data = request.data['files[]']
+        path = default_storage.save(f'images_contacts/{data.name}', ContentFile(data.read()))
+        tmp_file = os.path.join(settings.MEDIA_ROOT, path)
+        return JsonResponse({'ok': 'true', 'file': path}, status=200)
+
