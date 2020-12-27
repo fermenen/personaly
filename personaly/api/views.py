@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 
-from .serializers import UserSerializer, NoteSerializer, CommonSerializer
+from .serializers import *
 from rest_framework.views import APIView
 from django.http import JsonResponse
 from django.core import serializers
@@ -13,6 +13,8 @@ from django.conf import settings
 from dashboard.services import send_code_user
 
 from accounts.models import User
+
+from dashboard.models import *
 
 
 class UserCreate(APIView):
@@ -68,6 +70,19 @@ class CreateNoteContact(APIView):
                                 status=400)
 
 
+class DeleteNoteContact(APIView):
+
+    def post(self, request):
+        delete_note_serializer = DeleteNoteSerializer(data=request.data)
+        if delete_note_serializer.is_valid():
+            note = NoteContact.objects.get(id=request.data['id'])
+            note.active = False
+            note.save()
+            return JsonResponse({'ok': 'true'}, status=200)
+        else:
+            return JsonResponse({'ok': 'false'}, status=400)
+
+
 class CreateCommonContact(APIView):
 
     def post(self, request):
@@ -76,15 +91,27 @@ class CreateCommonContact(APIView):
             common = common_serializer.save()
             return JsonResponse({'ok': 'true'}, status=201)
         else:
-            return JsonResponse({'ok': 'false', 'message': 'A problem occurred, try again. Contact support if persist'}, status=400)
+            return JsonResponse({'ok': 'false', 'message': 'A problem occurred, try again. Contact support if persist'},
+                                status=400)
+
+
+class DeleteCommonContact(APIView):
+
+    def post(self, request):
+        delete_common_serializer = DeleteNoteSerializer(data=request.data)
+        if delete_common_serializer.is_valid():
+            common = ThingCommonContact.objects.get(id=request.data['id'])
+            common.active = False
+            common.save()
+            return JsonResponse({'ok': 'true'}, status=200)
+        else:
+            return JsonResponse({'ok': 'false'}, status=400)
 
 
 class UploadPhoto(APIView):
-
 
     def post(self, request):
         data = request.data['files[]']
         path = default_storage.save(f'images_contacts/{data.name}', ContentFile(data.read()))
         tmp_file = os.path.join(settings.MEDIA_ROOT, path)
         return JsonResponse({'ok': 'true', 'file': path}, status=200)
-

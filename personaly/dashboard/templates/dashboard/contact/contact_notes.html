@@ -1,29 +1,51 @@
 {% load i18n %}
-
-<div>
-    <button id="" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
-            uk-toggle="target: #modal_create_contact_note"><span class="uk-margin-small-right" uk-icon="plus"></span>Añadir
-        nota
+<div id="component_notes_contact">
+    <button id="button_add_note_contact" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
+            uk-toggle="target: #modal_create_contact_note"><span class="uk-margin-small-right"
+                                                                 uk-icon="plus"></span>{% translate "Añadir nota" %}
     </button>
-
-    <div class="uk-text-center uk-margin-top">
-        <span>📝 ¿Hay algo que quieras recordar sobre {{ contact.name }}?</span>
+    <div>
+        <input id="count_notes_contact" class="uk-hidden" type="number" value="{{ count_list_notes }}">
+        <div id="text_note_contact" class="uk-text-center uk-margin-top">
+            <span>📝 {% translate "¿Hay algo que quieras recordar sobre" %} {{ contact.name }}?</span>
+        </div>
+        <script>
+            textVisible('#count_notes_contact', '#text_note_contact');
+        </script>
     </div>
 
-    {% for note in list_notes %}
-        <div class="card-note-contact uk-card uk-card-small uk-box-shadow-small uk-card-default  uk-card-body uk-width-auto">
-            <div class="uk-flex uk-flex-center uk-flex-between">
-                <div>{{ note.text }} | {{ note.created_at }}</div>
-                <div>
-                    <ul class="uk-iconnav btn-actions-tittle uk-flex-center">
-                        <li><a class="uk-icon-link" onclick="" uk-icon="icon: trash"
-                               uk-tooltip="title: {% translate "Eliminar nota" %}; pos: bottom-left"></a>
-                        <li><a href="#" class="uk-icon-link" uk-icon="icon: pencil"
-                               uk-tooltip="title: {% translate "Editar nota" %}; pos: bottom-left"></a>
-                    </ul>
+    <div id="component_all_notes" class="uk-margin-top">
+        {% for note in list_notes %}
+            <div id="{{ note.id }}"
+                 class="card-note-contact uk-card uk-card-small uk-box-shadow-small uk-card-default  uk-card-body uk-width-auto">
+                <div class="uk-flex uk-flex-center uk-flex-between">
+                    <div>
+                        <span>{{ note.text }}</span>
+                        <span> | {{ note.created_at }}</span>
+                    </div>
+                    <div>
+                        <div id="component_option_note" class="uk-width-auto">
+                            <div class="uk-inline">
+                                <a data-uk-icon="icon:more-vertical"></a>
+                                <div data-uk-dropdown="mode: click; pos:bottom-right">
+                                    <ul class="uk-nav uk-dropdown-nav">
+                                        <li><a href="#"><span class="uk-margin-small-right"
+                                                              data-uk-icon="icon: pencil; ratio: 0.9"></span>{% translate "Editar nota" %}
+                                        </a></li>
+                                        <li>
+                                            <a onclick="deleteContactNote('{{ note.id }}', '{% translate "Nota borrada!" %}')"
+                                               href="#"><span class="uk-margin-small-right"
+                                                              data-uk-icon="icon: trash; ratio: 0.9"></span><span>{% translate "Eliminar nota" %}</span>
+                                            </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
-
+        {% endfor %}
+    </div>
 </div>

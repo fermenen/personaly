@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='contact',
             name='image_contact',
-            field=models.ImageField(blank=True, default='images_contacts/placeholder.jpg', null=True, upload_to='images_contacts', verbose_name='imagecontact'),
+            field=models.ImageField(blank=True, default='images_contacts/contact_holder.jpg', null=True, upload_to='images_contacts', verbose_name='imagecontact'),
         ),
         migrations.AddField(
             model_name='contact',

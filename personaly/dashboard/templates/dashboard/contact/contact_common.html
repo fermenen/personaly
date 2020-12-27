@@ -1,22 +1,32 @@
 {% load i18n %}
 
-<div class="uk-flex-row uk-flex-center">
+<div id="component_common_contact" class="uk-flex-row uk-flex-center">
     <div id="header-common" class="uk-margin-top">
-        
+
         <button id="" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
-                uk-toggle="target: #modal_create_common"><span class="uk-margin-small-right" uk-icon="plus"></span>Añadir
-            cosa en comun
+                uk-toggle="target: #modal_create_common"><span class="uk-margin-small-right" uk-icon="plus"></span>
+            {% translate "Añadir cosa en común" %}
         </button>
 
     </div>
-    <div class="uk-text-center uk-margin-top">
-        <span>🍿 Registra cosas en comun que tengas con {{ contact.name }}.</span>
+
+    <div>
+        <input id="count_common_contact" class="uk-hidden" type="number" value="{{ count_list_common }}">
+        <div id="text_common_contact" class="uk-text-center uk-margin-top">
+            <span>🍿 {% translate "Registra cosas en común que tengas con" %} {{ contact.name }}</span>
+        </div>
+        <script>
+            textVisible('#count_common_contact', '#text_common_contact');
+        </script>
     </div>
 
 
-    <div class="uk-margin-top">
+    <div id="component_all_common" class="uk-margin-top uk-grid">
         {% for common in list_common %}
-            <span class="badge-contact-common uk-badge">{{ common.text }}</span>
+            <div id="common{{ common.id }}">
+                <a href="#" onclick="openModalDeleteCommon('{{ common.id }}', '{{ common.text }}')" class="button-common badge-contact-common uk-badge uk-button">{{ common.text }}</a>
+            </div>
+
         {% endfor %}
     </div>
 

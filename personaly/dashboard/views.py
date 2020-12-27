@@ -35,9 +35,18 @@ def contact_view(request, url):
         list_notes = NoteContact.objects.filter(contact=contact, owner=owner, active=True).order_by('-created_at')
         list_common = ThingCommonContact.objects.filter(contact=contact, owner=owner, active=True)
         list_experiences = ExperienceContact.objects.filter(contact=contact, owner=owner, active=True)
-        return render(request, 'dashboard/contact.html', {'owner': owner, 'contact': contact, 'tags_list': list_tags,
-                                                          'list_notes': list_notes, 'list_common': list_common,
-                                                          'list_experiences': list_experiences})
+
+        data = {'owner': owner,
+                'contact': contact,
+                'tags_list': list_tags,
+                'list_notes': list_notes,
+                'count_list_notes': list_notes.count(),
+                'list_common': list_common,
+                'count_list_common': list_common.count(),
+                'list_experiences': list_experiences
+                }
+
+        return render(request, 'dashboard/contact.html', data)
     except Exception as e:
         return redirect("contacts")
 

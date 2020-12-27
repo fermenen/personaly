@@ -491,6 +491,14 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.button-common {
+  text-transform: capitalize !important;
+}
+
+.button-common:hover {
+  background: #ee395b !important;
+}
+
 html {
   font-size: 100%;
   /*16px*/

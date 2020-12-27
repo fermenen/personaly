@@ -74,6 +74,24 @@
 {#END ANADIR COSA COMUN#}
 {#EDITAR CONTACTO#}
 <div id="modal_edit_contact" uk-modal>
-     {% include "dashboard/modal/edit_contact.html"  %}
+    {% include "dashboard/modal/edit_contact.html" %}
 </div>
 {#END EDITAR CONTACTO#}
+{#BORRAR COMMON#}
+<div id="modal_delete_common" target uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Eliminar cosa en comun</h2>
+        <p>¿Estás seguro de que quieres borrar "<span id="common_text" class="uk-text-bold uk-text-capitalize"></span>"?
+        </p>
+        <p>Esta acción no puede deshacerse.</p>
+        <input id="common_id_modal" name="common_id" type="hidden">
+        <p class="uk-text-right">
+            <button onclick="deleteContactCommon('Borrado con exito!')" class="uk-button uk-button-danger" type="submit"><span class="uk-margin-small-right"
+                                                                           uk-icon="trash"></span>Borrar
+            </button>
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+        </p>
+
+    </div>
+</div>
+{#END BORRAR COMMON#}

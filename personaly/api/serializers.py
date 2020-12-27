@@ -33,6 +33,21 @@ class NoteSerializer(serializers.ModelSerializer):
         note.save()
         return note
 
+
+class DeleteNoteSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = NoteContact
+        fields = ('id', 'contact', 'owner')
+
+
+class DeleteCommonSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ThingCommonContact
+        fields = ('id', 'contact', 'owner')
+
+
 class CommonSerializer(serializers.ModelSerializer):
 
     class Meta:

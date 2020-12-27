@@ -37,6 +37,36 @@ function createContactNote() {
 
 }
 
+
+
+
+function deleteContactNote(id, message_success) {
+    let requestDeleteNote = $.ajax({
+        url: '/api/v1/contact/delete_note',
+        data: {
+            id: id,
+            contact: $('#id_contact').val(),
+            owner: $('#id_owner').val(),
+            csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+        },
+        type: 'POST',
+        dataType: 'json',
+        success: function (json) {
+            $('#'+id).remove();
+            reduceOneCountInput('#count_notes_contact')
+            textVisible('#count_notes_contact', '#text_note_contact');
+            UIkit.notification(message_success, {status: 'success'});
+        },
+        error: function (data) {
+           alert("algo fallo")
+        },
+    });
+
+}
+
+
+
+
 function createContactCommon() {
     let buttonSave = '#button_save_contact_common'
     disabledButton(buttonSave)
@@ -66,4 +96,56 @@ function createContactCommon() {
         },
     });
 
+}
+
+
+function openModalDeleteCommon(id, text){
+    $('#common_text').text(text)
+    $('#common_id_modal').val(id)
+    UIkit.modal('#modal_delete_common').show()
+}
+
+
+function deleteContactCommon(message_success) {
+    let requestDeleteCommon = $.ajax({
+        url: '/api/v1/contact/delete_common',
+        data: {
+            id: $('#common_id_modal').val(),
+            contact: $('#id_contact').val(),
+            owner: $('#id_owner').val(),
+            csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+        },
+        type: 'POST',
+        dataType: 'json',
+        success: function (json) {
+             UIkit.modal('#modal_delete_common').hide();
+            $('#common'+$('#common_id_modal').val()).remove();
+            reduceOneCountInput('#count_common_contact')
+            textVisible('#count_common_contact', '#text_common_contact');
+            UIkit.notification(message_success, {status: 'success'});
+        },
+        error: function (data) {
+           alert("algo fallo")
+        },
+    });
+
+}
+
+
+
+
+
+// Metodo para hacer visilbe o no el texto promo denajo del boton de añadir
+function textVisible(inputCount, textVisible){
+    let count = parseInt($(inputCount).val())
+    if (count === 0){
+        $(textVisible).removeClass('uk-hidden')
+    }else{
+        $(textVisible).addClass('uk-hidden')
+    }
+}
+// Metodo para restar en una unidad cuando se borra, en el input oculto
+function reduceOneCountInput(inputCount){
+    let count = parseInt($(inputCount).val())
+    $(inputCount).val(count-1)
 }
