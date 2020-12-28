@@ -17,18 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
 #: dashboard/templates/dashboard/contact.html:18
 #: dashboard/templates/dashboard/contact_list/contact_list_items.html:35
-#, fuzzy
-#| msgid "Editar contacto"
 msgid "Eliminar contacto"
-msgstr "Edit contact"
+msgstr ""
 
 #: dashboard/templates/dashboard/contact.html:22
 #: dashboard/templates/dashboard/contact_list/contact_list_items.html:37
 msgid "Editar contacto"
-msgstr "Edit contact"
+msgstr ""
 
 #: dashboard/templates/dashboard/contact.html:33
 msgid "Notas"
@@ -51,10 +48,8 @@ msgid "Familia"
 msgstr ""
 
 #: dashboard/templates/dashboard/contact/contact_common.html:8
-#, fuzzy
-#| msgid "Editar contacto"
 msgid "Añadir cosa en común"
-msgstr "Edit contact"
+msgstr ""
 
 #: dashboard/templates/dashboard/contact/contact_common.html:16
 msgid "Registra cosas en común que tengas con"
@@ -82,20 +77,16 @@ msgid " Añade las relaciones familiares o de pareja de "
 msgstr ""
 
 #: dashboard/templates/dashboard/contact/contact_notes.html:5
-#, fuzzy
-#| msgid "Editar contacto"
 msgid "Añadir nota"
-msgstr "Edit contact"
+msgstr ""
 
 #: dashboard/templates/dashboard/contact/contact_notes.html:10
 msgid "¿Hay algo que quieras recordar sobre"
 msgstr ""
 
 #: dashboard/templates/dashboard/contact/contact_notes.html:33
-#, fuzzy
-#| msgid "Editar contacto"
 msgid "Editar nota"
-msgstr "Edit contact"
+msgstr ""
 
 #: dashboard/templates/dashboard/contact/contact_notes.html:36
 msgid "Nota borrada!"
@@ -107,24 +98,22 @@ msgstr ""
 
 #: dashboard/templates/dashboard/contact_list/contact_list_items.html:39
 msgid "Programar"
-msgstr "Schedule"
+msgstr ""
 
 #: dashboard/templates/dashboard/contacts_list.html:4
 #: dashboard/templates/dashboard/contacts_list.html:12
 msgid "Contactos"
-msgstr "Contacts"
+msgstr ""
 
 #: dashboard/templates/dashboard/contacts_list.html:17
 #: dashboard/templates/dashboard/contacts_list.html:32
 #: dashboard/templates/dashboard/modal/add_contact.html:5
-#, fuzzy
-#| msgid "Editar contacto"
 msgid "Añadir contacto"
-msgstr "Edit contact"
+msgstr ""
 
 #: dashboard/templates/dashboard/index.html:14
 msgid "Hoy"
-msgstr "Today"
+msgstr "Hoje"
 
 #: dashboard/templates/dashboard/legal/code_conduct.html:4
 #: dashboard/templates/dashboard/legal/code_conduct.html:12
@@ -148,17 +137,15 @@ msgstr ""
 #: dashboard/templates/dashboard/modals.html:141
 #: dashboard/templates/dashboard/modals.html:255
 msgid "Cancelar"
-msgstr "Cancel"
+msgstr ""
 
 #: dashboard/templates/dashboard/modal/add_contact.html:63
 msgid "Crear"
-msgstr "Create"
+msgstr ""
 
 #: dashboard/templates/dashboard/modal/edit_contact.html:5
-#, fuzzy
-#| msgid "Editar contacto"
 msgid "Editar"
-msgstr "Edit contact"
+msgstr ""
 
 #: dashboard/templates/dashboard/modal/edit_contact.html:70
 #: dashboard/templates/dashboard/modal/edit_contact.html:71
@@ -174,16 +161,12 @@ msgid "Guardar"
 msgstr ""
 
 #: dashboard/templates/dashboard/modals.html:34
-#, fuzzy
-#| msgid "Editar contacto"
 msgid "Crear nota"
-msgstr "Edit contact"
+msgstr ""
 
 #: dashboard/templates/dashboard/modals.html:57
-#, fuzzy
-#| msgid "Editar contacto"
 msgid "Añadir cosa en comun"
-msgstr "Edit contact"
+msgstr ""
 
 #: dashboard/templates/dashboard/modals.html:154
 msgid "Añadir realcion familiar/amorosa"
@@ -193,16 +176,3 @@ msgstr ""
 #: dashboard/templates/dashboard/settings.html:14
 msgid "Ajustes"
 msgstr ""
-
-#~ msgid "Más acciones"
-#~ msgstr "More Actions"
-
-#, fuzzy
-#~| msgid "Editar contacto"
-#~ msgid "Buscar contacto"
-#~ msgstr "Edit contact"
-
-#, fuzzy
-#~| msgid "Contactos"
-#~ msgid "contactos/"
-#~ msgstr "contacts/"

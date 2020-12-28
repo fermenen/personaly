@@ -24,14 +24,24 @@
 
                 {% include "dashboard/contact/contact_header.html" with contact=contact tags_list=tags_list %}
                 {% include "dashboard/contact/contact_reminders.html" %}
+
+
                 <div class="uk-margin-large-top">
-                    <ul uk-tab class="uk-child-width-expand" uk-tab="connect: #switcher_contact">
-                        <li><a href="#notes"><span class="uk-margin-small-right" uk-icon="comments"></span>Notas</a>
+                    <ul id="tab_contact" class="uk-tab uk-child-width-expand"
+                        data-uk-tab="{connect:'#switcher_contact'}">
+                        <li id="notes"><a href="#notes"><span class="uk-margin-small-right"
+                                                              uk-icon="comments"></span>{% translate "Notas" %}</a></li>
+                        <li id="common"><a href="#common"><span class="uk-margin-small-right"
+                                                                uk-icon="bolt"></span>{% translate "En común" %}</a>
                         </li>
-                        <li><a href="#common"><span class="uk-margin-small-right" uk-icon="bolt"></span>En comun</a>
-                        <li><a href=""><span class="uk-margin-small-right" uk-icon="world"></span>Experiencias</a></li>
-                        <li><a href=""><span class="uk-margin-small-right" uk-icon="play-circle"></span>Musica</a></li>
-                        <li><a href=""><span class="uk-margin-small-right" uk-icon="user"></span>Familia</a></li>
+                        <li id="experiences"><a href="#experiences"><span class="uk-margin-small-right"
+                                                                          uk-icon="world"></span>{% translate "Experiencias" %}
+                        </a></li>
+                        <li id="music"><a href="#music"><span class="uk-margin-small-right"
+                                                              uk-icon="play-circle"></span>{% translate "Música" %}</a>
+                        </li>
+                        <li id="family"><a href="#family"><span class="uk-margin-small-right"
+                                                                uk-icon="user"></span>{% translate "Familia" %}</a></li>
                     </ul>
                     <ul id="switcher_contact" class="uk-switcher uk-margin">
                         <li>{% include "dashboard/contact/contact_notes.html" with list_notes=list_notes %}</li>
@@ -40,8 +50,11 @@
                         <li>{% include "dashboard/contact/contact_music.html" %}</li>
                         <li>{% include "dashboard/contact/contact_family.html" %}</li>
                     </ul>
+
                 </div>
+
             </div>
+
         </div>
     </div>
 

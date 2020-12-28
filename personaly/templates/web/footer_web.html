@@ -1,49 +1,39 @@
-<footer id="footer_web" class="uk-section  uk-padding-remove-bottom uk-margin-large-top">
+{% load i18n %}
+<footer id="footer_web" class="uk-section uk-padding-remove-bottom uk-margin-xlarge-top">
     <div class="uk-container">
         <div class="uk-grid uk-grid-large" data-uk-grid>
             <div class="uk-width-1-2@m">
-                <h5>OUR COMPANY</h5>
+                <h5>NOSOTROS</h5>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud cillum dolore eu fugiat nulla contact
-                    to: <a href="#" title="">info@company.com</a></p>
+                    to: <a href="#" title="">hola@personaly.com</a></p>
                 <div>
-                    <a href="" class="uk-icon-button" data-uk-icon="twitter"></a>
-                    <a href="" class="uk-icon-button" data-uk-icon="facebook"></a>
-                    <a href="" class="uk-icon-button" data-uk-icon="instagram"></a>
+                    <a href="" class="uk-icon-button uk-margin-small-right" data-uk-icon="twitter"></a>
+                    <a href="" class="uk-icon-button" data-uk-icon="linkedin"></a>
                 </div>
             </div>
-            <div class="uk-width-1-6@m">
-                <h5>PRODUCTS</h5>
+
+            <div class="uk-width-1-4@m">
+                <h5>ENLACES UTILES</h5>
                 <ul class="uk-list">
-                    <li>Big Data</li>
-                    <li>Marketing</li>
-                    <li>Analytics</li>
-                    <li>AI Lab</li>
+                    <li><a href="" class="uk-button-text text-line uk-margin-right">{% translate "Aviso Legal" %}</a></li>
+                    <li><a href="" class="uk-button-text text-line uk-margin-right">{% translate "Política de Privacidad" %}</a></li>
+                    <li><a href="" class="uk-button-text text-line uk-margin-right">{% translate "Política de Cookies" %}</a></li>
+                    <li><a href="" class="uk-button-text text-line uk-margin-right">{% translate "¿Como protegemos tus datos?" %}</a></li>
                 </ul>
             </div>
-            <div class="uk-width-1-6@m">
-                <h5>OUR COMPANY</h5>
-                <ul class="uk-list">
-                    <li>Team</li>
-                    <li>Work</li>
-                    <li>Culture</li>
-                    <li>Contact Us</li>
-                </ul>
-            </div>
-            <div class="uk-width-1-6@m">
-                <h5>OUR OFFICES</h5>
-                <ul class="uk-list">
-                    <li>London</li>
-                    <li>Chicago</li>
-                    <li>Dubai</li>
-                    <li>Brussels</li>
-                </ul>
+            <div class="uk-width-1-4@m">
+
+                <a href="/es" class="uk-button uk-button-text text-line uk-margin-right">{% translate "es" %}</a>/
+                <a href="/en" class="uk-button uk-button-text text-line uk-margin-right">{% translate "en" %}</a>/
+                <a href="/pt" class="uk-button uk-button-text text-line uk-margin-right">{% translate "pt" %}</a>
+
             </div>
 
         </div>
     </div>
 
     <div class="uk-text-center uk-padding uk-padding-remove-horizontal">
-        <span class="uk-text-small uk-text-muted">© 2021 personaly </span>
+        <span class="uk-text-small uk-text-muted">© 2021 - personaly</span>
     </div>
 </footer>

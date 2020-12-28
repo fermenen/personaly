@@ -7,6 +7,17 @@
 //                     });
 // }
 
+$(window).on('load resize', function mobileContact() {
+    let win = $(this);
+    if (win.width() <= 700) {
+         $('#tab_contact').addClass('uk-tab-right');
+    }else{
+         $("#tab_contact").removeClass('uk-tab-right');
+    }
+
+});
+
+
 function createContactNote() {
     disabledButton('#button_save_contact_note')
     disabledButton('#button_cancel_contact_note')

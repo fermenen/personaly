@@ -170,6 +170,7 @@ EMAIL_USE_TLS = True
 LANGUAGES = (
     ('en', ('English')),
     ('es', ('Spanish')),
+    ('pt', ('Portuges')),
 )
 
 LANGUAGE_CODE = 'es'

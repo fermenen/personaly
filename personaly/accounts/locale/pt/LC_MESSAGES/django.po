@@ -17,105 +17,96 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
 #: accounts/templates/accounts/login.html:5
 msgid "Iniciar sesion"
-msgstr "Login"
+msgstr ""
 
 #: accounts/templates/accounts/login.html:13
 msgid "¡Bienvenido de nuevo!"
-msgstr "Welcome back!"
+msgstr ""
 
 #: accounts/templates/accounts/login.html:23
 #: accounts/templates/accounts/register.html:38
 msgid "Correo electrónico"
-msgstr "Email address"
+msgstr ""
 
 #: accounts/templates/accounts/login.html:30
 #: accounts/templates/accounts/register.html:45
 msgid "Contraseña"
-msgstr "Password"
+msgstr ""
 
 #: accounts/templates/accounts/login.html:37
 msgid "Iniciar sesión"
-msgstr "Login"
+msgstr ""
 
 #: accounts/templates/accounts/login.html:45
 msgid "Continuar con Google"
-msgstr "Continue with Google"
+msgstr ""
 
 #: accounts/templates/accounts/login.html:51
 msgid "¿Olvidaste tu contraseña?"
-msgstr "Forgotten your password?"
+msgstr ""
 
 #: accounts/templates/accounts/login.html:53
 msgid "¿No tienes una cuenta?"
-msgstr "Don't have an account?"
+msgstr ""
 
 #: accounts/templates/accounts/login.html:54
 msgid "Regístrate gratis"
-msgstr "Sign up for free"
+msgstr ""
 
 #: accounts/templates/accounts/register.html:6
 msgid "Registrarse"
-msgstr "Sign up"
+msgstr ""
 
 #: accounts/templates/accounts/register.html:16
 msgid "Crea tu cuenta"
-msgstr "Create your account"
+msgstr ""
 
 #: accounts/templates/accounts/register.html:24
 msgid "Plan Basic"
-msgstr "Basic plan"
+msgstr ""
 
 #: accounts/templates/accounts/register.html:25
 msgid "0€/mes"
-msgstr "0€/month"
+msgstr ""
 
 #: accounts/templates/accounts/register.html:28
 msgid "Hasta 80 contactos"
-msgstr "Up to 80 contacts"
+msgstr ""
 
 #: accounts/templates/accounts/register.html:29
 msgid "Notas ilimitadas"
-msgstr "Unlimited notes"
+msgstr ""
 
 #: accounts/templates/accounts/register.html:30
 msgid "Notificaciones vía email"
-msgstr "Notifications via email"
+msgstr ""
 
 #: accounts/templates/accounts/register.html:51
 msgid "Estoy de acuerdo con los"
-msgstr "I agree to the"
+msgstr ""
 
 #: accounts/templates/accounts/register.html:51
 msgid "Términos y Condiciones"
-msgstr "Terms and Conditions"
+msgstr ""
 
 #: accounts/templates/accounts/register.html:58
-#, fuzzy
-#| msgid "Registrarse"
 msgid "Registrarme"
-msgstr "Sign up"
+msgstr ""
 
 #: accounts/templates/accounts/register.html:66
-#, fuzzy
-#| msgid "Continuar con Google"
 msgid "Registrarme con Google"
-msgstr "Sign up with Google"
+msgstr ""
 
 #: accounts/templates/accounts/register.html:71
-#, fuzzy
-#| msgid "¿No tienes una cuenta?"
 msgid "¿Tienes una cuenta?"
-msgstr "Do you have an account?"
+msgstr ""
 
 #: accounts/templates/accounts/register.html:73
-#, fuzzy
-#| msgid "Iniciar sesión"
 msgid "Inicia sesión"
-msgstr "Login"
+msgstr ""
 
 #: accounts/templates/accounts/register.html:85
 msgid "Confirma tu correo"
-msgstr "Confirm your email"
+msgstr ""
