@@ -1,37 +1,43 @@
 {% load i18n %}
-<div>
-    <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"><span class="uk-margin-small-right"
-                                                                                          uk-icon="plus"></span>Añadir
-        experiencia
+<div id="component_experiences_contact">
+    <button id="button_add_experiences_contact" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
+            uk-toggle="target: #modal_create_experiences"><span class="uk-margin-small-right"
+                                                                uk-icon="plus"></span>{% translate "Añadir experiencia" %}
     </button>
-
-    <div class="uk-text-center uk-margin-top">
-        <span>🌎 Registra viajes y exprencias que has hecho con {{ contact.name }} en el pasado.</span>
-    </div>
-
-    {% for experience in list_experiences %}
-        <div class="uk-card uk-card-default uk-card-body uk-width-1-1 uk-margin-top">
-            <h3 class="uk-card-title">{{ experience.tittle }} | {{ experience.location }} | {{ experience.date }}</h3>
-
-            <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="center: true">
-                <ul class="uk-slider-items uk-grid">
-                    {% for photo in experience.get_list_photos %}
-
-                        <li class="uk-width-1-2">
-                            <div class="uk-panel panel-experience">
-                                <img class="experience-image-size" src="{{ photo }}" alt="">
-                            </div>
-                        </li>
-
-                    {% endfor %}
-                </ul>
-                <a class="uk-position-center-left uk-position-small " href="#" uk-slidenav-previous
-                   uk-slider-item="previous"></a>
-                <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
-                   uk-slider-item="next"></a>
-
-            </div>
+    <div>
+        <input id="count_notes_experiences" class="uk-hidden" type="number" value="{{ count_list_experiences }}">
+        <div id="text_experiences_contact" class="uk-text-center uk-margin-top">
+            <span>&#127758; {% translate "Registra viajes y experiencias que has hecho con" %} {{ contact.name }} {% translate "en el pasado." %}</span>
         </div>
-    {% endfor %}
+        <script>
+            textVisible('#count_notes_experiences', '#text_experiences_contact');
+        </script>
+    </div>
+    <div id="component_all_experiences" class="uk-margin-top">
+        {% for experience in list_experiences %}
+            <div class="uk-card uk-card-default uk-card-body uk-width-1-1 uk-margin-top">
+                <h3 class="uk-card-title">{{ experience.tittle }} | {{ experience.location }}
+                    | {{ experience.date }}</h3>
 
+                <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="center: true">
+                    <ul class="uk-slider-items uk-grid">
+                        {% for photo in experience.get_list_photos %}
+
+                            <li class="uk-width-1-2">
+                                <div class="uk-panel panel-experience">
+                                    <img class="experience-image-size" src="{{ photo }}" alt="">
+                                </div>
+                            </li>
+
+                        {% endfor %}
+                    </ul>
+                    <a class="uk-position-center-left uk-position-small " href="#" uk-slidenav-previous
+                       uk-slider-item="previous"></a>
+                    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+                       uk-slider-item="next"></a>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 </div>

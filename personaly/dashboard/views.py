@@ -43,7 +43,10 @@ def contact_view(request, url):
                 'count_list_notes': list_notes.count(),
                 'list_common': list_common,
                 'count_list_common': list_common.count(),
-                'list_experiences': list_experiences
+                'list_experiences': list_experiences,
+                'count_list_experiences': list_experiences.count(),
+                'list_family': None,
+                'count_list_family': 0,
                 }
 
         return render(request, 'dashboard/contact.html', data)

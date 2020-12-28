@@ -13,21 +13,19 @@
     <div>
         <input id="count_common_contact" class="uk-hidden" type="number" value="{{ count_list_common }}">
         <div id="text_common_contact" class="uk-text-center uk-margin-top">
-            <span>🍿 {% translate "Registra cosas en común que tengas con" %} {{ contact.name }}</span>
+            <span>&#127871; {% translate "Registra cosas en común que tengas con" %} {{ contact.name }}</span>
         </div>
         <script>
             textVisible('#count_common_contact', '#text_common_contact');
         </script>
     </div>
 
-
-    <div id="component_all_common" class="uk-margin-top uk-grid">
+    <div id="component_all_common" class="uk-grid">
         {% for common in list_common %}
-            <div id="common{{ common.id }}">
+            <div id="common{{ common.id }}" class="uk-margin-top">
                 <a href="#" onclick="openModalDeleteCommon('{{ common.id }}', '{{ common.text }}')" class="button-common badge-contact-common uk-badge uk-button">{{ common.text }}</a>
             </div>
 
         {% endfor %}
     </div>
-
 </div>

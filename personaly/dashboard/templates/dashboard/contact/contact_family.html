@@ -1,9 +1,19 @@
 {% load i18n %}
-<div>
-    <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"><span class="uk-margin-small-right" uk-icon="plus"></span>Añadir niembro familiar</button>
-
-</div>
-
-        <div class="uk-text-center uk-margin-top">
-        <span>👪🐕 Añade las relaciones familiares de  {{ contact.name }}</span>
+<div id="component_family_contact">
+    <button id="button_add_family" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
+            uk-toggle="target: #modal_create_family"><span class="uk-margin-small-right"
+                                                                 uk-icon="plus"></span>{% translate "Añadir relación familiar/amorosa" %}
+    </button>
+    <div>
+        <input id="count_family_contact" class="uk-hidden" type="number" value="{{ count_list_family }}">
+        <div id="text_family_contact" class="uk-text-center uk-margin-top">
+            <span>&#128106;&#128021; {% translate " Añade las relaciones familiares o de pareja de " %} {{ contact.name }}.</span>
+        </div>
+        <script>
+            textVisible('#count_family_contact', '#text_family_contact');
+        </script>
     </div>
+    <div id="component_all_family" class="uk-margin-top">
+
+    </div>
+</div>
