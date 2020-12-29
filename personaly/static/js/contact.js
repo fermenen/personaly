@@ -143,7 +143,36 @@ function deleteContactCommon(message_success) {
 }
 
 
+function createContactMusic() {
+    let modal = modal_add_music
+    let buttonSave = '#button_save_contact_music'
+    disabledButton(buttonSave)
+    disabledButton(buttonSave)
+    loadingButton(buttonSave)
 
+    let requestCreateNote = $.ajax({
+        url: '/api/v1/contact/add_music',
+        data: {
+            name_artist: $('#artist_name_input').val(),
+            contact: $('#id_contact').val(),
+            owner: $('#id_owner').val(),
+            csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+        },
+        type: 'POST',
+        dataType: 'json',
+        success: function (json) {
+            UIkit.modal(modal).hide();
+            location.reload();
+        },
+        error: function (data) {
+            UIkit.modal(modal).hide();
+            availableButton(buttonSave)
+            availableButton(buttonSave)
+            availableloadingButton(buttonSave)
+        },
+    });
+
+}
 
 
 // Metodo para hacer visilbe o no el texto promo denajo del boton de añadir

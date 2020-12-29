@@ -19,7 +19,8 @@ urlpatterns = [
     path('v1/contact/delete_note', views.DeleteNoteContact.as_view(), name='api_delete_note'),
 
     path('v1/contact/create_common', views.CreateCommonContact.as_view(), name='api_create_common'),
-    path('v1/contact/delete_common', views.DeleteCommonContact.as_view(), name='api_delete_common'),
+
+    path('v1/contact/add_music', views.AddMusic.as_view(), name='api_add_music'),
 
     path('v1/contact/upload_photo', views.UploadPhoto.as_view(), name='api_upload_photo'),
 

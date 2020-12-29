@@ -7,3 +7,7 @@ python manage.py compilemessages --use-fuzzy
 
 
 sass ./static/theme/app.scss ./static/css/app.css
+
+
+
+

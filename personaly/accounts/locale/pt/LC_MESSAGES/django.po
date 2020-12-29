@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 #: accounts/templates/accounts/login.html:5
 msgid "Iniciar sesion"
-msgstr ""
+msgstr "Entrar"
 
 #: accounts/templates/accounts/login.html:13
 msgid "¡Bienvenido de nuevo!"
-msgstr ""
+msgstr "Bem-vindo de volta!"
 
 #: accounts/templates/accounts/login.html:23
 #: accounts/templates/accounts/register.html:38
@@ -37,19 +37,19 @@ msgstr ""
 
 #: accounts/templates/accounts/login.html:37
 msgid "Iniciar sesión"
-msgstr ""
+msgstr "Entrar"
 
 #: accounts/templates/accounts/login.html:45
 msgid "Continuar con Google"
-msgstr ""
+msgstr "Continuar com Google"
 
 #: accounts/templates/accounts/login.html:51
 msgid "¿Olvidaste tu contraseña?"
-msgstr ""
+msgstr "Esqueceu-se da sua senha?"
 
 #: accounts/templates/accounts/login.html:53
 msgid "¿No tienes una cuenta?"
-msgstr ""
+msgstr "Não tem conta?"
 
 #: accounts/templates/accounts/login.html:54
 msgid "Regístrate gratis"
@@ -69,19 +69,19 @@ msgstr ""
 
 #: accounts/templates/accounts/register.html:25
 msgid "0€/mes"
-msgstr ""
+msgstr "0€/mês"
 
 #: accounts/templates/accounts/register.html:28
 msgid "Hasta 80 contactos"
-msgstr ""
+msgstr "Até 80 contactos"
 
 #: accounts/templates/accounts/register.html:29
 msgid "Notas ilimitadas"
-msgstr ""
+msgstr "Notas ilimitadas"
 
 #: accounts/templates/accounts/register.html:30
 msgid "Notificaciones vía email"
-msgstr ""
+msgstr "Notificações por email"
 
 #: accounts/templates/accounts/register.html:51
 msgid "Estoy de acuerdo con los"

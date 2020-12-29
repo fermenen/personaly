@@ -3,13 +3,14 @@ from django.contrib import admin
 # Register your models here.
 from dashboard.models import Contact
 
-from dashboard.models import TagContact, NoteContact, ThingCommonContact, ExperienceContact
+from dashboard.models import *
 
 
 admin.site.register(TagContact)
 admin.site.register(NoteContact)
 admin.site.register(ThingCommonContact)
 admin.site.register(ExperienceContact)
+admin.site.register(MusicContact)
 
 
 @admin.register(Contact)

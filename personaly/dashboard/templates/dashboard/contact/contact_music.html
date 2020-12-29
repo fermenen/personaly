@@ -1,25 +1,62 @@
+{% load static %}
 {% load i18n %}
-<div>
-    <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"><span class="uk-margin-small-right"
-                                                                                          uk-icon="plus"></span>Añadir musica
+<div id="component_music_contact">
+    <button id="button_add_note_contact" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
+            uk-toggle="target: #modal_add_music"><span class="uk-margin-small-right"
+                                                       uk-icon="plus"></span>{% translate "Añadir música" %}
     </button>
-
-        <div class="uk-text-center uk-margin-top">
-        <span>🎵 Añade la musica que mas e gusta a {{ contact.name }}</span>
+    <div>
+        <input id="count_music_contact" class="uk-hidden" type="number" value="{{ count_list_music }}">
+        <div id="text_music_contact" class="uk-text-center uk-margin-top">
+            <span>&#127925; {% translate "Añade la música que más le gusta a" %} {{ contact.name }}.</span>
+        </div>
+        <script>
+            textVisible('#count_music_contact', '#text_music_contact');
+        </script>
     </div>
-
-{#    <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>#}
-{#        <div class="uk-card-media-left uk-cover-container">#}
-{#            <img src="https://hiphoplifemag.es/wp-content/uploads/2018/02/bad-gyal_opt.jpg" width="100" height="100" alt="" uk-cover>#}
-{#            <canvas width="200" height="200"></canvas>#}
-{#        </div>#}
-{#        <div>#}
-{#            <div class="uk-card-body">#}
-{#                <h3 class="uk-card-title">Media Left</h3>#}
-{#                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-
-
+    <div id="component_all_music" class="uk-margin-top">
+        {% for music in list_music %}
+            <div id="{{ music.id }}"
+                 class="uk-card uk-card-default uk-card-hover uk-margin-bottom uk-transition-toggle">
+                <div class="uk-card-header">
+                    <div class="uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            {% if music.photo_artist %}
+                                <div class="uk-inline uk-margin ">
+                                    <img class="" width="85" height="85" src={{ music.photo_artist }}>
+                                    <div uk-tooltip="title: <span uk-icon='star'></span> {% translate "Puntación" %}; pos: bottom-left"
+                                         class="uk-position-cover uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle uk-transition-fade ">
+                                        <h4 class="text-gray1 uk-transition-slide-top-small">{{ music.popularity }}</h4>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="uk-inline uk-margin ">
+                                    <img class="" width="85" height="85" src="{% static 'img/app/music_holder.png' %}">
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="uk-width-expand uk-margin-left">
+                            <h3 class="uk-card-title uk-margin-remove-bottom">{{ music.name_artist | capfirst }}</h3>
+                            {% for tag in music.get_list_tags %}
+                                <span class="uk-text uk-margin-remove uk-label">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        <div>
+                            <ul class="uk-iconnav">
+                                {% if music.url_artist %}
+                                    <li><a href="{{ music.url_artist }}" target="_blank"
+                                           uk-tooltip="title: {% translate "Abrir" %} {{ music.name_artist }} {% translate "en spotify" %}; pos: bottom-left"
+                                           uk-icon="icon: spotify"></a></li>
+                                {% endif %}
+                                <li><a href="#" uk-icon="icon: file-edit"></a></li>
+                                <li><a href="#" uk-icon="icon: trash"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div>
+        {% endfor %}
+        </div>
 </div>

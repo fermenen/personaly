@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from accounts.models import User
 
-from dashboard.models import NoteContact, ThingCommonContact
+from dashboard.models import NoteContact, ThingCommonContact, MusicContact
 
 
 
@@ -46,6 +46,13 @@ class DeleteCommonSerializer(serializers.ModelSerializer):
     class Meta:
         model = ThingCommonContact
         fields = ('id', 'contact', 'owner')
+
+
+class AddMusicSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = MusicContact
+        fields = ('name_artist', 'contact', 'owner')
 
 
 class CommonSerializer(serializers.ModelSerializer):

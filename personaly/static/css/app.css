@@ -767,6 +767,14 @@ small, .text_small {
   border-color: #05AFF2 !important;
 }
 
+img {
+  pointer-events: none !important;
+}
+
+.uk-overlay-default {
+  background: #1e87f0a8 !important;
+}
+
 html {
   font-size: 100%;
   /*16px*/

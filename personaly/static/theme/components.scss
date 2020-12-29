@@ -3,3 +3,11 @@
 .uk-tab > .uk-active > a {
   border-color: $color-blue-3 !important;
 }
+
+img {
+  pointer-events: none !important;
+}
+
+.uk-overlay-default {
+    background: #1e87f0a8 !important;
+}

@@ -40,8 +40,8 @@ class Contact(models.Model):
         img_new.save(os.path.join('media/images_contacts', image_name), quality=quality, optimize=True)
         return os.path.join('/images_contacts', image_name)
 
-    # def __str__(self):
-    #     return f"({self.owner} - {self.owner_id}) {self.name} {self.surnames}"
+    def __str__(self):
+        return f"{self.name} {self.surnames}"
 
 
 class TagContact(models.Model):
@@ -70,6 +70,26 @@ class ThingCommonContact(models.Model):
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
+
+
+class MusicContact(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_artist = models.TextField(blank=True)
+    name_artist = models.TextField()
+    photo_artist = models.TextField(blank=True)
+    url_artist = models.TextField(blank=True)
+    tags = models.TextField(blank=True)
+    popularity = models.IntegerField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+
+    def get_list_tags(self):
+        return self.tags.split(";")
+
+    def __str__(self):
+        return f"{self.name_artist} - CONTACT({self.contact}) - OWNER({self.owner})"
 
 
 class ExperienceContact(models.Model):

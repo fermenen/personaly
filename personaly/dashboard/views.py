@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 import uuid
 import datetime
-from dashboard.models import Contact, TagContact, NoteContact, ThingCommonContact, ExperienceContact
+from dashboard.models import Contact, TagContact, NoteContact, ThingCommonContact, ExperienceContact, MusicContact
 from .forms import AddContactForm
 from django.shortcuts import get_list_or_404, get_object_or_404
 
@@ -35,6 +35,7 @@ def contact_view(request, url):
         list_notes = NoteContact.objects.filter(contact=contact, owner=owner, active=True).order_by('-created_at')
         list_common = ThingCommonContact.objects.filter(contact=contact, owner=owner, active=True)
         list_experiences = ExperienceContact.objects.filter(contact=contact, owner=owner, active=True)
+        list_music = MusicContact.objects.filter(contact=contact, owner=owner, active=True)
 
         data = {'owner': owner,
                 'contact': contact,
@@ -45,6 +46,8 @@ def contact_view(request, url):
                 'count_list_common': list_common.count(),
                 'list_experiences': list_experiences,
                 'count_list_experiences': list_experiences.count(),
+                'list_music': list_music,
+                'count_list_music': list_music.count(),
                 'list_family': None,
                 'count_list_family': 0,
                 }
