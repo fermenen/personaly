@@ -499,6 +499,10 @@ input[type=number] {
   background: #ee395b !important;
 }
 
+.uk-search-default .uk-search-input:focus {
+  border: 1px solid #021F59 !important;
+}
+
 html {
   font-size: 100%;
   /*16px*/

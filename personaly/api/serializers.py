@@ -52,7 +52,7 @@ class AddMusicSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MusicContact
-        fields = ('name_artist', 'contact', 'owner')
+        fields = ('id_artist', 'contact', 'owner')
 
 
 class CommonSerializer(serializers.ModelSerializer):

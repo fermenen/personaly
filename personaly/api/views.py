@@ -125,19 +125,33 @@ class AddMusic(APIView):
         add_music_serializer = AddMusicSerializer(data=request.data)
         if add_music_serializer.is_valid():
             music = add_music_serializer.save()
-            try:
-                spotify = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="3d64112da0524f90ac6617210804754a", client_secret="5b67c11ca4eb4bb3b95513a4f1d0f442"))
-                results = spotify.search(q=music.name_artist, type='artist', market='ES', limit=1)
-                artist_spotify = results['artists']['items'][0]
-                music.id_artist = artist_spotify['id']
-                music.name_artist = artist_spotify['name']
-                music.photo_artist = artist_spotify['images'][1]['url']
-                music.url_artist = artist_spotify['external_urls']['spotify']
-                music.tags = ';'.join(artist_spotify['genres'][0:4])
-                music.popularity = int(artist_spotify['popularity'])
-                music.save()
-            except:
-                pass
+            spotify = spotipy.Spotify(
+                auth_manager=SpotifyClientCredentials(client_id="3d64112da0524f90ac6617210804754a",
+                                                      client_secret="5b67c11ca4eb4bb3b95513a4f1d0f442"))
+            artist_spotify = spotify.artist(music.id_artist)
+            music.name_artist = artist_spotify['name']
+            music.photo_artist = artist_spotify['images'][1]['url']
+            music.url_artist = artist_spotify['external_urls']['spotify']
+            music.tags = ';'.join(artist_spotify['genres'][0:4])
+            music.popularity = int(artist_spotify['popularity'])
+            music.save()
             return JsonResponse({'ok': 'true'}, status=200)
         else:
             return JsonResponse({'ok': 'false'}, status=400)
+
+
+class SearchArtist(APIView):
+
+    def post(self, request):
+        search_text = request.data['name_artist']
+        data = []
+        spotify = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="3d64112da0524f90ac6617210804754a",
+                                                                        client_secret="5b67c11ca4eb4bb3b95513a4f1d0f442"))
+        results = spotify.search(q=search_text, type='artist', market='ES', limit=4)
+        results = results['artists']['items']
+        for artist in results:
+            data.append({
+                'id': artist['id'],
+                'name': artist['name']
+            })
+        return JsonResponse({'ok': 'true', 'data': data}, status=200)

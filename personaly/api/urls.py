@@ -9,6 +9,8 @@ router = routers.DefaultRouter()
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
+
+
 urlpatterns = [
     path('', include(router.urls)),
     path('v1/account/register', views.UserCreate.as_view(), name='api_register_user'),
@@ -21,6 +23,7 @@ urlpatterns = [
     path('v1/contact/create_common', views.CreateCommonContact.as_view(), name='api_create_common'),
 
     path('v1/contact/add_music', views.AddMusic.as_view(), name='api_add_music'),
+    path('v1/contact/search_artist', views.SearchArtist.as_view(), name='api_search_artist'),
 
     path('v1/contact/upload_photo', views.UploadPhoto.as_view(), name='api_upload_photo'),
 
