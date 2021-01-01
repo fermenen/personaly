@@ -22,7 +22,10 @@ urlpatterns = [
 
     path('v1/contact/create_common', views.CreateCommonContact.as_view(), name='api_create_common'),
 
-    path('v1/contact/add_music', views.AddMusic.as_view(), name='api_add_music'),
+    # MUSIC CONTACT
+    path('v1/contact/add_music_spotify', views.AddMusicSpotify.as_view(), name='api_add_music_spotify'),
+    path('v1/contact/add_music_manual', views.AddMusicManual.as_view(), name='api_add_music_manual'),
+    path('v1/contact/delete_music', views.DeleteMusicContact.as_view(), name='api_delete_music'),
     path('v1/contact/search_artist', views.SearchArtist.as_view(), name='api_search_artist'),
 
     path('v1/contact/upload_photo', views.UploadPhoto.as_view(), name='api_upload_photo'),

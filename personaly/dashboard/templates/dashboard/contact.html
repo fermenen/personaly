@@ -5,6 +5,13 @@
 
 {% block content_main %}
     <script src="{% static 'js/contact.js' %}"></script>
+    <script>
+    let contactJS = new Contact(
+        owner = '{{ owner.id }}',
+        contact = '{{ contact.id }}'
+    )
+</script>
+
     <input id="id_contact" class="uk-input uk-hidden" type="hidden" value="{{ contact.id }}">
     <input id="id_owner" class="uk-input uk-hidden" type="hidden" value="{{ owner.id }}">
 
@@ -12,13 +19,13 @@
         <div class="uk-flex uk-flex-center">
             <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m">
                 <ul class="uk-iconnav btn-actions-tittle uk-flex-right">
-                    <li><a class="uk-icon-link"
+                    <li><a class="uk-icon-link icon_trash"
                            onclick="deleteContact('{{ contact.id }}','{{ contact.name }} {{ contact.surnames }}')"
                            uk-icon="icon: trash"
                            uk-tooltip="title: {% translate "Eliminar contacto" %}; pos: bottom-left"></a>
                     <li><a class="uk-icon-link"
                            onclick="editContact('{{ contact.name }}','{{ contact.surnames }}')"
-                           uk-icon="icon: pencil"
+                           uk-icon="icon: file-edit"
                            uk-tooltip="title: {% translate "Editar contacto" %}; pos: bottom-left"></a>
                 </ul>
 

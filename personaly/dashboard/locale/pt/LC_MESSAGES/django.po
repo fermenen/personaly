@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-28 17:26+0100\n"
+"POT-Creation-Date: 2020-12-30 22:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: dashboard/templates/dashboard/contact.html:18
 #: dashboard/templates/dashboard/contact_list/contact_list_items.html:35
 msgid "Eliminar contacto"
@@ -76,6 +77,57 @@ msgstr ""
 msgid " Añade las relaciones familiares o de pareja de "
 msgstr ""
 
+#: dashboard/templates/dashboard/contact/contact_music.html:8
+#: dashboard/templates/dashboard/contact/contact_music.html:70
+msgid "Añadir música"
+msgstr "Adicionar música"
+
+#: dashboard/templates/dashboard/contact/contact_music.html:13
+msgid "Añade la música que más le gusta a"
+msgstr "Adicione a música que mais lhe agrada"
+
+#: dashboard/templates/dashboard/contact/contact_music.html:29
+msgid "Puntación"
+msgstr "Pontuação"
+
+#: dashboard/templates/dashboard/contact/contact_music.html:50
+msgid "Abrir"
+msgstr "Abrir"
+
+#: dashboard/templates/dashboard/contact/contact_music.html:50
+msgid "en Spotify"
+msgstr "em Spotify"
+
+#: dashboard/templates/dashboard/contact/contact_music.html:54
+msgid "Eliminar"
+msgstr "Eliminar"
+
+#: dashboard/templates/dashboard/contact/contact_music.html:78
+msgid "Nombre del artista, grupo ..."
+msgstr "Nome do artista, grupo ..."
+
+#: dashboard/templates/dashboard/contact/contact_music.html:83
+msgid "Añadir"
+msgstr "Adicionar"
+
+#: dashboard/templates/dashboard/contact/contact_music.html:84
+msgid "de forma manual"
+msgstr "manualmente"
+
+#: dashboard/templates/dashboard/contact/contact_music.html:96
+msgid "Propulsado por Spotify"
+msgstr "Powered by Spotify"
+
+#: dashboard/templates/dashboard/contact/contact_music.html:100
+#: dashboard/templates/dashboard/modal/add_contact.html:62
+#: dashboard/templates/dashboard/modal/edit_contact.html:68
+#: dashboard/templates/dashboard/modals.html:44
+#: dashboard/templates/dashboard/modals.html:67
+#: dashboard/templates/dashboard/modals.html:141
+#: dashboard/templates/dashboard/modals.html:255
+msgid "Cancelar"
+msgstr ""
+
 #: dashboard/templates/dashboard/contact/contact_notes.html:5
 msgid "Añadir nota"
 msgstr ""
@@ -128,15 +180,6 @@ msgstr ""
 #: dashboard/templates/dashboard/legal/privacy_policy.html:4
 #: dashboard/templates/dashboard/legal/privacy_policy.html:12
 msgid "Política de Privacidad"
-msgstr ""
-
-#: dashboard/templates/dashboard/modal/add_contact.html:62
-#: dashboard/templates/dashboard/modal/edit_contact.html:68
-#: dashboard/templates/dashboard/modals.html:44
-#: dashboard/templates/dashboard/modals.html:67
-#: dashboard/templates/dashboard/modals.html:141
-#: dashboard/templates/dashboard/modals.html:255
-msgid "Cancelar"
 msgstr ""
 
 #: dashboard/templates/dashboard/modal/add_contact.html:63

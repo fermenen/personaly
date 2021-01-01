@@ -1,30 +1,46 @@
 {% load static %}
 {% load i18n %}
+<script src="{% static 'js/contact_music_001.min.js' %}"></script>
+<script>
+    let musicJS = new Contact_music(
+        app = appJS,
+        contact = contactJS,
+        count_music ={{ count_list_music }},
+        message_error_search = '{% translate "Ocurrió un problema al obtener los datos" %}',
+        message_error_save = '{% translate "Ocurrió un problema al guardar los datos" %}',
+        message_error_delete_music = '{% translate "Ocurrió un problema al eliminarlo. Inténtelo de nuevo en unos instantes." %}',
+        message_success_delete_music = '{% translate "¡Borrado con éxito!" %}',
+        url_api_add_music_spotify = '{% url 'api_add_music_spotify' %}',
+        url_api_add_music_manual = '{% url 'api_add_music_manual' %}',
+        url_api_delete_music = '{% url 'api_delete_music' %}',
+        url_api_search_artist = '{% url 'api_search_artist' %}',
+    )
+</script>
 <div id="component_music_contact">
     <button id="button_add_note_contact" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
             uk-toggle="target: #modal_add_music"><span class="uk-margin-small-right"
                                                        uk-icon="plus"></span>{% translate "Añadir música" %}
     </button>
     <div>
-        <input id="count_music_contact" class="uk-hidden" type="number" value="{{ count_list_music }}">
         <div id="text_music_contact" class="uk-text-center uk-margin-top">
-            <span>&#127925; {% translate "Añade la música que más le gusta a" %} {{ contact.name }}.</span>
+            <span>&#127925; {% translate "Añade la música que más le gusta a" %} {{ contact.name | capfirst }}.</span>
         </div>
         <script>
-            textVisible('#count_music_contact', '#text_music_contact');
+            contactJS.textVisible(musicJS.getCountMusic, '#text_music_contact')
         </script>
     </div>
     <div id="component_all_music" class="uk-margin-top">
         {% for music in list_music %}
+            {# TARJETA MUSICA #}
             <div id="{{ music.id }}"
                  class="uk-card uk-card-default uk-card-hover uk-margin-bottom uk-transition-toggle">
                 <div class="uk-card-header">
                     <div class="uk-grid-small uk-flex-middle" uk-grid>
                         <div class="uk-width-auto">
                             {% if music.photo_artist %}
-                                <div class="uk-inline uk-margin ">
+                                <div class="uk-inline uk-margin" style="height: inherit">
                                     <img class="" width="85" height="85" src={{ music.photo_artist }}>
-                                    <div uk-tooltip="title: <span uk-icon='star'></span> {% translate "Puntación" %}; pos: bottom-left"
+                                    <div uk-tooltip="title: <span uk-icon='star'></span> {% translate "Popularidad" %}; pos: bottom-left"
                                          class="uk-position-cover uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle uk-transition-fade ">
                                         <h4 class="text-gray1 uk-transition-slide-top-small">{{ music.popularity }}</h4>
                                     </div>
@@ -44,17 +60,19 @@
                         <div>
                             <ul class="uk-iconnav">
                                 {% if music.url_artist %}
-                                    <li><a href="{{ music.url_artist }}" target="_blank"
-                                           uk-tooltip="title: {% translate "Abrir" %} {{ music.name_artist }} {% translate "en spotify" %}; pos: bottom-left"
-                                           uk-icon="icon: play"></a></li>
+                                    <li><a href="{{ music.url_artist }}" target="_blank" class="icon_spotify"
+                                           uk-tooltip="title:{% translate "Abrir" %} {{ music.name_artist }} {% translate "en Spotify" %}; pos: bottom-left"
+                                           uk-icon="icon:  play-circle"></a></li>
                                 {% endif %}
-                                <li><a href="#" uk-icon="icon: file-edit"></a></li>
-                                <li><a href="#" uk-icon="icon: trash"></a></li>
+                                <li><a class="icon_trash" uk-icon="icon: trash"
+                                       onclick="musicJS.deleteContactMusic('{{ music.id }}')"
+                                       uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom-left"></a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
+            {# END TARJETA MUSICA #}
             </div>
             <div>
         {% endfor %}
@@ -63,39 +81,53 @@
 {# MODAL ADD MUSIC #}
 <div id="modal_add_music" uk-modal>
     <div class="uk-modal-dialog">
-        <button class="uk-modal-close-default" type="button" onclick="CleanCloseModalAddMusic()" uk-close></button>
+        <button class="uk-modal-close-default" type="button" onclick="cleanCloseModalAddMusic()" uk-close></button>
         <div class="uk-modal-header">
-            <h2 class="uk-modal-title">{% translate "Añadir Musica" %}</h2>
+            <h2 class="uk-modal-title">{% translate "Añadir música" %}</h2>
         </div>
         <div class="uk-modal-body">
             <div class="uk-width-2-1 uk-flex-first">
                 <div class="uk-search uk-search-default" style="width: 100%">
-                    <a id="button_search_artist" onclick="searchArtist()" class="uk-search-icon-flip"
+                    <a id="button_search_artist" onclick="musicJS.searchArtist()"
+                       class="uk-search-icon-flip"
                        uk-search-icon></a>
-                    <input id="input_name_artist" class="uk-search-input" type="search"
-                           placeholder="{% translate "Nombre del artista ..." %}">
+                    <input id="input_name_artist" class="uk-input uk-search-input" type="search"
+                           placeholder="{% translate "Nombre del artista, grupo ..." %}">
                 </div>
             </div>
             <div id="result_search_music" class="uk-margin-top uk-hidden">
                 <ul id="list_result_music" class="uk-list uk-list-divider uk-margin-small-left">
+                    <li><a id="text_artist_manual" class="uk-link-muted"
+                           onclick="musicJS.createContactMusicByManual()">{% translate "Añadir" %}
+                        <span id="name_artist_manual"
+                              class="uk-text-bold uk-text-capitalize"></span> {% translate "de forma manual" %}
+                    </a></li>
                 </ul>
             </div>
         </div>
-        <div class="uk-modal-footer uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" onclick="CleanCloseModalAddMusic()"
-                    type="button">{% translate "Cancelar" %}</button>
+        <div class="uk-modal-footer uk-flex uk-flex-between">
+            <div class="uk-text-left">
+                <span class="uk-text-small uk-text-muted uk-text-bottom"><img class="uk-margin-small-right"
+                                                                              alt="Spotify"
+                                                                              src="{% static 'img/app/icon_spotify.png' %}"
+                                                                              width="16"
+                                                                              height="16">{% translate "Propulsado por Spotify" %}</span>
+            </div>
+            <div class="uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close" onclick="cleanCloseModalAddMusic()"
+                        type="button">{% translate "Cancelar" %}</button>
+            </div>
+
         </div>
+
     </div>
 </div>
-{#END MODAL ADD MUSIC #}
 <script>
-    var input = document.getElementById("input_name_artist");
-    input.addEventListener("keyup", function (event) {
-        if (event.keyCode === 13) {
-            if($("#input_name_artist").val().length > 1){
-                 searchArtist();
-            }
-
+    let keyEnter = 13
+    document.getElementById("input_name_artist").addEventListener("keyup", function (event) {
+        if (event.keyCode === keyEnter) {
+            musicJS.searchArtist()
         }
     });
 </script>
+{#END MODAL ADD MUSIC #}

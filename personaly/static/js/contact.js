@@ -1,3 +1,31 @@
+class Contact {
+
+    constructor(owner, contact) {
+        this.owner = owner;
+        this.contact = contact;
+    }
+
+    get getOwner() {
+        return this.owner;
+    }
+
+    get getContact() {
+        return this.contact;
+    }
+
+    // Metodo para hacer visilbe o no el texto promo debajo del boton de añadir
+    textVisible(count, textVisible) {
+        if (count === 0) {
+            $(textVisible).removeClass('uk-hidden')
+        } else {
+            $(textVisible).addClass('uk-hidden')
+        }
+    }
+
+
+}
+
+
 // function options(){
 //     UIkit.util.ready(function () {
 //                         var itemIndex = window.location.href.split('#')[1];
@@ -137,78 +165,6 @@ function deleteContactCommon(message_success) {
     });
 
 }
-
-// MUSIC - - - - -
-
-function searchArtist() {
-    let inputSearch = $('#input_name_artist').val()
-    $.ajax({
-        url: '/api/v1/contact/search_artist',
-        data: {
-            name_artist: inputSearch,
-            csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
-        },
-        type: 'POST',
-        async: false,
-        dataType: 'json',
-        success: function (json) {
-            $("#list_result_music").empty()
-            $('#result_search_music').removeClass('uk-hidden')
-        },
-        error: function (data) {
-            CleanCloseModalAddMusic()
-            UIkit.notification({message: 'Error al buscar', status: 'danger'})
-        },
-        complete: function (response, textStatus) {
-            if (textStatus === 'success') {
-                let reponseArtist = response['responseJSON']['data']
-                for (let artist in reponseArtist) {
-                    let id = reponseArtist[artist]['id']
-                    let name = reponseArtist[artist]['name']
-                    let html = `<li id=${id} onclick="createContactMusic('${id}')"><a>${name}</a></li>`
-                    $('#list_result_music').append(html)
-                }
-                $('#list_result_music').append("<li id=''><a>" + inputSearch + "</a></li>")
-            }
-        }
-    });
-}
-
-function CleanCloseModalAddMusic() {
-    UIkit.modal(modal_add_music).hide();
-    $("#list_result_music").empty()
-    $('#result_search_music').addClass('uk-hidden')
-    $('#input_name_artist').val('')
-
-}
-
-
-function createContactMusic(id) {
-    let modal = modal_add_music
-    $.ajax({
-        url: '/api/v1/contact/add_music',
-        data: {
-            id_artist: id,
-            contact: $('#id_contact').val(),
-            owner: $('#id_owner').val(),
-            csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
-        },
-        type: 'POST',
-        dataType: 'json',
-        success: function (json) {
-            UIkit.modal(modal).hide();
-            location.reload();
-        },
-        error: function (data) {
-            CleanCloseModalAddMusic()
-            UIkit.notification({message: 'Error al guardar los datos', status: 'danger'})
-        },
-    });
-
-}
-
-
-// END MUSIC - - - - -
 
 
 // Metodo para hacer visilbe o no el texto promo denajo del boton de añadir

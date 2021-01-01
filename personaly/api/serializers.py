@@ -41,6 +41,13 @@ class DeleteNoteSerializer(serializers.ModelSerializer):
         fields = ('id', 'contact', 'owner')
 
 
+class DeleteMusicSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = NoteContact
+        fields = ('id', 'contact', 'owner')
+
+
 class DeleteCommonSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -53,6 +60,13 @@ class AddMusicSerializer(serializers.ModelSerializer):
     class Meta:
         model = MusicContact
         fields = ('id_artist', 'contact', 'owner')
+
+
+class AddMusicSerializerManual(serializers.ModelSerializer):
+
+    class Meta:
+        model = MusicContact
+        fields = ('name_artist', 'contact', 'owner')
 
 
 class CommonSerializer(serializers.ModelSerializer):

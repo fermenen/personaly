@@ -1,3 +1,28 @@
+class app {
+
+    constructor() {
+        this.csrftoken = $("input[name=csrfmiddlewaretoken]").val()
+    }
+
+
+    get getCsrftoken() {
+        return this.csrftoken;
+    }
+
+    NotificationError(message_error) {
+        UIkit.notification({message: message_error, status: 'danger'})
+    }
+
+    NotificationSuccess(message_success) {
+        UIkit.notification({message: message_success, status: 'success'})
+    }
+
+    HideModal(modal){
+         UIkit.modal(modal).hide();
+    }
+}
+
+
 function deleteContact(contactId, contactName) {
     $("#contact_id").val(contactId);
     $("#contact_name").text(contactName);

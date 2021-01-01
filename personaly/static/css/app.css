@@ -499,8 +499,12 @@ input[type=number] {
   background: #ee395b !important;
 }
 
-.uk-search-default .uk-search-input:focus {
-  border: 1px solid #021F59 !important;
+.icon_trash:hover {
+  color: #ee395b !important;
+}
+
+.icon_spotify:hover {
+  color: #1DB954 !important;
 }
 
 html {
@@ -779,6 +783,12 @@ img {
   background: #1e87f0a8 !important;
 }
 
+.hidden-animation {
+  height: 0 !important;
+  opacity: 0 !important;
+  transition: height 0.8s, opacity 0.8s, linear !important;
+}
+
 html {
   font-size: 100%;
   /*16px*/
@@ -856,6 +866,10 @@ small, .text_small {
   top: 2px;
   background-size: 50%;
   background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20fill%3D%22%23666666%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20d%3D%22M173.898%20439.404l-166.4-166.4c-9.997-9.997-9.997-26.206%200-36.204l36.203-36.204c9.997-9.998%2026.207-9.998%2036.204%200L192%20312.69%20432.095%2072.596c9.997-9.997%2026.207-9.997%2036.204%200l36.203%2036.204c9.997%209.997%209.997%2026.206%200%2036.204l-294.4%20294.401c-9.998%209.997-26.207%209.997-36.204-.001z%22%2F%3E%3C%2Fsvg%3E);
+}
+
+.card-music {
+  height: 126px;
 }
 
 html {

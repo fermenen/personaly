@@ -79,6 +79,10 @@ input[type=number] {
 }
 
 
-.uk-search-default .uk-search-input:focus {
-  border: 1px solid $color-blue-1 !important;
+.icon_trash:hover {
+  color: $color-red-delete-2 !important;
+}
+
+.icon_spotify:hover {
+  color: #1DB954 !important;
 }

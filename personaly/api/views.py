@@ -119,7 +119,7 @@ class UploadPhoto(APIView):
         return JsonResponse({'ok': 'true', 'file': path}, status=200)
 
 
-class AddMusic(APIView):
+class AddMusicSpotify(APIView):
 
     def post(self, request):
         add_music_serializer = AddMusicSerializer(data=request.data)
@@ -135,6 +135,29 @@ class AddMusic(APIView):
             music.tags = ';'.join(artist_spotify['genres'][0:4])
             music.popularity = int(artist_spotify['popularity'])
             music.save()
+            return JsonResponse({'ok': 'true'}, status=201)
+        else:
+            return JsonResponse({'ok': 'false'}, status=400)
+
+
+class AddMusicManual(APIView):
+
+    def post(self, request):
+        add_music_serializer = AddMusicSerializerManual(data=request.data)
+        if add_music_serializer.is_valid():
+            music = add_music_serializer.save()
+            return JsonResponse({'ok': 'true'}, status=201)
+        else:
+            return JsonResponse({'ok': 'false'}, status=400)
+
+class DeleteMusicContact(APIView):
+
+    def post(self, request):
+        delete_music_serializer = DeleteMusicSerializer(data=request.data)
+        if delete_music_serializer.is_valid():
+            common = MusicContact.objects.get(id=request.data['id'])
+            common.active = False
+            common.save()
             return JsonResponse({'ok': 'true'}, status=200)
         else:
             return JsonResponse({'ok': 'false'}, status=400)

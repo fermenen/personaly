@@ -4,10 +4,14 @@
 
 {% block content %}
 
-    {% include "app/nav_app.html" %}
-
-    <body id="app">
     {% csrf_token %}
+    <script src="{% static 'js/app.js' %}"></script>
+    <script>
+        let appJS = new app()
+    </script>
+
+    {% include "app/nav_app.html" %}
+    <body id="app">
     {% block content_main %}{% endblock %}
     </body>
 
