@@ -150,6 +150,7 @@ class AddMusicManual(APIView):
         else:
             return JsonResponse({'ok': 'false'}, status=400)
 
+
 class DeleteMusicContact(APIView):
 
     def post(self, request):
@@ -193,3 +194,16 @@ class CreateFamilyContact(APIView):
         else:
             return JsonResponse({'ok': 'false', 'message': 'A problem occurred, try again. Contact support if persist'},
                                 status=400)
+
+
+class DeleteFamilyContact(APIView):
+
+    def post(self, request):
+        delete_family_serializer = DeleteFamilySerializer(data=request.data)
+        if delete_family_serializer.is_valid():
+            family = FamilyContact.objects.get(id=request.data['id'])
+            family.active = False
+            family.save()
+            return JsonResponse({'ok': 'true'}, status=200)
+        else:
+            return JsonResponse({'ok': 'false'}, status=400)

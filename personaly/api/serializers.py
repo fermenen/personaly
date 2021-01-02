@@ -89,3 +89,10 @@ class FamilySerializer(serializers.ModelSerializer):
         family = FamilyContact(**validated_data)
         family.save()
         return family
+
+
+class DeleteFamilySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = FamilyContact
+        fields = ('id', 'contact', 'owner')

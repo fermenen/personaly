@@ -499,6 +499,10 @@ input[type=number] {
   background: #ee395b !important;
 }
 
+.icon_app:hover {
+  color: #05AFF2 !important;
+}
+
 .icon_trash:hover {
   color: #ee395b !important;
 }

@@ -115,29 +115,29 @@ class FamilyContact(models.Model):
             ('003', _('Ex - novio / novia')),
         )
          ),
-        ('Relaciones familiares', (
-            ('4', 'hijo / hija'),
-            ('5', 'hermano / hermana'),
-            ('6', 'abuelo / abuela'),
-            ('7', 'nieto / nieta'),
-            ('8', 'tío / tía'),
-            ('9', 'sobrino / sobrina'),
-            ('10', 'primo / prima'),
-            ('11', 'padrino / madrina'),
-            ('12', 'ahijado / ahijada'),
-            ('13', 'padrastro / madrastra'),
-            ('14', 'hijastro / hijastra'),
+        (_('Relaciones familiares'), (
+            ('4', _('Hijo / hija')),
+            ('5', _('Hermano / hermana')),
+            ('6', _('Abuelo / abuela')),
+            ('7', _('Nieto / nieta')),
+            ('8', _('Tío / tía')),
+            ('9', _('Sobrino / sobrina')),
+            ('10', _('Primo / prima')),
+            ('11', _('Padrino / madrina')),
+            ('12', _('Ahijado / ahijada')),
+            ('13', _('Padrastro / madrastra')),
+            ('14', _('Hijastro / hijastra')),
         )
          ),
-        ('Relaciones de amistad', (
-            ('15', 'amigo / amiga'),
-            ('16', 'mejor amigo / amiga'),
-            ('17', 'ex - novio'),
+        (_('Relaciones de amistad'), (
+            ('15', _('Amigo / amiga')),
+            ('16', _('Mejor amigo / amiga')),
+            ('17', _('Ex - novio')),
         )
          ),
-        ('Relaciones de laborales', (
-            ('18', 'compañero / compañera'),
-            ('19', 'jefe / jefa'),
+        (_('Relaciones de laborales'), (
+            ('18', _('Compañero / compañera')),
+            ('19', _('Jefe / jefa')),
         )
          )
     )

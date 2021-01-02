@@ -6,12 +6,16 @@
         app = appJS,
         contact = contactJS,
         count_family = {{ count_list_family }},
+
         url_api_add_family = '{% url 'api_add_family' %}',
+        url_api_delete_family = '{% url 'api_delete_family' %}',
 
         title_modal_add = '{% translate "Añadir relación familiar/amorosa" %}',
         title_modal_edit = '{% translate "Editar relación con " %}',
 
         message_error_create = '{% translate "Ocurrió un problema al guardar el contacto" %}',
+        message_success_delete_family = '{% translate "¡Borrado con éxito!" %}',
+        message_error_delete_family = '{% translate "Ocurrió un problema al eliminarlo. Inténtelo de nuevo en unos instantes." %}',
     )
 </script>
 <div id="component_family_contact">
@@ -20,7 +24,6 @@
                                                                                           uk-icon="plus"></span>{% translate "Añadir relación familiar/amorosa" %}
     </button>
     <div>
-        <input id="count_family_contact" class="uk-hidden" type="number" value="1">
         <div id="text_family_contact" class="uk-text-center uk-margin-top">
             <span>&#128106;&#128021; {% translate " Añade las relaciones familiares o de pareja de " %} {{ contact.name | capfirst }}.</span>
         </div>
@@ -35,13 +38,14 @@
                 <li id="{{ family.id }}" class="uk-flex uk-flex-center uk-flex-between">
                     <div>
                         <span class="uk-text-capitalize uk-h4">{{ family.name }} {{ family.surnames }}</span>
-                        <span class="uk-text-light uk-text-primary">({{ family.get_relation_type_display }})</span>
+                        <span class="uk-text-light uk-text-primary"> ({{ family.get_relation_type_display }})</span>
                     </div>
                     <ul class="uk-iconnav uk-width-auto">
-                        <li><a class="icon_trash" onclick="" uk-icon="icon: trash"
+                        <li><a onclick="familyJS.deleteContactFamily('{{ family.id }}')" class="icon_trash" onclick=""
+                               uk-icon="icon: trash"
                                uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom-left"></a></li>
                         <li>
-                            <a onclick="familyJS.modalEditFamily('{{ family.id }}', '{{ family.name }}', '{{ family.surnames }}', '{{ family.relation_type }}' )"
+                            <a onclick="familyJS.modalEditFamily('{{ family.id }}', '{{ family.name }}', '{{ family.surnames }}', '{{ family.relation_type }}' )" class="icon_app"
                                uk-tooltip="title:{% translate "Editar" %}; pos: bottom-left"
                                uk-icon="icon:  file-edit"></a></li>
                     </ul>
@@ -64,27 +68,25 @@
             </h2>
         </div>
         <div class="uk-modal-body">
-
-            <form class="uk-form-stacked">
+            <form id="form_modal_family_create_edit" class="uk-form-stacked">
                 <div class="uk-flex">
                     <div class="uk-width-2-4 uk-flex-first">
-                        <label class="uk-form-label ">{% translate "Nombre" %}</label>
-                        <div class="uk-form-controls">
-                            <input id="input_name_family" class="uk-input uk-form-width-medium uk-text-capitalize"
-                                   type="text" required>
+                        <div class="uk-form-controls uk-flex uk-flex-column">
+                            <label for="input_name_family" class="uk-form-label ">{% translate "Nombre" %}</label>
+                            <input id="input_name_family" name="name_family"
+                                   class="uk-input uk-form-width-medium uk-text-capitalize" type="text">
                         </div>
                     </div>
                     <div class="uk-width-2-1 uk-flex-last">
-                        <div class="uk-flex uk-flex-between">
-                            <div class="uk-form-label">
-                                <span>{% translate "Apellidos" %}</span>
+                        <div class="uk-form-controls uk-flex uk-flex-column">
+                            <div class="uk-flex uk-flex-between">
+                                <label for="input_surnames_family"
+                                       class="uk-form-label ">{% translate "Apellidos" %}</label>
+                                <label for="input_surnames_family"
+                                       class="uk-form-label uk-text-muted uk-margin-small-right">{% translate "Opcional" %}</label>
                             </div>
-                            <div class="uk-form-label">
-                                <span class="uk-text-muted uk-margin-small-right">{% translate "Opcional" %}</span>
-                            </div>
-                        </div>
-                        <div class="uk-form-controls">
-                            <input id="input_surnames_family" class="uk-input uk-text-capitalize" type="text">
+                            <input id="input_surnames_family" name="surname_family" class="uk-input uk-text-capitalize"
+                                   type="text">
                         </div>
                     </div>
                 </div>
@@ -103,10 +105,41 @@
             <button class="uk-button uk-button-default uk-modal-close"
                     type="button">{% translate "Cancelar" %}</button>
             <button id="button_save_contact_family" class="uk-button uk-button-primary"
-                    data-value='{% translate "Guardar" %}' onclick="familyJS.createFamilyContact()"
+                    data-value='{% translate "Guardar" %}'
                     type="button">{% translate "Guardar" %}</button>
         </div>
     </div>
 </div>
 {# END MODAL FAMILY #}
-
+<script>
+    $(document).ready(function () {
+        $('#form_modal_family_create_edit').validate({
+                errorClass: "uk-form-danger uk-text-small",
+                rules: {
+                    name_family: {
+                        required: true,
+                        minlength: 3
+                    },
+                    relation_type: {
+                        required: true
+                    },
+                    surname_family: {
+                        minlength: 3
+                    }
+                },
+                messages: {
+                    name_family: {
+                        required: '{% translate "Campo obligatorio." %}',
+                        minlength: '{% translate "Mínimo 3 caracteres." %}'
+                    },
+                    relation_type: {
+                        required: '{% translate "Campo obligatorio." %}'
+                    },
+                    surname_family: {
+                        minlength: '{% translate "Mínimo 3 caracteres." %}'
+                    }
+                }
+            }
+        )
+    });
+</script>

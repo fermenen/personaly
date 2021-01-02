@@ -30,6 +30,7 @@ urlpatterns = [
 
     # FAMILY CONTACT
     path('v1/contact/add_family', views.CreateFamilyContact.as_view(), name='api_add_family'),
+    path('v1/contact/delete_family', views.DeleteFamilyContact.as_view(), name='api_delete_family'),
 
 
     path('v1/contact/upload_photo', views.UploadPhoto.as_view(), name='api_upload_photo'),
