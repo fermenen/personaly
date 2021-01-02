@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-30 22:34+0100\n"
+"POT-Creation-Date: 2021-01-01 21:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,33 +18,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: dashboard/templates/dashboard/contact.html:18
+#: dashboard/models.py:113
+msgid "esposa"
+msgstr ""
+
+#: dashboard/models.py:114
+msgid "amante"
+msgstr ""
+
+#: dashboard/models.py:115
+msgid "ex - novio"
+msgstr ""
+
+#: dashboard/templates/dashboard/contact.html:25
 #: dashboard/templates/dashboard/contact_list/contact_list_items.html:35
 msgid "Eliminar contacto"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:22
+#: dashboard/templates/dashboard/contact.html:29
 #: dashboard/templates/dashboard/contact_list/contact_list_items.html:37
 msgid "Editar contacto"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:33
+#: dashboard/templates/dashboard/contact.html:40
 msgid "Notas"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:35
+#: dashboard/templates/dashboard/contact.html:42
 msgid "En común"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:38
+#: dashboard/templates/dashboard/contact.html:45
 msgid "Experiencias"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:41
+#: dashboard/templates/dashboard/contact.html:48
 msgid "Música"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:44
+#: dashboard/templates/dashboard/contact.html:51
 msgid "Familia"
 msgstr ""
 
@@ -69,64 +81,104 @@ msgstr ""
 msgid "en el pasado."
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_family.html:5
+#: dashboard/templates/dashboard/contact/contact_family.html:8
 msgid "Añadir relación familiar/amorosa"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_family.html:10
+#: dashboard/templates/dashboard/contact/contact_family.html:13
 msgid " Añade las relaciones familiares o de pareja de "
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_music.html:8
-#: dashboard/templates/dashboard/contact/contact_music.html:70
-msgid "Añadir música"
-msgstr "Adicionar música"
-
-#: dashboard/templates/dashboard/contact/contact_music.html:13
-msgid "Añade la música que más le gusta a"
-msgstr "Adicione a música que mais lhe agrada"
-
-#: dashboard/templates/dashboard/contact/contact_music.html:29
-msgid "Puntación"
-msgstr "Pontuação"
-
-#: dashboard/templates/dashboard/contact/contact_music.html:50
-msgid "Abrir"
-msgstr "Abrir"
-
-#: dashboard/templates/dashboard/contact/contact_music.html:50
-msgid "en Spotify"
-msgstr "em Spotify"
-
-#: dashboard/templates/dashboard/contact/contact_music.html:54
+#: dashboard/templates/dashboard/contact/contact_family.html:32
+#: dashboard/templates/dashboard/contact/contact_music.html:69
 msgid "Eliminar"
 msgstr "Eliminar"
 
-#: dashboard/templates/dashboard/contact/contact_music.html:78
-msgid "Nombre del artista, grupo ..."
-msgstr "Nome do artista, grupo ..."
+#: dashboard/templates/dashboard/contact/contact_family.html:33
+#: dashboard/templates/dashboard/modal/edit_contact.html:5
+msgid "Editar"
+msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_music.html:83
-msgid "Añadir"
-msgstr "Adicionar"
+#: dashboard/templates/dashboard/contact/contact_family.html:52
+msgid "Añadir realcion familiar/amorosa"
+msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_music.html:84
-msgid "de forma manual"
-msgstr "manualmente"
-
-#: dashboard/templates/dashboard/contact/contact_music.html:96
-msgid "Propulsado por Spotify"
-msgstr "Powered by Spotify"
-
-#: dashboard/templates/dashboard/contact/contact_music.html:100
+#: dashboard/templates/dashboard/contact/contact_family.html:81
+#: dashboard/templates/dashboard/contact/contact_music.html:118
 #: dashboard/templates/dashboard/modal/add_contact.html:62
 #: dashboard/templates/dashboard/modal/edit_contact.html:68
 #: dashboard/templates/dashboard/modals.html:44
 #: dashboard/templates/dashboard/modals.html:67
 #: dashboard/templates/dashboard/modals.html:141
-#: dashboard/templates/dashboard/modals.html:255
 msgid "Cancelar"
 msgstr ""
+
+#: dashboard/templates/dashboard/contact/contact_family.html:83
+#: dashboard/templates/dashboard/contact/contact_family.html:84
+#: dashboard/templates/dashboard/modal/edit_contact.html:70
+#: dashboard/templates/dashboard/modal/edit_contact.html:71
+#: dashboard/templates/dashboard/modals.html:46
+#: dashboard/templates/dashboard/modals.html:47
+#: dashboard/templates/dashboard/modals.html:69
+#: dashboard/templates/dashboard/modals.html:70
+#: dashboard/templates/dashboard/modals.html:143
+#: dashboard/templates/dashboard/modals.html:144
+msgid "Guardar"
+msgstr ""
+
+#: dashboard/templates/dashboard/contact/contact_music.html:9
+msgid "Ocurrió un problema al obtener los datos"
+msgstr ""
+
+#: dashboard/templates/dashboard/contact/contact_music.html:10
+msgid "Ocurrió un problema al guardar los datos"
+msgstr ""
+
+#: dashboard/templates/dashboard/contact/contact_music.html:11
+msgid ""
+"Ocurrió un problema al eliminarlo. Inténtelo de nuevo en unos instantes."
+msgstr ""
+
+#: dashboard/templates/dashboard/contact/contact_music.html:12
+msgid "¡Borrado con éxito!"
+msgstr ""
+
+#: dashboard/templates/dashboard/contact/contact_music.html:22
+#: dashboard/templates/dashboard/contact/contact_music.html:86
+msgid "Añadir música"
+msgstr "Adicionar música"
+
+#: dashboard/templates/dashboard/contact/contact_music.html:26
+msgid "Añade la música que más le gusta a"
+msgstr "Adicione a música que mais lhe agrada"
+
+#: dashboard/templates/dashboard/contact/contact_music.html:43
+msgid "Popularidad"
+msgstr ""
+
+#: dashboard/templates/dashboard/contact/contact_music.html:64
+msgid "Abrir"
+msgstr "Abrir"
+
+#: dashboard/templates/dashboard/contact/contact_music.html:64
+msgid "en Spotify"
+msgstr "em Spotify"
+
+#: dashboard/templates/dashboard/contact/contact_music.html:95
+msgid "Nombre del artista, grupo ..."
+msgstr "Nome do artista, grupo ..."
+
+#: dashboard/templates/dashboard/contact/contact_music.html:101
+msgid "Añadir"
+msgstr "Adicionar"
+
+#: dashboard/templates/dashboard/contact/contact_music.html:103
+msgid "de forma manual"
+msgstr "manualmente"
+
+#: dashboard/templates/dashboard/contact/contact_music.html:114
+msgid "Propulsado por Spotify"
+msgstr "Powered by Spotify"
 
 #: dashboard/templates/dashboard/contact/contact_notes.html:5
 msgid "Añadir nota"
@@ -186,23 +238,6 @@ msgstr ""
 msgid "Crear"
 msgstr ""
 
-#: dashboard/templates/dashboard/modal/edit_contact.html:5
-msgid "Editar"
-msgstr ""
-
-#: dashboard/templates/dashboard/modal/edit_contact.html:70
-#: dashboard/templates/dashboard/modal/edit_contact.html:71
-#: dashboard/templates/dashboard/modals.html:46
-#: dashboard/templates/dashboard/modals.html:47
-#: dashboard/templates/dashboard/modals.html:69
-#: dashboard/templates/dashboard/modals.html:70
-#: dashboard/templates/dashboard/modals.html:143
-#: dashboard/templates/dashboard/modals.html:144
-#: dashboard/templates/dashboard/modals.html:257
-#: dashboard/templates/dashboard/modals.html:258
-msgid "Guardar"
-msgstr ""
-
 #: dashboard/templates/dashboard/modals.html:34
 msgid "Crear nota"
 msgstr ""
@@ -211,11 +246,10 @@ msgstr ""
 msgid "Añadir cosa en comun"
 msgstr ""
 
-#: dashboard/templates/dashboard/modals.html:154
-msgid "Añadir realcion familiar/amorosa"
-msgstr ""
-
 #: dashboard/templates/dashboard/settings.html:4
 #: dashboard/templates/dashboard/settings.html:14
 msgid "Ajustes"
 msgstr ""
+
+#~ msgid "Puntación"
+#~ msgstr "Pontuação"

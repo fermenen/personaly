@@ -1,12 +1,27 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.forms import Select
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django import forms
 
 from . import views
-from .models import Contact
+from .models import *
 from .services import ContactService
+
+
+
+class RelationTypeForm(forms.ModelForm):
+
+    class Meta:
+        model = FamilyContact
+        fields = ['relation_type']
+        labels = {
+            'relation_type': '',
+        }
+        widgets = {
+            'relation_type': Select(attrs={'class': 'uk-select'}),
+        }
 
 
 class AddContactForm(forms.ModelForm):
@@ -14,8 +29,6 @@ class AddContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = ('name', 'surnames')
-
-
 
 
 @login_required

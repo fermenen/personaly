@@ -1,19 +1,112 @@
+{% load static %}
 {% load i18n %}
+<script src="{% static 'js/contact_family_001.js' %}"></script>
+<script>
+    let familyJS = new Contact_family(
+        app = appJS,
+        contact = contactJS,
+        count_family = {{ count_list_family }},
+        url_api_add_family = '{% url 'api_add_family' %}',
+
+        title_modal_add = '{% translate "Añadir relación familiar/amorosa" %}',
+        title_modal_edit = '{% translate "Editar relación con " %}',
+
+        message_error_create = '{% translate "Ocurrió un problema al guardar el contacto" %}',
+    )
+</script>
 <div id="component_family_contact">
-    <button id="button_add_family" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
-            uk-toggle="target: #modal_create_family"><span class="uk-margin-small-right"
-                                                                 uk-icon="plus"></span>{% translate "Añadir relación familiar/amorosa" %}
+    <button id="button_add_family" onclick="familyJS.modalCreateFamily()"
+            class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"><span class="uk-margin-small-right"
+                                                                                          uk-icon="plus"></span>{% translate "Añadir relación familiar/amorosa" %}
     </button>
     <div>
-        <input id="count_family_contact" class="uk-hidden" type="number" value="{{ count_list_family }}">
+        <input id="count_family_contact" class="uk-hidden" type="number" value="1">
         <div id="text_family_contact" class="uk-text-center uk-margin-top">
-            <span>&#128106;&#128021; {% translate " Añade las relaciones familiares o de pareja de " %} {{ contact.name }}.</span>
+            <span>&#128106;&#128021; {% translate " Añade las relaciones familiares o de pareja de " %} {{ contact.name | capfirst }}.</span>
         </div>
         <script>
-            textVisible('#count_family_contact', '#text_family_contact');
+            contactJS.textVisible(familyJS.getCountFamily, '#text_family_contact')
         </script>
     </div>
-    <div id="component_all_family" class="uk-margin-top">
 
+    <div id="component_all_family" class="uk-margin-top">
+        <ul class="uk-list uk-list-divider">
+            {% for family in list_family %}
+                <li id="{{ family.id }}" class="uk-flex uk-flex-center uk-flex-between">
+                    <div>
+                        <span class="uk-text-capitalize uk-h4">{{ family.name }} {{ family.surnames }}</span>
+                        <span class="uk-text-light uk-text-primary">({{ family.get_relation_type_display }})</span>
+                    </div>
+                    <ul class="uk-iconnav uk-width-auto">
+                        <li><a class="icon_trash" onclick="" uk-icon="icon: trash"
+                               uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom-left"></a></li>
+                        <li>
+                            <a onclick="familyJS.modalEditFamily('{{ family.id }}', '{{ family.name }}', '{{ family.surnames }}', '{{ family.relation_type }}' )"
+                               uk-tooltip="title:{% translate "Editar" %}; pos: bottom-left"
+                               uk-icon="icon:  file-edit"></a></li>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>
+
+
+{# MODAL FAMILY #}
+<div id="modal_family" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">
+                <span id="title_modal_family"></span>
+                <span class="uk-text-capitalize" id="name_contact_modal_family"></span>
+            </h2>
+        </div>
+        <div class="uk-modal-body">
+
+            <form class="uk-form-stacked">
+                <div class="uk-flex">
+                    <div class="uk-width-2-4 uk-flex-first">
+                        <label class="uk-form-label ">{% translate "Nombre" %}</label>
+                        <div class="uk-form-controls">
+                            <input id="input_name_family" class="uk-input uk-form-width-medium uk-text-capitalize"
+                                   type="text" required>
+                        </div>
+                    </div>
+                    <div class="uk-width-2-1 uk-flex-last">
+                        <div class="uk-flex uk-flex-between">
+                            <div class="uk-form-label">
+                                <span>{% translate "Apellidos" %}</span>
+                            </div>
+                            <div class="uk-form-label">
+                                <span class="uk-text-muted uk-margin-small-right">{% translate "Opcional" %}</span>
+                            </div>
+                        </div>
+                        <div class="uk-form-controls">
+                            <input id="input_surnames_family" class="uk-input uk-text-capitalize" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <div class="uk-width-2-1 uk-flex-first">
+                        <label class="uk-form-label ">{% translate "Tipo de relación" %}</label>
+                        <div class="uk-form-controls">
+                            {{ form_relation }}
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close"
+                    type="button">{% translate "Cancelar" %}</button>
+            <button id="button_save_contact_family" class="uk-button uk-button-primary"
+                    data-value='{% translate "Guardar" %}' onclick="familyJS.createFamilyContact()"
+                    type="button">{% translate "Guardar" %}</button>
+        </div>
     </div>
 </div>
+{# END MODAL FAMILY #}
+

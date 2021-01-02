@@ -28,6 +28,10 @@ urlpatterns = [
     path('v1/contact/delete_music', views.DeleteMusicContact.as_view(), name='api_delete_music'),
     path('v1/contact/search_artist', views.SearchArtist.as_view(), name='api_search_artist'),
 
+    # FAMILY CONTACT
+    path('v1/contact/add_family', views.CreateFamilyContact.as_view(), name='api_add_family'),
+
+
     path('v1/contact/upload_photo', views.UploadPhoto.as_view(), name='api_upload_photo'),
 
 ]

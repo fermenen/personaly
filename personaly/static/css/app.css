@@ -783,12 +783,6 @@ img {
   background: #1e87f0a8 !important;
 }
 
-.hidden-animation {
-  height: 0 !important;
-  opacity: 0 !important;
-  transition: height 0.8s, opacity 0.8s, linear !important;
-}
-
 html {
   font-size: 100%;
   /*16px*/
@@ -868,10 +862,6 @@ small, .text_small {
   background-image: url(data:image/svg+xml;charset=UTF-8,%3Csvg%20fill%3D%22%23666666%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20d%3D%22M173.898%20439.404l-166.4-166.4c-9.997-9.997-9.997-26.206%200-36.204l36.203-36.204c9.997-9.998%2026.207-9.998%2036.204%200L192%20312.69%20432.095%2072.596c9.997-9.997%2026.207-9.997%2036.204%200l36.203%2036.204c9.997%209.997%209.997%2026.206%200%2036.204l-294.4%20294.401c-9.998%209.997-26.207%209.997-36.204-.001z%22%2F%3E%3C%2Fsvg%3E);
 }
 
-.card-music {
-  height: 126px;
-}
-
 html {
   font-size: 100%;
   /*16px*/
@@ -949,7 +939,7 @@ small, .text_small {
   height: 250px !important;
 }
 
-/*! UIkit 3.5.9 | https://www.getuikit.com | (c) 2014 - 2020 YOOtheme | MIT License */
+/*! UIkit 3.6.5 | https://www.getuikit.com | (c) 2014 - 2020 YOOtheme | MIT License */
 /* ========================================================================
    Component: Base
  ========================================================================== */
@@ -4112,14 +4102,14 @@ select.uk-form-width-xsmall {
   margin-bottom: -15px;
 }
 
-.uk-card-body .uk-nav-default > li > a,
-.uk-card-body .uk-nav-default .uk-nav-header,
-.uk-card-body .uk-nav-default .uk-nav-divider {
+.uk-card-body > .uk-nav-default > li > a,
+.uk-card-body > .uk-nav-default .uk-nav-header,
+.uk-card-body > .uk-nav-default .uk-nav-divider {
   padding-left: 30px;
   padding-right: 30px;
 }
 
-.uk-card-body .uk-nav-default .uk-nav-sub {
+.uk-card-body > .uk-nav-default .uk-nav-sub {
   padding-left: 45px;
 }
 
@@ -4135,14 +4125,14 @@ select.uk-form-width-xsmall {
     margin-bottom: -25px;
   }
 
-  .uk-card-body .uk-nav-default > li > a,
-.uk-card-body .uk-nav-default .uk-nav-header,
-.uk-card-body .uk-nav-default .uk-nav-divider {
+  .uk-card-body > .uk-nav-default > li > a,
+.uk-card-body > .uk-nav-default .uk-nav-header,
+.uk-card-body > .uk-nav-default .uk-nav-divider {
     padding-left: 40px;
     padding-right: 40px;
   }
 
-  .uk-card-body .uk-nav-default .uk-nav-sub {
+  .uk-card-body > .uk-nav-default .uk-nav-sub {
     padding-left: 55px;
   }
 }
@@ -4159,14 +4149,14 @@ select.uk-form-width-xsmall {
   margin-bottom: -5px;
 }
 
-.uk-card-small .uk-nav-default > li > a,
-.uk-card-small .uk-nav-default .uk-nav-header,
-.uk-card-small .uk-nav-default .uk-nav-divider {
+.uk-card-small > .uk-nav-default > li > a,
+.uk-card-small > .uk-nav-default .uk-nav-header,
+.uk-card-small > .uk-nav-default .uk-nav-divider {
   padding-left: 20px;
   padding-right: 20px;
 }
 
-.uk-card-small .uk-nav-default .uk-nav-sub {
+.uk-card-small > .uk-nav-default .uk-nav-sub {
   padding-left: 35px;
 }
 
@@ -4183,14 +4173,14 @@ select.uk-form-width-xsmall {
     margin: 0;
   }
 
-  .uk-card-large .uk-nav-default > li > a,
-.uk-card-large .uk-nav-default .uk-nav-header,
-.uk-card-large .uk-nav-default .uk-nav-divider {
+  .uk-card-large > .uk-nav-default > li > a,
+.uk-card-large > .uk-nav-default .uk-nav-header,
+.uk-card-large > .uk-nav-default .uk-nav-divider {
     padding-left: 0;
     padding-right: 0;
   }
 
-  .uk-card-large .uk-nav-default .uk-nav-sub {
+  .uk-card-large > .uk-nav-default .uk-nav-sub {
     padding-left: 15px;
   }
 }
@@ -5433,11 +5423,18 @@ select.uk-form-width-xsmall {
 /* Container
  ========================================================================== */
 /*
- * 1. Clip child elements
+ * Clip child elements
  */
 .uk-slider-container {
-  /* 1 */
   overflow: hidden;
+}
+
+/*
+ * Widen container to prevent box-shadows from clipping, `large-box-shadow`
+ */
+.uk-slider-container-offset {
+  margin: -11px -25px -39px -25px;
+  padding: 11px 25px 39px 25px;
 }
 
 /* Items
@@ -7326,11 +7323,15 @@ ul.uk-nav-sub {
 /*
  * Divider
  * `nth-child` makes it also work without JS if it's only one row
+ * 1. Remove space between inline block elements.
+ * 2. Style
  */
 .uk-breadcrumb > :nth-child(n+2):not(.uk-first-column)::before {
   content: "/";
   display: inline-block;
-  margin: 0 20px;
+  /* 1 */
+  margin: 0 20px 0 calc(20px - 4px);
+  /* 2 */
   font-size: 0.875rem;
   color: #999;
 }

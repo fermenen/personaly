@@ -2,9 +2,7 @@ from rest_framework import serializers
 
 from accounts.models import User
 
-from dashboard.models import NoteContact, ThingCommonContact, MusicContact
-
-
+from dashboard.models import NoteContact, ThingCommonContact, MusicContact, FamilyContact
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -79,3 +77,15 @@ class CommonSerializer(serializers.ModelSerializer):
         common = ThingCommonContact(**validated_data)
         common.save()
         return common
+
+
+class FamilySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = FamilyContact
+        fields = ('name', 'relation_type', 'contact', 'owner')
+
+    def create(self, validated_data):
+        family = FamilyContact(**validated_data)
+        family.save()
+        return family

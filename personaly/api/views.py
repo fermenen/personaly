@@ -178,3 +178,18 @@ class SearchArtist(APIView):
                 'name': artist['name']
             })
         return JsonResponse({'ok': 'true', 'data': data}, status=200)
+
+
+class CreateFamilyContact(APIView):
+
+    def post(self, request):
+        family_serializer = FamilySerializer(data=request.data)
+        if family_serializer.is_valid():
+            family = family_serializer.save()
+            if request.data['surnames'] != '':
+                family.surnames = request.data['surnames']
+                family.save()
+            return JsonResponse({'ok': 'true'}, status=201)
+        else:
+            return JsonResponse({'ok': 'false', 'message': 'A problem occurred, try again. Contact support if persist'},
+                                status=400)

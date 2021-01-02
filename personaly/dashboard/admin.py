@@ -11,6 +11,7 @@ admin.site.register(NoteContact)
 admin.site.register(ThingCommonContact)
 admin.site.register(ExperienceContact)
 admin.site.register(MusicContact)
+admin.site.register(FamilyContact)
 
 
 @admin.register(Contact)

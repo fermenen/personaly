@@ -17,8 +17,28 @@ class app {
         UIkit.notification({message: message_success, status: 'success'})
     }
 
-    HideModal(modal){
-         UIkit.modal(modal).hide();
+    HideModal(modal) {
+        UIkit.modal(modal).hide();
+    }
+
+    ShowModal(modal) {
+        UIkit.modal(modal).show();
+    }
+
+    DisabledButton(name) {
+        $(name).addClass('uk-disabled')
+    }
+
+    AvailableButton(name) {
+        $(name).removeClass('uk-disabled')
+    }
+
+    LoadingButton(name) {
+        $(name).html('<div uk-spinner></div>')
+    }
+
+    AvailableloadingButton(name) {
+        $(name).html($(name).data('value'))
     }
 }
 

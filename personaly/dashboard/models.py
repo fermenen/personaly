@@ -7,6 +7,7 @@ import os
 from uuid import uuid4
 from PIL import Image
 import uuid
+from django.utils.translation import ugettext_lazy as _
 
 
 class Contact(models.Model):
@@ -27,7 +28,6 @@ class Contact(models.Model):
         if self.image_contact:
             self.image_contact = self.get_transform_image()
         super(Contact, self).save(*args, **kwargs)
-
 
     def get_transform_image(self):
         basewidth = 400
@@ -105,4 +105,49 @@ class ExperienceContact(models.Model):
 
     def get_list_photos(self):
         return self.list_photos.split(";")
+
+
+class FamilyContact(models.Model):
+    relation_choices = (
+        (_('Relaciones amorosas'), (
+            ('001', _('Esposo / esposa')),
+            ('002', _('Amante')),
+            ('003', _('Ex - novio / novia')),
+        )
+         ),
+        ('Relaciones familiares', (
+            ('4', 'hijo / hija'),
+            ('5', 'hermano / hermana'),
+            ('6', 'abuelo / abuela'),
+            ('7', 'nieto / nieta'),
+            ('8', 'tío / tía'),
+            ('9', 'sobrino / sobrina'),
+            ('10', 'primo / prima'),
+            ('11', 'padrino / madrina'),
+            ('12', 'ahijado / ahijada'),
+            ('13', 'padrastro / madrastra'),
+            ('14', 'hijastro / hijastra'),
+        )
+         ),
+        ('Relaciones de amistad', (
+            ('15', 'amigo / amiga'),
+            ('16', 'mejor amigo / amiga'),
+            ('17', 'ex - novio'),
+        )
+         ),
+        ('Relaciones de laborales', (
+            ('18', 'compañero / compañera'),
+            ('19', 'jefe / jefa'),
+        )
+         )
+    )
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+    name = models.TextField()
+    surnames = models.TextField(blank=True)
+    relation_type = models.CharField(max_length=3, choices=relation_choices)
 
