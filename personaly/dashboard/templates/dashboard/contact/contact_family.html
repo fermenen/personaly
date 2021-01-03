@@ -6,16 +6,13 @@
         app = appJS,
         contact = contactJS,
         count_family = {{ count_list_family }},
-
-        url_api_add_family = '{% url 'api_add_family' %}',
-        url_api_delete_family = '{% url 'api_delete_family' %}',
-
+        url_api_family = '{% url 'api_v2:family_contact-list' %}',
         title_modal_add = '{% translate "Añadir relación familiar/amorosa" %}',
         title_modal_edit = '{% translate "Editar relación con " %}',
-
         message_error_create = '{% translate "Ocurrió un problema al guardar el contacto" %}',
         message_success_delete_family = '{% translate "¡Borrado con éxito!" %}',
         message_error_delete_family = '{% translate "Ocurrió un problema al eliminarlo. Inténtelo de nuevo en unos instantes." %}',
+        message_error_update = '{% translate "Ocurrió un problema al actualizar el contacto" %}',
     )
 </script>
 <div id="component_family_contact">

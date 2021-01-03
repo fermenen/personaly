@@ -1,8 +1,10 @@
+import spotipy
 from rest_framework import serializers
 
 from accounts.models import User
 
 from dashboard.models import NoteContact, ThingCommonContact, MusicContact, FamilyContact
+from spotipy import SpotifyClientCredentials
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -21,7 +23,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class NoteSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = NoteContact
         fields = ('text', 'contact', 'owner')
@@ -33,42 +34,36 @@ class NoteSerializer(serializers.ModelSerializer):
 
 
 class DeleteNoteSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = NoteContact
         fields = ('id', 'contact', 'owner')
 
 
 class DeleteMusicSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = NoteContact
         fields = ('id', 'contact', 'owner')
 
 
 class DeleteCommonSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = ThingCommonContact
         fields = ('id', 'contact', 'owner')
 
 
 class AddMusicSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = MusicContact
         fields = ('id_artist', 'contact', 'owner')
 
 
 class AddMusicSerializerManual(serializers.ModelSerializer):
-
     class Meta:
         model = MusicContact
         fields = ('name_artist', 'contact', 'owner')
 
 
 class CommonSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = ThingCommonContact
         fields = ('text', 'contact', 'owner')
@@ -80,7 +75,6 @@ class CommonSerializer(serializers.ModelSerializer):
 
 
 class FamilySerializer(serializers.ModelSerializer):
-
     class Meta:
         model = FamilyContact
         fields = ('name', 'relation_type', 'contact', 'owner')
@@ -92,7 +86,58 @@ class FamilySerializer(serializers.ModelSerializer):
 
 
 class DeleteFamilySerializer(serializers.ModelSerializer):
-
     class Meta:
         model = FamilyContact
         fields = ('id', 'contact', 'owner')
+
+
+class FamilyContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FamilyContact
+        fields = ('id', 'name', 'surnames', 'relation_type', 'contact', 'owner')
+
+    def create(self, validated_data):
+        """
+        Create and return a new `FamilyContact` instance, given the validated data.
+        """
+        return FamilyContact.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        """
+        Update and return an existing `FamilyContact` instance, given the validated data.
+        """
+        instance.name = validated_data.get('name', instance.name)
+        instance.surnames = validated_data.get('surnames', instance.surnames)
+        instance.relation_type = validated_data.get('relation_type', instance.relation_type)
+        instance.save()
+        return instance
+
+
+class MusicContactSerializer(serializers.ModelSerializer):
+    name_artist = serializers.CharField(required=False)
+
+    class Meta:
+        model = MusicContact
+        fields = (
+            'id', 'id_artist', 'name_artist', 'photo_artist', 'url_artist', 'tags', 'popularity', 'contact', 'owner')
+
+    def create(self, validated_data):
+        """
+        Create and return a new `MusicContact` instance, given the validated data.
+        """
+        music = MusicContact.objects.create(**validated_data)
+        if 'id_artist' in validated_data and validated_data['id_artist'] is not None:
+            artist_spotify = self.find_artist_spotify(validated_data['id_artist'])
+            music.name_artist = artist_spotify['name']
+            music.photo_artist = artist_spotify['images'][1]['url']
+            music.url_artist = artist_spotify['external_urls']['spotify']
+            music.tags = ';'.join(artist_spotify['genres'][0:4])
+            music.popularity = int(artist_spotify['popularity'])
+        music.save()
+        return music
+
+    def find_artist_spotify(self, id_artist):
+        spotify = spotipy.Spotify(
+            auth_manager=SpotifyClientCredentials(client_id="3d64112da0524f90ac6617210804754a",
+                                                  client_secret="5b67c11ca4eb4bb3b95513a4f1d0f442"))
+        return spotify.artist(id_artist)

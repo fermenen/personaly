@@ -1,18 +1,14 @@
 class Contact_music {
 
-    constructor(app, contact, count_music, message_error_search, message_error_save, message_error_delete_music, message_success_delete_music, url_api_add_music_spotify, url_api_add_music_manual, url_api_delete_music, url_api_search_artist) {
+    constructor(app, contact, count_music, message_error_search, message_error_save, message_error_delete_music, message_success_delete_music, url_api_music, url_api_search_artist) {
         this.app = app;
         this.contact = contact;
         this.count_music = count_music;
-
         this.message_error_search = message_error_search;
         this.message_error_save = message_error_save;
         this.message_error_delete_music = message_error_delete_music;
         this.message_success_delete_music = message_success_delete_music;
-
-        this.url_api_add_music_spotify = url_api_add_music_spotify;
-        this.url_api_add_music_manual = url_api_add_music_manual;
-        this.url_api_delete_music = url_api_delete_music;
+        this.url_api_music = url_api_music;
         this.url_api_search_artist = url_api_search_artist;
     }
 
@@ -55,12 +51,12 @@ class Contact_music {
     // Crear MusicContact a traves de ID artista spotify
     createContactMusicBySpotify(id) {
         $.ajax({
-            url: this.url_api_add_music_spotify,
+            url: this.url_api_music,
+            headers: {"X-CSRFToken": this.app.getCsrftoken},
             data: {
                 id_artist: id,
                 contact: this.contact.getContact,
                 owner: this.contact.getOwner,
-                csrfmiddlewaretoken: this.app.getCsrftoken
             },
             type: 'POST',
             dataType: 'json',
@@ -79,7 +75,8 @@ class Contact_music {
     createContactMusicByManual() {
         let nameArtist = $('#name_artist_manual').text()
         $.ajax({
-            url: this.url_api_add_music_manual,
+            url: this.url_api_music,
+            headers: {"X-CSRFToken": this.app.getCsrftoken},
             data: {
                 name_artist: nameArtist,
                 contact: this.contact.getContact,
@@ -100,17 +97,16 @@ class Contact_music {
     }
 
     // Borrar MusicContact a traves de ID
-    deleteContactMusic(divID) {
-        let StringDivID = '#' + divID
+    deleteContactMusic(id) {
+        let StringDivID = '#' + id
         $.ajax({
-            url: this.url_api_delete_music,
+            url: this.url_api_music + id + '/',
+            headers: {"X-CSRFToken": this.app.getCsrftoken},
             data: {
-                id: divID,
                 contact: this.contact.getContact,
                 owner: this.contact.getOwner,
-                csrfmiddlewaretoken: this.app.getCsrftoken
             },
-            type: 'POST',
+            type: 'DELETE',
             dataType: 'json',
             success: data => {
                 this.app.NotificationSuccess(this.message_success_delete_music)

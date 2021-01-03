@@ -12,7 +12,8 @@ class User(AbstractUser):
     validated_mail = models.BooleanField(default=False)
     code_validated_mail = models.SmallIntegerField(blank=True, null=True)
 
-
+    family_active = models.IntegerField(default=0)
+    music_active = models.IntegerField(default=0)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']

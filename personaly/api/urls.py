@@ -1,18 +1,22 @@
-from django.urls import include, path
-from rest_framework import routers
-
+from django.conf.urls import url
 from . import views
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 
-router = routers.DefaultRouter()
-# router.register(r'users', views.UserViewSet)
-# router.register(r'groups', views.GroupViewSet)
 
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
+app_name = 'api_v2'
+
+router = DefaultRouter()
+router.register(r'family_contact', views.FamilyContactView, basename='family_contact')
+router.register(r'music_contact', views.MusicContactView, basename='music_contact')
+
 
 
 urlpatterns = [
-    path('', include(router.urls)),
+
+    path(r'contact/', include((router.urls, app_name), namespace='api_v2')),
+
+
     path('v1/account/register', views.UserCreate.as_view(), name='api_register_user'),
     path('v1/mail/send_code_user', views.SendCodeMailUser.as_view(), name='api_send_mail_code'),
     path('v1/mail/check_code_user', views.CheckCodeMailUser.as_view(), name='api_check_mail_code'),
@@ -22,17 +26,11 @@ urlpatterns = [
 
     path('v1/contact/create_common', views.CreateCommonContact.as_view(), name='api_create_common'),
 
-    # MUSIC CONTACT
-    path('v1/contact/add_music_spotify', views.AddMusicSpotify.as_view(), name='api_add_music_spotify'),
-    path('v1/contact/add_music_manual', views.AddMusicManual.as_view(), name='api_add_music_manual'),
-    path('v1/contact/delete_music', views.DeleteMusicContact.as_view(), name='api_delete_music'),
+
     path('v1/contact/search_artist', views.SearchArtist.as_view(), name='api_search_artist'),
-
-    # FAMILY CONTACT
-    path('v1/contact/add_family', views.CreateFamilyContact.as_view(), name='api_add_family'),
-    path('v1/contact/delete_family', views.DeleteFamilyContact.as_view(), name='api_delete_family'),
-
 
     path('v1/contact/upload_photo', views.UploadPhoto.as_view(), name='api_upload_photo'),
 
 ]
+
+urlpatterns += router.urls

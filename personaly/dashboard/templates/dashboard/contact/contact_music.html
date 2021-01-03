@@ -1,6 +1,6 @@
 {% load static %}
 {% load i18n %}
-<script src="{% static 'js/contact_music_001.min.js' %}"></script>
+<script src="{% static 'js/contact_music_001.js' %}"></script>
 <script>
     let musicJS = new Contact_music(
         app = appJS,
@@ -10,10 +10,8 @@
         message_error_save = '{% translate "Ocurrió un problema al guardar los datos" %}',
         message_error_delete_music = '{% translate "Ocurrió un problema al eliminarlo. Inténtelo de nuevo en unos instantes." %}',
         message_success_delete_music = '{% translate "¡Borrado con éxito!" %}',
-        url_api_add_music_spotify = '{% url 'api_add_music_spotify' %}',
-        url_api_add_music_manual = '{% url 'api_add_music_manual' %}',
-        url_api_delete_music = '{% url 'api_delete_music' %}',
-        url_api_search_artist = '{% url 'api_search_artist' %}',
+        url_api_music = '{% url 'api_v2:music_contact-list' %}',
+        url_api_search_artist = '/api/v1/contact/search_artist',
     )
 </script>
 <div id="component_music_contact">
