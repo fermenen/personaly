@@ -144,7 +144,9 @@ class SearchArtist(APIView):
 
 class FamilyContactView(viewsets.ModelViewSet):
     serializer_class = FamilyContactSerializer
-    queryset = FamilyContact.objects.all()
+
+    def get_queryset(self):
+        return FamilyContact.objects.filter(owner=self.request.user, active=True)
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -166,9 +168,13 @@ class FamilyContactView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+# Music Contact - GET - POST - DELETE
 class MusicContactView(viewsets.ModelViewSet):
     serializer_class = MusicContactSerializer
-    queryset = MusicContact.objects.all()
+    http_method_names = ['get', 'post', 'delete']
+
+    def get_queryset(self):
+        return MusicContact.objects.filter(owner=self.request.user, active=True)
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -188,4 +194,3 @@ class MusicContactView(viewsets.ModelViewSet):
         user.save()
         music.save()
         return Response(status=status.HTTP_204_NO_CONTENT)
-

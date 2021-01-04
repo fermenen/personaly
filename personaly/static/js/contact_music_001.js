@@ -19,7 +19,7 @@ class Contact_music {
     // Buscar artist a traves de api propia
     searchArtist() {
         let inputSearch = $('#input_name_artist')
-        if (inputSearch.val().length > 1) {
+        if ($('#form_modal_music').valid()) {
             $.ajax({
                 url: this.url_api_search_artist,
                 data: {name_artist: inputSearch.val(), csrfmiddlewaretoken: this.app.getCsrftoken},
@@ -39,49 +39,28 @@ class Contact_music {
                         for (let artist in responseArtist.reverse()) {
                             let id = responseArtist[artist]['id']
                             let name = responseArtist[artist]['name']
-                            let html = `<li id='artist_auto' onclick="musicJS.createContactMusicBySpotify('${id}')"><a>${name}</a></li>`
+                            let html = `<li id='artist_auto' onclick="musicJS.createContactMusic('${id}')"><a>${name}</a></li>`
                             $('#list_result_music').prepend(html)
                         }
                     }
                 }
             });
+
         }
     }
 
-    // Crear MusicContact a traves de ID artista spotify
-    createContactMusicBySpotify(id) {
-        $.ajax({
-            url: this.url_api_music,
-            headers: {"X-CSRFToken": this.app.getCsrftoken},
-            data: {
-                id_artist: id,
-                contact: this.contact.getContact,
-                owner: this.contact.getOwner,
-            },
-            type: 'POST',
-            dataType: 'json',
-            success: data => {
-                this.app.HideModal(modal_add_music)
-                location.reload();
-            },
-            error: data => {
-                cleanCloseModalAddMusic()
-                this.app.NotificationError(this.message_error_save)
-            },
-        });
-    }
 
-    // Crear MusicContact a traves de nombre artista (manual)
-    createContactMusicByManual() {
+    // Crear MusicContact
+    createContactMusic(id) {
         let nameArtist = $('#name_artist_manual').text()
         $.ajax({
             url: this.url_api_music,
             headers: {"X-CSRFToken": this.app.getCsrftoken},
             data: {
+                id_artist: id,
                 name_artist: nameArtist,
                 contact: this.contact.getContact,
                 owner: this.contact.getOwner,
-                csrfmiddlewaretoken: this.app.getCsrftoken
             },
             type: 'POST',
             dataType: 'json',
@@ -95,6 +74,7 @@ class Contact_music {
             },
         });
     }
+
 
     // Borrar MusicContact a traves de ID
     deleteContactMusic(id) {

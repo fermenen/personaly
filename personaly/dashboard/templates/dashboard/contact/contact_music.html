@@ -84,19 +84,23 @@
             <h2 class="uk-modal-title">{% translate "Añadir música" %}</h2>
         </div>
         <div class="uk-modal-body">
-            <div class="uk-width-2-1 uk-flex-first">
-                <div class="uk-search uk-search-default" style="width: 100%">
-                    <a id="button_search_artist" onclick="musicJS.searchArtist()"
-                       class="uk-search-icon-flip"
-                       uk-search-icon></a>
-                    <input id="input_name_artist" class="uk-input uk-search-input" type="search"
-                           placeholder="{% translate "Nombre del artista, grupo ..." %}">
+            <form id="form_modal_music" class="uk-form-stacked">
+                <div class="uk-width-2-1 uk-flex-first">
+                    <div class="uk-margin">
+                        <div class="uk-search uk-search-default" style="width: 100%">
+                            <a onclick="musicJS.searchArtist()" class="uk-search-icon-flip" uk-search-icon
+                               style="height: 40px"></a>
+                            <input id="input_name_artist" name="input_search_artist" class="uk-input"
+                                   type="search" placeholder="{% translate "Nombre del artista, grupo ..." %}">
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </form>
+
             <div id="result_search_music" class="uk-margin-top uk-hidden">
                 <ul id="list_result_music" class="uk-list uk-list-divider uk-margin-small-left">
                     <li><a id="text_artist_manual" class="uk-link-muted"
-                           onclick="musicJS.createContactMusicByManual()">{% translate "Añadir" %}
+                           onclick="musicJS.createContactMusic()">{% translate "Añadir" %}
                         <span id="name_artist_manual"
                               class="uk-text-bold uk-text-capitalize"></span> {% translate "de forma manual" %}
                     </a></li>
@@ -121,11 +125,27 @@
     </div>
 </div>
 <script>
-    let keyEnter = 13
-    document.getElementById("input_name_artist").addEventListener("keyup", function (event) {
-        if (event.keyCode === keyEnter) {
-            musicJS.searchArtist()
-        }
+    $("#form_modal_music").on('submit', function (evt) {
+        evt.preventDefault();
+        musicJS.searchArtist();
+    });
+    $(document).ready(function () {
+        $('#form_modal_music').validate({
+                errorClass: "uk-form-danger uk-text-small",
+                rules: {
+                    input_search_artist: {
+                        required: true,
+                        minlength: 3
+                    }
+                },
+                messages: {
+                    input_search_artist: {
+                        required: '{% translate "Campo obligatorio." %}',
+                        minlength: '{% translate "Mínimo 3 caracteres." %}'
+                    }
+                }
+            }
+        )
     });
 </script>
 {#END MODAL ADD MUSIC #}
