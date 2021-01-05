@@ -49,53 +49,13 @@
     </div>
 </div>
 {#END ANADIR NOTA CONTACTO#}
-{#ANADIR COSA COMUN#}
-<div id="modal_create_common" uk-modal>
-    <div class="uk-modal-dialog">
-        <button class="uk-modal-close-default" type="button" uk-close></button>
-        <div class="uk-modal-header">
-            <h2 class="uk-modal-title">{% translate "Añadir cosa en comun" %}</h2>
-        </div>
-        <div class="uk-modal-body">
-            <div class="uk-margin">
-                <textarea id="text_common" class="uk-input" rows="5" style="resize: none"
-                          placeholder="Cosa en comun"></textarea>
-            </div>
-        </div>
-        <div class="uk-modal-footer uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close"
-                    type="button">{% translate "Cancelar" %}</button>
-            <button id="button_save_contact_common" class="uk-button uk-button-primary"
-                    data-value='{% translate "Guardar" %}' onclick="createContactCommon()"
-                    type="button">{% translate "Guardar" %}</button>
-        </div>
-    </div>
-</div>
-{#END ANADIR COSA COMUN#}
+
 {#EDITAR CONTACTO#}
 <div id="modal_edit_contact" uk-modal>
     {% include "dashboard/modal/edit_contact.html" %}
 </div>
 {#END EDITAR CONTACTO#}
-{#BORRAR COMMON#}
-<div id="modal_delete_common" target uk-modal>
-    <div class="uk-modal-dialog uk-modal-body">
-        <h2 class="uk-modal-title">Eliminar cosa en comun</h2>
-        <p>¿Estás seguro de que quieres borrar "<span id="common_text" class="uk-text-bold uk-text-capitalize"></span>"?
-        </p>
-        <p>Esta acción no puede deshacerse.</p>
-        <input id="common_id_modal" name="common_id" type="hidden">
-        <p class="uk-text-right">
-            <button onclick="deleteContactCommon('Borrado con exito!')" class="uk-button uk-button-danger"
-                    type="submit"><span class="uk-margin-small-right"
-                                        uk-icon="trash"></span>Borrar
-            </button>
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
-        </p>
 
-    </div>
-</div>
-{#END BORRAR COMMON#}
 {#ANADIR EXPERIENCIA #}
 <div id="modal_create_experiences" uk-modal>
     <div class="uk-modal-dialog">

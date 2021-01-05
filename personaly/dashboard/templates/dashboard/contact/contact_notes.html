@@ -1,16 +1,25 @@
+{% load static %}
 {% load i18n %}
+<script src="{% static 'js/contact_notes_001.js' %}"></script>
+<script>
+    let notesJS = new Contact_note(
+        app = appJS,
+        contact = contactJS,
+        count_notes ={{ count_list_notes }},
+
+    )
+</script>
 <div id="component_notes_contact">
-    <button id="button_add_note_contact" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
-            uk-toggle="target: #modal_create_contact_note"><span class="uk-margin-small-right"
-                                                                 uk-icon="plus"></span>{% translate "Añadir nota" %}
+    <button id="button_add_family"
+            class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"><span class="uk-margin-small-right"
+                                                                                          uk-icon="plus"></span>{% translate "Añadir nota" %}
     </button>
     <div>
-        <input id="count_notes_contact" class="uk-hidden" type="number" value="{{ count_list_notes }}">
         <div id="text_note_contact" class="uk-text-center uk-margin-top">
-            <span>&#128221; {% translate "¿Hay algo que quieras recordar sobre" %} {{ contact.name }}?</span>
+            <span>&#128221; {% translate "¿Hay algo que quieras recordar sobre" %} {{ contact.name | capfirst }}?</span>
         </div>
         <script>
-            textVisible('#count_notes_contact', '#text_note_contact');
+            contactJS.textVisible(notesJS.getCountNotes, '#text_note_contact')
         </script>
     </div>
 

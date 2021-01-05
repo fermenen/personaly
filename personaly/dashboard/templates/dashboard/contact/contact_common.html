@@ -1,31 +1,119 @@
+{% load static %}
 {% load i18n %}
+<script src="{% static 'js/contact_common_001.js' %}"></script>
+<script>
+    let commonJS = new Contact_common(
+        app = appJS,
+        contact = contactJS,
+        count_common = {{ count_list_common }},
+        url_api_common = '{% url 'api_v2:common_contact-list' %}',
+        message_error_create = 'error al crear cosa en comun',
+        message_success_delete_common = 'borrado con exito ',
+        message_error_delete_common = 'eeror al borrar',
+    )
+</script>
+<div id="component_common_contact">
 
-<div id="component_common_contact" class="uk-flex-row uk-flex-center">
-    <div id="header-common" class="uk-margin-top">
-
-        <button id="" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
-                uk-toggle="target: #modal_create_common"><span class="uk-margin-small-right" uk-icon="plus"></span>
-            {% translate "Añadir cosa en común" %}
-        </button>
-
-    </div>
-
+    <button id="button_add_common"
+            class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
+            uk-toggle="target: #modal_create_common"><span class="uk-margin-small-right"
+                                                           uk-icon="plus"></span>{% translate "Añadir cosa en común" %}
+    </button>
     <div>
-        <input id="count_common_contact" class="uk-hidden" type="number" value="{{ count_list_common }}">
         <div id="text_common_contact" class="uk-text-center uk-margin-top">
-            <span>&#127871; {% translate "Registra cosas en común que tengas con" %} {{ contact.name }}</span>
+            <span>&#127871;&#129495; {% translate "Registra cosas en común que tengas con" %} {{ contact.name | capfirst }}.</span>
         </div>
         <script>
-            textVisible('#count_common_contact', '#text_common_contact');
+            contactJS.textVisible(commonJS.getCountCommon, '#text_common_contact')
         </script>
     </div>
 
+
     <div id="component_all_common" class="uk-grid">
         {% for common in list_common %}
-            <div id="common{{ common.id }}" class="uk-margin-top">
-                <a href="#" onclick="openModalDeleteCommon('{{ common.id }}', '{{ common.text }}')" class="button-common badge-contact-common uk-badge uk-button">{{ common.text }}</a>
+            <div id="{{ common.id }}" class="uk-margin-top">
+                <a href="#" onclick="commonJS.openModalDeleteCommon('{{ common.id }}', '{{ common.text }}')"
+                   class="button-common badge-contact-common uk-badge uk-button"  uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom-center">{{ common.text }}</a>
             </div>
 
         {% endfor %}
     </div>
 </div>
+
+{# ADD COMMON #}
+<div id="modal_create_common" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">{% translate "Añadir cosa en comun" %}</h2>
+        </div>
+        <div class="uk-modal-body">
+            <form id="form_modal_add_common" class="uk-form-stacked">
+                <fieldset class="uk-fieldset">
+                    <div class="uk-margin">
+                        <div class="uk-form-controls uk-flex uk-flex-column">
+                            <label for="input_text_common"
+                                   class="uk-form-label ">{% translate "Cosa en común con" %} {{ contact.name | capfirst }}</label>
+                            <input id="input_text_common" name="text_common" class="uk-input"
+                                   placeholder="{% trans "Yoga, escalada, cine ..." %}"></input>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </form>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close"
+                    type="button">{% translate "Cancelar" %}</button>
+            <button id="button_save_contact_common" class="uk-button uk-button-primary"
+                    data-value='{% translate "Guardar" %}' onclick="commonJS.createCommonContact()"
+                    type="button">{% translate "Guardar" %}</button>
+        </div>
+    </div>
+</div>
+{# END ADD COMMON #}
+{# DELETE COMMON#}
+<div id="modal_delete_common" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Eliminar cosa en comun</h2>
+        <p>¿Estás seguro de que quieres borrar "<span id="common_text" class="uk-text-bold uk-text-capitalize"></span>"?
+        </p>
+        <p>Esta acción no puede deshacerse.</p>
+        <input id="common_id_modal" name="common_id" type="hidden">
+        <p class="uk-text-right">
+            <button onclick="commonJS.deleteCommonContact()" class="uk-button uk-button-danger"
+                    type="submit"><span class="uk-margin-small-right"
+                                        uk-icon="trash"></span>Borrar
+            </button>
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+        </p>
+
+    </div>
+</div>
+{# END DELETE COMMON #}
+<script>
+    $("#form_modal_add_common").on('submit', function (evt) {
+        evt.preventDefault();
+        commonJS.createCommonContact();
+    });
+    $(document).ready(function () {
+        $('#form_modal_add_common').validate({
+                errorClass: "uk-form-danger uk-text-small",
+                rules: {
+                    text_common: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 23
+                    }
+                },
+                messages: {
+                    text_common: {
+                        required: '{% translate "Campo obligatorio." %}',
+                        minlength: '{% translate "Mínimo 3 caracteres." %}',
+                        maxlength: '{% translate "Maximo 23 caracteres." %}'
+                    }
+                }
+            }
+        )
+    });
+</script>

@@ -1,28 +1,25 @@
-from django.contrib import messages
-from django.contrib.auth import authenticate, login
-
-from .serializers import *
-from rest_framework.views import APIView
-from django.http import JsonResponse
-from django.core import serializers
 import os
 import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
-from django.core.files.storage import default_storage
-from django.core.files.base import ContentFile
-from django.conf import settings
-from django.contrib.auth.models import User
-from rest_framework import viewsets
-from dashboard.services import send_code_user
-
-from accounts.models import User
-
-from dashboard.models import *
 
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.http import Http404
+from rest_framework import viewsets
+
+from spotipy.oauth2 import SpotifyClientCredentials
+
+from django.contrib.auth import login
+from .serializers import *
+from django.http import JsonResponse
+from django.core import serializers
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from django.conf import settings
+from django.contrib.auth.models import User
+
+from dashboard.services import send_code_user
+from accounts.models import User
+from dashboard.models import *
 
 
 class UserCreate(APIView):
@@ -91,29 +88,6 @@ class DeleteNoteContact(APIView):
             return JsonResponse({'ok': 'false'}, status=400)
 
 
-class CreateCommonContact(APIView):
-
-    def post(self, request):
-        common_serializer = CommonSerializer(data=request.data)
-        if common_serializer.is_valid():
-            common = common_serializer.save()
-            return JsonResponse({'ok': 'true'}, status=201)
-        else:
-            return JsonResponse({'ok': 'false', 'message': 'A problem occurred, try again. Contact support if persist'},
-                                status=400)
-
-
-class DeleteCommonContact(APIView):
-
-    def post(self, request):
-        delete_common_serializer = DeleteNoteSerializer(data=request.data)
-        if delete_common_serializer.is_valid():
-            common = ThingCommonContact.objects.get(id=request.data['id'])
-            common.active = False
-            common.save()
-            return JsonResponse({'ok': 'true'}, status=200)
-        else:
-            return JsonResponse({'ok': 'false'}, status=400)
 
 
 class UploadPhoto(APIView):
@@ -125,46 +99,59 @@ class UploadPhoto(APIView):
         return JsonResponse({'ok': 'true', 'file': path}, status=200)
 
 
-class SearchArtist(APIView):
-
-    def post(self, request):
-        search_text = request.data['name_artist']
-        data = []
-        spotify = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="3d64112da0524f90ac6617210804754a",
-                                                                        client_secret="5b67c11ca4eb4bb3b95513a4f1d0f442"))
-        results = spotify.search(q=search_text, type='artist', market='ES', limit=4)
-        results = results['artists']['items']
-        for artist in results:
-            data.append({
-                'id': artist['id'],
-                'name': artist['name']
-            })
-        return JsonResponse({'ok': 'true', 'data': data}, status=200)
-
-
-class FamilyContactView(viewsets.ModelViewSet):
-    serializer_class = FamilyContactSerializer
+# Common Contact
+class NoteContactView(viewsets.ModelViewSet):
+    serializer_class = NoteContactSerializer
+    http_method_names = ['get', 'post', 'delete']
 
     def get_queryset(self):
-        return FamilyContact.objects.filter(owner=self.request.user, active=True)
+        return NoteContact.objects.filter(owner=self.request.user, active=True)
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = request.user
-        user.family_active += 1
+        user.note_active += 1
+        note = serializer.save()
         user.save()
-        family = serializer.save()
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def destroy(self, request, *args, **kwargs):
-        family = self.get_object()
-        family.active = False
+        note = self.get_object()
+        note.active = False
         user = request.user
-        user.family_active -= 1
+        user.note_active -= 1
         user.save()
-        family.save()
+        note.save()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# Common Contact
+class CommonContactView(viewsets.ModelViewSet):
+    serializer_class = CommonContactSerializer
+    http_method_names = ['get', 'post', 'delete']
+
+    def get_queryset(self):
+        return ThingCommonContact.objects.filter(owner=self.request.user, active=True)
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = request.user
+        user.common_active += 1
+        common = serializer.save()
+        user.save()
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def destroy(self, request, *args, **kwargs):
+        common = self.get_object()
+        common.active = False
+        user = request.user
+        user.common_active -= 1
+        user.save()
+        common.save()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
@@ -193,4 +180,49 @@ class MusicContactView(viewsets.ModelViewSet):
         user.music_active -= 1
         user.save()
         music.save()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class SearchArtist(APIView):
+
+    def post(self, request):
+        search_text = request.data['name_artist']
+        data = []
+        spotify = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=os.getenv("CLIENT_ID"),
+                                                                        client_secret=os.getenv("CLIENT_SECRET")))
+        results = spotify.search(q=search_text, type='artist', market='ES', limit=4)
+        results = results['artists']['items']
+        for artist in results:
+            data.append({
+                'id': artist['id'],
+                'name': artist['name']
+            })
+        return JsonResponse({'ok': 'true', 'data': data}, status=200)
+
+
+# Family Contact - GET - POST - PUT - DELETE
+class FamilyContactView(viewsets.ModelViewSet):
+    serializer_class = FamilyContactSerializer
+    http_method_names = ['get', 'post', 'put', 'delete']
+
+    def get_queryset(self):
+        return FamilyContact.objects.filter(owner=self.request.user, active=True)
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = request.user
+        user.family_active += 1
+        user.save()
+        family = serializer.save()
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def destroy(self, request, *args, **kwargs):
+        family = self.get_object()
+        family.active = False
+        user = request.user
+        user.family_active -= 1
+        user.save()
+        family.save()
         return Response(status=status.HTTP_204_NO_CONTENT)

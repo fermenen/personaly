@@ -56,22 +56,42 @@ class TagContact(models.Model):
 
 class NoteContact(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    text = models.TextField()
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
 
 
+# Thing Common Contact Model
 class ThingCommonContact(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    text = models.TextField()
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.text} - {self.contact} - {self.owner}"
+
+
+class ExperienceContact(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.TextField()
+    tittle = models.TextField()
+    location = models.TextField()
+    date = models.DateTimeField(blank=True)
+    list_photos = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
 
+    def get_list_photos(self):
+        return self.list_photos.split(";")
 
+
+# Music Contact Model
 class MusicContact(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
@@ -92,21 +112,7 @@ class MusicContact(models.Model):
         return f"{self.name_artist} - CONTACT({self.contact}) - OWNER({self.owner})"
 
 
-class ExperienceContact(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    tittle = models.TextField()
-    location = models.TextField()
-    date = models.DateTimeField(blank=True)
-    list_photos = models.TextField(blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    active = models.BooleanField(default=True)
-
-    def get_list_photos(self):
-        return self.list_photos.split(";")
-
-
+# Family Contact Model
 class FamilyContact(models.Model):
     relation_choices = (
         (_('Relaciones amorosas'), (
