@@ -89,3 +89,8 @@ input[type=number] {
 .icon_spotify:hover {
   color: #1DB954 !important;
 }
+
+[class*='uk-modal-close-'] {
+  top: 12px !important;
+  right: 12px !important;
+}

@@ -5,26 +5,6 @@
   width: 100% !important;
 }
 
-.app-button-contact {
-
-  text-transform: capitalize !important;
-  text-align: left !important;
-  text-decoration: none !important;
-}
-
-.btn-actions-tittle {
-  position: absolute;
-  right: 0;
-  margin-right: 35px !important;
-}
-
-.btn-actions-contact {
-  position: absolute !important;
-  right: 0 !important;
-  margin-right: 35px !important;
-  display: none !important;
-
-}
 
 .app-button-contact:hover {
   .text-button-contact {
@@ -36,30 +16,14 @@
   }
 }
 
-.text-button-contact {
-  font-family: nunito;
-  font-size: 1.05rem;
-  font-weight: 400;
-  font-style: normal;
-  color: $color-black;
-
-}
 
 .tag-contact {
   background: $color-blue-2 !important;
-  font-family: nunito;
   font-size: 0.750rem;
   font-weight: 350;
   font-style: normal;
   line-height: 1.60 !important;
-  justify-content: center;
-  margin-left: 10px !important;
-  display: none !important;
   border-radius: 3px !important;
-}
-
-.tag-emoji {
-  margin-right: 4px !important;
 }
 
 
@@ -67,9 +31,7 @@
   .card-contact-list {
     width: 65% !important;
   }
-  .tag-contact {
-    display: flex !important;
-  }
+
   .app-button-contact:hover {
     .btn-actions-contact {
       display: inline-block !important;

@@ -204,25 +204,6 @@ small, .text_small {
   width: 100% !important;
 }
 
-.app-button-contact {
-  text-transform: capitalize !important;
-  text-align: left !important;
-  text-decoration: none !important;
-}
-
-.btn-actions-tittle {
-  position: absolute;
-  right: 0;
-  margin-right: 35px !important;
-}
-
-.btn-actions-contact {
-  position: absolute !important;
-  right: 0 !important;
-  margin-right: 35px !important;
-  display: none !important;
-}
-
 .app-button-contact:hover .text-button-contact {
   color: #05AFF2 !important;
 }
@@ -230,38 +211,18 @@ small, .text_small {
   border: 2px solid #05AFF2;
 }
 
-.text-button-contact {
-  font-family: nunito;
-  font-size: 1.05rem;
-  font-weight: 400;
-  font-style: normal;
-  color: #000;
-}
-
 .tag-contact {
   background: #144673 !important;
-  font-family: nunito;
   font-size: 0.75rem;
   font-weight: 350;
   font-style: normal;
   line-height: 1.6 !important;
-  justify-content: center;
-  margin-left: 10px !important;
-  display: none !important;
   border-radius: 3px !important;
-}
-
-.tag-emoji {
-  margin-right: 4px !important;
 }
 
 @media (min-width: 980px) {
   .card-contact-list {
     width: 65% !important;
-  }
-
-  .tag-contact {
-    display: flex !important;
   }
 
   .app-button-contact:hover .btn-actions-contact {
@@ -509,6 +470,11 @@ input[type=number] {
 
 .icon_spotify:hover {
   color: #1DB954 !important;
+}
+
+[class*=uk-modal-close-] {
+  top: 12px !important;
+  right: 12px !important;
 }
 
 html {
