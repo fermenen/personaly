@@ -41,3 +41,53 @@
         {% endfor %}
     </div>
 </div>
+{#ANADIR EXPERIENCIA #}
+<div id="modal_create_experiences" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">{% translate "Añadir experiencia" %}</h2>
+        </div>
+        <div class="uk-modal-body">
+            <div class="uk-width-2-1 uk-flex-first">
+                <label class="uk-form-label ">¿Qué hiciste con xxx?</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input " type="text" required>
+                </div>
+            </div>
+            <div class="uk-width-2-1 uk-flex-last">
+                <label class="uk-form-label ">¿Donde?</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input" type="text" required>
+                </div>
+            </div>
+
+            <div class="uk-width-2-1 uk-flex-first">
+                <label class="uk-form-label " for="{{ form.name.id_for_label }}">¿Cuando?</label>
+                <div class="uk-form-controls">
+                    <input class="uk-input " type="date" required>
+                </div>
+            </div>
+            <div class="uk-width-2-1 uk-flex-last uk-margin-top">
+                <div class="js-upload uk-placeholder uk-text-center">
+                    <span uk-icon="icon: cloud-upload"></span>
+                    <span class="uk-text-middle">Adjunte las fotografías dejándolos caer aquí o</span>
+                    <div uk-form-custom>
+                        <input type="file" multiple>
+                        <span class="uk-link">seleccionando uno</span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close"
+                    type="button">{% translate "Cancelar" %}</button>
+            <button id="button_save_contact_common" class="uk-button uk-button-primary"
+                    data-value='{% translate "Guardar" %}' onclick=""
+                    type="button">{% translate "Guardar" %}</button>
+        </div>
+    </div>
+</div>
+{#END ANADIR EXPERIENCIA#}

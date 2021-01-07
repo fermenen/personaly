@@ -1,10 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-import uuid
 import datetime
 from dashboard.models import *
-from .forms import AddContactForm, RelationTypeForm
-from django.shortcuts import get_list_or_404, get_object_or_404
+from .forms import RelationTypeForm, KeepTouchForm
+from django.shortcuts import get_object_or_404
 
 
 @login_required
@@ -15,15 +14,20 @@ def index(request):
 
 
 @login_required
-def contacts_list_view(request, form_add_contact=AddContactForm, errors=False):
+def contacts_list_view(request):
     owner = request.user
     list_contacts = Contact.objects.filter(owner=owner, active=True).order_by('name')
-    count_contacts = len(list_contacts)
     list_tags = TagContact.objects.filter(owner=owner)
-    return render(request, 'dashboard/contacts_list.html', {'contact_list': list_contacts, 'tags_list': list_tags,
-                                                            'form_add_contact': form_add_contact,
-                                                            'count_contacts': count_contacts,
-                                                            'errors': errors})
+    form_keep_touch = KeepTouchForm
+
+    data = {'owner': owner,
+            'tags_list': list_tags,
+            'list_contacts': list_contacts,
+            'count_list_contacts': list_contacts.count(),
+            'form_keep_in_touch': form_keep_touch
+            }
+
+    return render(request, 'dashboard/contacts_list.html', data)
 
 
 @login_required

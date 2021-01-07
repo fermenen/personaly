@@ -62,30 +62,6 @@ class CheckCodeMailUser(APIView):
             return JsonResponse({'ok': 'codigo incorrecto'}, status=404)
 
 
-class CreateNoteContact(APIView):
-
-    def post(self, request):
-        note_serializer = NoteSerializer(data=request.data)
-        if note_serializer.is_valid():
-            note = note_serializer.save()
-            noteSe = serializers.serialize('json', [note, ])
-            return JsonResponse({'ok': 'true', 'note': noteSe}, status=201)
-        else:
-            return JsonResponse({'ok': 'false', 'message': 'A problem occurred, try again. Contact support if persist'},
-                                status=400)
-
-
-class DeleteNoteContact(APIView):
-
-    def post(self, request):
-        delete_note_serializer = DeleteNoteSerializer(data=request.data)
-        if delete_note_serializer.is_valid():
-            note = NoteContact.objects.get(id=request.data['id'])
-            note.active = False
-            note.save()
-            return JsonResponse({'ok': 'true'}, status=200)
-        else:
-            return JsonResponse({'ok': 'false'}, status=400)
 
 
 
@@ -97,6 +73,15 @@ class UploadPhoto(APIView):
         path = default_storage.save(f'images_contacts/{data.name}', ContentFile(data.read()))
         tmp_file = os.path.join(settings.MEDIA_ROOT, path)
         return JsonResponse({'ok': 'true', 'file': path}, status=200)
+
+
+# Contact View - GET - POST - PUT - DELETE
+class ContactView(viewsets.ModelViewSet):
+    serializer_class = ContactSerializer
+    http_method_names = ['get', 'post', 'put', 'delete']
+
+    def get_queryset(self):
+        return Contact.objects.filter(owner=self.request.user, active=True)
 
 
 # Common Contact

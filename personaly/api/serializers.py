@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 from accounts.models import User
 
-from dashboard.models import NoteContact, ThingCommonContact, MusicContact, FamilyContact
+from dashboard.models import NoteContact, ThingCommonContact, MusicContact, FamilyContact, Contact
 from spotipy import SpotifyClientCredentials
 
 
@@ -94,6 +94,11 @@ class DeleteFamilySerializer(serializers.ModelSerializer):
 
 # // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -- - - - - - - - -
 
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = ('id', 'name', 'surnames', 'location', 'phone', 'image_contact', 'keep_in_touch', 'owner')
 
 
 class NoteContactSerializer(serializers.ModelSerializer):

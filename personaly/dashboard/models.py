@@ -11,15 +11,26 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Contact(models.Model):
+
+    in_touch = [
+        ('001', _('Cada semana')),
+        ('001', _('Cada dos semana')),
+        ('003', _('Una vez al mes')),
+        ('004', _('Cada dos meses')),
+        ('000', _('No recordar')),
+    ]
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.TextField()
     surnames = models.TextField()
     location = models.TextField(blank=True)
     phone = PhoneField(blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    url = models.SlugField(blank=True, max_length=255)
     image_contact = models.ImageField(blank=True, upload_to='images_contacts', null=True, verbose_name='imagecontact')
+    keep_in_touch = models.CharField(max_length=3, choices=in_touch)
+
+    url = models.SlugField(blank=True, max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     active = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
