@@ -15,11 +15,11 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
+from django.utils.translation import ugettext_lazy as _
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from django.conf.urls.static import static
-
 
 urlpatterns = [
     path('es/app/admin/', admin.site.urls),
@@ -31,7 +31,6 @@ urlpatterns += i18n_patterns(
     path('app/', include('dashboard.urls')),
     path('accounts/', include('accounts.urls')),
     path('', include('web.urls')),
-
 
 )
 

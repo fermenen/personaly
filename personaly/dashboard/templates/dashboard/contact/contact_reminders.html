@@ -10,9 +10,61 @@
                                                 uk-icon="plus"></span>Añadir
                 recordatorio
             </button>
-            <div class="uk-text-center uk-margin-top">
+            <div class="uk-text-center uk-margin-top uk-hidden">
                 <span>Mantén un seguimiento con {{ contact.name }} creando un recordatorio.</span>
             </div>
+
+            <ul class="uk-list uk-list-divider">
+                <li><div class="uk-flex uk-flex-middle ">
+                        <div class="uk-margin-small-right"><input class="uk-checkbox" type="checkbox" uk-tooltip="complete" checked="" title=""
+                                    aria-expanded="false"></div>
+                        <div class="uk-width-expand uk-margin-small-right"><input class="uk-input uk-form-blank" type="text" name="title"
+                                                            value="Hablarle de la cueta de nsta"></div>
+                        <ul class="uk-iconnav">
+                            <li><a href="#" uk-icon="icon: plus"></a></li>
+                            <li><a href="#" uk-icon="icon: file-edit"></a></li>
+                            <li><a href="#" uk-icon="icon: copy"></a></li>
+                            <li><a href="#" uk-icon="icon: trash"></a></li>
+                        </ul>
+                    </div></li>
+                <li>
+                    <div class="uk-flex uk-flex-middle ">
+                        <div class="uk-margin-small-right"><input class="uk-checkbox" type="checkbox" uk-tooltip="complete" checked="" title=""
+                                    aria-expanded="false"></div>
+                        <div class="uk-flex uk-flex-column uk-width">
+                            <div class="uk-width-expand uk-margin-small-right"><input class="uk-input uk-form-blank uk-h3 uk-text-capitalize" type="text" name="title"
+                                                            value="et porro tempora"></div>
+                            <span class="uk-text-meta uk-margin-small-left">22 de Enero -<span class="uk-text-small text-blue3"> Quedan 3 dias</span></span>
+
+                        </div>
+                        <ul class="uk-iconnav uk-width-small">
+                            <li><a href="#" uk-icon="icon: plus"></a></li>
+                            <li><a href="#" uk-icon="icon: file-edit"></a></li>
+                            <li><a href="#" uk-icon="icon: copy"></a></li>
+                            <li><a href="#" uk-icon="icon: trash"></a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <div class="uk-flex uk-flex-middle uk-visible-toggle" tabindex="-1">
+                        <div class="uk-margin-small-right"><input class="uk-checkbox" type="checkbox" uk-tooltip="complete" checked="" title=""
+                                    aria-expanded="false"></div>
+                        <div class="uk-flex uk-flex-column uk-width">
+                            <div class="uk-width-expand uk-margin-small-right"><input class="uk-input uk-form-blank uk-h3 uk-text-capitalize uk-sticky" type="text" name="title"
+                                                            value="llmada uregnete"></div>
+                            <span class="uk-text-meta uk-margin-small-left">12 de Diciembre -<span class="uk-text-small uk-text-warning"> Tarea atrasada</span></span>
+
+                        </div>
+                        <ul class="uk-iconnav uk-invisible-hover uk-width-small">
+                            <li><a href="#" uk-icon="icon: plus"></a></li>
+                            <li><a href="#" uk-icon="icon: file-edit"></a></li>
+                            <li><a href="#" uk-icon="icon: copy"></a></li>
+                            <li><a href="#" uk-icon="icon: trash"></a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
 
         </div>
     </ul>

@@ -753,6 +753,14 @@ img {
   background: #1e87f0a8 !important;
 }
 
+.ap-suggestion {
+  color: #05AFF2 !important;
+}
+
+.ap-suggestion em {
+  color: #144673 !important;
+}
+
 html {
   font-size: 100%;
   /*16px*/

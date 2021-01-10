@@ -98,7 +98,9 @@ class DeleteFamilySerializer(serializers.ModelSerializer):
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
-        fields = ('id', 'name', 'surnames', 'location', 'phone', 'image_contact', 'keep_in_touch', 'owner')
+        fields = (
+        'id', 'name', 'surnames', 'image_contact', 'location', 'phone', 'email', 'birthday', 'remember_birthday',
+        'keep_in_touch', 'owner')
 
 
 class NoteContactSerializer(serializers.ModelSerializer):

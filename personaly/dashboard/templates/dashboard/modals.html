@@ -51,8 +51,8 @@
         <div class="uk-modal-footer uk-text-right">
             <button class="uk-button uk-button-default uk-modal-close"
                     type="button">{% translate "Cancelar" %}</button>
-            <button id="button_save_contact_note" class="uk-button uk-button-primary"
-                    data-value='{% translate "Crear contacto" %}' onclick=""
+            <button id="button_create_contact" class="uk-button uk-button-primary"
+                    data-value='{% translate "Crear contacto" %}' onclick="appJS.createContact()"
                     type="button">{% translate "Crear contacto" %}</button>
         </div>
     </div>
@@ -66,7 +66,13 @@
                 rules: {
                     name_contact: {
                         required: true,
-                        minlength: 3
+                        minlength: 3,
+                        lettersonly: true
+                    },
+                    surname_contact: {
+                        required: false,
+                        minlength: 3,
+                        lettersonly: true
                     },
                     keep_in_touch: {
                         required: true
@@ -75,7 +81,12 @@
                 messages: {
                     name_contact: {
                         required: '{% translate "Campo obligatorio." %}',
-                        minlength: '{% translate "Mínimo 3 caracteres." %}'
+                        minlength: '{% translate "Mínimo 3 caracteres." %}',
+                        lettersonly: '{% translate "Caracteres no permitidos." %}'
+                    },
+                    surname_contact: {
+                        minlength: '{% translate "Mínimo 3 caracteres." %}',
+                        lettersonly: '{% translate "Caracteres no permitidos." %}'
                     },
                     keep_in_touch: {
                         required: '{% translate "Campo obligatorio." %}'
@@ -86,107 +97,190 @@
     });
 </script>
 {# END CREAR CONTACTO #}
-
-
-{#BORRAR CONTACTO#}
-{#<div id="modal_delete_contact" target uk-modal>#}
-{#    <div class="uk-modal-dialog uk-modal-body">#}
-{#        <h2 class="uk-modal-title">Eliminar el contacto</h2>#}
-{#        <p>¿Estás seguro de que quieres borrar a <span id="contact_name" class="uk-text-bold uk-text-capitalize"></span>?#}
-{#        </p>#}
-{#        <p>Todos los datos relacionados serán eliminados y esta acción no puede deshacerse.</p>#}
-{#        <form action="{% url 'api_delete_contact' %}" method="POST">#}
-{#            <input id="contact_id" name="contact_id" type="hidden">#}
-{#            {% csrf_token %}#}
-{#            <p class="uk-text-right">#}
-{#                <button class="uk-button uk-button-danger" type="submit"><span class="uk-margin-small-right"#}
-{#                                                                               uk-icon="trash"></span>Borrar#}
-{#                </button>#}
-{#                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>#}
-{#            </p>#}
-{#        </form>#}
-{##}
-{##}
-{#    </div>#}
-{#</div>#}
-{#END_BORRAR_CONTACTO#}
-
-
+{# BORRAR CONTACTO #}
+<div id="modal_delete_contact" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">{% translate "Eliminar contacto" %}</h2>
+        </div>
+        <div class="uk-modal-body uk-flex uk-flex-column">
+            <input id="contact_id_delete_contact" name="contact_id" type="hidden">
+            <span>{% translate "¿Estás seguro que quieres eliminar a" %} <span id="contact_name_delete_contact"
+                                                                               class="uk-text-capitalize uk-text-bold"></span>?</span>
+            <span class="uk-text-danger uk-margin-small-top">{% translate "Todos los datos relacionados serán eliminados y esta acción no puede deshacerse." %}</span>
+            <span class="uk-text-muted uk-text-small uk-margin-small-top uk-text-center">{% translate " 'Un verdadero amigo es aquel que llega cuando todos se han ido.' Albert Camus" %}</span>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close"
+                    type="button">{% translate "Cancelar" %}</button>
+            <button onclick="appJS.deleteContact()" id="button_create_contact" class="uk-button uk-button-danger"
+                    data-value='{% translate "Eliminar contacto" %}' onclick=""
+                    type="button"><span class="uk-margin-small-right"
+                                        uk-icon="trash"></span>{% translate "Eliminar contacto" %}</button>
+        </div>
+    </div>
+</div>
+{# END BORRAR CONTACTO #}
 {#EDITAR CONTACTO#}
-{#<div id="modal_edit_contact" uk-modal>#}
-{#    <div class="uk-modal-dialog">#}
-{#        <button class="uk-modal-close-default" type="button" uk-close></button>#}
-{#        <div class="uk-modal-header">#}
-{#            <h2 class="uk-modal-title">{% translate "Editar" %}<span> </span><span id="edit_contact_name"#}
-{#                                                                                   class="uk-text-capitalize"></span><span> </span><span#}
-{#                    id="edit_contact_surname" class="uk-text-capitalize"></span></h2>#}
-{##}
-{#        </div>#}
-{#        <div class="uk-modal-body">#}
-{##}
-{#            <img id='image_edit_contact_modal' class="uk-border-circle image-contact" width="80" height="80"#}
-{#                 alt="{{ contact.name }} {{ contact.surnames }}" uk-img>#}
-{##}
-{#            <div id='upload_photo_edit_contact' class="uk-flex">#}
-{#                <div class="js-upload uk-placeholder ">#}
-{#                    <span uk-icon="icon: image"></span>#}
-{#                    <span class="uk-text-middle">Arraste aqui la foto de xxx o </span>#}
-{#                    <div uk-form-custom>#}
-{#                        <input type="file" multiple>#}
-{#                        <span class="uk-link">seleciona una</span>#}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#                <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress>#}
-{##}
-{#            </div>#}
-{#            <script>#}
-{#                uploadPhoto();#}
-{#            </script>#}
-{##}
-{#            <div class="uk-flex">#}
-{#                <div class="uk-width-2-4 uk-flex-first">#}
-{#                    <label class="uk-form-label ">Nombre</label>#}
-{#                    <div class="uk-form-controls">#}
-{#                        <input id='edit_contact_name_input' class="uk-input uk-form-width-medium" type="text" required>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="uk-width-2-1 uk-flex-last">#}
-{#                    <label class="uk-form-label ">Apellidos</label>#}
-{#                    <div class="uk-form-controls">#}
-{#                        <input id='edit_contact_surname_input' class="uk-input" type="text" required>#}
-{##}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{##}
-{#            <div class="uk-flex">#}
-{#                <div class="uk-width-2-4 uk-flex-first">#}
-{#                    <label class="uk-form-label ">Telefono</label>#}
-{#                    <div class="uk-form-controls">#}
-{#                        <input id='edit_contact_name_input' class="uk-input uk-form-width-medium" type="number">#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="uk-width-2-1 uk-flex-last">#}
-{#                    <label class="uk-form-label ">Ciudad</label>#}
-{#                    <div class="uk-form-controls">#}
-{#                        <input class="uk-input" name={{ form.surnames.name }} type="text">#}
-{##}
-{#                    </div>#}
-{#                </div>#}
-{##}
-{#            </div>#}
-{##}
-{##}
-{#        </div>#}
-{#        <div class="uk-modal-footer uk-text-right">#}
-{#            <button class="uk-button uk-button-default uk-modal-close"#}
-{#                    type="button">{% translate "Cancelar" %}</button>#}
-{#            <button id="button_save_contact_common" class="uk-button uk-button-primary"#}
-{#                    data-value='{% translate "Guardar" %}' onclick=""#}
-{#                    type="button">{% translate "Guardar" %}</button>#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
-{#END EDITAR CONTACTO#}
+<div id="modal_edit_contact" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">{% translate "Editar contacto" %}</h2>
+        </div>
+        <div class="uk-modal-body">
+            <form id="form_modal_edit_contact" class="uk-form-stacked">
+                <input id="id_contact" class="uk-hidden" type="text">
+                <div class="uk-flex">
+                    <div class="uk-width-2-4">
+                        <div class="uk-form-controls uk-flex uk-flex-column">
+                            <label for="input_edit_name_contact" class="uk-form-label ">{% translate "Nombre" %}</label>
+                            <input id="input_edit_name_contact" name="name_contact"
+                                   class="uk-input uk-form-width-medium uk-text-capitalize" type="text">
+                        </div>
+                    </div>
+                    <div class="uk-width-2-1">
+                        <div class="uk-form-controls uk-flex uk-flex-column">
+                            <div class="uk-flex uk-flex-between">
+                                <label for="input_edit_surnames_contact"
+                                       class="uk-form-label ">{% translate "Apellidos" %}</label>
+                                <label for="input_edit_surnames_contact"
+                                       class="uk-form-label uk-text-muted uk-margin-small-right">{% translate "Opcional" %}</label>
+                            </div>
+                            <input id="input_edit_surnames_contact" name="surname_contact"
+                                   class="uk-input uk-text-capitalize"
+                                   type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-margin-small-top">
+                    <label for="input_photo" class="uk-form-label ">{% translate "Foto de perfil" %}</label>
+                    <div uk-form-custom="target: true">
+                        <input type="file">
+                        <input id="input_photo" class="uk-input uk-form-width-medium" type="text"
+                               placeholder="Selecciona un fichero" disabled>
+                    </div>
 
+                </div>
+                <hr>
+                <div class="uk-margin">
+                    <div class="uk-width-1-1 uk-flex uk-flex-column">
+                        <div class="uk-flex uk-flex-between">
+                            <label class="uk-form-label " for="input_city_contact">{% translate "Ciudad" %}</label>
+                            <label for="input_city_contact"
+                                   class="uk-form-label uk-text-muted uk-margin-small-right">{% translate "Opcional" %}</label>
+                        </div>
+
+                        <input id="input_city_contact" class="uk-input" type="search" placeholder="">
+                        <script>
+                            appJS.searchPlaces();
+                        </script>
+                    </div>
+
+                    <div class="uk-width-1-1 uk-margin-small-top uk-flex uk-flex-column">
+                        <div class="uk-flex uk-flex-between">
+                            <label for="input_phone" class="uk-form-label ">{% translate "Telefono" %}</label>
+                            <label for="input_phone"
+                                   class="uk-form-label uk-text-muted uk-margin-small-right">{% translate "Opcional" %}</label>
+                        </div>
+                        <div class="uk-inline">
+                            <span class="uk-form-icon" uk-icon="icon: phone"></span>
+                            <input id="input_phone" class="uk-input" type="tel" placeholder="">
+                        </div>
+
+                    </div>
+                    <div class="uk-width-1-1 uk-margin-small-top uk-flex uk-flex-column">
+                        <div class="uk-flex uk-flex-between">
+                            <label for="input_mail" class="uk-form-label ">{% translate "Correo electonico" %}</label>
+                            <label for="input_mail"
+                                   class="uk-form-label uk-text-muted uk-margin-small-right">{% translate "Opcional" %}</label>
+                        </div>
+                        <div class="uk-inline">
+                            <span class="uk-form-icon" uk-icon="icon: mail"></span>
+                            <input id="input_mail" class="uk-input" type="email" placeholder="">
+                        </div>
+
+                    </div>
+                </div>
+                <hr>
+                <div class="uk-margin">
+
+                    <div class="uk-width-1-1">
+                        <label for="input_date" class="uk-form-label ">{% translate "Fecha de nacimiento" %}</label>
+
+                        <div class="uk-flex ">
+                            <div>
+                                <input id="input_date" class="uk-input" type="date" placeholder="">
+                            </div>
+                            <div class="uk-margin-left">
+                                <label class="uk-text-meta"><input id="remember_birthday" class="uk-checkbox uk-margin-small-right" type="checkbox" checked>Recordar cumpleaños</label>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div id="keep_touch_create_contact" class="uk-margin">
+                        <div class="uk-form-controls uk-flex uk-flex-column">
+                            <div class="uk-flex uk-text-middle">
+                                <label class="uk-form-label"
+                                       for="id_keep_in_touch">{% translate "Estar en contacto" %}</label>
+                                <span class="uk-margin-small-left uk-text-bottom" uk-icon="icon: info; ratio: 0.8"
+                                      uk-tooltip="title: ayuda; pos: bottom"></span>
+                            </div>
+                            {{ form_keep_in_touch }}
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close"
+                    type="button">{% translate "Cancelar" %}</button>
+            <button id="button_save_edit_contact" class="uk-button uk-button-primary"
+                    data-value='{% translate "Guardar Cambios" %}' onclick="appJS.editContact()"
+                    type="button">{% translate "Guardar Cambios" %}</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#form_modal_edit_contact').validate({
+                errorClass: "uk-form-danger uk-text-small",
+                rules: {
+                    name_contact: {
+                        required: true,
+                        minlength: 3,
+                        lettersonly: true
+                    },
+                    surname_contact: {
+                        required: false,
+                        minlength: 3,
+                        lettersonly: true
+                    },
+                    keep_in_touch: {
+                        required: true
+                    }
+                },
+                messages: {
+                    name_contact: {
+                        required: '{% translate "Campo obligatorio." %}',
+                        minlength: '{% translate "Mínimo 3 caracteres." %}',
+                        lettersonly: '{% translate "Caracteres no permitidos." %}'
+                    },
+                    surname_contact: {
+                        minlength: '{% translate "Mínimo 3 caracteres." %}',
+                        lettersonly: '{% translate "Caracteres no permitidos." %}'
+                    },
+                    keep_in_touch: {
+                        required: '{% translate "Campo obligatorio." %}'
+                    }
+                }
+            }
+        )
+    });
+</script>
+{#END EDITAR CONTACTO#}

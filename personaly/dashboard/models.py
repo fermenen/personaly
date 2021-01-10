@@ -21,16 +21,18 @@ class Contact(models.Model):
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.TextField()
-    surnames = models.TextField()
-    location = models.TextField(blank=True)
+    name = models.TextField(max_length=200)
+    surnames = models.TextField(blank=True, max_length=200)
+    image_contact = models.TextField(blank=True, null=True)
+    location = models.TextField(blank=True, null=True)
     phone = PhoneField(blank=True)
-    image_contact = models.ImageField(blank=True, upload_to='images_contacts', null=True, verbose_name='imagecontact')
+    email = models.TextField(blank=True, null=True)
+    birthday = models.DateField(blank=True, null=True)
+    remember_birthday = models.BooleanField(default=False)
     keep_in_touch = models.CharField(max_length=3, choices=in_touch)
-
     url = models.SlugField(blank=True, max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
     active = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):

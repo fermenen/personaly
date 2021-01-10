@@ -83,6 +83,26 @@ class ContactView(viewsets.ModelViewSet):
     def get_queryset(self):
         return Contact.objects.filter(owner=self.request.user, active=True)
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = request.user
+        user.contacts_active += 1
+        contact = serializer.save()
+        user.save()
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def destroy(self, request, *args, **kwargs):
+        contact = self.get_object()
+        contact.active = False
+        user = request.user
+        user.contacts_active -= 1
+        user.save()
+        contact.save()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 
 # Common Contact
 class NoteContactView(viewsets.ModelViewSet):

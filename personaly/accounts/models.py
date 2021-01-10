@@ -12,6 +12,8 @@ class User(AbstractUser):
     code_validated_mail = models.SmallIntegerField(blank=True, null=True)
 
     contacts_created = models.IntegerField(default=0, editable=False)
+
+    contacts_active = models.IntegerField(default=0, editable=False)
     note_active = models.IntegerField(default=0, editable=False)
     common_active = models.IntegerField(default=0, editable=False)
     music_active = models.IntegerField(default=0, editable=False)

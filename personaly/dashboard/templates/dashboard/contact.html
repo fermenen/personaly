@@ -20,11 +20,11 @@
             <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m">
                 <ul class="uk-iconnav btn-actions-tittle uk-flex-right">
                     <li><a class="uk-icon-link icon_trash"
-                           onclick="deleteContact('{{ contact.id }}','{{ contact.name }} {{ contact.surnames }}')"
+                           onclick="appJS.openModalDeleteContact('{{ contact.id }}', '{{ contact.name }}')"
                            uk-icon="icon: trash"
                            uk-tooltip="title: {% translate "Eliminar contacto" %}; pos: bottom-left"></a>
                     <li><a class="uk-icon-link"
-                           onclick="editContact('{{ contact.name }}','{{ contact.surnames }}')"
+                           onclick="appJS.openModalEditContact('{{ contact.id }}')"
                            uk-icon="icon: file-edit"
                            uk-tooltip="title: {% translate "Editar contacto" %}; pos: bottom-left"></a>
                 </ul>

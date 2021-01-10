@@ -6,8 +6,16 @@
 
     {% csrf_token %}
     <script src="{% static 'js/app.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
     <script>
-        let appJS = new app()
+        let appJS = new app(
+            owner = '{{ owner.id }}',
+            url_api_contact = '{% url 'api_v2:contact-list' %}',
+            message_error_create = 'Error al crear el contacto',
+            message_success_delete_contact = 'Contacto borrado con exito',
+            message_error_delete_contact = 'Error al borrar el contacto',
+            message_error_edit_contact = 'Error al editar el contacto'
+        )
     </script>
 
     {% include "app/nav_app.html" %}
