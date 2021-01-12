@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'dashboard',
     'accounts',
     'web',
-
+    'robots',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

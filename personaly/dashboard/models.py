@@ -1,6 +1,7 @@
 from django.db import models
 
 from phone_field import PhoneField
+from datetime import date
 from django.utils.text import slugify
 from accounts.models import User
 import os
@@ -55,6 +56,25 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.name} {self.surnames}"
+
+
+class ReminderContact(models.Model):
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    text = models.TextField(blank=False, max_length=255)
+    completed = models.BooleanField(default=False)
+    deadline = models.DateField(blank=True, null=True)
+
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+
+    def get_days(self):
+        if self.deadline is not None:
+            return (self.deadline - date.today()).days
+        else:
+            return None
 
 
 class TagContact(models.Model):

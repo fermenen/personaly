@@ -8,6 +8,7 @@ app_name = 'api_v2'
 
 router = DefaultRouter()
 router.register(r'contact', views.ContactView, basename='contact')
+router.register(r'reminder_contact', views.ReminderContactView, basename='reminder_contact')
 router.register(r'note_contact', views.NoteContactView, basename='note_contact')
 router.register(r'common_contact', views.CommonContactView, basename='common_contact')
 router.register(r'music_contact', views.MusicContactView, basename='music_contact')

@@ -1,6 +1,6 @@
 <div class="uk-margin-large-top">
     <ul class="uk-child-width-expand" uk-tab>
-        <li><a href="#"><span class="uk-margin-small-right" uk-icon="future"></span>Recordatorios</a></li>
+        <li><a href="#"><span class="uk-margin-small-right" uk-icon="calendar"></span>Recordatorios</a></li>
     </ul>
 
     <ul class="uk-switcher uk-margin">
@@ -14,58 +14,47 @@
                 <span>Mantén un seguimiento con {{ contact.name }} creando un recordatorio.</span>
             </div>
 
-            <ul class="uk-list uk-list-divider">
-                <li><div class="uk-flex uk-flex-middle ">
-                        <div class="uk-margin-small-right"><input class="uk-checkbox" type="checkbox" uk-tooltip="complete" checked="" title=""
-                                    aria-expanded="false"></div>
-                        <div class="uk-width-expand uk-margin-small-right"><input class="uk-input uk-form-blank" type="text" name="title"
-                                                            value="Hablarle de la cueta de nsta"></div>
-                        <ul class="uk-iconnav">
-                            <li><a href="#" uk-icon="icon: plus"></a></li>
-                            <li><a href="#" uk-icon="icon: file-edit"></a></li>
-                            <li><a href="#" uk-icon="icon: copy"></a></li>
-                            <li><a href="#" uk-icon="icon: trash"></a></li>
-                        </ul>
-                    </div></li>
-                <li>
-                    <div class="uk-flex uk-flex-middle ">
-                        <div class="uk-margin-small-right"><input class="uk-checkbox" type="checkbox" uk-tooltip="complete" checked="" title=""
-                                    aria-expanded="false"></div>
-                        <div class="uk-flex uk-flex-column uk-width">
-                            <div class="uk-width-expand uk-margin-small-right"><input class="uk-input uk-form-blank uk-h3 uk-text-capitalize" type="text" name="title"
-                                                            value="et porro tempora"></div>
-                            <span class="uk-text-meta uk-margin-small-left">22 de Enero -<span class="uk-text-small text-blue3"> Quedan 3 dias</span></span>
+            <div id="component_all_reminder" class="uk-margin-top">
+                <ul class="uk-list uk-list-divider">
+                    {% for reminder in list_reminder %}
+                        <li id="{{ reminder.id }}">
+                            <div class="uk-flex uk-flex-middle uk-visible-toggle" tabindex="-1">
+                                <div class="uk-margin-small-right"><input class="uk-checkbox" type="checkbox"
+                                                                          uk-tooltip="complete"
+                                                                          {% if reminder.completed %}checked{% endif %}
+                                                                          aria-expanded="false"></div>
+                                <div class="uk-flex uk-flex-column uk-width">
+                                    <div class="uk-width-expand uk-margin-small-right"><input
+                                            class="uk-input uk-form-blank uk-h3 uk-sticky"
+                                            type="text" name="title" value="{{ reminder.text | capfirst}}"></div>
+                                    {% if reminder.deadline %}
+                                        <div class="uk-flex uk-flex-inline uk-flex-middle">
+                                            <span class="uk-text-meta uk-margin-small-left">{{ reminder.deadline |date:"j \d\e F" }}</span>
+                                            <span class="uk-text-meta">&nbsp;-&nbsp;</span>
+                                            {% if  reminder.get_days == 0 %}
+                                                <span class="uk-text-small uk-text-bold text-blue3">Hoy</span>
+                                            {% elif reminder.get_days > 0 %}
+                                                <span class="uk-text-small text-blue3">Quedan {{ reminder.get_days }} dias</span>
+                                            {% elif reminder.get_days < 0 %}
+                                                <span class="uk-text-small uk-text-warning">Tarea atrasada</span>
+                                            {% endif %}
 
-                        </div>
-                        <ul class="uk-iconnav uk-width-small">
-                            <li><a href="#" uk-icon="icon: plus"></a></li>
-                            <li><a href="#" uk-icon="icon: file-edit"></a></li>
-                            <li><a href="#" uk-icon="icon: copy"></a></li>
-                            <li><a href="#" uk-icon="icon: trash"></a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <div class="uk-flex uk-flex-middle uk-visible-toggle" tabindex="-1">
-                        <div class="uk-margin-small-right"><input class="uk-checkbox" type="checkbox" uk-tooltip="complete" checked="" title=""
-                                    aria-expanded="false"></div>
-                        <div class="uk-flex uk-flex-column uk-width">
-                            <div class="uk-width-expand uk-margin-small-right"><input class="uk-input uk-form-blank uk-h3 uk-text-capitalize uk-sticky" type="text" name="title"
-                                                            value="llmada uregnete"></div>
-                            <span class="uk-text-meta uk-margin-small-left">12 de Diciembre -<span class="uk-text-small uk-text-warning"> Tarea atrasada</span></span>
+                                        </div>
 
-                        </div>
-                        <ul class="uk-iconnav uk-invisible-hover uk-width-small">
-                            <li><a href="#" uk-icon="icon: plus"></a></li>
-                            <li><a href="#" uk-icon="icon: file-edit"></a></li>
-                            <li><a href="#" uk-icon="icon: copy"></a></li>
-                            <li><a href="#" uk-icon="icon: trash"></a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
+                                    {% endif %}
 
+                                </div>
+                                <ul class="uk-iconnav uk-invisible-hover uk-width-small uk-margin-small-left">
+                                    <li><a href="#" class="icon_trash" uk-icon="icon: trash"></a></li>
+                                    <li><a href="#" class="icon_app" uk-icon="icon: future"></a></li>
+                                    <li><a href="#" class="icon_app" uk-icon="icon: file-edit"></a></li>
+                                </ul>
+                            </div>
+                        </li>
 
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </ul>
 </div>

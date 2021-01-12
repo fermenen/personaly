@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-08 13:14+0100\n"
+"POT-Creation-Date: 2021-01-11 17:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,145 +18,153 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: dashboard/models.py:16
+#: dashboard/models.py:17
 msgid "Cada semana"
 msgstr ""
 
-#: dashboard/models.py:17
+#: dashboard/models.py:18
 msgid "Cada dos semana"
 msgstr ""
 
-#: dashboard/models.py:18
+#: dashboard/models.py:19
 msgid "Una vez al mes"
 msgstr ""
 
-#: dashboard/models.py:19
+#: dashboard/models.py:20
 msgid "Cada dos meses"
 msgstr ""
 
-#: dashboard/models.py:20
+#: dashboard/models.py:21
 msgid "No recordar"
 msgstr ""
 
-#: dashboard/models.py:129
+#: dashboard/models.py:151
 msgid "Relaciones amorosas"
 msgstr ""
 
-#: dashboard/models.py:130
+#: dashboard/models.py:152
 msgid "Esposo / esposa"
 msgstr ""
 
-#: dashboard/models.py:131
+#: dashboard/models.py:153
 msgid "Amante"
 msgstr ""
 
-#: dashboard/models.py:132
+#: dashboard/models.py:154
 msgid "Ex - novio / novia"
 msgstr ""
 
-#: dashboard/models.py:135
+#: dashboard/models.py:157
 msgid "Relaciones familiares"
 msgstr ""
 
-#: dashboard/models.py:136
+#: dashboard/models.py:158
 msgid "Hijo / hija"
 msgstr ""
 
-#: dashboard/models.py:137
+#: dashboard/models.py:159
 msgid "Hermano / hermana"
 msgstr ""
 
-#: dashboard/models.py:138
+#: dashboard/models.py:160
 msgid "Abuelo / abuela"
 msgstr ""
 
-#: dashboard/models.py:139
+#: dashboard/models.py:161
 msgid "Nieto / nieta"
 msgstr ""
 
-#: dashboard/models.py:140
+#: dashboard/models.py:162
 msgid "Tío / tía"
 msgstr ""
 
-#: dashboard/models.py:141
+#: dashboard/models.py:163
 msgid "Sobrino / sobrina"
 msgstr ""
 
-#: dashboard/models.py:142
+#: dashboard/models.py:164
 msgid "Primo / prima"
 msgstr ""
 
-#: dashboard/models.py:143
+#: dashboard/models.py:165
 msgid "Padrino / madrina"
 msgstr ""
 
-#: dashboard/models.py:144
+#: dashboard/models.py:166
 msgid "Ahijado / ahijada"
 msgstr ""
 
-#: dashboard/models.py:145
+#: dashboard/models.py:167
 msgid "Padrastro / madrastra"
 msgstr ""
 
-#: dashboard/models.py:146
+#: dashboard/models.py:168
 msgid "Hijastro / hijastra"
 msgstr ""
 
-#: dashboard/models.py:149
+#: dashboard/models.py:171
 msgid "Relaciones de amistad"
 msgstr ""
 
-#: dashboard/models.py:150
+#: dashboard/models.py:172
 msgid "Amigo / amiga"
 msgstr ""
 
-#: dashboard/models.py:151
+#: dashboard/models.py:173
 msgid "Mejor amigo / amiga"
 msgstr ""
 
-#: dashboard/models.py:152
+#: dashboard/models.py:174
 msgid "Ex - novio"
 msgstr ""
 
-#: dashboard/models.py:155
+#: dashboard/models.py:177
 msgid "Relaciones de laborales"
 msgstr ""
 
-#: dashboard/models.py:156
+#: dashboard/models.py:178
 msgid "Compañero / compañera"
 msgstr ""
 
-#: dashboard/models.py:157
+#: dashboard/models.py:179
 msgid "Jefe / jefa"
 msgstr ""
 
 #: dashboard/templates/dashboard/contact.html:25
-#: dashboard/templates/dashboard/contacts_list.html:83
+#: dashboard/templates/dashboard/contacts_list.html:89
+#: dashboard/templates/dashboard/modals.html:105
+#: dashboard/templates/dashboard/modals.html:118
+#: dashboard/templates/dashboard/modals.html:120
 msgid "Eliminar contacto"
 msgstr ""
 
 #: dashboard/templates/dashboard/contact.html:29
-#: dashboard/templates/dashboard/contacts_list.html:85
+msgid "Editar etiquetas"
+msgstr ""
+
+#: dashboard/templates/dashboard/contact.html:33
+#: dashboard/templates/dashboard/contacts_list.html:93
+#: dashboard/templates/dashboard/modals.html:130
 msgid "Editar contacto"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:40
+#: dashboard/templates/dashboard/contact.html:44
 msgid "Notas"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:42
+#: dashboard/templates/dashboard/contact.html:46
 msgid "En común"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:45
+#: dashboard/templates/dashboard/contact.html:49
 msgid "Experiencias"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:48
+#: dashboard/templates/dashboard/contact.html:52
 msgid "Música"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:51
+#: dashboard/templates/dashboard/contact.html:55
 msgid "Familia"
 msgstr ""
 
@@ -192,6 +200,8 @@ msgstr ""
 #: dashboard/templates/dashboard/contact/contact_music.html:120
 #: dashboard/templates/dashboard/contact/contact_notes.html:93
 #: dashboard/templates/dashboard/modals.html:53
+#: dashboard/templates/dashboard/modals.html:116
+#: dashboard/templates/dashboard/modals.html:241
 msgid "Cancelar"
 msgstr ""
 
@@ -211,8 +221,10 @@ msgstr ""
 #: dashboard/templates/dashboard/contact/contact_family.html:132
 #: dashboard/templates/dashboard/contact/contact_music.html:143
 #: dashboard/templates/dashboard/contact/contact_notes.html:117
-#: dashboard/templates/dashboard/modals.html:77
-#: dashboard/templates/dashboard/modals.html:81
+#: dashboard/templates/dashboard/modals.html:83
+#: dashboard/templates/dashboard/modals.html:92
+#: dashboard/templates/dashboard/modals.html:270
+#: dashboard/templates/dashboard/modals.html:279
 msgid "Campo obligatorio."
 msgstr ""
 
@@ -221,7 +233,10 @@ msgstr ""
 #: dashboard/templates/dashboard/contact/contact_family.html:135
 #: dashboard/templates/dashboard/contact/contact_music.html:144
 #: dashboard/templates/dashboard/contact/contact_notes.html:118
-#: dashboard/templates/dashboard/modals.html:78
+#: dashboard/templates/dashboard/modals.html:84
+#: dashboard/templates/dashboard/modals.html:88
+#: dashboard/templates/dashboard/modals.html:271
+#: dashboard/templates/dashboard/modals.html:275
 msgid "Mínimo 3 caracteres."
 msgstr ""
 
@@ -280,16 +295,22 @@ msgstr ""
 
 #: dashboard/templates/dashboard/contact/contact_family.html:71
 #: dashboard/templates/dashboard/modals.html:17
+#: dashboard/templates/dashboard/modals.html:138
 msgid "Nombre"
 msgstr ""
 
 #: dashboard/templates/dashboard/contact/contact_family.html:80
 #: dashboard/templates/dashboard/modals.html:26
+#: dashboard/templates/dashboard/modals.html:147
 msgid "Apellidos"
 msgstr ""
 
 #: dashboard/templates/dashboard/contact/contact_family.html:82
 #: dashboard/templates/dashboard/modals.html:28
+#: dashboard/templates/dashboard/modals.html:149
+#: dashboard/templates/dashboard/modals.html:172
+#: dashboard/templates/dashboard/modals.html:185
+#: dashboard/templates/dashboard/modals.html:197
 msgid "Opcional"
 msgstr ""
 
@@ -368,23 +389,45 @@ msgid "Maximo 350 caracteres."
 msgstr ""
 
 #: dashboard/templates/dashboard/contacts_list.html:4
-#: dashboard/templates/dashboard/contacts_list.html:18
+#: dashboard/templates/dashboard/contacts_list.html:13
 msgid "Contactos"
-msgstr ""
+msgstr "Contactos"
 
 #: dashboard/templates/dashboard/contacts_list.html:14
-#: dashboard/templates/dashboard/contacts_list.html:31
+#: dashboard/templates/dashboard/contacts_list.html:26
 #: dashboard/templates/dashboard/modals.html:7
 msgid "Añadir contacto"
 msgstr ""
 
-#: dashboard/templates/dashboard/contacts_list.html:87
+#: dashboard/templates/dashboard/contacts_list.html:21
+msgid ""
+"Aún no tienes contactos en personaly, añádelos y empieza a simplificar tu "
+"vida."
+msgstr ""
+
+#: dashboard/templates/dashboard/contacts_list.html:44
+msgid "Orden - Nombre [A-Z]"
+msgstr ""
+
+#: dashboard/templates/dashboard/contacts_list.html:95
 msgid "Programar"
 msgstr ""
 
-#: dashboard/templates/dashboard/index.html:14
+#: dashboard/templates/dashboard/index.html:4
+msgid "Inicio"
+msgstr "Início"
+
+#: dashboard/templates/dashboard/index.html:13
 msgid "Hoy"
 msgstr "Hoje"
+
+#: dashboard/templates/dashboard/index.html:17
+msgid "Próximos"
+msgstr "Próximos"
+
+#: dashboard/templates/dashboard/index.html:27
+msgid "No tienes ningún recordatorio para hoy, descansa y disfruta del día."
+msgstr "Não tem nenhum lembrete para hoje, apenas descanse e aproveite o dia."
 
 #: dashboard/templates/dashboard/legal/code_conduct.html:4
 #: dashboard/templates/dashboard/legal/code_conduct.html:12
@@ -402,6 +445,7 @@ msgid "Política de Privacidad"
 msgstr ""
 
 #: dashboard/templates/dashboard/modals.html:40
+#: dashboard/templates/dashboard/modals.html:229
 msgid "Estar en contacto"
 msgstr ""
 
@@ -410,14 +454,58 @@ msgstr ""
 msgid "Crear contacto"
 msgstr ""
 
+#: dashboard/templates/dashboard/modals.html:85
+#: dashboard/templates/dashboard/modals.html:89
+#: dashboard/templates/dashboard/modals.html:272
+#: dashboard/templates/dashboard/modals.html:276
+msgid "Caracteres no permitidos."
+msgstr ""
+
+#: dashboard/templates/dashboard/modals.html:109
+msgid "¿Estás seguro que quieres eliminar a"
+msgstr ""
+
+#: dashboard/templates/dashboard/modals.html:111
+msgid ""
+"Todos los datos relacionados serán eliminados y esta acción no puede "
+"deshacerse."
+msgstr ""
+
+#: dashboard/templates/dashboard/modals.html:112
+msgid ""
+" 'Un verdadero amigo es aquel que llega cuando todos se han ido.' Albert "
+"Camus"
+msgstr ""
+
+#: dashboard/templates/dashboard/modals.html:158
+msgid "Foto de perfil"
+msgstr ""
+
+#: dashboard/templates/dashboard/modals.html:170
+msgid "Ciudad"
+msgstr ""
+
+#: dashboard/templates/dashboard/modals.html:183
+msgid "Telefono"
+msgstr ""
+
+#: dashboard/templates/dashboard/modals.html:195
+msgid "Correo electonico"
+msgstr ""
+
+#: dashboard/templates/dashboard/modals.html:210
+msgid "Fecha de nacimiento"
+msgstr ""
+
+#: dashboard/templates/dashboard/modals.html:243
+#: dashboard/templates/dashboard/modals.html:244
+msgid "Guardar Cambios"
+msgstr ""
+
 #: dashboard/templates/dashboard/settings.html:4
 #: dashboard/templates/dashboard/settings.html:14
 msgid "Ajustes"
-msgstr ""
-
-#: dashboard/urls.py:7
-msgid "contactos/"
-msgstr ""
+msgstr "Ajustes"
 
 #~ msgid "Puntación"
 #~ msgstr "Pontuação"

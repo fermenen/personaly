@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 from accounts.models import User
 
-from dashboard.models import NoteContact, ThingCommonContact, MusicContact, FamilyContact, Contact
+from dashboard.models import NoteContact, ThingCommonContact, MusicContact, FamilyContact, Contact, ReminderContact
 from spotipy import SpotifyClientCredentials
 
 
@@ -101,6 +101,14 @@ class ContactSerializer(serializers.ModelSerializer):
         fields = (
         'id', 'name', 'surnames', 'image_contact', 'location', 'phone', 'email', 'birthday', 'remember_birthday',
         'keep_in_touch', 'owner')
+
+
+class ReminderContactSerializer(serializers.ModelSerializer):
+    days = serializers.IntegerField(source='get_days', read_only=True)
+
+    class Meta:
+        model = ReminderContact
+        fields = ('id', 'text', 'completed', 'deadline', 'days', 'contact')
 
 
 class NoteContactSerializer(serializers.ModelSerializer):

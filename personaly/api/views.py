@@ -62,10 +62,6 @@ class CheckCodeMailUser(APIView):
             return JsonResponse({'ok': 'codigo incorrecto'}, status=404)
 
 
-
-
-
-
 class UploadPhoto(APIView):
 
     def post(self, request):
@@ -103,8 +99,16 @@ class ContactView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+# Reminder Contact
+class ReminderContactView(viewsets.ModelViewSet):
+    serializer_class = ReminderContactSerializer
+    http_method_names = ['get', 'post', 'put', 'delete']
 
-# Common Contact
+    def get_queryset(self):
+        return ReminderContact.objects.filter(owner=self.request.user, active=True)
+
+
+# Note Contact
 class NoteContactView(viewsets.ModelViewSet):
     serializer_class = NoteContactSerializer
     http_method_names = ['get', 'post', 'delete']

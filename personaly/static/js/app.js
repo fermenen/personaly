@@ -1,6 +1,8 @@
 class app {
 
     constructor(owner, url_api_contact, message_error_create, message_success_delete_contact, message_error_delete_contact, message_error_edit_contact) {
+        console.log('%cADVERTENCIA WARNING', 'background: #ee395b; color: #DFEDF2; font-size: 21px');
+        console.log('%cSi utilizas esta consola, otras personas podrían hacerse pasar por ti y robarte datos mediante un ataque llamado Self-XSS', 'background: #ee395b; color: #05C7F2; font-size: 16px');
         jQueryValidators();
         this.csrftoken = $("input[name=csrfmiddlewaretoken]").val();
         this.owner = owner;

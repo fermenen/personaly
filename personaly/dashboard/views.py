@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 import datetime
+from datetime import date
 from dashboard.models import *
 from .forms import RelationTypeForm, KeepTouchForm
 from django.shortcuts import get_object_or_404
@@ -9,7 +10,6 @@ from django.shortcuts import get_object_or_404
 @login_required
 def index(request):
     date = datetime.date.today()
-
     return render(request, 'dashboard/index.html', {'date_today': date})
 
 
@@ -36,6 +36,8 @@ def contact_view(request, url):
         owner = request.user
         contact = get_object_or_404(Contact, url=url, owner=owner, active=True)
         list_tags = TagContact.objects.filter(owner=owner, contact=contact)
+        list_reminder = ReminderContact.objects.filter(contact=contact, owner=owner, active=True).order_by(
+            '-created_at')
         list_notes = NoteContact.objects.filter(contact=contact, owner=owner, active=True).order_by('-created_at')
         list_common = ThingCommonContact.objects.filter(contact=contact, owner=owner, active=True)
         list_experiences = ExperienceContact.objects.filter(contact=contact, owner=owner, active=True)
@@ -47,6 +49,7 @@ def contact_view(request, url):
         data = {'owner': owner,
                 'contact': contact,
                 'tags_list': list_tags,
+                'list_reminder': list_reminder,
                 'list_notes': list_notes,
                 'count_list_notes': list_notes.count(),
                 'list_common': list_common,

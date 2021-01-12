@@ -7,15 +7,11 @@
 
     <div class="container-app uk-container uk-container-large">
         <div class="uk-flex uk-flex-center">
-            <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m">
+            <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m uk-animation-fade">
 
-                <ul class="uk-iconnav btn-actions-tittle uk-flex-right">
-                    <li><a href="#modal_create_contact" class="uk-icon-link" uk-icon="icon: plus"
-                           uk-tooltip="title: {% translate "Añadir contacto" %}; pos: bottom-left" uk-toggle></a>
-                </ul>
-
-                <div class="card-title uk-flex-inline uk-margin-left">
+                <div id="title_contact_list" class="card-title uk-flex uk-flex-between uk-flex-middle uk-margin-left uk-width">
                     <h1 class="uk-heading-medium">{% translate "Contactos" %}</h1>
+                    <button class="uk-button uk-button-default uk-button-small uk-margin-small-right uk-text-middle"><span uk-icon="icon: plus; ratio: 0.85"></span>&nbsp;&nbsp;{% translate "Añadir contacto" %}</button>
                 </div>
 
                 <div id="text_contact_list" class="uk-container uk-hidden">
@@ -49,7 +45,7 @@
                     </div>
                     {% for contact in list_contacts %}
                         <div id="{{ contact.id }}"
-                             class="uk-flex uk-flex-between uk-flex-middle uk-visible-toggle app-button-contact uk-margin-bottom"
+                             class="uk-flex uk-flex-middle uk-flex-between uk-visible-toggle app-button-contact uk-margin-bottom"
                              tabindex="-1">
                             <div id="photo_name_tags_contact" class="uk-margin-left uk-flex">
                                 <div id="photo_contact">
@@ -67,16 +63,16 @@
                                                 alt="{{ contact.name }} {{ contact.surnames }}" uk-img></a>
                                     {% endif %}
                                 </div>
-                                <div id="name_contact">
+                                <div id="name_contact" class="uk-flex uk-flex-middle">
                                     <a class="uk-margin-left uk-margin-right"
                                        href={% url 'contact' contact.url %}><span
                                             class="uk-h5 text-button-contact uk-text-middle">{{ contact.name | capfirst }} {{ contact.surnames | capfirst }}</span></a>
                                 </div>
-                                <div id="tags_contact" class="uk-visible@l">
+                                <div id="tags_contact" class="uk-visible@l uk-flex uk-flex-middle">
                                     {% for tag in tags_list %}
                                         <div class="uk-flex uk-flex-inline">
                                             {% if tag.contact == contact %}
-                                                <div class="uk-label tag-contact uk-text-middle">
+                                                <div class="uk-label tag-contact uk-text- uk-margin-small-right">
                                                     <span class="uk-margin-small-right">{{ tag.icon }}</span>
                                                     <span class="">{{ tag.text }}</span>
                                                 </div>
@@ -91,7 +87,8 @@
                                         <a onclick="appJS.openModalDeleteContact('{{ contact.id }}', '{{ contact.name }}')"
                                            class="uk-icon-linl icon_trash" uk-icon="icon: trash"
                                            uk-tooltip="title: {% translate "Eliminar contacto" %}; pos: bottom"></a>
-                                    <li><a onclick="appJS.openModalEditContact('{{ contact.id }}')" class="uk-icon-link icon_app"
+                                    <li><a onclick="appJS.openModalEditContact('{{ contact.id }}')"
+                                           class="uk-icon-link icon_app"
                                            uk-icon="file-edit"
                                            uk-tooltip="title: {% translate "Editar contacto" %}; pos: bottom"></a>
                                     <li><a href="#" class="uk-icon-link icon_app" uk-icon="future"
