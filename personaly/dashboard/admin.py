@@ -6,13 +6,18 @@ from dashboard.models import Contact, ThingCommonContact, MusicContact, FamilyCo
 admin.site.register(TagContact)
 admin.site.register(NoteContact)
 admin.site.register(ExperienceContact)
-admin.site.register(ReminderContact)
 
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "surnames", "created_at", "active", "owner")
     list_filter = ("owner", "active")
+
+
+@admin.register(ReminderContact)
+class ReminderContact(admin.ModelAdmin):
+    list_display = ("id", "text", "completed", 'deadline', "created_at", "active", "owner")
+    list_filter = ("owner", "active", "completed")
 
 
 @admin.register(ThingCommonContact)

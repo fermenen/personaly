@@ -100,11 +100,11 @@ class ContactSerializer(serializers.ModelSerializer):
         model = Contact
         fields = (
         'id', 'name', 'surnames', 'image_contact', 'location', 'phone', 'email', 'birthday', 'remember_birthday',
-        'keep_in_touch', 'owner')
+        'keep_in_touch', 'url')
 
 
 class ReminderContactSerializer(serializers.ModelSerializer):
-    days = serializers.IntegerField(source='get_days', read_only=True)
+    contact = ContactSerializer(read_only=True)
 
     class Meta:
         model = ReminderContact

@@ -1,11 +1,15 @@
 import os
-import spotipy
 
+import django_filters
+import spotipy
+from django_filters.rest_framework import DjangoFilterBackend
+from django_filters import rest_framework as filters
 from rest_framework import status
+from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import viewsets
-
+from django_property_filter import PropertyFilterSet, PropertyNumberFilter
 from spotipy.oauth2 import SpotifyClientCredentials
 
 from django.contrib.auth import login
@@ -99,13 +103,27 @@ class ContactView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class ReminderContactFilter(PropertyFilterSet):
+    lte_days = PropertyNumberFilter(field_name='days', lookup_expr='lte')
+    gte_days = PropertyNumberFilter(field_name='days', lookup_expr='gte')
+    days = PropertyNumberFilter(field_name='days', lookup_expr='exact')
+
+    class Meta:
+        model = ReminderContact
+        fields = ['completed', 'gte_days']
+
+
 # Reminder Contact
 class ReminderContactView(viewsets.ModelViewSet):
     serializer_class = ReminderContactSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_class = ReminderContactFilter
+    ordering_fields = ['deadline', 'completed']
     http_method_names = ['get', 'post', 'put', 'delete']
 
     def get_queryset(self):
-        return ReminderContact.objects.filter(owner=self.request.user, active=True)
+        queryset = ReminderContact.objects.filter(owner=self.request.user, active=True)
+        return queryset
 
 
 # Note Contact

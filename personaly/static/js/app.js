@@ -7,6 +7,7 @@ class app {
         this.csrftoken = $("input[name=csrfmiddlewaretoken]").val();
         this.owner = owner;
         this.url_api_contact = url_api_contact
+        this.message_error_generic = 'Error interno';
         this.message_error_create = message_error_create;
         this.message_success_delete_contact = message_success_delete_contact;
         this.message_error_delete_contact = message_error_delete_contact;
@@ -16,6 +17,10 @@ class app {
     }
 
     count_contact;
+
+    page_ready() {
+        $('#loading_app').addClass('uk-hidden')
+    }
 
     get getCsrftoken() {
         return this.csrftoken;
@@ -149,7 +154,7 @@ class app {
     }
 
 
-        editContact() {
+    editContact() {
         let button_save = '#button_save_edit_contact'
         let form_modal_edit_contact = '#form_modal_edit_contact'
         let id_contact = $("#form_modal_edit_contact input[id=id_contact]").text()
@@ -162,13 +167,13 @@ class app {
                 headers: {"X-CSRFToken": this.getCsrftoken},
                 data: {
                     name: $("#form_modal_edit_contact input[id=input_edit_name_contact]").val(),
-                    surnames:   $("#form_modal_edit_contact input[id=input_edit_surnames_contact]").val(),
-                    location:  $("#form_modal_edit_contact input[id=input_city_contact]").val(),
-                    phone:  $("#form_modal_edit_contact input[id=input_phone]").val(),
+                    surnames: $("#form_modal_edit_contact input[id=input_edit_surnames_contact]").val(),
+                    location: $("#form_modal_edit_contact input[id=input_city_contact]").val(),
+                    phone: $("#form_modal_edit_contact input[id=input_phone]").val(),
                     email: $("#form_modal_edit_contact input[id=input_mail]").val(),
-                    birthday:  $("#form_modal_edit_contact input[id=input_date]").val(),
+                    birthday: $("#form_modal_edit_contact input[id=input_date]").val(),
                     remember_birthday: $("#form_modal_edit_contact input[id=remember_birthday]").val(),
-                    keep_in_touch:  $("#form_modal_edit_contact select[id=id_keep_in_touch]").val(),
+                    keep_in_touch: $("#form_modal_edit_contact select[id=id_keep_in_touch]").val(),
                     contact: id_contact,
                     owner: this.getOwner,
                 },

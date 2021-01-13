@@ -8,6 +8,7 @@
     <script src="{% static 'js/app.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
     <script src="{% static 'vendor/jquery_templating/js/jquery.loadTemplate.min.js' %}"></script>
+    <script src="{% url 'js_urls' %}" type="text/javascript"></script>
     <script>
         let appJS = new app(
             owner = '{{ owner.id }}',
@@ -21,6 +22,13 @@
 
     {% include "app/nav_app.html" %}
     <body id="app">
+
+    <div id="loading_app" class="uk-flex uk-flex-center uk-margin-top">
+        <img class="uk-preserve uk-width-small" width="400"
+             src="{% static 'img/app/loading.svg' %}" alt="" uk-svg>
+    </div>
+
+
     {% block content_main %}{% endblock %}
     </body>
 

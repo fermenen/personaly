@@ -12,7 +12,6 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Contact(models.Model):
-
     in_touch = [
         ('001', _('Cada semana')),
         ('001', _('Cada dos semana')),
@@ -59,18 +58,17 @@ class Contact(models.Model):
 
 
 class ReminderContact(models.Model):
-
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     text = models.TextField(blank=False, max_length=255)
     completed = models.BooleanField(default=False)
     deadline = models.DateField(blank=True, null=True)
-
-    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
+    contact = models.ForeignKey(Contact, related_name='contact', on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
 
-    def get_days(self):
+    @property
+    def days(self):
         if self.deadline is not None:
             return (self.deadline - date.today()).days
         else:
@@ -189,4 +187,3 @@ class FamilyContact(models.Model):
     name = models.TextField()
     surnames = models.TextField(blank=True)
     relation_type = models.CharField(max_length=3, choices=relation_choices)
-

@@ -20,11 +20,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
 from django.conf.urls.static import static
+from js_urls.views import JsUrlsView
 
 urlpatterns = [
     url(r'^robots\.txt', include('robots.urls')),
     path('api/', include('api.urls')),
-    path('accounts/', include('allauth.urls'))
+    path('accounts/', include('allauth.urls')),
+    url(r'^js-urls/$', JsUrlsView.as_view(), name='js_urls'),
 ]
 
 urlpatterns += i18n_patterns(

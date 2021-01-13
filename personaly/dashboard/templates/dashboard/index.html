@@ -10,7 +10,9 @@
             url_api_family = '{% url 'api_v2:reminder_contact-list' %}',
         )
     </script>
-    <div class="container-app uk-container uk-container-large">
+
+
+    <div id="dashboard_today" class="container-app uk-container uk-container-large uk-hidden">
         <div class="uk-flex uk-flex-center">
             <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m uk-animation-fade">
                 <div class="card-title uk-width uk-flex uk-flex-inline uk-flex-between uk-margin-left uk-margin-bottom uk-flex-middle">
@@ -19,57 +21,117 @@
                         <div><span class="uk-margin-small-left">{{ date_today | date:"D j b" | lower }}</span></div>
                     </div>
                     <div>
-                        <button class="uk-button uk-button-default uk-button-small uk-margin-small-right uk-text-middle">
+                        <button onclick="dashboardJS.set_next()" href="#next" id="button_dashboard_next"
+                                class="uk-button uk-button-default uk-button-small uk-margin-small-right uk-text-middle uk-hidden">
                             <span uk-icon="icon: future; ratio: 0.85"></span>&nbsp;&nbsp;{% translate "Próximos" %}
                         </button>
                     </div>
                 </div>
-
-
                 <div id="text_reminder_dashboard" class="uk-flex uk-flex-column">
                     <div class="uk-text-center">
                         <img class="uk-preserve uk-width-medium " width="400"
                              src="{% static 'img/app/no_reminder.svg' %}" alt="" uk-svg>
                     </div>
                     <span class="uk-text-center uk-margin-top uk-margin-bottom ">{% translate "No tienes ningún recordatorio para hoy, descansa y disfruta del día." %}</span>
-                    <script>
-                        appJS.textVisible(dashboardJS.count_reminder, '#text_reminder_dashboard')
-                    </script>
                 </div>
-
-                <div id="component_all_reminder" class="uk-card-body uk-hidden">
-                    <ul id="list_reminder_dashboard" class="uk-list uk-list-divider">
-                        <script type="text/html" id="template_item_reminder">
-                            <li data-id="id_reminder">
-                                <div class="uk-flex uk-flex-middle uk-visible-toggle" tabindex="-1">
-                                    <div class="uk-margin-small-right"><input class="uk-checkbox" type="checkbox"
-                                                                              uk-tooltip="complete"
-                                                                              aria-expanded="false"></div>
-                                    <div class="uk-flex uk-flex-inline uk-flex-middle uk-width">
-                                        <a href=""><span class="text-blue3" data-content-text="contact"></span></a>
-                                        <div class="uk-margin-small-left uk-width-expand uk-margin-small-right">
-                                            <input class="uk-input uk-form-blank uk-h3 uk-sticky" type="text"
-                                                   name="title"
-                                                   data-value="reminder_text">
-                                        </div>
-                                    </div>
-                                    <ul class="uk-iconnav uk-invisible-hover uk-width-small uk-flex-right">
-                                        <li><a href="#" class="icon_trash" uk-icon="icon: trash"></a></li>
-                                        <li><a href="#" class="icon_app" uk-icon="icon: future"></a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </script>
+                <div id="component_all_reminder" class="uk-card-body uk-hidden" style="padding-top: 30px">
+                    <ul id="list_reminder_dashboard_today" class="uk-list uk-list-divider">
                     </ul>
-                    <script>
-                        appJS.textInVisible(dashboardJS.count_reminder, '#component_all_reminder')
-                    </script>
                 </div>
-
-
             </div>
         </div>
     </div>
 
+    <div id="dashboard_next" class="container-app uk-container uk-container-large uk-hidden">
+        <div class="uk-flex uk-flex-center">
+            <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m uk-animation-fade">
+                <div class="card-title uk-width uk-flex uk-flex-inline uk-flex-between uk-margin-left uk-margin-bottom uk-flex-middle">
+                    <div class="uk-flex uk-flex-middle">
+                        <div><span class="uk-heading-medium uk-h1">{% translate "Próximo" %}</span></div>
+                    </div>
+                    <div>
+                        <button onclick="dashboardJS.set_today()" href="#next" id="button_dashboard_today"
+                                class="uk-button uk-button-default uk-button-small uk-margin-small-right uk-text-middle">
+                            <span uk-icon="icon: calendar; ratio: 0.85"></span>&nbsp;&nbsp;{% translate "Hoy" %}
+                        </button>
+                    </div>
+                </div>
+                <span class="uk-text-meta uk-margin-left"><span
+                        uk-icon="arrow-down"></span><span>{% translate "Orden - Fecha de vencimiento" %}</span></span>
+                <div id="component_all_reminder_next" class="uk-card-body" style="padding-top: 30px">
+                    <ul id="list_reminder_dashboard_next" class="uk-list uk-list-divider">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/html" id="template_item_reminder">
+        <li data-id="id_reminder">
+            <div class="uk-flex uk-flex-middle uk-visible-toggle" tabindex="-1">
+                <div class="uk-margin-right"><input class="uk-checkbox" type="checkbox" uk-tooltip="complete"
+                                                    aria-expanded="false"></div>
+
+
+                <div class="uk-flex uk-flex-column uk-width">
+                    <div class="uk-flex uk-flex-inline uk-flex-middle uk-width">
+                        <div class="uk-width-small">
+                            <div class="uk-text-truncate text-blue3"><a data-href="contact_href"
+                                                                        class="text-blue3"><span
+                                    data-content-text="contact_name"></span>&nbsp;<span
+                                    data-content-text="contact_surname"></span></a></div>
+                        </div>
+                        <div class="uk-width uk-margin-small-left uk-margin-small-right">
+                            <input class="uk-input uk-form-blank uk-h3 uk-sticky" type="text" name="title"
+                                   data-value="reminder_text">
+                        </div>
+                    </div>
+                    <div class="uk-text-meta uk-text-warning" data-class="reminder_back">
+                        <span>{% translate "Recordatorio atrasado" %}</span>
+                    </div>
+                </div>
+
+                <ul class="uk-iconnav uk-invisible-hover uk-width-small uk-flex-right">
+                    <li><a href="#" class="icon_trash" uk-icon="icon: trash"></a></li>
+                    <li><a href="#" class="icon_app" uk-icon="icon: future"></a></li>
+                </ul>
+            </div>
+        </li>
+    </script>
+    <script type="text/html" id="template_item_reminder_next">
+        <li data-id="id_reminder">
+            <div class="uk-flex uk-flex-middle uk-visible-toggle" tabindex="-1">
+                <div class="uk-margin-right"><input class="uk-checkbox" type="checkbox" uk-tooltip="complete"
+                                                    aria-expanded="false"></div>
+                <div class="uk-flex uk-flex-column uk-width">
+                    <div>
+                        <div class="uk-flex uk-flex-inline uk-flex-middle uk-width">
+                            <div class="uk-width-small">
+                                <div class="uk-text-truncate text-blue3"><a data-href="contact_href" class="text-blue3"><span
+                                        data-content-text="contact_name"></span>&nbsp;<span
+                                        data-content-text="contact_surname"></span></a></div>
+                            </div>
+                            <div class="uk-width uk-margin-small-left uk-margin-small-right">
+                                <input class="uk-input uk-form-blank uk-h3 uk-sticky" type="text" name="title"
+                                       data-value="reminder_text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-flex uk-flex-inline uk-flex-middle">
+                        <span class="uk-text-meta" data-content-text="date"></span>
+                        <span class="uk-text-meta">&nbsp;-&nbsp;</span>
+                        <span class="uk-text-meta">{% translate "Quedan" %}&nbsp;<span data-content-text="days"
+                                                                                       class="uk-text-bold"></span>&nbsp;{% translate "días." %}</span>
+                    </div>
+
+                </div>
+
+                <ul class="uk-iconnav uk-invisible-hover uk-width-small uk-flex-right">
+                    <li><a href="#" class="icon_trash" uk-icon="icon: trash"></a></li>
+                    <li><a href="#" class="icon_app" uk-icon="icon: future"></a></li>
+                </ul>
+            </div>
+        </li>
+    </script>
 
 {% endblock %}
