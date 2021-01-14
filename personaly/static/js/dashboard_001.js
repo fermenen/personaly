@@ -28,7 +28,7 @@ class Dashboard {
 
     data_reminder_today() {
         let ajax = $.ajax({
-            url:  window.reverse('api_v2:reminder_contact-list', '?lte_days=0'),
+            url:  window.reverse('api_v2:reminder_contact-list', '?lte_days=0&ordering=deadline'),
             headers: {"X-CSRFToken": this.app.getCsrftoken},
             type: 'GET',
             dataType: 'json',

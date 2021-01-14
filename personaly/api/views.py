@@ -78,6 +78,8 @@ class UploadPhoto(APIView):
 # Contact View - GET - POST - PUT - DELETE
 class ContactView(viewsets.ModelViewSet):
     serializer_class = ContactSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    ordering_fields = ['name']
     http_method_names = ['get', 'post', 'put', 'delete']
 
     def get_queryset(self):

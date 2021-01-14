@@ -13,7 +13,7 @@ class app {
         this.message_error_delete_contact = message_error_delete_contact;
         this.message_error_edit_contact = message_error_edit_contact;
 
-        this.ajaxCountContact();
+        // this.ajaxCountContact();
     }
 
     count_contact;

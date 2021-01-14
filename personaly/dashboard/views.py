@@ -16,15 +16,10 @@ def index(request):
 @login_required
 def contacts_list_view(request):
     owner = request.user
-    list_contacts = Contact.objects.filter(owner=owner, active=True).order_by('name')
-    list_tags = TagContact.objects.filter(owner=owner)
     form_keep_touch = KeepTouchForm
 
     data = {'owner': owner,
-            'tags_list': list_tags,
-            'list_contacts': list_contacts,
-            'count_list_contacts': list_contacts.count(),
-            'form_keep_in_touch': form_keep_touch
+            'form_keep_in_touch': form_keep_touch,
             }
 
     return render(request, 'dashboard/contacts_list.html', data)
