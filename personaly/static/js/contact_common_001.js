@@ -16,7 +16,7 @@ class Contact_common {
     }
 
 
-    // Crear Common Contact
+    // Crear Common Contact_001
     createCommonContact() {
         let button_save = '#button_save_contact_common'
         let form_modal_common = '#form_modal_add_common'
@@ -48,7 +48,7 @@ class Contact_common {
     }
 
 
-    // Borrar Common Contact
+    // Borrar Common Contact_001
     deleteCommonContact() {
         let id = $('#common_id_modal').val()
         let StringDivID = '#' + id

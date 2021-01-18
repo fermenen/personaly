@@ -4,9 +4,17 @@ class Contact_list {
         this.app = app;
         this.api_contact = api_contact;
 
-        this.data_contacts();
+        $(document).on('contact_created', () => this.data_contacts());
+        $(document).on('contact_deleted', () => this.data_contacts());
+        $(document).on('contact_edited', () => this.data_contacts());
+
     }
 
+    compileTemplate() {
+        this.source = document.getElementById("template_items_contact").innerHTML;
+        this.template = Handlebars.compile(this.source);
+        this.data_contacts();
+    }
 
     data_contacts() {
         let ajax = $.ajax({
@@ -19,26 +27,27 @@ class Contact_list {
                 if (this.count_contact > 0) {
                     var contacts = []
                     for (let contact in data['results']) {
+                        let tags = []
+                        for (let tag in data['results'][contact]['contact_tag']) {
+                            tags.push({
+                                icon_tag: data['results'][contact]['contact_tag'][tag]['icon'],
+                                name_tag: data['results'][contact]['contact_tag'][tag]['text']
+                            })
+                        }
                         contacts.push({
                             id: data['results'][contact]['id'],
                             name: data['results'][contact]['name'],
                             surnames: data['results'][contact]['surnames'],
                             image_contact: data['results'][contact]['image_contact'],
                             url: window.reverse('contact', data['results'][contact]['url']),
+                            tags: tags
 
                         })
                     }
-
                 }
-                var context = {
-                    contacts: contacts
-                };
-                var source = document.getElementById("template_items_contact").innerHTML;
-                var template = Handlebars.compile(source);
-                var html = template(context);
 
-                $("#item_contacts").html(html);
-
+                let context = {contacts: contacts};
+                $("#item_contacts").html(this.template(context));
 
                 this.app.page_ready()
                 this.app.textVisible(0, '#contact_list_page')
@@ -49,17 +58,6 @@ class Contact_list {
         });
     }
 
-
 }
 
-
-function holaContact() {
-    var source = document.getElementById("entry-template").innerHTML;
-    var template = Handlebars.compile(source);
-    var context = {title: "My New Post", body: "This is my first post!"};
-    var html = template(context);
-
-    $("#item_contacts").html(html);
-
-}
 

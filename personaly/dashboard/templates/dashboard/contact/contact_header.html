@@ -1,39 +1,42 @@
 {% load static %}
-<div id="contact_header" class="uk-flex uk-flex-row uk-flex-nowrap ">
-    <div class="uk-flex">
-        {#        <img class="uk-border-rounded" src="/media{{ contact.image_contact }}" width="120" height="120" alt="{{ contact.name }} {{ contact.surnames }}">#}
-
-        {% if contact.image_contact %}
-            <img class="uk-border-rounded" src="/media{{ contact.image_contact }}" width="120" height="120"
-                 alt="{{ contact.name }} {{ contact.surnames }}">
-        {% else %}
-            <img class="uk-border-rounded" src="{% static 'img/app/contact_holder.jpg' %}" width="120" height="120"
-                 alt="{{ contact.name }} {{ contact.surnames }}">
-        {% endif %}
-
-    </div>
-    <div class="uk-flex uk-flex-column uk-flex-nowrap uk-flex-between uk-flex-center uk-margin-large-left">
-        <div class=""><h1 class="uk-heading-medium ">{{ contact.name |title }} {{ contact.surnames | title }}</h1></div>
-        <div class="uk-flex-inline">
-            {% if contact.phone %}
-                <span class="uk-margin-small-right" uk-icon="icon: receiver"></span>{{ contact.phone }}
-            {% endif %}
-            {% if contact.location %}
-                <span class="uk-margin-left uk-margin-small-right" uk-icon="icon: location"></span>
-                {{ contact.location }}
-            {% endif %}
+{% load handlebars %}
+<div id="component_contact_header"></div>
+<script id="template_contact_header" type="text/x-handlebars-template">
+    <div id="contact_header" class="uk-flex">
+        <div class="uk-width-small">
+            {{ '#if image_contact' | handlebars }}
+            <img class="uk-border-rounded" width="120" height="120" data-src="/media{{ 'image_contact' | handlebars }}"
+                 alt="" uk-img>
+            {{ 'else' | handlebars }}
+            <img class="uk-border-rounded" width="120" height="120" data-src="{% static 'img/app/contact_holder.jpg' %}"
+                 alt="{{ name }} {{ surnames }}" uk-img>
+            {{ '/if' | handlebars }}
         </div>
-        <div class="uk-flex-inline">
-            {% for tag in tags_list %}
-                <div class="uk-container uk-flex-inline ">
-                    {% if tag.contact == contact %}
-                        <div class="uk-label tag-contact">
-                            <span class="tag-emoji">{{ tag.icon }}</span>
-                            <span class="text-tag-contact">{{ tag.text }}</span>
-                        </div>
-                    {% endif %}
+
+        <div class="uk-flex uk-flex-column uk-flex-between uk-flex-center uk-margin-small-left">
+            <div class=""><span class="uk-heading-medium uk-h1">{{ 'name' | handlebars }} {{ 'surnames' | handlebars }}</span></div>
+            <div class="uk-flex uk-flex-inline">
+                {{ '#if phone' | handlebars }}
+                <div class="uk-margin-right"><span class="uk-margin-small-right" uk-icon="icon: receiver"></span>{{ 'phone' | handlebars }}</div>
+                {{ '/if' | handlebars }}
+                {{ '#if location' | handlebars }}
+                <div class="uk-margin-right"><span class="uk-margin-small-right" uk-icon="icon: location"></span>{{ 'location' | handlebars }}</div>
+                {{ '/if' | handlebars }}
+            </div>
+            <div class="uk-flex-inline">
+                {{ "#tags" | handlebars }}
+                <div class="uk-flex uk-flex-inline">
+                    <div class="uk-label tag-contact uk-text- uk-margin-small-right">
+                        <span class="uk-margin-small-right">{{ 'icon_tag' | handlebars }}</span>
+                        <span class="">{{ 'name_tag' | handlebars }}</span>
+                    </div>
                 </div>
-            {% endfor %}
+                {{ "/tags"| handlebars }}
+            </div>
         </div>
+
     </div>
-</div>
+</script>
+<script>
+    contactJS.compileTemplate();
+</script>

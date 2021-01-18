@@ -30,32 +30,13 @@ def contact_view(request, url):
     try:
         owner = request.user
         contact = get_object_or_404(Contact, url=url, owner=owner, active=True)
-        list_tags = TagContact.objects.filter(owner=owner, contact=contact)
-        list_reminder = ReminderContact.objects.filter(contact=contact, owner=owner, active=True).order_by(
-            '-created_at')
-        list_notes = NoteContact.objects.filter(contact=contact, owner=owner, active=True).order_by('-created_at')
-        list_common = ThingCommonContact.objects.filter(contact=contact, owner=owner, active=True)
-        list_experiences = ExperienceContact.objects.filter(contact=contact, owner=owner, active=True)
-        list_music = MusicContact.objects.filter(contact=contact, owner=owner, active=True)
-        list_family = FamilyContact.objects.filter(contact=contact, owner=owner, active=True)
-
         form_relation = RelationTypeForm
+        form_keep_touch = KeepTouchForm
 
         data = {'owner': owner,
                 'contact': contact,
-                'tags_list': list_tags,
-                'list_reminder': list_reminder,
-                'list_notes': list_notes,
-                'count_list_notes': list_notes.count(),
-                'list_common': list_common,
-                'count_list_common': list_common.count(),
-                'list_experiences': list_experiences,
-                'count_list_experiences': list_experiences.count(),
-                'list_music': list_music,
-                'count_list_music': list_music.count(),
-                'list_family': list_family,
-                'count_list_family': list_family.count(),
-                'form_relation': form_relation
+                'form_relation': form_relation,
+                'form_keep_in_touch': form_keep_touch,
                 }
 
         return render(request, 'dashboard/contact.html', data)

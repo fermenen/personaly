@@ -4,7 +4,8 @@ from rest_framework import serializers
 
 from accounts.models import User
 
-from dashboard.models import NoteContact, ThingCommonContact, MusicContact, FamilyContact, Contact, ReminderContact
+from dashboard.models import NoteContact, ThingCommonContact, MusicContact, FamilyContact, Contact, ReminderContact, \
+    TagContact
 from spotipy import SpotifyClientCredentials
 
 
@@ -94,13 +95,20 @@ class DeleteFamilySerializer(serializers.ModelSerializer):
 
 # // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -- - - - - - - - -
 
+class TagContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TagContact
+        fields = ('icon', 'text')
+
 
 class ContactSerializer(serializers.ModelSerializer):
+    contact_tag = TagContactSerializer(many=True, read_only=True)
+
     class Meta:
         model = Contact
         fields = (
         'id', 'name', 'surnames', 'image_contact', 'location', 'phone', 'email', 'birthday', 'remember_birthday',
-        'keep_in_touch', 'url')
+        'keep_in_touch', 'url', 'contact_tag', 'owner')
 
 
 class ReminderContactSerializer(serializers.ModelSerializer):
@@ -108,7 +116,7 @@ class ReminderContactSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ReminderContact
-        fields = ('id', 'text', 'completed', 'deadline', 'days', 'contact')
+        fields = ('id', 'text', 'completed', 'deadline', 'days', 'past', 'today', 'future', 'contact')
 
 
 class NoteContactSerializer(serializers.ModelSerializer):

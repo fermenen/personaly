@@ -16,6 +16,7 @@
         let appJS = new app(
             owner = '{{ owner.id }}',
             url_api_contact = '{% url 'api_v2:contact-list' %}',
+            url_api_reminder = '{% url 'api_v2:reminder_contact-list' %}',
             message_error_create = 'Error al crear el contacto',
             message_success_delete_contact = 'Contacto borrado con exito',
             message_error_delete_contact = 'Error al borrar el contacto',

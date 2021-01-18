@@ -57,6 +57,16 @@ class Contact(models.Model):
         return f"{self.name} {self.surnames}"
 
 
+class TagContact(models.Model):
+    icon = models.CharField(blank=False, max_length=10)
+    text = models.TextField(blank=False, max_length=20)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    contact = models.ForeignKey(Contact, related_name='contact_tag', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"({self.icon} - {self.text})"
+
+
 class ReminderContact(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     text = models.TextField(blank=False, max_length=255)
@@ -74,15 +84,26 @@ class ReminderContact(models.Model):
         else:
             return None
 
+    @property
+    def past(self):
+        if self.deadline is not None:
+            return self.days < 0
+        else:
+            return None
 
-class TagContact(models.Model):
-    icon = models.CharField(blank=False, max_length=10)
-    text = models.TextField(blank=False, max_length=20)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
+    @property
+    def today(self):
+        if self.deadline is not None:
+            return self.days == 0
+        else:
+            return None
 
-    def __str__(self):
-        return f"({self.icon} - {self.text})"
+    @property
+    def future(self):
+        if self.deadline is not None:
+            return self.days > 0
+        else:
+            return None
 
 
 class NoteContact(models.Model):
@@ -94,7 +115,7 @@ class NoteContact(models.Model):
     active = models.BooleanField(default=True)
 
 
-# Thing Common Contact Model
+# Thing Common Contact_001 Model
 class ThingCommonContact(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     text = models.TextField()
@@ -122,7 +143,7 @@ class ExperienceContact(models.Model):
         return self.list_photos.split(";")
 
 
-# Music Contact Model
+# Music Contact_001 Model
 class MusicContact(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
@@ -143,7 +164,7 @@ class MusicContact(models.Model):
         return f"{self.name_artist} - CONTACT({self.contact}) - OWNER({self.owner})"
 
 
-# Family Contact Model
+# Family Contact_001 Model
 class FamilyContact(models.Model):
     relation_choices = (
         (_('Relaciones amorosas'), (

@@ -9,7 +9,7 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import viewsets
-from django_property_filter import PropertyFilterSet, PropertyNumberFilter
+from django_property_filter import PropertyFilterSet, PropertyNumberFilter, PropertyBooleanFilter
 from spotipy.oauth2 import SpotifyClientCredentials
 
 from django.contrib.auth import login
@@ -75,7 +75,7 @@ class UploadPhoto(APIView):
         return JsonResponse({'ok': 'true', 'file': path}, status=200)
 
 
-# Contact View - GET - POST - PUT - DELETE
+# Contact_001 View - GET - POST - PUT - DELETE
 class ContactView(viewsets.ModelViewSet):
     serializer_class = ContactSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -109,26 +109,28 @@ class ReminderContactFilter(PropertyFilterSet):
     lte_days = PropertyNumberFilter(field_name='days', lookup_expr='lte')
     gte_days = PropertyNumberFilter(field_name='days', lookup_expr='gte')
     days = PropertyNumberFilter(field_name='days', lookup_expr='exact')
+    past = PropertyBooleanFilter(field_name='past')
+    future = PropertyBooleanFilter(field_name='future')
 
     class Meta:
         model = ReminderContact
-        fields = ['completed', 'gte_days']
+        fields = ['completed', 'gte_days', 'lte_days', 'days', 'contact', 'past', 'future']
 
 
-# Reminder Contact
+# Reminder Contact_001
 class ReminderContactView(viewsets.ModelViewSet):
     serializer_class = ReminderContactSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_class = ReminderContactFilter
     ordering_fields = ['deadline', 'completed']
-    http_method_names = ['get', 'post', 'put', 'delete']
+    http_method_names = ['get', 'post', 'put', 'patch', 'delete']
 
     def get_queryset(self):
         queryset = ReminderContact.objects.filter(owner=self.request.user, active=True)
         return queryset
 
 
-# Note Contact
+# Note Contact_001
 class NoteContactView(viewsets.ModelViewSet):
     serializer_class = NoteContactSerializer
     http_method_names = ['get', 'post', 'delete']
@@ -156,7 +158,7 @@ class NoteContactView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# Common Contact
+# Common Contact_001
 class CommonContactView(viewsets.ModelViewSet):
     serializer_class = CommonContactSerializer
     http_method_names = ['get', 'post', 'delete']
@@ -184,7 +186,7 @@ class CommonContactView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# Music Contact - GET - POST - DELETE
+# Music Contact_001 - GET - POST - DELETE
 class MusicContactView(viewsets.ModelViewSet):
     serializer_class = MusicContactSerializer
     http_method_names = ['get', 'post', 'delete']
@@ -229,7 +231,7 @@ class SearchArtist(APIView):
         return JsonResponse({'ok': 'true', 'data': data}, status=200)
 
 
-# Family Contact - GET - POST - PUT - DELETE
+# Family Contact_001 - GET - POST - PUT - DELETE
 class FamilyContactView(viewsets.ModelViewSet):
     serializer_class = FamilyContactSerializer
     http_method_names = ['get', 'post', 'put', 'delete']

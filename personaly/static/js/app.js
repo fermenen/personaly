@@ -1,12 +1,13 @@
 class app {
 
-    constructor(owner, url_api_contact, message_error_create, message_success_delete_contact, message_error_delete_contact, message_error_edit_contact) {
+    constructor(owner, url_api_contact, url_api_reminder, message_error_create, message_success_delete_contact, message_error_delete_contact, message_error_edit_contact) {
         console.log('%cADVERTENCIA WARNING', 'background: #ee395b; color: #DFEDF2; font-size: 21px');
         console.log('%cSi utilizas esta consola, otras personas podrían hacerse pasar por ti y robarte datos mediante un ataque llamado Self-XSS', 'background: #ee395b; color: #05C7F2; font-size: 16px');
         jQueryValidators();
         this.csrftoken = $("input[name=csrfmiddlewaretoken]").val();
         this.owner = owner;
-        this.url_api_contact = url_api_contact
+        this.url_api_contact = url_api_contact;
+        this.url_api_reminder = url_api_reminder;
         this.message_error_generic = 'Error interno';
         this.message_error_create = message_error_create;
         this.message_success_delete_contact = message_success_delete_contact;
@@ -14,6 +15,7 @@ class app {
         this.message_error_edit_contact = message_error_edit_contact;
 
         // this.ajaxCountContact();
+
     }
 
     count_contact;
@@ -96,6 +98,11 @@ class app {
     }
 
 
+    openModalCreateContact() {
+        this.ShowModal(modal_create_contact)
+
+    }
+
     createContact() {
         let button_save = '#button_create_contact'
         let form_modal_contact = '#form_modal_create_contact'
@@ -116,14 +123,18 @@ class app {
                 dataType: 'json',
                 success: data => {
                     this.HideModal(modal_create_contact)
-                    location.reload();
+                    this.NotificationSuccess("Contacto creado con extio")
+                    jQuery.event.trigger('contact_created');
                 },
                 error: data => {
                     this.NotificationError(this.message_error_create)
+                },
+                complete: data => {
                     this.AvailableButton(button_save)
                     this.AvailableloadingButton(button_save)
-                },
+                }
             });
+
         }
     }
 
@@ -142,10 +153,7 @@ class app {
             success: data => {
                 this.HideModal(modal_delete_contact)
                 this.NotificationSuccess(this.message_success_delete_contact)
-                $(StringDivID).addClass('uk-hidden')
-                this.count_contact -= 1
-                this.textVisible(this.getCountContacts, '#text_contact_list')
-                this.textInVisible(this.getCountContacts, '#component_all_contacts')
+                jQuery.event.trigger('contact_created');
             },
             error: data => {
                 this.NotificationError(this.message_error_delete_contact)
@@ -181,16 +189,43 @@ class app {
                 dataType: 'json',
                 success: data => {
                     this.HideModal(modal_edit_contact)
-                    location.reload();
+                    this.NotificationSuccess("Contacto actualizado con exito! ")
+                    jQuery.event.trigger('contact_edited');
                 },
                 error: data => {
                     this.NotificationError("erorrr")
+                },
+                complete: data => {
                     this.AvailableButton(button_save)
                     this.AvailableloadingButton(button_save)
-                },
+                }
             });
         } else {
         }
+    }
+
+
+    completeReminder(id_reminder) {
+        $.ajax({
+            url: this.url_api_reminder + id_reminder + '/',
+            headers: {"X-CSRFToken": this.getCsrftoken},
+            data: {
+                owner: this.getOwner,
+                completed: true,
+            },
+            type: 'PATCH',
+            dataType: 'json',
+            success: data => {
+                this.HideModal(modal_delete_contact)
+                this.NotificationSuccess("Recordatorio completado")
+                jQuery.event.trigger('reminder_completed');
+            },
+            error: data => {
+                this.NotificationError(this.message_error_generic)
+            },
+        });
+
+
     }
 
 
@@ -199,6 +234,7 @@ class app {
         $('#contact_name_delete_contact').text(name_contact)
         this.ShowModal(modal_delete_contact)
     }
+
 
     openModalEditContact(id_contact) {
         $.ajax({
@@ -290,3 +326,6 @@ function uploadPhoto() {
     });
 
 }
+
+
+
