@@ -122,7 +122,7 @@ class ReminderContactSerializer(serializers.ModelSerializer):
 class NoteContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = NoteContact
-        fields = ('id', 'text', 'contact', 'owner')
+        fields = ('id', 'text', 'created_at', 'contact', 'owner')
 
 
 class FamilyContactSerializer(serializers.ModelSerializer):
@@ -180,7 +180,7 @@ class MusicContactSerializer(serializers.ModelSerializer):
 class CommonContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = ThingCommonContact
-        fields = ('id', 'text', 'contact', 'owner')
+        fields = ('id', 'text', 'created_at', 'contact', 'owner' )
 
     def create(self, validated_data):
         """

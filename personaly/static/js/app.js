@@ -224,8 +224,6 @@ class app {
                 this.NotificationError(this.message_error_generic)
             },
         });
-
-
     }
 
 

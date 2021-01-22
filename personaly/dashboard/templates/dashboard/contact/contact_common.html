@@ -1,3 +1,4 @@
+{% load handlebars %}
 {% load static %}
 {% load i18n %}
 <script src="{% static 'js/contact_common_001.js' %}"></script>
@@ -5,40 +6,40 @@
     let commonJS = new Contact_common(
         app = appJS,
         contact = contactJS,
-        count_common = {{ count_list_common }},
         url_api_common = '{% url 'api_v2:common_contact-list' %}',
-        message_error_create = 'error al crear cosa en comun',
-        message_success_delete_common = 'borrado con exito ',
-        message_error_delete_common = 'eeror al borrar',
+
+        message_success_create_common = '{% translate "¡Cosa en común creada con éxito!" %}',
+        message_success_delete_common = '{% translate "¡Cosa en común eliminada con éxito!" %}',
+        message_error_create_common = '{% translate "Error al crear la cosa en común, inténtalo de nuevo." %}',
+        message_error_delete_common = '{% translate "Ocurrió un problema al borrar la cosa en común." %}',
     )
 </script>
+
 <div id="component_common_contact">
-
-    <button id="button_add_common"
-            class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
-            uk-toggle="target: #modal_create_common"><span class="uk-margin-small-right"
-                                                           uk-icon="plus"></span>{% translate "Añadir cosa en común" %}
+    <button id="button_add_family" onclick="commonJS.open_modal_create_common()"
+            class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"><span class="uk-margin-small-right"
+                                                                                          uk-icon="plus"></span>{% translate "Añadir cosa en común" %}
     </button>
-    <div>
-        <div id="text_common_contact" class="uk-text-center uk-margin-top">
-            <span>&#127871;&#129495; {% translate "Registra cosas en común que tengas con" %} {{ contact.name | capfirst }}.</span>
-        </div>
-        <script>
-            contactJS.textVisible(commonJS.getCountCommon, '#text_common_contact')
-        </script>
+    <div id="text_common_contact" class="uk-text-center uk-margin-top uk-hidden">
+        <span>&#127871;&#129495; {% translate "Registra cosas en común que tengas con" %} {{ contact.name | capfirst }}.</span>
     </div>
-
-
-    <div id="component_all_common" class="uk-grid">
-        {% for common in list_common %}
-            <div id="{{ common.id }}" class="uk-margin-top">
-                <a href="#" onclick="commonJS.openModalDeleteCommon('{{ common.id }}', '{{ common.text }}')"
-                   class="button-common badge-contact-common uk-badge uk-button"  uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom-center">{{ common.text }}</a>
-            </div>
-
-        {% endfor %}
-    </div>
+    <div id="component_all_common" class="uk-grid"></div>
 </div>
+
+
+<script id="template_contact_common" type="text/x-handlebars-template">
+    {{ "#commons" | handlebars }}
+    <div id="{{ 'common_id'| handlebars }}" class="uk-margin-top">
+        <a href="#" onclick="commonJS.openModalDeleteCommon('{{ 'common_id'| handlebars }}')"
+           class="button-common badge-contact-common uk-badge uk-button"
+           uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom-center">{{ 'common_text'| handlebars }}</a>
+    </div>
+    {{ "/commons" | handlebars }}
+</script>
+<script>
+    commonJS.compileTemplate();
+</script>
+
 
 {# ADD COMMON #}
 <div id="modal_create_common" uk-modal>
@@ -54,19 +55,17 @@
                         <div class="uk-form-controls uk-flex uk-flex-column">
                             <label for="input_text_common"
                                    class="uk-form-label ">{% translate "Cosa en común con" %} {{ contact.name | capfirst }}</label>
-                            <input id="input_text_common" name="text_common" class="uk-input"
-                                   placeholder="{% trans "Yoga, escalada, cine ..." %}"></input>
+                            <input name="text_common" class="uk-input" placeholder="{% trans "Yoga, escalada, cine ..." %}"></input>
                         </div>
                     </div>
                 </fieldset>
-
             </form>
         </div>
         <div class="uk-modal-footer uk-text-right">
             <button class="uk-button uk-button-default uk-modal-close"
                     type="button">{% translate "Cancelar" %}</button>
             <button id="button_save_contact_common" class="uk-button uk-button-primary"
-                    data-value='{% translate "Guardar" %}' onclick="commonJS.createCommonContact()"
+                    data-value='{% translate "Guardar" %}' onclick="commonJS.create_contact_common()"
                     type="button">{% translate "Guardar" %}</button>
         </div>
     </div>

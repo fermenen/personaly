@@ -133,7 +133,10 @@ class ReminderContactView(viewsets.ModelViewSet):
 # Note Contact_001
 class NoteContactView(viewsets.ModelViewSet):
     serializer_class = NoteContactSerializer
-    http_method_names = ['get', 'post', 'delete']
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_fields = ['contact']
+
+    http_method_names = ['get', 'post', 'patch', 'delete']
 
     def get_queryset(self):
         return NoteContact.objects.filter(owner=self.request.user, active=True)
@@ -161,6 +164,8 @@ class NoteContactView(viewsets.ModelViewSet):
 # Common Contact_001
 class CommonContactView(viewsets.ModelViewSet):
     serializer_class = CommonContactSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_fields = ['contact']
     http_method_names = ['get', 'post', 'delete']
 
     def get_queryset(self):
