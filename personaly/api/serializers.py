@@ -128,7 +128,7 @@ class NoteContactSerializer(serializers.ModelSerializer):
 class FamilyContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = FamilyContact
-        fields = ('id', 'name', 'surnames', 'relation_type', 'contact', 'owner')
+        fields = ('id', 'name', 'surnames', 'relation_type', 'relation_name', 'contact', 'owner')
 
     def create(self, validated_data):
         """

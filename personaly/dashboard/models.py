@@ -208,3 +208,7 @@ class FamilyContact(models.Model):
     name = models.TextField()
     surnames = models.TextField(blank=True)
     relation_type = models.CharField(max_length=3, choices=relation_choices)
+
+    @property
+    def relation_name(self):
+        return self.get_relation_type_display()

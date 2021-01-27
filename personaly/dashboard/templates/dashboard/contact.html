@@ -1,18 +1,17 @@
 {% extends 'app/base_app.html' %}
 {% load i18n %}
 {% load static %}
-{% block title %}{{ contact.name |capfirst}} {{ contact.surnames |capfirst}} | {% endblock %}
+{% block title %}{{ contact.name |capfirst }} {{ contact.surnames |capfirst }} | {% endblock %}
 
 {% block content_main %}
-    <script src="{% static 'js/contact_001.js' %}"></script>
     <script>
-    let contactJS = new Contact_001(
-        app = appJS,
-        contact_id = '{{ contact.id }}',
-        owner = '{{ owner.id }}',
-        api_contact =  '{% url 'api_v2:contact-list' %}',
-    )
-</script>
+        let contactJS = new Contact(
+            app = appJS,
+            contact_id = '{{ contact.id }}',
+            owner = '{{ owner.id }}',
+            api_contact = '{% url 'api_v2:contact-list' %}',
+        )
+    </script>
 
     <div class="container-app uk-container uk-container-large ">
         <div class="uk-flex uk-flex-center">
@@ -32,7 +31,7 @@
                            uk-tooltip="title: {% translate "Editar contacto" %}; pos: bottom-left"></a>
                 </ul>
 
-                {% include "dashboard/contact/contact_header.html"  %}
+                {% include "dashboard/contact/contact_header.html" %}
                 {% include "dashboard/contact/contact_reminders.html" %}
 
 
@@ -55,8 +54,8 @@
                     </ul>
                     <ul id="switcher_contact" class="uk-switcher uk-margin">
                         <li>{% include "dashboard/contact/contact_notes.html" %}</li>
-                        <li>{% include "dashboard/contact/contact_common.html"  %}</li>
-                        <li>{% include "dashboard/contact/contact_experiences.html"  %}</li>
+                        <li>{% include "dashboard/contact/contact_common.html" %}</li>
+                        <li>{% include "dashboard/contact/contact_experiences.html" %}</li>
                         <li>{% include "dashboard/contact/contact_music.html" %}</li>
                         <li>{% include "dashboard/contact/contact_family.html" %}</li>
                     </ul>

@@ -5,11 +5,9 @@
 {% block title %}{% translate "Contactos" %} | {% endblock %}
 
 {% block content_main %}
-
-    <script src="{% static 'js/contact_list_001.js' %}"></script>
     <script>
-        let contactListJS = new Contact_list(
-            app = appJS,
+        let contactListJS = new ContactsList(
+            App = appJS,
             api_contact = '{% url 'api_v2:contact-list' %}',
         )
     </script>

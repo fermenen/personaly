@@ -1,14 +1,16 @@
+{% load handlebars %}
 {% load static %}
 {% load i18n %}
-<script src="{% static 'js/contact_family_001.js' %}"></script>
+
 <script>
-    let familyJS = new Contact_family(
+    let familyJS = new ContactFamily(
         app = appJS,
         contact = contactJS,
-        count_family = {{ count_list_family }},
+
         url_api_family = '{% url 'api_v2:family_contact-list' %}',
         title_modal_add = '{% translate "Añadir relación familiar/amorosa" %}',
         title_modal_edit = '{% translate "Editar relación con " %}',
+
         message_error_create = '{% translate "Ocurrió un problema al guardar el contacto" %}',
         message_success_delete_family = '{% translate "¡Borrado con éxito!" %}',
         message_error_delete_family = '{% translate "Ocurrió un problema al eliminarlo. Inténtelo de nuevo en unos instantes." %}',
@@ -29,29 +31,36 @@
         </script>
     </div>
 
-    <div id="component_all_family" class="uk-margin-top">
-        <ul class="uk-list uk-list-divider">
-            {% for family in list_family %}
-                <li id="{{ family.id }}" class="uk-flex uk-flex-center uk-flex-between">
-                    <div>
-                        <span class="uk-text-capitalize uk-h4">{{ family.name }} {{ family.surnames }}</span>
-                        <span class="uk-text-light uk-text-primary"> ({{ family.get_relation_type_display }})</span>
-                    </div>
-                    <ul class="uk-iconnav uk-width-auto">
-                        <li><a onclick="familyJS.deleteContactFamily('{{ family.id }}')" class="icon_trash" onclick=""
-                               uk-icon="icon: trash"
-                               uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom-left"></a></li>
-                        <li>
-                            <a onclick="familyJS.modalEditFamily('{{ family.id }}', '{{ family.name }}', '{{ family.surnames }}', '{{ family.relation_type }}' )" class="icon_app"
-                               uk-tooltip="title:{% translate "Editar" %}; pos: bottom-left"
-                               uk-icon="icon:  file-edit"></a></li>
-                    </ul>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
+    <div id="component_all_family" class="uk-margin-top"></div>
 
 </div>
+
+<script id="template_contact_family" type="text/x-handlebars-template">
+    <ul class="uk-list uk-list-divider">
+        {{ "#family" | handlebars }}
+        <li id="{{ "family_id" | handlebars }}" class="uk-flex uk-flex-center uk-flex-between">
+            <div>
+                <span class="uk-text-capitalize uk-h4">{{ "family_name" | handlebars }} {{ "family_surnames" | handlebars }}</span>
+                <span class="uk-text-light uk-text-primary"> ({{ "family_relation_name" | handlebars }})</span>
+            </div>
+            <ul class="uk-iconnav uk-width-auto">
+                <li><a onclick="familyJS.deleteContactFamily('{{ "family_id" | handlebars }}')" class="icon_trash" onclick=""
+                       uk-icon="icon: trash"
+                       uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom-left"></a></li>
+                <li>
+                    <a onclick="familyJS.modalEditFamily('{{ "family_id" | handlebars }}' )"
+                       class="icon_app"
+                       uk-tooltip="title:{% translate "Editar" %}; pos: bottom-left"
+                       uk-icon="icon:  file-edit"></a></li>
+            </ul>
+        </li>
+        {{ "/family" | handlebars }}
+    </ul>
+</script>
+<script>
+    familyJS.compileTemplate();
+</script>
+
 
 {# MODAL FAMILY #}
 <div id="modal_family" uk-modal>

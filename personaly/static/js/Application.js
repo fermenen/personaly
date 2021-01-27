@@ -1,9 +1,9 @@
-class app {
+class App {
 
     constructor(owner, url_api_contact, url_api_reminder, message_error_create, message_success_delete_contact, message_error_delete_contact, message_error_edit_contact) {
         console.log('%cADVERTENCIA WARNING', 'background: #ee395b; color: #DFEDF2; font-size: 21px');
         console.log('%cSi utilizas esta consola, otras personas podrían hacerse pasar por ti y robarte datos mediante un ataque llamado Self-XSS', 'background: #ee395b; color: #05C7F2; font-size: 16px');
-        jQueryValidators();
+        // jQueryValidators();
         this.csrftoken = $("input[name=csrfmiddlewaretoken]").val();
         this.owner = owner;
         this.url_api_contact = url_api_contact;
@@ -14,11 +14,7 @@ class app {
         this.message_error_delete_contact = message_error_delete_contact;
         this.message_error_edit_contact = message_error_edit_contact;
 
-        // this.ajaxCountContact();
-
     }
-
-    count_contact;
 
     page_ready() {
         $('#loading_app').addClass('uk-hidden')
@@ -262,13 +258,12 @@ class app {
     }
 
     searchPlaces() {
-
+        const places = require('places.js');
         const fixedOptions = {
             appId: 'plVYBCB02Y6T',
             apiKey: '2e2a874c73db4a2dcf6ea5f5bbed99f5',
             container: document.querySelector('#input_city_contact')
         };
-
         const reconfigurableOptions = {
             language: 'es', // Receives results in spanish
             // countries: ['us', 'ru'], // Search in the United States of America and in the Russian Federation
@@ -276,27 +271,23 @@ class app {
             aroundLatLngViaIP: true // disable the extra search/boost around the source IP
         };
         const placesInstance = places(fixedOptions).configure(reconfigurableOptions);
-
         // // dynamically reconfigure options
         // placesInstance.configure({
         //     countries: ['us'] // only search in the United States, the rest of the settings are unchanged: we're still searching for cities in German.
         // })
-
     }
-
-
 }
 
 
-function jQueryValidators() {
-    jQuery.validator.addMethod("lettersonly", function (value, element) {
-        let myRegex = /^[a-z ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ]+$/i
-        return this.optional(element) || myRegex.test(value);
-    }, "Letters only please");
-}
+// export function jQueryValidators() {
+//     jQuery.validator.addMethod("lettersonly", function (value, element) {
+//         let myRegex = /^[a-z ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ]+$/i
+//         return this.optional(element) || myRegex.test(value);
+//     }, "Letters only please");
+// }
 
 
-function uploadPhoto() {
+export function uploadPhoto() {
 
     var bar = document.getElementById('js-progressbar');
 
@@ -325,5 +316,4 @@ function uploadPhoto() {
 
 }
 
-
-
+export default App

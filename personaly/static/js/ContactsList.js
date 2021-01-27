@@ -1,4 +1,5 @@
-class Contact_list {
+import Handlebars from 'handlebars';
+class ContactsList {
 
     constructor(app, api_contact) {
         this.app = app;
@@ -60,4 +61,4 @@ class Contact_list {
 
 }
 
-
+export default ContactsList

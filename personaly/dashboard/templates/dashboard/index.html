@@ -3,14 +3,12 @@
 {% load static %}
 {% block title %}{% translate "Inicio" %} | {% endblock %}
 {% block content_main %}
-    <script src="{% static 'js/dashboard_001.js' %}"></script>
     <script>
         let dashboardJS = new Dashboard(
-            app = appJS,
+            App = appJS,
             url_api_family = '{% url 'api_v2:reminder_contact-list' %}',
         )
     </script>
-
 
     <div id="dashboard_today" class="container-app uk-container uk-container-large uk-hidden">
         <div class="uk-flex uk-flex-center">

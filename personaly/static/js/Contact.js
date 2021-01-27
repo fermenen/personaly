@@ -1,4 +1,5 @@
-class Contact_001 {
+import Handlebars from 'handlebars';
+class Contact {
 
     constructor(app, contact_id, owner, api_contact) {
         this.app = app;
@@ -19,14 +20,12 @@ class Contact_001 {
         }
     }
 
-
     compileTemplate() {
         this.source = document.getElementById("template_contact_header").innerHTML;
         this.template = Handlebars.compile(this.source);
         this.data_contact_header();
         this.app.page_ready();
     }
-
 
     data_contact_header() {
         let ajax = $.ajax({
@@ -70,3 +69,6 @@ $(window).on('load resize', function mobileContact() {
     }
 
 });
+
+
+export default Contact

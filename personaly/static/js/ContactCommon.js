@@ -1,4 +1,5 @@
-class Contact_common {
+import Handlebars from 'handlebars';
+class ContactCommon {
 
     constructor(app, contact, url_api_common, message_success_create_common, message_success_delete_common, message_error_create_common, message_error_delete_common) {
         this.app = app;
@@ -121,3 +122,5 @@ class Contact_common {
     }
 
 }
+
+export default ContactCommon

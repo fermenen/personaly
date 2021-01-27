@@ -1,48 +1,32 @@
 {
-    "title": "One Page Wonder",
-    "name": "startbootstrap-one-page-wonder",
-    "version": "5.0.8",
-    "scripts": {
-        "start": "node_modules/.bin/gulp watch"
-    },
-    "description": "A one page HTML template built with Bootstrap",
-    "keywords": [
-        "css",
-        "sass",
-        "html",
-        "responsive",
-        "theme",
-        "template"
-    ],
-    "homepage": "https://startbootstrap.com/template-overviews/one-page-wonder",
-    "bugs": {
-        "url": "https://github.com/StartBootstrap/startbootstrap-one-page-wonder/issues",
-        "email": "feedback@startbootstrap.com"
-    },
-    "license": "MIT",
-    "author": "Start Bootstrap",
-    "contributors": [
-        "David Miller (http://davidmiller.io/)"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/StartBootstrap/startbootstrap-one-page-wonder.git"
-    },
-    "dependencies": {
-        "bootstrap": "4.5.0",
-        "jquery": "3.5.1",
-        "spotify-sdk": "^1.0.0-beta2"
-    },
-    "devDependencies": {
-        "browser-sync": "2.26.7",
-        "del": "5.1.0",
-        "gulp": "4.0.2",
-        "gulp-autoprefixer": "7.0.1",
-        "gulp-clean-css": "4.3.0",
-        "gulp-header": "2.0.9",
-        "gulp-plumber": "^1.2.1",
-        "gulp-rename": "2.0.0",
-        "gulp-sass": "4.1.0",
-        "merge-stream": "2.0.0"
-    }
+  "name": "crm_personal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fermenen/personaly.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fermenen/personaly/issues"
+  },
+  "homepage": "https://github.com/fermenen/personaly#readme",
+  "devDependencies": {
+    "webpack": "^5.18.0",
+    "webpack-cli": "^4.4.0"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.6",
+    "jquery": "^3.5.1",
+    "jquery-validation": "^1.19.3",
+    "luxon": "^1.25.0",
+    "places.js": "^1.16.1",
+    "uikit": "^3.6.14",
+    "uikit-icons": "^0.5.0"
+  }
 }

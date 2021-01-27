@@ -23,7 +23,7 @@ urlpatterns = [
     path('v1/mail/send_code_user', views.SendCodeMailUser.as_view(), name='api_send_mail_code'),
     path('v1/mail/check_code_user', views.CheckCodeMailUser.as_view(), name='api_check_mail_code'),
 
-    path('v1/contact/search_artist', views.SearchArtist.as_view(), name='api_search_artist'),
+    path(r'search_artist', views.SearchArtist.as_view(), name='api_search_artist'),
     path('v1/contact/upload_photo', views.UploadPhoto.as_view(), name='api_upload_photo'),
 
 ]

@@ -1,9 +1,9 @@
 {% load handlebars %}
 {% load static %}
 {% load i18n %}
-<script src="{% static 'js/contact_common_001.js' %}"></script>
+
 <script>
-    let commonJS = new Contact_common(
+    let commonJS = new ContactCommon(
         app = appJS,
         contact = contactJS,
         url_api_common = '{% url 'api_v2:common_contact-list' %}',

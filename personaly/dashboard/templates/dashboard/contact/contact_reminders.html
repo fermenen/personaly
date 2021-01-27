@@ -2,16 +2,14 @@
 {% load static %}
 {% load handlebars %}
 
-<script src="{% static 'js/reminder_001.js' %}"></script>
 <script>
-    let reminderJS = new Remminder(
+    let reminderJS = new Reminder(
         app = appJS,
         contact_id = '{{ contact.id }}',
         owner = '{{ owner.id }}',
         api_reminder = '{% url 'api_v2:reminder_contact-list' %}',
     )
 </script>
-
 
 <div class="uk-margin-large-top">
     <ul class="uk-child-width-expand" uk-tab>

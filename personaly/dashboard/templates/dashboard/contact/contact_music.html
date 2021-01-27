@@ -1,17 +1,13 @@
+{% load handlebars %}
 {% load static %}
 {% load i18n %}
-<script src="{% static 'js/contact_music_001.js' %}"></script>
+
 <script>
-    let musicJS = new Contact_music(
+    let musicJS = new ContactMusic(
         app = appJS,
         contact = contactJS,
-        count_music ={{ count_list_music }},
-        message_error_search = '{% translate "Ocurrió un problema al obtener los datos" %}',
-        message_error_save = '{% translate "Ocurrió un problema al guardar los datos" %}',
-        message_error_delete_music = '{% translate "Ocurrió un problema al eliminarlo. Inténtelo de nuevo en unos instantes." %}',
-        message_success_delete_music = '{% translate "¡Borrado con éxito!" %}',
         url_api_music = '{% url 'api_v2:music_contact-list' %}',
-        url_api_search_artist = '/api/v1/contact/search_artist',
+        url_api_search_artist = '/api/search_artist',
     )
 </script>
 <div id="component_music_contact">
@@ -27,59 +23,65 @@
             contactJS.textVisible(musicJS.getCountMusic, '#text_music_contact')
         </script>
     </div>
-    <div id="component_all_music" class="uk-margin-top">
-        {% for music in list_music %}
-            {# TARJETA MUSICA #}
-            <div id="{{ music.id }}"
-                 class="uk-card uk-card-default uk-card-hover uk-margin-bottom uk-transition-toggle">
-                <div class="uk-card-header">
-                    <div class="uk-grid-small uk-flex-middle" uk-grid>
-                        <div class="uk-width-auto">
-                            {% if music.photo_artist %}
-                                <div class="uk-inline uk-margin" style="height: inherit">
-                                    <img class="" width="85" height="85" src={{ music.photo_artist }}>
-                                    <div uk-tooltip="title: <span uk-icon='star'></span> {% translate "Popularidad" %}; pos: bottom-left"
-                                         class="uk-position-cover uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle uk-transition-fade ">
-                                        <h4 class="text-gray1 uk-transition-slide-top-small">{{ music.popularity }}</h4>
-                                    </div>
-                                </div>
-                            {% else %}
-                                <div class="uk-inline uk-margin ">
-                                    <img class="" width="85" height="85" src="{% static 'img/app/music_holder.png' %}">
-                                </div>
-                            {% endif %}
-                        </div>
-                        <div class="uk-width-expand uk-margin-left">
-                            <h3 class="uk-card-title uk-margin-remove-bottom">{{ music.name_artist | capfirst }}</h3>
-                            {% for tag in music.get_list_tags %}
-                                <span class="uk-text uk-margin-remove uk-label">{{ tag }}</span>
-                            {% endfor %}
-                        </div>
-                        <div>
-                            <ul class="uk-iconnav">
-                                {% if music.url_artist %}
-                                    <li><a href="{{ music.url_artist }}" target="_blank" class="icon_spotify"
-                                           uk-tooltip="title:{% translate "Abrir" %} {{ music.name_artist }} {% translate "en Spotify" %}; pos: bottom-left"
-                                           uk-icon="icon:  play-circle"></a></li>
-                                {% endif %}
-                                <li><a class="icon_trash" uk-icon="icon: trash"
-                                       onclick="musicJS.deleteContactMusic('{{ music.id }}')"
-                                       uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom-left"></a></li>
-                            </ul>
+    <div id="component_all_music" class="uk-margin-top"></div>
+</div>
+
+
+<script id="template_contact_music" type="text/x-handlebars-template">
+    {{ "#music" | handlebars }}
+    <div id="{{ 'music_id'| handlebars }}"
+         class="uk-card uk-card-default uk-card-hover uk-margin-bottom uk-transition-toggle">
+        <div class="uk-card-header">
+            <div class="uk-grid-small uk-flex-middle" uk-grid>
+                <div class="uk-width-auto">
+                    {{ '#if photo_artist' | handlebars }}
+                    <div class="uk-inline uk-margin" style="height: inherit">
+                        <img class="" width="85" height="85" src={{ 'photo_artist'| handlebars }}>
+                        <div uk-tooltip="title: <span uk-icon='star'></span> {% translate "Popularidad" %}; pos: bottom-left"
+                             class="uk-position-cover uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle uk-transition-fade ">
+                            <h4 class="text-gray1 uk-transition-slide-top-small">{{ 'popularity'| handlebars }}</h4>
                         </div>
                     </div>
+                    {{ 'else' | handlebars }}
+                    <div class="uk-inline uk-margin ">
+                        <img class="" width="85" height="85" src="{% static 'img/app/music_holder.png' %}">
+                    </div>
+
+                    {{ '/if' | handlebars }}
+                </div>
+                <div class="uk-width-expand uk-margin-left">
+                    <h3 class="uk-card-title uk-margin-remove-bottom">{{ 'name_artist'| handlebars }}</h3>
+                    {% for tag in music.get_list_tags %}
+                        <span class="uk-text uk-margin-remove uk-label">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                <div>
+                    <ul class="uk-iconnav">
+                        {{ '#if url_artist' | handlebars }}
+                        <li><a href="{{ 'url_artist' | handlebars }}" target="_blank" class="icon_spotify"
+                               uk-tooltip="title:{% translate "Abrir" %} {{ 'name_artist'| handlebars }} {% translate "en Spotify" %}; pos: bottom-left"
+                               uk-icon="icon:  play-circle"></a></li>
+
+                        {{ '/if' | handlebars }}
+                        <li><a class="icon_trash" uk-icon="icon: trash"
+                               onclick="musicJS.deleteContactMusic('{{ music.id }}')"
+                               uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom-left"></a></li>
+                    </ul>
                 </div>
             </div>
-            {# END TARJETA MUSICA #}
-            </div>
-            <div>
-        {% endfor %}
         </div>
-</div>
+    </div>
+    {{ "/music" | handlebars }}
+</script>
+<script>
+    musicJS.compileTemplate();
+</script>
+
+
 {# MODAL ADD MUSIC #}
 <div id="modal_add_music" uk-modal>
     <div class="uk-modal-dialog">
-        <button class="uk-modal-close-default" type="button" onclick="cleanCloseModalAddMusic()" uk-close></button>
+        <button class="uk-modal-close-default" type="button" onclick="musicJS.cleanCloseModalAddMusic()" uk-close></button>
         <div class="uk-modal-header">
             <h2 class="uk-modal-title">{% translate "Añadir música" %}</h2>
         </div>
@@ -88,7 +90,7 @@
                 <div class="uk-width-2-1 uk-flex-first">
                     <div class="uk-margin">
                         <div class="uk-search uk-search-default" style="width: 100%">
-                            <a onclick="musicJS.searchArtist()" class="uk-search-icon-flip" uk-search-icon
+                            <a onclick="musicJS.search_artist()" class="uk-search-icon-flip" uk-search-icon
                                style="height: 40px"></a>
                             <input id="input_name_artist" name="input_search_artist" class="uk-input"
                                    type="search" placeholder="{% translate "Nombre del artista, grupo ..." %}">
@@ -100,7 +102,7 @@
             <div id="result_search_music" class="uk-margin-top uk-hidden">
                 <ul id="list_result_music" class="uk-list uk-list-divider uk-margin-small-left">
                     <li><a id="text_artist_manual" class="uk-link-muted"
-                           onclick="musicJS.createContactMusic()">{% translate "Añadir" %}
+                           onclick="musicJS.create_contact_music()">{% translate "Añadir" %}
                         <span id="name_artist_manual"
                               class="uk-text-bold uk-text-capitalize"></span> {% translate "de forma manual" %}
                     </a></li>
@@ -116,7 +118,7 @@
                                                                               height="16">{% translate "Propulsado por Spotify" %}</span>
             </div>
             <div class="uk-text-right">
-                <button class="uk-button uk-button-default uk-modal-close" onclick="cleanCloseModalAddMusic()"
+                <button class="uk-button uk-button-default uk-modal-close" onclick="musicJS.cleanCloseModalAddMusic()"
                         type="button">{% translate "Cancelar" %}</button>
             </div>
 
@@ -127,7 +129,7 @@
 <script>
     $("#form_modal_music").on('submit', function (evt) {
         evt.preventDefault();
-        musicJS.searchArtist();
+        musicJS.search_artist();
     });
     $(document).ready(function () {
         $('#form_modal_music').validate({

@@ -1,4 +1,6 @@
-class Contact_note {
+import { DateTime } from 'luxon';
+import Handlebars from 'handlebars';
+class ContactNote {
 
     constructor(app, contact, url_api_note, message_success_create_note, message_success_edited_note, message_success_delete_note, message_error_create_note, message_error_edited_note, message_error_delete_note) {
         this.app = app;
@@ -160,3 +162,5 @@ class Contact_note {
     }
 
 }
+
+export default ContactNote

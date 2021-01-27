@@ -194,6 +194,8 @@ class CommonContactView(viewsets.ModelViewSet):
 # Music Contact_001 - GET - POST - DELETE
 class MusicContactView(viewsets.ModelViewSet):
     serializer_class = MusicContactSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_fields = ['contact']
     http_method_names = ['get', 'post', 'delete']
 
     def get_queryset(self):
@@ -239,6 +241,8 @@ class SearchArtist(APIView):
 # Family Contact_001 - GET - POST - PUT - DELETE
 class FamilyContactView(viewsets.ModelViewSet):
     serializer_class = FamilyContactSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_fields = ['contact']
     http_method_names = ['get', 'post', 'put', 'delete']
 
     def get_queryset(self):

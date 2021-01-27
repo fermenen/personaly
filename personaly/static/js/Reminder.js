@@ -1,4 +1,5 @@
-class Remminder {
+import Handlebars from 'handlebars';
+class Reminder {
 
     constructor(app, contact_id, owner, api_reminder) {
         this.app = app;
@@ -101,3 +102,5 @@ class Remminder {
 
 
 }
+
+export default Reminder

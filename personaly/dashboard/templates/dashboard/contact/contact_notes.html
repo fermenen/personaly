@@ -1,9 +1,9 @@
 {% load handlebars %}
 {% load static %}
 {% load i18n %}
-<script src="{% static 'js/contact_notes_001.js' %}"></script>
+
 <script>
-    let notesJS = new Contact_note(
+    let notesJS = new ContactNote(
         app = appJS,
         contact = contactJS,
         url_api_note = '{% url 'api_v2:note_contact-list' %}',
