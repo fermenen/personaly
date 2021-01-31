@@ -1,4 +1,5 @@
 {% extends 'app/base_app.html' %}
+{% load handlebars %}
 {% load i18n %}
 {% load static %}
 {% block title %}{% translate "Inicio" %} | {% endblock %}
@@ -64,72 +65,84 @@
         </div>
     </div>
 
-    <script type="text/html" id="template_item_reminder">
-        <li data-id="id_reminder">
-            <div class="uk-flex uk-flex-middle uk-visible-toggle" tabindex="-1">
-                <div class="uk-margin-right"><input class="uk-checkbox" type="checkbox" uk-tooltip="complete"
-                                                    aria-expanded="false"></div>
-
-
-                <div class="uk-flex uk-flex-column uk-width">
-                    <div class="uk-flex uk-flex-inline uk-flex-middle uk-width">
-                        <div class="uk-width-small">
-                            <div class="uk-text-truncate text-blue3"><a data-href="contact_href"
-                                                                        class="text-blue3"><span
-                                    data-content-text="contact_name"></span>&nbsp;<span
-                                    data-content-text="contact_surname"></span></a></div>
-                        </div>
-                        <div class="uk-width uk-margin-small-left uk-margin-small-right">
-                            <input class="uk-input uk-form-blank uk-h3 uk-sticky" type="text" name="title"
-                                   data-value="reminder_text">
-                        </div>
-                    </div>
-                    <div class="uk-text-meta uk-text-warning" data-class="reminder_back">
-                        <span>{% translate "Recordatorio atrasado" %}</span>
-                    </div>
-                </div>
-
-                <ul class="uk-iconnav uk-invisible-hover uk-width-small uk-flex-right">
-                    <li><a href="#" class="icon_trash" uk-icon="icon: trash"></a></li>
-                    <li><a href="#" class="icon_app" uk-icon="icon: future"></a></li>
-                </ul>
-            </div>
-        </li>
-    </script>
-    <script type="text/html" id="template_item_reminder_next">
-        <li data-id="id_reminder">
-            <div class="uk-flex uk-flex-middle uk-visible-toggle" tabindex="-1">
-                <div class="uk-margin-right"><input class="uk-checkbox" type="checkbox" uk-tooltip="complete"
-                                                    aria-expanded="false"></div>
-                <div class="uk-flex uk-flex-column uk-width">
-                    <div>
+    <script id="template_items_reminder_today" type="text/x-handlebars-template">
+        <ul class="uk-list uk-list-divider">
+            {{ "#reminders" | handlebars }}
+            <li id="{{ 'id_reminder'| handlebars }}">
+                <div class="uk-flex uk-flex-middle uk-visible-toggle" tabindex="-1">
+                    <div class="uk-margin-right"><input class="uk-checkbox" type="checkbox" uk-tooltip="complete"
+                                                        aria-expanded="false"></div>
+                    <div class="uk-flex uk-flex-column uk-width">
                         <div class="uk-flex uk-flex-inline uk-flex-middle uk-width">
                             <div class="uk-width-small">
-                                <div class="uk-text-truncate text-blue3"><a data-href="contact_href" class="text-blue3"><span
-                                        data-content-text="contact_name"></span>&nbsp;<span
-                                        data-content-text="contact_surname"></span></a></div>
+                                <div class="uk-text-truncate text-blue3"><a data-href="contact_href"
+                                                                            class="text-blue3">{{ 'contact_name'| handlebars }}&nbsp;{{ 'contact_surname'| handlebars }}</a>
+                                </div>
                             </div>
                             <div class="uk-width uk-margin-small-left uk-margin-small-right">
                                 <input class="uk-input uk-form-blank uk-h3 uk-sticky" type="text" name="title"
-                                       data-value="reminder_text">
+                                       value="{{ 'reminder_text'| handlebars }}">
                             </div>
                         </div>
-                    </div>
-                    <div class="uk-flex uk-flex-inline uk-flex-middle">
-                        <span class="uk-text-meta" data-content-text="date"></span>
-                        <span class="uk-text-meta">&nbsp;-&nbsp;</span>
-                        <span class="uk-text-meta">{% translate "Quedan" %}&nbsp;<span data-content-text="days"
-                                                                                       class="uk-text-bold"></span>&nbsp;{% translate "días." %}</span>
+
+                        {{ '#if past' | handlebars }}
+                        <span class="uk-text-meta uk-text-warning">{% translate 'Recordatorio retrasado' %}</span>
+                        {{ '/if' | handlebars }}
+
                     </div>
 
+                    <ul class="uk-iconnav uk-invisible-hover uk-width-small uk-flex-right">
+                        <li><a href="#" class="icon_trash" uk-icon="icon: trash"></a></li>
+                        <li><a href="#" class="icon_app" uk-icon="icon: future"></a></li>
+                    </ul>
                 </div>
-
-                <ul class="uk-iconnav uk-invisible-hover uk-width-small uk-flex-right">
-                    <li><a href="#" class="icon_trash" uk-icon="icon: trash"></a></li>
-                    <li><a href="#" class="icon_app" uk-icon="icon: future"></a></li>
-                </ul>
-            </div>
-        </li>
+            </li>
+            {{ "/reminders" | handlebars }}
     </script>
+
+
+    <script id="template_items_reminder_next" type="text/x-handlebars-template">
+        <ul class="uk-list uk-list-divider">
+            {{ "#reminders" | handlebars }}
+            <li id="{{ 'id_reminder'| handlebars }}">
+                <div class="uk-flex uk-flex-middle uk-visible-toggle" tabindex="-1">
+                    <div class="uk-margin-right"><input class="uk-checkbox" type="checkbox" uk-tooltip="complete"
+                                                        aria-expanded="false"></div>
+                    <div class="uk-flex uk-flex-column uk-width">
+                        <div>
+                            <div class="uk-flex uk-flex-inline uk-flex-middle uk-width">
+                                <div class="uk-width-small">
+                                    <div class="uk-text-truncate text-blue3"><a data-href="contact_href"
+                                                                                class="text-blue3">{{ 'contact_name'| handlebars }}&nbsp;{{ 'contact_surname'| handlebars }}</a>
+                                    </div>
+                                </div>
+                                <div class="uk-width uk-margin-small-left uk-margin-small-right">
+                                    <input class="uk-input uk-form-blank uk-h3 uk-sticky" type="text" name="title"
+                                           value="{{ 'reminder_text'| handlebars }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-flex uk-flex-inline uk-flex-middle">
+                            <span class="uk-text-meta">{{ 'date'| handlebars }}</span>
+                            <span class="uk-text-meta">&nbsp;-&nbsp;</span>
+                            <span class="uk-text-meta">{% translate "Quedan" %}&nbsp;<span
+                                    class="uk-text-bold">{{ 'days'| handlebars }}</span>&nbsp;{% translate "días." %}</span>
+                        </div>
+
+                    </div>
+
+                    <ul class="uk-iconnav uk-invisible-hover uk-width-small uk-flex-right">
+                        <li><a href="#" class="icon_trash" uk-icon="icon: trash"></a></li>
+                        <li><a href="#" class="icon_app" uk-icon="icon: future"></a></li>
+                    </ul>
+                </div>
+            </li>
+            {{ "/reminders" | handlebars }}
+    </script>
+
+    <script>
+        dashboardJS.compileTemplate();
+    </script>
+
 
 {% endblock %}

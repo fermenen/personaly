@@ -1,14 +1,16 @@
+import './theme/app.scss';
+
 const $ = require('jquery');
 const validate = require('jquery-validation');
-import Application from "./Application"
-import Dashboard from "./Dashboard"
-import ContactsList from "./ContactsList"
-import Reminder from "./Reminder"
-import Contact from "./Contact"
-import ContactNote from "./ContactNote"
-import ContactCommon from "./ContactCommon"
-import ContactMusic from "./ContactMusic"
-import ContactFamily from "./ContactFamily"
+import Application from "./js/Application"
+import Dashboard from "./js/Dashboard"
+import ContactsList from "./js/ContactsList"
+import Reminder from "./js/Reminder"
+import Contact from "./js/Contact"
+import ContactNote from "./js/ContactNote"
+import ContactCommon from "./js/ContactCommon"
+import ContactMusic from "./js/ContactMusic"
+import ContactFamily from "./js/ContactFamily"
 import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
 

@@ -1,6 +1,7 @@
 class App {
 
     constructor(owner, url_api_contact, url_api_reminder, message_error_create, message_success_delete_contact, message_error_delete_contact, message_error_edit_contact) {
+        this.addServiceWorker()
         console.log('%cADVERTENCIA WARNING', 'background: #ee395b; color: #DFEDF2; font-size: 21px');
         console.log('%cSi utilizas esta consola, otras personas podrían hacerse pasar por ti y robarte datos mediante un ataque llamado Self-XSS', 'background: #ee395b; color: #05C7F2; font-size: 16px');
         // jQueryValidators();
@@ -14,7 +15,18 @@ class App {
         this.message_error_delete_contact = message_error_delete_contact;
         this.message_error_edit_contact = message_error_edit_contact;
 
+
     }
+
+
+    addServiceWorker() {
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    }
+
 
     page_ready() {
         $('#loading_app').addClass('uk-hidden')
@@ -32,18 +44,7 @@ class App {
         return this.count_contact;
     }
 
-    ajaxCountContact() {
-        $.ajax({
-            url: this.url_api_contact,
-            headers: {"X-CSRFToken": this.getCsrftoken},
-            type: 'GET',
-            dataType: 'json',
-            async: false,
-            success: data => {
-                this.count_contact = data['count']
-            }
-        });
-    }
+
 
     textVisible(count, textVisible) {
         if (count === 0) {
@@ -287,7 +288,9 @@ class App {
 // }
 
 
-export function uploadPhoto() {
+export function
+
+uploadPhoto() {
 
     var bar = document.getElementById('js-progressbar');
 

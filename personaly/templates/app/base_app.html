@@ -3,11 +3,17 @@
 {% load static %}
 
 {% block content %}
-
     {% csrf_token %}
 
-    <script src="{% static 'js/dist/personaly-app.js' %}"></script>
-    <script src="{% url 'js_urls' %}" type="text/javascript"></script>
+    <head>
+        <!-- start:css -->
+        <link rel="stylesheet" href="/dist/css/personaly.app.ac30ce018b205f39a5ca.css"/>
+        <!-- end:css -->
+    </head>
+
+    <!-- start:js -->
+    <script src="/dist/js/personaly.app.6c99681c582d8a61c15e.js"></script>
+    <!-- end:js -->
 
     <script>
         let appJS = new App(
