@@ -2,17 +2,17 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 import uuid
 
+from django.db.models import UUIDField, AutoField
+
 
 class User(AbstractUser):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = AutoField(primary_key=True, unique=True, editable=False)
+    # id = UUIDField(primary_key=True, default=uuid.uuid4, unique=True, editable=False)
     # username = None
     email = models.EmailField('email address', unique=True)
-
-    validated_mail = models.BooleanField(default=False)
+    validated_mail = models.BooleanField(default=False, blank=True, null=True)
     code_validated_mail = models.SmallIntegerField(blank=True, null=True)
-
     contacts_created = models.IntegerField(default=0, editable=False)
-
     contacts_active = models.IntegerField(default=0, editable=False)
     note_active = models.IntegerField(default=0, editable=False)
     common_active = models.IntegerField(default=0, editable=False)

@@ -9,11 +9,26 @@ $color-black: #000;
 $color-red-delete-2: #ee395b;
 
 
+.darkmode-background {
+  visibility: collapse !important;
+}
+
+.darkmode--activated  .darkmode-background {
+   background:  $color-black !important;
+  visibility: visible !important;
+}
+
+.darkmode-layer {
+  visibility: collapse !important;
+}
+
+
 html {
   font-size: 100%; /*16px*/
   height: 100vh;
   background: rgb(251, 251, 251) !important;
 }
+
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -24,7 +39,8 @@ body {
   min-height: 100vh;
 }
 
-.container-app{
+
+.container-app {
   margin-top: 5.5rem;
   padding-bottom: 7.5rem;
 }

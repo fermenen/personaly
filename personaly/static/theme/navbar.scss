@@ -3,8 +3,12 @@
 .navbar-app-web {
   background-color: $color-blue-1 !important;
 }
+
+.darkmode--activated .navbar-app-web {
+  background-color: #011233 !important;
+}
+
 .navbar-item {
-  //font-size: 1.00rem;
   color: $color-white !important;
   letter-spacing: 0.024rem;
 }

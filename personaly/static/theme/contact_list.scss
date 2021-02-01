@@ -1,11 +1,5 @@
 @use 'base';
 
-
-.card-contact-list {
-  width: 100% !important;
-}
-
-
 .app-button-contact:hover {
   .text-button-contact {
     color: $color-blue-3 !important;
@@ -15,7 +9,6 @@
     border: 2.0px solid $color-blue-3;
   }
 }
-
 
 .tag-contact {
   background: $color-blue-2 !important;

@@ -17,23 +17,130 @@
                 <div class="uk-flex uk-flex-row">
                     <div class="uk-margin-left">
                         <ul class="uk-tab-right" uk-tab="connect: #ajustes;">
-                            <li class="uk-active uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right" uk-icon="user"></span>Cuenta</a>
-                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right" uk-icon="cog"></span>General</a></li>
-                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right" uk-icon="credit-card"></span>Suscripción</a></li>
-                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right" uk-icon="bell"></span>Notificaciones</a></li>
-                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right" uk-icon="lifesaver"></span>Soporte</a></li>
-                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right" uk-icon="info"></span>Atajos de teclado</a></li></ul>
+                            <li class="uk-active uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right"
+                                                                                           uk-icon="user"></span>Cuenta</a>
+                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right"
+                                                                                 uk-icon="cog"></span>General</a></li>
+                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right"
+                                                                                 uk-icon="credit-card"></span>Suscripción</a>
+                            </li>
+                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right"
+                                                                                 uk-icon="bell"></span>Notificaciones</a>
+                            </li>
+                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right"
+                                                                                 uk-icon="lifesaver"></span>Soporte</a>
+                            </li>
+                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right"
+                                                                                 uk-icon="info"></span>Atajos de teclado</a>
+                            </li>
+                        </ul>
                     </div>
                     <div>
                         <ul id="ajustes" class="uk-switcher uk-margin">
-                            <li>Nombre: {{ user.first_name }} {{ user.last_name }}, Correo: {{ user.email }}
+                            <li>
+                                <div class="uk-flex uk-flex-column uk-margin-large-left">
+                                    <div class="uk-margin-small-bottom"><span
+                                            class="uk-text-bold">{% translate "Información personal" %}</span></div>
+                                    <div id="personal-data">
+                                        <div class="uk-flex uk-margin-small-bottom">
+                                            <span class="uk-margin-right">{% translate "Nombre" %}:</span>
+                                            <span>{{ user.first_name }} {{ user.last_name }} </span>
+                                        </div>
+                                        <div class="uk-flex uk-margin-small-bottom">
+                                            <span class="uk-margin-right">{% translate "Email" %}:</span>
+                                            <span>{{ user.email }}</span>
+                                        </div>
+                                        <div class="uk-flex uk-margin-small-bottom">
+                                            <span class="uk-margin-right">{% translate "Contraseña" %}:</span>
+                                            <button class="uk-button uk-button-primary uk-button-small">{% translate "Cambiar contraseña" %}</button>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <div class="uk-margin-small-bottom uk-flex uk-flex-column">
+                                            <span class="uk-text-bold">{% translate "Conectar cuentas de las redes sociales" %}</span>
+                                            <span class="">{% translate "Utiliza tus cuentas de las redes sociales para iniciar sesión en personaly." %}</span>
+                                        </div>
+
+                                    </div>
+                                    <hr>
+                                    <div class="uk-flex uk-flex-column">
+                                        <div>
+                                            <button class="uk-button uk-button-danger uk-button-small">{% translate "Eliminar mi cuenta personaly" %}</button>
+                                        </div>
+                                        <span class="uk-text-meta uk-margin-small-top">{% translate "Eliminar tu cuenta es algo permanente. Se borrarán todos tus datos inmediatamente y no podrás recuperarlos. Requiere contraseña." %}</span>
+                                    </div>
+
+                                </div>
+
 
                             </li>
-                            <li>2</li>
-                            <li>3</li>
-                            <li>4</li>
-                            <li>5</li>
-                            <li>6</li>
+                            <li>
+                                <div class="uk-flex uk-flex-column uk-margin-left">
+                                    <div class="uk-margin-small-bottom"><span
+                                            class="uk-text-bold">{% translate "General" %}</span></div>
+                                    <div class="uk-flex uk-margin-small-bottom">
+                                        <span class="uk-margin-right">{% translate "Idioma" %}:</span>
+                                        <span>{{ LANGUAGE | capfirst }}</span>
+                                    </div>
+                                    <hr>
+                                    <div class="uk-flex uk-margin-small-bottom">
+                                        <button onclick="appJS.darkToggle()" class="uk-button uk-button-secondary">{% translate "Modo noche" %}</button>
+                                    </div>
+
+                                </div>
+                            </li>
+                            <li>
+                                <div class="uk-flex uk-flex-column uk-margin-left">
+                                    <div class="uk-margin-small-bottom"><span
+                                            class="uk-text-bold">{% translate "Plan" %}</span></div>
+                                    <span>
+                                        {% translate "Actualmente estás en nuestro plan Basic." %}
+                                    </span>
+
+                                </div>
+
+
+                            </li>
+                            <li>
+                                <div class="uk-flex uk-flex-column uk-margin-left">
+                                    <div class="uk-margin-small-bottom"><span
+                                            class="uk-text-bold">{% translate "Notificaciones" %}</span>
+                                    </div>
+
+                                    <div class="uk-flex uk-flex-inline uk-margin-small-bottom">
+                                        <div><span class="uk-margin-right">{% translate "Notificaciones web" %}:</span>
+                                        </div>
+                                        <div>
+                                            <select class="uk-select">
+                                                <option>{% translate "Sí, notifícame en la versión web" %}</option>
+                                                <option>{% translate "No, no me notifiques en la versión web" %}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </li>
+                            <li>
+                                <div class="uk-flex uk-flex-column uk-margin-left">
+                                    <div class="uk-margin-small-bottom"><span
+                                            class="uk-text-bold">{% translate "Soporte" %}</span></div>
+                                    <span>
+                                       {% translate "Contacta con nosotros en " %}  <button
+                                            class="uk-button uk-button-text">{% translate "soporte@personaly.app" %}</button>
+                                    </span>
+
+                                </div>
+
+                            </li>
+                            <li>
+                                <div class="uk-flex uk-flex-column uk-margin-left">
+                                    <span class="uk-text-primary">{% translate "Próximamente!" %}</span>
+                                </div>
+
+                            </li>
                         </ul>
                     </div>
 
@@ -44,5 +151,9 @@
         </div>
     </div>
 
+
+    <script>
+        appJS.page_ready();
+    </script>
 
 {% endblock %}

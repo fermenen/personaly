@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
+from django.urls import reverse
 from dotenv import load_dotenv
 
 
@@ -122,8 +123,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 1
-LOGIN_REDIRECT_URL = '/app'
+
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'primary',
@@ -138,12 +138,24 @@ WSGI_APPLICATION = 'personaly.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv("POSTGRES_DB"),
+        'USER': os.getenv("POSTGRES_USER"),
+        'PASSWORD': os.getenv("POSTGRES_PASS"),
+        'HOST': os.getenv("POSTGRES_HOST"),
+        'PORT': os.getenv("POSTGRES_PORT"),
     }
 }
+
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
@@ -207,3 +219,9 @@ DIST_URL = '/dist/'
 
 # Path where media is stored
 DIST_ROOT = os.path.join('../dist')
+
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
+# LOGIN_REDIRECT_URL = reverse('my:app')

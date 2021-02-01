@@ -1,10 +1,10 @@
 {
   "name": "personaly",
-  "theme_color": "#144673",
-  "background_color": "#dfedf2",
+  "theme_color": "#05AFF2",
+  "background_color": "#021F59",
   "display": "minimal-ui",
   "scope": "/",
-  "start_url": "/es/my/dashboard/",
+  "start_url": "/",
   "app_name": "personaly",
   "short_name": "personaly",
   "icons": [

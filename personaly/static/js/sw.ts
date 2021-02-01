@@ -6,7 +6,6 @@ import {setCacheNameDetails} from "workbox-core";
 declare var self: WorkerGlobalScope & typeof globalThis;
 
 
-
 setCacheNameDetails({
     prefix: 'personaly',
     suffix: 'v1'
@@ -29,8 +28,13 @@ registerRoute(
 registerRoute(
     ({request}) => request.destination === 'script' ||
         request.destination === 'style',
-    new StaleWhileRevalidate({
+    new NetworkFirst({
         cacheName: 'static-cache',
+        plugins: [
+            new ExpirationPlugin({
+                maxEntries: 10,
+            }),
+        ],
     })
 );
 

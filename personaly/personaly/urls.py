@@ -23,6 +23,8 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from js_urls.views import JsUrlsView
 
+
+
 urlpatterns = [
     url(r'^robots\.txt', include('robots.urls')),
     path('api/', include('api.urls')),

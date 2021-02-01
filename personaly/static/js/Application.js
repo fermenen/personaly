@@ -1,10 +1,12 @@
+import Darkmode from 'darkmode-js';
+
 class App {
 
     constructor(owner, url_api_contact, url_api_reminder, message_error_create, message_success_delete_contact, message_error_delete_contact, message_error_edit_contact) {
         this.addServiceWorker()
         console.log('%cADVERTENCIA WARNING', 'background: #ee395b; color: #DFEDF2; font-size: 21px');
         console.log('%cSi utilizas esta consola, otras personas podrían hacerse pasar por ti y robarte datos mediante un ataque llamado Self-XSS', 'background: #ee395b; color: #05C7F2; font-size: 16px');
-        // jQueryValidators();
+        this.jQueryValidators();
         this.csrftoken = $("input[name=csrfmiddlewaretoken]").val();
         this.owner = owner;
         this.url_api_contact = url_api_contact;
@@ -15,9 +17,20 @@ class App {
         this.message_error_delete_contact = message_error_delete_contact;
         this.message_error_edit_contact = message_error_edit_contact;
 
-
+        this.dark()
     }
 
+    dark() {
+        const options = {
+            saveInCookies: true,
+            autoMatchOsTheme: false
+        }
+        this.darkmode = new Darkmode(options);
+    }
+
+    darkToggle() {
+        this.darkmode.toggle();
+    }
 
     addServiceWorker() {
         if ('serviceWorker' in navigator) {
@@ -43,7 +56,6 @@ class App {
     get getCountContacts() {
         return this.count_contact;
     }
-
 
 
     textVisible(count, textVisible) {
@@ -277,46 +289,42 @@ class App {
         //     countries: ['us'] // only search in the United States, the rest of the settings are unchanged: we're still searching for cities in German.
         // })
     }
-}
+
+    jQueryValidators() {
+        jQuery.validator.addMethod("lettersonly", function (value, element) {
+            let myRegex = /^[a-z ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ]+$/i
+            return this.optional(element) || myRegex.test(value);
+        }, "Letters only please");
+    }
 
 
-// export function jQueryValidators() {
-//     jQuery.validator.addMethod("lettersonly", function (value, element) {
-//         let myRegex = /^[a-z ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ]+$/i
-//         return this.optional(element) || myRegex.test(value);
-//     }, "Letters only please");
-// }
+    uploadPhoto() {
+
+        var bar = document.getElementById('js-progressbar');
+
+        let uploadPhoto = UIkit.upload('.js-upload', {
+
+            url: '/api/v1/contact/upload_photo',
+            multiple: false,
+            params: {
+                csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+            },
+
+            completeAll: function (response) {
+
+                var parsed_data = JSON.parse(response['response']);
+                console.log(parsed_data);
+                let pathPhoto = parsed_data.file
+
+                $("#image_edit_contact_modal").attr("src", '/media/' + pathPhoto);
+                $('#upload_photo_edit_contact').addClass('uk-hidden')
 
 
-export function
+            },
 
-uploadPhoto() {
+        });
 
-    var bar = document.getElementById('js-progressbar');
-
-    let uploadPhoto = UIkit.upload('.js-upload', {
-
-        url: '/api/v1/contact/upload_photo',
-        multiple: false,
-        params: {
-            csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
-        },
-
-        completeAll: function (response) {
-
-            var parsed_data = JSON.parse(response['response']);
-            console.log(parsed_data);
-            let pathPhoto = parsed_data.file
-
-            $("#image_edit_contact_modal").attr("src", '/media/' + pathPhoto);
-            $('#upload_photo_edit_contact').addClass('uk-hidden')
-
-
-        },
-
-
-    });
-
+    }
 }
 
 export default App

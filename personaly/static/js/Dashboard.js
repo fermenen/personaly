@@ -1,19 +1,10 @@
 import Handlebars from "handlebars";
-import { DateTime } from 'luxon';
+import {DateTime} from 'luxon';
 
 class Dashboard {
 
     constructor(app) {
         this.app = app;
-    }
-
-    update_page() {
-        this.app.textVisible(this.count_reminder_today, '#text_reminder_dashboard')
-        this.app.textVisible(0, '#dashboard_today')
-        this.app.textInVisible(this.count_reminder_today, '#component_all_reminder')
-        this.app.textInVisible(this.count_reminder_next, '#button_dashboard_next')
-
-        this.app.page_ready()
     }
 
     set_next() {
@@ -59,8 +50,11 @@ class Dashboard {
                     }
                     let context = {reminders: reminders};
                     $("#list_reminder_dashboard_today").html(this.template_today(context));
-                    this.update_page()
                 }
+                this.app.textVisible(this.count_reminder_today, '#text_reminder_dashboard')
+                this.app.textVisible(0, '#dashboard_today')
+                this.app.textInVisible(this.count_reminder_today, '#component_all_reminder')
+                this.app.page_ready()
             },
             error: data => {
                 this.app.NotificationError(this.app.message_error_generic);
@@ -92,8 +86,9 @@ class Dashboard {
                     }
                     let context = {reminders: reminders};
                     $("#list_reminder_dashboard_next").html(this.template_next(context));
-                    this.update_page()
+
                 }
+                this.app.textInVisible(this.count_reminder_next, '#button_dashboard_next')
             },
             error: data => {
                 this.app.NotificationError(this.app.message_error_generic);
