@@ -15,7 +15,7 @@
 
         <div class="uk-flex uk-flex-column uk-flex-between uk-flex-center uk-margin-small-left">
             <div class=""><span class="uk-heading-medium uk-h1">{{ 'name' | handlebars }} {{ 'surnames' | handlebars }}</span></div>
-            <div class="uk-flex uk-flex-inline">
+            <div class="uk-flex uk-flex-inline uk-margin-small-top">
                 {{ '#if phone' | handlebars }}
                 <div class="uk-margin-right"><span class="uk-margin-small-right" uk-icon="icon: receiver"></span>{{ 'phone' | handlebars }}</div>
                 {{ '/if' | handlebars }}
@@ -23,10 +23,10 @@
                 <div class="uk-margin-right"><span class="uk-margin-small-right" uk-icon="icon: location"></span>{{ 'location' | handlebars }}</div>
                 {{ '/if' | handlebars }}
             </div>
-            <div class="uk-flex-inline">
+            <div class="uk-flex uk-flex-row uk-flex-wrap uk-margin-small-top">
                 {{ "#tags" | handlebars }}
-                <div class="uk-flex uk-flex-inline">
-                    <div class="uk-label tag-contact uk-text- uk-margin-small-right">
+                <div class="uk-flex uk-flex-inline uk-flex-wrap">
+                    <div class="uk-label tag-contact uk-text- uk-margin-small-right" style="margin-top: 4px">
                         <span class="uk-margin-small-right">{{ 'icon_tag' | handlebars }}</span>
                         <span class="">{{ 'name_tag' | handlebars }}</span>
                     </div>
@@ -36,7 +36,4 @@
         </div>
 
     </div>
-</script>
-<script>
-    contactJS.compileTemplate();
 </script>

@@ -6,17 +6,12 @@
 
 {% block content_main %}
     <script>
-        let contactListJS = new ContactsList(
-            App = appJS,
-            api_contact = '{% url 'api_v2:contact-list' %}',
-        )
+        let contactListJS = new ContactsList();
     </script>
-
 
     <div id="contact_list_page" class="container-app uk-container uk-container-large uk-hidden">
         <div class="uk-flex uk-flex-center">
-            <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m uk-animation-fade">
-
+            <div class="card-app uk-card uk-card-default uk-card-body uk-animation-fade">
                 <div id="title_contact_list"
                      class="card-title uk-flex uk-flex-between uk-flex-middle uk-margin-left uk-width">
                     <h1 class="uk-heading-medium">{% translate "Contactos" %}</h1>
@@ -69,7 +64,7 @@
 
     <script id="template_items_contact" type="text/x-handlebars-template">
         {{ "#contacts" | handlebars }}
-        <div id="{{ 'id' | handlebars}}"
+        <div id="{{ 'id' | handlebars }}"
              class="uk-flex uk-flex-middle uk-flex-between uk-visible-toggle app-button-contact uk-margin-bottom"
              tabindex="-1">
             <div id="photo_name_tags_contact" class="uk-margin-left uk-flex">
@@ -84,11 +79,11 @@
                                     alt="{{ name }} {{ surnames }}" uk-img></a>
                     {{ '/if' | handlebars }}
                 </div>
-                <div id="name_contact" class="uk-flex uk-flex-middle">
+                <div id="name_contact" class="uk-flex uk-flex-middle uk-text-break">
                     <a class="uk-margin-left uk-margin-right" href={{ 'url' | handlebars }}><span
                             class="uk-h5 text-button-contact uk-text-middle">{{ 'name' | handlebars }} {{ 'surnames' | handlebars }}</span></a>
                 </div>
-                <div id="tags_contact" class="uk-visible@l uk-flex uk-flex-middle">
+                <div id="tags_contact" class="uk-visible@l uk-flex uk-flex-middle uk-panel uk-panel-box uk-text-truncate uk-width-medium uk-margin-small-left">
                     {{ "#tags" | handlebars }}
                     <div class="uk-flex uk-flex-inline">
                         <div class="uk-label tag-contact uk-text- uk-margin-small-right">

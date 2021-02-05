@@ -2,6 +2,7 @@ import Darkmode from 'darkmode-js';
 
 class App {
 
+
     constructor(owner, url_api_contact, url_api_reminder, message_error_create, message_success_delete_contact, message_error_delete_contact, message_error_edit_contact) {
         this.addServiceWorker()
         console.log('%cADVERTENCIA WARNING', 'background: #ee395b; color: #DFEDF2; font-size: 21px');
@@ -41,7 +42,7 @@ class App {
     }
 
 
-    page_ready() {
+    static page_ready() {
         $('#loading_app').addClass('uk-hidden')
     }
 
@@ -53,12 +54,16 @@ class App {
         return this.owner;
     }
 
+    static getOwner(){
+        return owner;
+    }
+
     get getCountContacts() {
         return this.count_contact;
     }
 
 
-    textVisible(count, textVisible) {
+    static textVisible(count, textVisible) {
         if (count === 0) {
             $(textVisible).removeClass('uk-hidden')
         } else {
@@ -66,7 +71,7 @@ class App {
         }
     }
 
-    textInVisible(count, textVisible) {
+    static textInVisible(count, textVisible) {
         if (count === 0) {
             $(textVisible).addClass('uk-hidden')
         } else {
@@ -74,19 +79,19 @@ class App {
         }
     }
 
-    NotificationError(message_error) {
+    static NotificationError(message_error) {
         UIkit.notification({message: message_error, status: 'danger'})
     }
 
-    NotificationSuccess(message_success) {
+    static NotificationSuccess(message_success) {
         UIkit.notification({message: message_success, status: 'success'})
     }
 
-    HideModal(modal) {
+    static HideModal(modal) {
         UIkit.modal(modal).hide();
     }
 
-    ShowModal(modal) {
+    static ShowModal(modal) {
         UIkit.modal(modal).show();
     }
 
@@ -94,7 +99,11 @@ class App {
         $(name).addClass('uk-disabled')
     }
 
-    AvailableButton(name) {
+    static DisabledButton(name) {
+        $(name).addClass('uk-disabled')
+    }
+
+    static AvailableButton(name) {
         $(name).removeClass('uk-disabled')
     }
 
@@ -102,7 +111,11 @@ class App {
         $(name).html('<div uk-spinner></div>')
     }
 
-    AvailableloadingButton(name) {
+    static LoadingButton(name) {
+        $(name).html('<div uk-spinner></div>')
+    }
+
+    static AvailableloadingButton(name) {
         $(name).html($(name).data('value'))
     }
 
@@ -197,16 +210,16 @@ class App {
                 type: 'PUT',
                 dataType: 'json',
                 success: data => {
-                    this.HideModal(modal_edit_contact)
-                    this.NotificationSuccess("Contacto actualizado con exito! ")
+                    App.HideModal(modal_edit_contact)
+                    App.NotificationSuccess("Contacto actualizado con exito! ")
                     jQuery.event.trigger('contact_edited');
                 },
                 error: data => {
-                    this.NotificationError("erorrr")
+                    App.NotificationError("erorrr")
                 },
                 complete: data => {
-                    this.AvailableButton(button_save)
-                    this.AvailableloadingButton(button_save)
+                    App.AvailableButton(button_save)
+                    App.AvailableloadingButton(button_save)
                 }
             });
         } else {
@@ -239,7 +252,7 @@ class App {
     openModalDeleteContact(id_contact, name_contact) {
         $('#contact_id_delete_contact').val(id_contact)
         $('#contact_name_delete_contact').text(name_contact)
-        this.ShowModal(modal_delete_contact)
+        App.ShowModal(modal_delete_contact)
     }
 
 
@@ -260,10 +273,10 @@ class App {
                 $("#form_modal_edit_contact input[id=input_date]").val(data['birthday'])
                 $("#form_modal_edit_contact input[id=remember_birthday]").prop('checked', data['remember_birthday']);
                 $("#form_modal_edit_contact select[id=id_keep_in_touch]").val(data['keep_in_touch'])
-                this.ShowModal(modal_edit_contact)
+                App.ShowModal(modal_edit_contact)
             },
             error: data => {
-                this.NotificationError(this.message_error_edit_contact)
+                App.NotificationError(this.message_error_edit_contact)
             }
         });
 
@@ -325,6 +338,11 @@ class App {
         });
 
     }
+
+    static getCsrfToken() {
+        return $("input[name=csrfmiddlewaretoken]").val();
+    }
+
 }
 
 export default App

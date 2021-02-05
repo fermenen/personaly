@@ -3,12 +3,7 @@
 {% load i18n %}
 
 <script>
-    let musicJS = new ContactMusic(
-        app = appJS,
-        contact = contactJS,
-        url_api_music = '{% url 'api_v2:music_contact-list' %}',
-        url_api_search_artist = '/api/search_artist',
-    )
+    let musicJS = new ContactMusic();
 </script>
 <div id="component_music_contact">
     <button id="button_add_note_contact" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
@@ -20,7 +15,7 @@
             <span>&#127925; {% translate "Añade la música que más le gusta a" %} {{ contact.name | capfirst }}.</span>
         </div>
         <script>
-            contactJS.textVisible(musicJS.getCountMusic, '#text_music_contact')
+            contactJS.textVisible(musicJS.count_music, '#text_music_contact')
         </script>
     </div>
     <div id="component_all_music" class="uk-margin-top"></div>
@@ -51,9 +46,9 @@
                 </div>
                 <div class="uk-width-expand uk-margin-left">
                     <h3 class="uk-card-title uk-margin-remove-bottom">{{ 'name_artist'| handlebars }}</h3>
-                    {% for tag in music.get_list_tags %}
-                        <span class="uk-text uk-margin-remove uk-label">{{ tag }}</span>
-                    {% endfor %}
+                    {{ "#genre" | handlebars }}
+                        <span class="uk-text uk-margin-remove uk-label">{{ 'name_genre'| handlebars }}</span>
+                    {{ "/genre" | handlebars }}
                 </div>
                 <div>
                     <ul class="uk-iconnav">
@@ -64,7 +59,7 @@
 
                         {{ '/if' | handlebars }}
                         <li><a class="icon_trash" uk-icon="icon: trash"
-                               onclick="musicJS.deleteContactMusic('{{ music.id }}')"
+                               onclick="musicJS.deleteMusicContact('{{ 'music_id'| handlebars }}')"
                                uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom-left"></a></li>
                     </ul>
                 </div>
@@ -73,15 +68,12 @@
     </div>
     {{ "/music" | handlebars }}
 </script>
-<script>
-    musicJS.compileTemplate();
-</script>
-
 
 {# MODAL ADD MUSIC #}
 <div id="modal_add_music" uk-modal>
     <div class="uk-modal-dialog">
-        <button class="uk-modal-close-default" type="button" onclick="musicJS.cleanCloseModalAddMusic()" uk-close></button>
+        <button class="uk-modal-close-default" type="button" onclick="musicJS.cleanCloseModalAddMusic()"
+                uk-close></button>
         <div class="uk-modal-header">
             <h2 class="uk-modal-title">{% translate "Añadir música" %}</h2>
         </div>
@@ -126,28 +118,7 @@
 
     </div>
 </div>
-<script>
-    $("#form_modal_music").on('submit', function (evt) {
-        evt.preventDefault();
-        musicJS.search_artist();
-    });
-    $(document).ready(function () {
-        $('#form_modal_music').validate({
-                errorClass: "uk-form-danger uk-text-small",
-                rules: {
-                    input_search_artist: {
-                        required: true,
-                        minlength: 3
-                    }
-                },
-                messages: {
-                    input_search_artist: {
-                        required: '{% translate "Campo obligatorio." %}',
-                        minlength: '{% translate "Mínimo 3 caracteres." %}'
-                    }
-                }
-            }
-        )
-    });
-</script>
 {#END MODAL ADD MUSIC #}
+<script>
+    musicJS.compileTemplate();
+</script>

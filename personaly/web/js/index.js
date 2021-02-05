@@ -1,4 +1,4 @@
-class Web {
+class Index {
 
     constructor() {
         $(window).on('load resize', function () {
@@ -15,4 +15,4 @@ class Web {
 
 }
 
-export default Web
+export default Index

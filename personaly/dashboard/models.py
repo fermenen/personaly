@@ -9,6 +9,7 @@ from uuid import uuid4
 from PIL import Image
 import uuid
 from django.utils.translation import ugettext_lazy as _
+from encrypted_fields import fields
 
 
 class Contact(models.Model):
@@ -21,13 +22,13 @@ class Contact(models.Model):
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.TextField(max_length=200)
-    surnames = models.TextField(blank=True, max_length=200)
-    image_contact = models.TextField(blank=True, null=True)
-    location = models.TextField(blank=True, null=True)
+    name = fields.EncryptedTextField(max_length=200)
+    surnames = fields.EncryptedTextField(blank=True, max_length=200)
+    image_contact = fields.EncryptedTextField(blank=True, null=True)
+    location = fields.EncryptedTextField(blank=True, null=True)
     phone = PhoneField(blank=True)
-    email = models.TextField(blank=True, null=True)
-    birthday = models.DateField(blank=True, null=True)
+    email = fields.EncryptedEmailField(blank=True, null=True)
+    birthday = fields.EncryptedDateField(blank=True, null=True)
     remember_birthday = models.BooleanField(default=False)
     keep_in_touch = models.CharField(max_length=3, choices=in_touch)
     url = models.SlugField(blank=True, max_length=255)
@@ -58,10 +59,17 @@ class Contact(models.Model):
 
 
 class TagContact(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     icon = models.CharField(blank=False, max_length=10)
     text = models.TextField(blank=False, max_length=20)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     contact = models.ForeignKey(Contact, related_name='contact_tag', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+
+    def delete(self, using=None, keep_parents=False):
+        self.active = False
+        self.save()
 
     def __str__(self):
         return f"({self.icon} - {self.text})"
@@ -108,7 +116,7 @@ class ReminderContact(models.Model):
 
 class NoteContact(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    text = models.TextField()
+    text = fields.EncryptedTextField()
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -157,6 +165,7 @@ class MusicContact(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
 
+    @property
     def get_list_tags(self):
         return self.tags.split(";")
 

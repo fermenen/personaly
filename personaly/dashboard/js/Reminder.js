@@ -1,12 +1,10 @@
 import Handlebars from 'handlebars';
-class Reminder {
+import Contact from "./Contact";
+import App from "./Application";
 
-    constructor(app, contact_id, owner, api_reminder) {
-        this.app = app;
-        this.contact_id = contact_id;
-        this.owner = owner;
-        this.api_reminder = api_reminder;
+export default class Reminder {
 
+    constructor() {
         $(document).on('reminder_edited', () => this.data_reminder_no_completed());
         $(document).on('reminder_edited', () => this.data_reminder_completed());
         $(document).on('reminder_completed', () => this.data_reminder_no_completed());
@@ -43,8 +41,8 @@ class Reminder {
 
     data_reminder_no_completed() {
         let ajax = $.ajax({
-            url: this.api_reminder + '?contact=' + this.contact_id + "&completed=false",
-            headers: {"X-CSRFToken": this.app.getCsrftoken},
+            url: window.reverse('api_v2:api_v2:reminder_contact-list', '?contact=' + Contact.getContactId() + '&completed=false'),
+            headers: {"X-CSRFToken": App.getOwner()},
             type: 'GET',
             dataType: 'json',
             success: data => {
@@ -73,8 +71,8 @@ class Reminder {
 
     data_reminder_completed() {
         let ajax = $.ajax({
-            url: this.api_reminder + '?contact=' + this.contact_id + "&completed=true",
-            headers: {"X-CSRFToken": this.app.getCsrftoken},
+            url: window.reverse('api_v2:api_v2:reminder_contact-list', '?contact=' + Contact.getContactId() + '&completed=true'),
+            headers: {"X-CSRFToken": App.getCsrfToken()},
             type: 'GET',
             dataType: 'json',
             success: data => {
@@ -101,6 +99,4 @@ class Reminder {
     }
 
 
-}
-
-export default Reminder
+};

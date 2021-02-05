@@ -18,16 +18,3 @@
   line-height: 1.60 !important;
   border-radius: 3px !important;
 }
-
-
-@media (min-width: 980px) {
-  .card-contact-list {
-    width: 65% !important;
-  }
-
-  .app-button-contact:hover {
-    .btn-actions-contact {
-      display: inline-block !important;
-    }
-  }
-}

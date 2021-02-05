@@ -15,7 +15,6 @@ from django.contrib.messages import constants as messages
 from django.urls import reverse
 from dotenv import load_dotenv
 
-
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -55,6 +54,8 @@ INSTALLED_APPS = [
     'django_filters',
     'django_property_filter',
     'js_urls',
+    'django_js_reverse',
+    'encrypted_fields'
 
 ]
 
@@ -82,7 +83,7 @@ ROOT_URLCONF = 'personaly.urls'
 
 JS_URLS = (
     'contact',
-    'api_v2:reminder_contact-list',
+    'api_v2',
 )
 
 TEMPLATES = [
@@ -123,8 +124,6 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-
-
 MESSAGE_TAGS = {
     messages.DEBUG: 'primary',
     messages.INFO: 'primary',
@@ -138,24 +137,23 @@ WSGI_APPLICATION = 'personaly.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv("POSTGRES_DB"),
-        'USER': os.getenv("POSTGRES_USER"),
-        'PASSWORD': os.getenv("POSTGRES_PASS"),
-        'HOST': os.getenv("POSTGRES_HOST"),
-        'PORT': os.getenv("POSTGRES_PORT"),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.getenv("POSTGRES_DB"),
+#         'USER': os.getenv("POSTGRES_USER"),
+#         'PASSWORD': os.getenv("POSTGRES_PASS"),
+#         'HOST': os.getenv("POSTGRES_HOST"),
+#         'PORT': os.getenv("POSTGRES_PORT"),
+#     }
+# }
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
@@ -220,8 +218,11 @@ DIST_URL = '/dist/'
 # Path where media is stored
 DIST_ROOT = os.path.join('../dist')
 
-
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
 # LOGIN_REDIRECT_URL = reverse('my:app')
+
+FIELD_ENCRYPTION_KEYS = [
+    "f164ec6bd6fbc4aef5647abc15199da0f9badcc1d2127bde2087ae0d794a9a0b"
+]

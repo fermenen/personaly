@@ -1,32 +1,27 @@
 {% extends 'app/base_app.html' %}
+{% load handlebars %}
 {% load i18n %}
 {% load static %}
 {% block title %}{{ contact.name |capfirst }} {{ contact.surnames |capfirst }} | {% endblock %}
 
 {% block content_main %}
+
     <script>
-        let contactJS = new Contact(
-            app = appJS,
-            contact_id = '{{ contact.id }}',
-            owner = '{{ owner.id }}',
-            api_contact = '{% url 'api_v2:contact-list' %}',
-        )
+        let contactJS = new Contact(contact_id = '{{ contact.id }}');
+        let contactTagJS = new ContactTag();
     </script>
 
     <div class="container-app uk-container uk-container-large ">
         <div class="uk-flex uk-flex-center">
-            <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m">
+            <div class="card-app uk-card uk-card-default uk-card-body uk-animation-fade">
                 <ul class="uk-iconnav btn-actions-tittle uk-flex-right">
-                    <li><a class="uk-icon-link icon_trash"
-                           onclick="appJS.openModalDeleteContact('{{ contact.id }}')"
+                    <li><a class="uk-icon-link icon_trash" onclick="appJS.openModalDeleteContact('{{ contact.id }}')"
                            uk-icon="icon: trash"
                            uk-tooltip="title: {% translate "Eliminar contacto" %}; pos: bottom-left"></a>
-                    <li><a class="uk-icon-link"
-                           onclick=""
+                    <li><a class="uk-icon-link" onclick="contactTagJS.openModalEditTags()"
                            uk-icon="icon: tag"
                            uk-tooltip="title: {% translate "Editar etiquetas" %}; pos: bottom-left"></a>
-                    <li><a class="uk-icon-link"
-                           onclick="appJS.openModalEditContact('{{ contact.id }}')"
+                    <li><a class="uk-icon-link" onclick="appJS.openModalEditContact('{{ contact.id }}')"
                            uk-icon="icon: file-edit"
                            uk-tooltip="title: {% translate "Editar contacto" %}; pos: bottom-left"></a>
                 </ul>
@@ -65,5 +60,52 @@
 
         </div>
     </div>
+
+
+    <div id="modal_edit_label" uk-modal>
+        <div class="uk-modal-dialog">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <div class="uk-modal-header">
+                <h2 class="uk-modal-title">{% translate "Editar etiquetas" %}</h2>
+            </div>
+            <div class="uk-modal-body">
+                <div id="component_all_tags_edit"></div>
+                <script id="template_tags_contact" type="text/x-handlebars-template">
+                    <div class="uk-flex uk-flex-column uk-margin-left">
+                        {{ "#tags" | handlebars }}
+                        <div class="uk-flex uk-flex-inline uk-margin-small-bottom">
+                            <div class="uk-label tag-contact uk-text- uk-margin-small-right">
+                                <span class="uk-margin-small-right">{{ 'icon_tag' | handlebars }}</span>
+                                <span class="">{{ 'name_tag' | handlebars }}</span>
+                            </div>
+                            <a onclick="contactTagJS.deleteTagContact('{{ 'id_tag' | handlebars }}')"
+                               class="uk-icon-link icon_trash" uk-icon="icon: trash"></a>
+                        </div>
+                        {{ "/tags"| handlebars }}
+                    </div>
+                </script>
+            </div>
+            <div class="uk-modal-footer uk-text-right">
+                <form id="form_modal_tag">
+                    <div class="uk-flex uk-flex-inline">
+                        <div class="uk-inline uk-margin-small-right">
+                            <button id="button_select_emoji" class="uk-form-icon" href="#"
+                                    uk-icon="icon: happy"></button>
+                            <input id="emoji-label-input" name="icon_emoji" class="uk-input uk-hidden" type="text">
+                            <input class="uk-input uk-text-uppercase" name="name_tag" type="text">
+                        </div>
+                        <button id="button_create_tag_contact" onclick="contactTagJS.createTagContact()"
+                                class="uk-button uk-button-primary uk-button-small"
+                                data-value='{% translate "Añadir nueva etiqueta" %}'>{% translate "Añadir nueva etiqueta" %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        contactJS.compileTemplate();
+        contactTagJS.compileTemplate();
+    </script>
 
 {% endblock %}

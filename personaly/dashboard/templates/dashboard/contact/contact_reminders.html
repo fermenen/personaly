@@ -3,12 +3,7 @@
 {% load handlebars %}
 
 <script>
-    let reminderJS = new Reminder(
-        app = appJS,
-        contact_id = '{{ contact.id }}',
-        owner = '{{ owner.id }}',
-        api_reminder = '{% url 'api_v2:reminder_contact-list' %}',
-    )
+    let reminderJS = new Reminder();
 </script>
 
 <div class="uk-margin-large-top">

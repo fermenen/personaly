@@ -1,0 +1,16 @@
+{% load i18n %}
+
+<div class="uk-flex uk-flex-column uk-margin-left">
+    <div class="uk-margin-small-bottom"><span
+            class="uk-text-bold">{% translate "General" %}</span></div>
+    <div class="uk-flex uk-margin-small-bottom">
+        <span class="uk-margin-right">{% translate "Idioma" %}:</span>
+        <span>{{ LANGUAGE | capfirst }}</span>
+    </div>
+    <hr>
+    <div class="uk-flex uk-margin-small-bottom">
+        <button onclick="appJS.darkToggle()"
+                class="uk-button uk-button-secondary">{% translate "Modo noche" %}</button>
+    </div>
+
+</div>

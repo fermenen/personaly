@@ -1,7 +1,7 @@
-import './theme/web.scss';
+import '../../static/theme/web.scss';
 
 const $ = require('jquery');
-import Web from "./js/web"
+import Index from "./index";
 
 import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
@@ -9,4 +9,4 @@ import Icons from 'uikit/dist/js/uikit-icons';
 
 UIkit.use(Icons);
 window.$ = $;
-window.Web = Web
+window.Web = Index

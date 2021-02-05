@@ -5,15 +5,12 @@
 {% block title %}{% translate "Inicio" %} | {% endblock %}
 {% block content_main %}
     <script>
-        let dashboardJS = new Dashboard(
-            App = appJS,
-            url_api_family = '{% url 'api_v2:reminder_contact-list' %}',
-        )
+        let dashboardJS = new Dashboard();
     </script>
 
     <div id="dashboard_today" class="container-app uk-container uk-container-large uk-hidden">
         <div class="uk-flex uk-flex-center">
-            <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m uk-animation-fade">
+            <div class="card-app uk-card uk-card-default uk-card-body uk-animation-fade">
                 <div class="card-title uk-width uk-flex uk-flex-inline uk-flex-between uk-margin-left uk-margin-bottom uk-flex-middle">
                     <div class="uk-flex uk-flex-middle">
                         <div><span class="uk-heading-medium uk-h1">{% translate "Hoy" %}</span></div>
@@ -43,7 +40,7 @@
 
     <div id="dashboard_next" class="container-app uk-container uk-container-large uk-hidden">
         <div class="uk-flex uk-flex-center">
-            <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m uk-animation-fade">
+            <div class="card-app uk-card uk-card-default uk-card-body uk-animation-fade">
                 <div class="card-title uk-width uk-flex uk-flex-inline uk-flex-between uk-margin-left uk-margin-bottom uk-flex-middle">
                     <div class="uk-flex uk-flex-middle">
                         <div><span class="uk-heading-medium uk-h1">{% translate "Próximo" %}</span></div>

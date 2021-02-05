@@ -28,7 +28,7 @@ registerRoute(
 registerRoute(
     ({request}) => request.destination === 'script' ||
         request.destination === 'style',
-    new NetworkFirst({
+    new CacheFirst({
         cacheName: 'static-cache',
         plugins: [
             new ExpirationPlugin({

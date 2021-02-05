@@ -105,6 +105,19 @@ class ContactView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+# TagContact View
+class TagContactView(viewsets.ModelViewSet):
+    serializer_class = TagContactSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    ordering_fields = ['created_at']
+    filterset_fields = ['contact']
+    http_method_names = ['get', 'post', 'delete']
+
+    def get_queryset(self):
+        return TagContact.objects.filter(owner=self.request.user, active=True)
+
+
+
 class ReminderContactFilter(PropertyFilterSet):
     lte_days = PropertyNumberFilter(field_name='days', lookup_expr='lte')
     gte_days = PropertyNumberFilter(field_name='days', lookup_expr='gte')

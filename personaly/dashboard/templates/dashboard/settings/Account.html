@@ -1,0 +1,36 @@
+{% load i18n %}
+
+<div class="uk-flex uk-flex-column uk-margin-large-left">
+    <div class="uk-margin-small-bottom"><span
+            class="uk-text-bold">{% translate "Información personal" %}</span></div>
+    <div id="personal-data">
+        <div class="uk-flex uk-margin-small-bottom">
+            <span class="uk-margin-right">{% translate "Nombre" %}:</span>
+            <span>{{ user.first_name }} {{ user.last_name }} </span>
+        </div>
+        <div class="uk-flex uk-margin-small-bottom">
+            <span class="uk-margin-right">{% translate "Email" %}:</span>
+            <span>{{ user.email }}</span>
+        </div>
+        <div class="uk-flex uk-margin-small-bottom">
+            <span class="uk-margin-right">{% translate "Contraseña" %}:</span>
+            <button class="uk-button uk-button-primary uk-button-small">{% translate "Cambiar contraseña" %}</button>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <div class="uk-margin-small-bottom uk-flex uk-flex-column">
+            <span class="uk-text-bold">{% translate "Conectar cuentas de las redes sociales" %}</span>
+            <span class="">{% translate "Utiliza tus cuentas de las redes sociales para iniciar sesión en personaly." %}</span>
+        </div>
+
+    </div>
+    <hr>
+    <div class="uk-flex uk-flex-column">
+        <div>
+            <button class="uk-button uk-button-danger uk-button-small">{% translate "Eliminar mi cuenta personaly" %}</button>
+        </div>
+        <span class="uk-text-meta uk-margin-small-top">{% translate "Eliminar tu cuenta es algo permanente. Se borrarán todos tus datos inmediatamente y no podrás recuperarlos. Requiere contraseña." %}</span>
+    </div>
+
+</div>

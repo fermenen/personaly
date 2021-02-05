@@ -1,36 +1,32 @@
+import App from "./Application";
 import Handlebars from 'handlebars';
-class Contact {
 
-    constructor(app, contact_id, owner, api_contact) {
-        this.app = app;
+export default class Contact {
+
+    constructor(contact_id) {
         this.contact_id = contact_id;
-        this.owner = owner;
-        this.api_contact = api_contact;
-
         $(document).on('contact_edited', () => this.data_contact_header());
+        $(document).on('contact_tag_created', () => this.data_contact_header());
+        $(document).on('contact_tag_deleted', () => this.data_contact_header());
+
     }
 
-
-    // Metodo para hacer visilbe o no el texto promo debajo del boton de añadir
-    textVisible(count, textVisible) {
-        if (count === 0) {
-            $(textVisible).removeClass('uk-hidden')
-        } else {
-            $(textVisible).addClass('uk-hidden')
-        }
+    static getContactId() {
+        return contact_id;
     }
 
     compileTemplate() {
+        this.mobileAdapt();
         this.source = document.getElementById("template_contact_header").innerHTML;
         this.template = Handlebars.compile(this.source);
         this.data_contact_header();
-        this.app.page_ready();
+        App.page_ready();
     }
 
     data_contact_header() {
         let ajax = $.ajax({
-            url: this.api_contact + this.contact_id + '/',
-            headers: {"X-CSRFToken": this.app.getCsrftoken},
+            url: window.reverse('api_v2:api_v2:contact-detail', this.contact_id, ''),
+            headers: {"X-CSRFToken": App.getCsrfToken()},
             type: 'GET',
             dataType: 'json',
             success: data => {
@@ -57,18 +53,15 @@ class Contact {
 
     }
 
-
-}
-
-$(window).on('load resize', function mobileContact() {
-    let win = $(this);
-    if (win.width() <= 700) {
-        $('#tab_contact').addClass('uk-tab-right');
-    } else {
-        $("#tab_contact").removeClass('uk-tab-right');
+    mobileAdapt() {
+        $(window).on('load resize', function mobileContact() {
+            let win = $(this);
+            if (win.width() <= 700) {
+                $('#tab_contact').addClass('uk-tab-right');
+            } else {
+                $("#tab_contact").removeClass('uk-tab-right');
+            }
+        })
     }
 
-});
-
-
-export default Contact
+};

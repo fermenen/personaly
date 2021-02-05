@@ -3,17 +3,7 @@
 {% load i18n %}
 
 <script>
-    let notesJS = new ContactNote(
-        app = appJS,
-        contact = contactJS,
-        url_api_note = '{% url 'api_v2:note_contact-list' %}',
-        message_success_create_note = '{% translate "¡Nota creada con éxito!" %}',
-        message_success_edited_note = '{% translate "¡Nota editada con éxito!" %}',
-        message_success_delete_note = '{% translate "¡Nota eliminada con éxito!" %}',
-        message_error_create_note = '{% translate "Error al crear la nota, inténtalo de nuevo." %}',
-        message_error_edited_note = '{% translate "Error al editar la nota, inténtalo de nuevo." %}',
-        message_error_delete_note = '{% translate "Ocurrió un problema al borrar la nota." %}',
-    )
+    let notesJS = new ContactNote();
 </script>
 
 <div id="component_notes_contact">
@@ -26,7 +16,6 @@
     </div>
     <div id="component_all_notes"></div>
 </div>
-
 
 <script id="template_contact_note" type="text/x-handlebars-template">
     <div class="uk-text-meta uk-margin-bottom uk-margin-small-top"><span
@@ -69,9 +58,6 @@
     </div>
     {{ "/notes" | handlebars }}
 </script>
-<script>
-    notesJS.compileTemplate();
-</script>
 
 <div id="modal_contact_create_note" uk-modal>
     <div class="uk-modal-dialog">
@@ -102,8 +88,6 @@
     </div>
 </div>
 
-
-
 <div id="modal_contact_edit_note" uk-modal>
     <div class="uk-modal-dialog">
         <button class="uk-modal-close-default" type="button" uk-close></button>
@@ -133,50 +117,5 @@
 </div>
 
 <script>
-    $("#form_modal_note").on('submit', function (evt) {
-        evt.preventDefault();
-    });
-    $(document).ready(function () {
-        $('#form_modal_note').validate({
-                errorClass: "uk-form-danger uk-text-small",
-                rules: {
-                    text_note: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 350
-                    }
-                },
-                messages: {
-                    text_note: {
-                        required: '{% translate "Campo obligatorio." %}',
-                        minlength: '{% translate "Mínimo 3 caracteres." %}',
-                        maxlength: '{% translate "Maximo 350 caracteres." %}'
-                    }
-                }
-            }
-        )
-    });
-    $("#form_modal_edit_note").on('submit', function (evt) {
-        evt.preventDefault();
-    });
-    $(document).ready(function () {
-        $('#form_modal_edit_note').validate({
-                errorClass: "uk-form-danger uk-text-small",
-                rules: {
-                    text_note: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 350
-                    }
-                },
-                messages: {
-                    text_note: {
-                        required: '{% translate "Campo obligatorio." %}',
-                        minlength: '{% translate "Mínimo 3 caracteres." %}',
-                        maxlength: '{% translate "Maximo 350 caracteres." %}'
-                    }
-                }
-            }
-        )
-    });
+    notesJS.compileTemplate();
 </script>

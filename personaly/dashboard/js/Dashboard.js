@@ -1,10 +1,12 @@
 import Handlebars from "handlebars";
 import {DateTime} from 'luxon';
+import Contact from "./Contact";
+import App from "./Application";
 
-class Dashboard {
 
-    constructor(app) {
-        this.app = app;
+export default class Dashboard {
+
+    constructor() {
     }
 
     set_next() {
@@ -31,7 +33,7 @@ class Dashboard {
     data_reminder_today() {
         let ajax = $.ajax({
             url: window.reverse('api_v2:reminder_contact-list', '?lte_days=0&ordering=deadline'),
-            headers: {"X-CSRFToken": this.app.getCsrftoken},
+            headers: {"X-CSRFToken": App.getCsrfToken()},
             type: 'GET',
             dataType: 'json',
             success: data => {
@@ -51,13 +53,13 @@ class Dashboard {
                     let context = {reminders: reminders};
                     $("#list_reminder_dashboard_today").html(this.template_today(context));
                 }
-                this.app.textVisible(this.count_reminder_today, '#text_reminder_dashboard')
-                this.app.textVisible(0, '#dashboard_today')
-                this.app.textInVisible(this.count_reminder_today, '#component_all_reminder')
-                this.app.page_ready()
+                App.textVisible(this.count_reminder_today, '#text_reminder_dashboard')
+                App.textVisible(0, '#dashboard_today')
+                App.textInVisible(this.count_reminder_today, '#component_all_reminder')
+                App.page_ready()
             },
             error: data => {
-                this.app.NotificationError(this.app.message_error_generic);
+                App.NotificationError(gettext('Ocurrió un problema al actualizar los recordatorios.'));
             }
         });
     }
@@ -65,7 +67,7 @@ class Dashboard {
     data_reminder_next() {
         let ajax = $.ajax({
             url: window.reverse('api_v2:reminder_contact-list', '?gte_days=1'),
-            headers: {"X-CSRFToken": this.app.getCsrftoken},
+            headers: {"X-CSRFToken": App.getCsrfToken()},
             type: 'GET',
             dataType: 'json',
             success: data => {
@@ -88,14 +90,12 @@ class Dashboard {
                     $("#list_reminder_dashboard_next").html(this.template_next(context));
 
                 }
-                this.app.textInVisible(this.count_reminder_next, '#button_dashboard_next')
+                App.textInVisible(this.count_reminder_next, '#button_dashboard_next')
             },
             error: data => {
-                this.app.NotificationError(this.app.message_error_generic);
+                App.NotificationError(gettext('Ocurrió un problema al actualizar los recordatorios.'));
             }
         });
     }
 
-}
-
-export default Dashboard
+};

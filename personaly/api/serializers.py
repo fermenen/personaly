@@ -95,10 +95,20 @@ class DeleteFamilySerializer(serializers.ModelSerializer):
 
 # // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -- - - - - - - - -
 
+class IsActiveTag(serializers.ListSerializer):
+
+    def to_representation(self, data):
+        if isinstance(data, list):
+            return super().to_representation(data)
+        data = data.filter(active=True)
+        return super().to_representation(data)
+
+
 class TagContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = TagContact
-        fields = ('icon', 'text')
+        list_serializer_class = IsActiveTag
+        fields = ('id', 'icon', 'text', 'contact', 'owner', 'created_at')
 
 
 class ContactSerializer(serializers.ModelSerializer):
@@ -153,7 +163,7 @@ class MusicContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = MusicContact
         fields = (
-            'id', 'id_artist', 'name_artist', 'photo_artist', 'url_artist', 'tags', 'popularity', 'contact', 'owner')
+            'id', 'id_artist', 'name_artist', 'photo_artist', 'url_artist', 'get_list_tags', 'popularity', 'contact', 'owner')
 
     def create(self, validated_data):
         """

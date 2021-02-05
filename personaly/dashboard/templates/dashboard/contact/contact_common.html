@@ -3,16 +3,7 @@
 {% load i18n %}
 
 <script>
-    let commonJS = new ContactCommon(
-        app = appJS,
-        contact = contactJS,
-        url_api_common = '{% url 'api_v2:common_contact-list' %}',
-
-        message_success_create_common = '{% translate "¡Cosa en común creada con éxito!" %}',
-        message_success_delete_common = '{% translate "¡Cosa en común eliminada con éxito!" %}',
-        message_error_create_common = '{% translate "Error al crear la cosa en común, inténtalo de nuevo." %}',
-        message_error_delete_common = '{% translate "Ocurrió un problema al borrar la cosa en común." %}',
-    )
+    let commonJS = new ContactCommon();
 </script>
 
 <div id="component_common_contact">
@@ -30,14 +21,11 @@
 <script id="template_contact_common" type="text/x-handlebars-template">
     {{ "#commons" | handlebars }}
     <div id="{{ 'common_id'| handlebars }}" class="uk-margin-top">
-        <a href="#" onclick="commonJS.openModalDeleteCommon('{{ 'common_id'| handlebars }}')"
+        <a href="#" onclick="commonJS.openModalDeleteCommon('{{ 'common_id'| handlebars }}', '{{ 'common_text'| handlebars }}')"
            class="button-common badge-contact-common uk-badge uk-button"
            uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom-center">{{ 'common_text'| handlebars }}</a>
     </div>
     {{ "/commons" | handlebars }}
-</script>
-<script>
-    commonJS.compileTemplate();
 </script>
 
 
@@ -65,7 +53,7 @@
             <button class="uk-button uk-button-default uk-modal-close"
                     type="button">{% translate "Cancelar" %}</button>
             <button id="button_save_contact_common" class="uk-button uk-button-primary"
-                    data-value='{% translate "Guardar" %}' onclick="commonJS.create_contact_common()"
+                    data-value='{% translate "Guardar" %}' onclick="commonJS.createContactCommon()"
                     type="button">{% translate "Guardar" %}</button>
         </div>
     </div>
@@ -90,29 +78,7 @@
     </div>
 </div>
 {# END DELETE COMMON #}
+
 <script>
-    $("#form_modal_add_common").on('submit', function (evt) {
-        evt.preventDefault();
-        commonJS.createCommonContact();
-    });
-    $(document).ready(function () {
-        $('#form_modal_add_common').validate({
-                errorClass: "uk-form-danger uk-text-small",
-                rules: {
-                    text_common: {
-                        required: true,
-                        minlength: 3,
-                        maxlength: 23
-                    }
-                },
-                messages: {
-                    text_common: {
-                        required: '{% translate "Campo obligatorio." %}',
-                        minlength: '{% translate "Mínimo 3 caracteres." %}',
-                        maxlength: '{% translate "Maximo 23 caracteres." %}'
-                    }
-                }
-            }
-        )
-    });
+    commonJS.compileTemplate();
 </script>

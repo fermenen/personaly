@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import django_js_reverse
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import ugettext_lazy as _
@@ -22,18 +23,21 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from js_urls.views import JsUrlsView
-
-
+from django.views.i18n import JavaScriptCatalog
 
 urlpatterns = [
     url(r'^robots\.txt', include('robots.urls')),
     path('api/', include('api.urls')),
     path('accounts/', include('allauth.urls')),
     url(r'^js-urls/$', JsUrlsView.as_view(), name='js_urls'),
-    url(r'^sw.js', (TemplateView.as_view(template_name="sw.js", content_type='application/javascript', )), name='sw.js'),
+    url(r'^sw.js', (TemplateView.as_view(template_name="sw.js", content_type='application/javascript', )),
+        name='sw.js'),
+
 ]
 
+
 urlpatterns += i18n_patterns(
+    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     path('my/', include('dashboard.urls')),
     path('accounts/', include('accounts.urls')),
     path('', include('web.urls')),

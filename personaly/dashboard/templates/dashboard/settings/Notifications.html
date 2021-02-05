@@ -1,0 +1,19 @@
+{% load i18n %}
+
+<div class="uk-flex uk-flex-column uk-margin-left">
+    <div class="uk-margin-small-bottom"><span
+            class="uk-text-bold">{% translate "Notificaciones" %}</span>
+    </div>
+
+    <div class="uk-flex uk-flex-inline uk-margin-small-bottom">
+        <div><span class="uk-margin-right">{% translate "Notificaciones web" %}:</span>
+        </div>
+        <div>
+            <select class="uk-select">
+                <option>{% translate "Sí, notifícame en la versión web" %}</option>
+                <option>{% translate "No, no me notifiques en la versión web" %}</option>
+            </select>
+        </div>
+    </div>
+
+</div>

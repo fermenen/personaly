@@ -1,10 +1,9 @@
 import Handlebars from 'handlebars';
-class ContactsList {
+import App from "./Application";
 
-    constructor(app, api_contact) {
-        this.app = app;
-        this.api_contact = api_contact;
+export default class ContactsList {
 
+    constructor() {
         $(document).on('contact_created', () => this.data_contacts());
         $(document).on('contact_deleted', () => this.data_contacts());
         $(document).on('contact_edited', () => this.data_contacts());
@@ -19,8 +18,8 @@ class ContactsList {
 
     data_contacts() {
         let ajax = $.ajax({
-            url: this.api_contact + '?ordering=name',
-            headers: {"X-CSRFToken": this.app.getCsrftoken},
+            url: window.reverse('api_v2:api_v2:contact-list', '?ordering=name'),
+            headers: {"X-CSRFToken": App.getCsrfToken()},
             type: 'GET',
             dataType: 'json',
             success: data => {
@@ -42,23 +41,18 @@ class ContactsList {
                             image_contact: data['results'][contact]['image_contact'],
                             url: window.reverse('contact', data['results'][contact]['url']),
                             tags: tags
-
                         })
                     }
                 }
-
                 let context = {contacts: contacts};
                 $("#item_contacts").html(this.template(context));
-
-                this.app.page_ready()
-                this.app.textVisible(0, '#contact_list_page')
+                App.page_ready()
+                App.textVisible(0, '#contact_list_page')
             },
             error: data => {
-                this.app.NotificationError(this.app.message_error_generic);
+                App.NotificationError(gettext('Error al obtener lista de contactos.'));
             }
         });
     }
 
-}
-
-export default ContactsList
+};
