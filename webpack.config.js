@@ -6,12 +6,12 @@ const webpack = require("webpack");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const BrotliPlugin = require('brotli-webpack-plugin');
 
-
-module.exports = {
-    mode: 'production',
+const config = {
     entry: {
-        app: './personaly/static/index.js',
+        app: './personaly/dashboard/js/app.js',
+        web: './personaly/web/js/web.js',
     },
     output: {
         filename: 'js/personaly.[name].[chunkhash].js',
@@ -30,20 +30,33 @@ module.exports = {
     optimization: {
         minimize: true,
         minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
+        }
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".css", ".scss"]
-    }
-    ,
-    devtool: 'inline-source-map',
+    },
     plugins: [
         new MiniCssExtractPlugin({
             filename: "css/personaly.[name].[hash].css",
             chunkFilename: "[id].css"
         }),
+        new BrotliPlugin({
+            asset: '[path].br[query]',
+            test: /\.(js|css|html|svg)$/,
+            threshold: 10240,
+            minRatio: 0.8
+        }),
         new CleanWebpackPlugin(),
         new WorkboxPlugin.InjectManifest({
-            swSrc: './personaly/static/js/sw.ts',
+            swSrc: './personaly/personaly/sw.ts',
             swDest: '../personaly/templates/sw.js',
             maximumFileSizeToCacheInBytes: 6000000000,
             mode: 'production'
@@ -51,7 +64,12 @@ module.exports = {
         new InjectHtmlPlugin({
             filename: './personaly/templates/app/base_app.html',
             transducer: "/dist/",
-            chunks: ['app'],
+            chunks: ['app', 'vendors'],
+        }),
+        new InjectHtmlPlugin({
+            filename: './personaly/templates/web/base_web.html',
+            transducer: "/dist/",
+            chunks: ['web', 'vendors'],
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',
@@ -59,5 +77,18 @@ module.exports = {
             validate: 'jquery-validation',
             UIkit: 'uikit'
         }),
+
     ],
+
+}
+
+module.exports = (env, argv) => {
+    if (argv.mode === 'development') {
+        config.devtool = 'source-map';
+    }
+    if (argv.mode === 'production') {
+        config.devtool = 'false';
+    }
+    return config;
 };
+

@@ -3,4 +3,6 @@ python manage.py makemigrations
 sass ./static/theme/app.scss ./static/css/app.css
 
 
+django-admin compilemessages --use-fuzzy
+
 npx webpack
