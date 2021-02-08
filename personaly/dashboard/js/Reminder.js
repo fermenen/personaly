@@ -39,6 +39,12 @@ export default class Reminder {
     }
 
 
+    openModalSchedule(id_reminder) {
+        if (appJS.actionOffline()) {
+            App.ShowModal(modal_schedule_reminder)
+        }
+    }
+
     data_reminder_no_completed() {
         let ajax = $.ajax({
             url: window.reverse('api_v2:api_v2:reminder_contact-list', '?contact=' + Contact.getContactId() + '&completed=false'),
@@ -98,5 +104,32 @@ export default class Reminder {
         });
     }
 
+
+    completeReminder(id_reminder) {
+        $.ajax({
+            url: window.reverse('api_v2:api_v2:reminder_contact-detail', id_reminder, ''),
+            headers: {"X-CSRFToken": App.getCsrfToken()},
+            data: {
+                owner: App.getOwner(),
+                completed: true,
+            },
+            type: 'PATCH',
+            dataType: 'json',
+            success: data => {
+                App.HideModal(modal_delete_contact)
+                App.NotificationSuccess(gettext('¡Recordatorio completado!'))
+                jQuery.event.trigger('reminder_completed');
+            },
+            error: data => {
+                App.NotificationError(gettext('Ocurrió un problema al completar el recordatorio.'))
+            },
+        });
+    }
+
+    deleteReminder(id_reminder) {
+        if (appJS.actionOffline()) {
+
+        }
+    }
 
 };

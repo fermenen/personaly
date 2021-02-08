@@ -22,8 +22,7 @@ window.$ = $;
 window.validate = validate;
 window.App = Application
 window.Dashboard = Dashboard
-window.Reminder = Reminder
-window.Contact = Contact
+
 window.ContactNote = ContactNote
 window.ContactCommon = ContactCommon
 window.ContactMusic = ContactMusic
@@ -32,4 +31,5 @@ window.ContactFamily = ContactFamily
 window.ContactTag = ContactTag
 window.Settings = Settings
 
-
+window.contactJS = new Contact()
+window.reminderJS = new Reminder()

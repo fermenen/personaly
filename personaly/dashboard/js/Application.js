@@ -2,23 +2,15 @@ import Darkmode from 'darkmode-js';
 
 class App {
 
-
-    constructor(owner, url_api_contact, url_api_reminder, message_error_create, message_success_delete_contact, message_error_delete_contact, message_error_edit_contact) {
+    constructor(owner) {
+        this.configureModeOffline();
         this.addServiceWorker()
+        this.dark()
+        this.jQueryValidators();
+        this.owner = owner;
+
         console.log('%cADVERTENCIA WARNING', 'background: #ee395b; color: #DFEDF2; font-size: 21px');
         console.log('%cSi utilizas esta consola, otras personas podrían hacerse pasar por ti y robarte datos mediante un ataque llamado Self-XSS', 'background: #ee395b; color: #05C7F2; font-size: 16px');
-        this.jQueryValidators();
-        this.csrftoken = $("input[name=csrfmiddlewaretoken]").val();
-        this.owner = owner;
-        this.url_api_contact = url_api_contact;
-        this.url_api_reminder = url_api_reminder;
-        this.message_error_generic = 'Error interno';
-        this.message_error_create = message_error_create;
-        this.message_success_delete_contact = message_success_delete_contact;
-        this.message_error_delete_contact = message_error_delete_contact;
-        this.message_error_edit_contact = message_error_edit_contact;
-
-        this.dark()
     }
 
     dark() {
@@ -41,20 +33,38 @@ class App {
         }
     }
 
+    configureModeOffline() {
+        $(window).on("load", this.updateModeOffline);
+        window.addEventListener('offline', this.updateModeOffline);
+        window.addEventListener("online", this.updateModeOffline);
+    }
+
+    updateModeOffline(event) {
+        if (navigator.onLine) {
+            $('#mode_offline_warning').addClass('uk-hidden')
+        } else {
+            $('#mode_offline_warning').removeClass('uk-hidden')
+        }
+    }
+
+    actionOffline() {
+        if (navigator.onLine) {
+            return true
+        } else {
+            App.NotificationWarning(gettext('Acción no disponible en modo offline.'))
+            return false
+        }
+    }
 
     static page_ready() {
         $('#loading_app').addClass('uk-hidden')
-    }
-
-    get getCsrftoken() {
-        return this.csrftoken;
     }
 
     get getOwner() {
         return this.owner;
     }
 
-    static getOwner(){
+    static getOwner() {
         return owner;
     }
 
@@ -87,6 +97,10 @@ class App {
         UIkit.notification({message: message_success, status: 'success'})
     }
 
+    static NotificationWarning(message_warning) {
+        UIkit.notification({message: message_warning, status: 'warning'})
+    }
+
     static HideModal(modal) {
         UIkit.modal(modal).hide();
     }
@@ -95,20 +109,12 @@ class App {
         UIkit.modal(modal).show();
     }
 
-    DisabledButton(name) {
-        $(name).addClass('uk-disabled')
-    }
-
     static DisabledButton(name) {
         $(name).addClass('uk-disabled')
     }
 
     static AvailableButton(name) {
         $(name).removeClass('uk-disabled')
-    }
-
-    LoadingButton(name) {
-        $(name).html('<div uk-spinner></div>')
     }
 
     static LoadingButton(name) {
@@ -120,169 +126,6 @@ class App {
     }
 
 
-    openModalCreateContact() {
-        this.ShowModal(modal_create_contact)
-
-    }
-
-    createContact() {
-        let button_save = '#button_create_contact'
-        let form_modal_contact = '#form_modal_create_contact'
-
-        if ($(form_modal_contact).valid()) {
-            this.DisabledButton(button_save)
-            this.LoadingButton(button_save)
-            $.ajax({
-                url: this.url_api_contact,
-                headers: {"X-CSRFToken": this.getCsrftoken},
-                data: {
-                    name: $('#input_name_contact').val(),
-                    surnames: $('#input_surnames_contact').val(),
-                    keep_in_touch: $('#id_keep_in_touch').val(),
-                    owner: this.getOwner,
-                },
-                type: 'POST',
-                dataType: 'json',
-                success: data => {
-                    this.HideModal(modal_create_contact)
-                    this.NotificationSuccess("Contacto creado con extio")
-                    jQuery.event.trigger('contact_created');
-                },
-                error: data => {
-                    this.NotificationError(this.message_error_create)
-                },
-                complete: data => {
-                    this.AvailableButton(button_save)
-                    this.AvailableloadingButton(button_save)
-                }
-            });
-
-        }
-    }
-
-
-    deleteContact() {
-        let id = $('#contact_id_delete_contact').val()
-        let StringDivID = '#' + id
-        $.ajax({
-            url: this.url_api_contact + id + '/',
-            headers: {"X-CSRFToken": this.getCsrftoken},
-            data: {
-                owner: this.getOwner,
-            },
-            type: 'DELETE',
-            dataType: 'json',
-            success: data => {
-                this.HideModal(modal_delete_contact)
-                this.NotificationSuccess(this.message_success_delete_contact)
-                jQuery.event.trigger('contact_created');
-            },
-            error: data => {
-                this.NotificationError(this.message_error_delete_contact)
-            },
-        });
-    }
-
-
-    editContact() {
-        let button_save = '#button_save_edit_contact'
-        let form_modal_edit_contact = '#form_modal_edit_contact'
-        let id_contact = $("#form_modal_edit_contact input[id=id_contact]").text()
-
-        if ($(form_modal_edit_contact).valid()) {
-            this.DisabledButton(button_save)
-            this.LoadingButton(button_save)
-            $.ajax({
-                url: this.url_api_contact + id_contact + '/',
-                headers: {"X-CSRFToken": this.getCsrftoken},
-                data: {
-                    name: $("#form_modal_edit_contact input[id=input_edit_name_contact]").val(),
-                    surnames: $("#form_modal_edit_contact input[id=input_edit_surnames_contact]").val(),
-                    location: $("#form_modal_edit_contact input[id=input_city_contact]").val(),
-                    phone: $("#form_modal_edit_contact input[id=input_phone]").val(),
-                    email: $("#form_modal_edit_contact input[id=input_mail]").val(),
-                    birthday: $("#form_modal_edit_contact input[id=input_date]").val(),
-                    remember_birthday: $("#form_modal_edit_contact input[id=remember_birthday]").val(),
-                    keep_in_touch: $("#form_modal_edit_contact select[id=id_keep_in_touch]").val(),
-                    contact: id_contact,
-                    owner: this.getOwner,
-                },
-                type: 'PUT',
-                dataType: 'json',
-                success: data => {
-                    App.HideModal(modal_edit_contact)
-                    App.NotificationSuccess("Contacto actualizado con exito! ")
-                    jQuery.event.trigger('contact_edited');
-                },
-                error: data => {
-                    App.NotificationError("erorrr")
-                },
-                complete: data => {
-                    App.AvailableButton(button_save)
-                    App.AvailableloadingButton(button_save)
-                }
-            });
-        } else {
-        }
-    }
-
-
-    completeReminder(id_reminder) {
-        $.ajax({
-            url: this.url_api_reminder + id_reminder + '/',
-            headers: {"X-CSRFToken": this.getCsrftoken},
-            data: {
-                owner: this.getOwner,
-                completed: true,
-            },
-            type: 'PATCH',
-            dataType: 'json',
-            success: data => {
-                this.HideModal(modal_delete_contact)
-                this.NotificationSuccess("Recordatorio completado")
-                jQuery.event.trigger('reminder_completed');
-            },
-            error: data => {
-                this.NotificationError(this.message_error_generic)
-            },
-        });
-    }
-
-
-    openModalDeleteContact(id_contact, name_contact) {
-        $('#contact_id_delete_contact').val(id_contact)
-        $('#contact_name_delete_contact').text(name_contact)
-        App.ShowModal(modal_delete_contact)
-    }
-
-
-    openModalEditContact(id_contact) {
-        $.ajax({
-            url: this.url_api_contact + id_contact + '/',
-            headers: {"X-CSRFToken": this.getCsrftoken},
-            type: 'GET',
-            dataType: 'json',
-            async: false,
-            success: data => {
-                $("#form_modal_edit_contact input[id=id_contact]").text(id_contact)
-                $("#form_modal_edit_contact input[id=input_edit_name_contact]").val(data['name'])
-                $("#form_modal_edit_contact input[id=input_edit_surnames_contact]").val(data['surnames'])
-                $("#form_modal_edit_contact input[id=input_city_contact]").val(data['location'])
-                $("#form_modal_edit_contact input[id=input_phone]").val(data['phone'])
-                $("#form_modal_edit_contact input[id=input_mail]").val(data['email'])
-                $("#form_modal_edit_contact input[id=input_date]").val(data['birthday'])
-                $("#form_modal_edit_contact input[id=remember_birthday]").prop('checked', data['remember_birthday']);
-                $("#form_modal_edit_contact select[id=id_keep_in_touch]").val(data['keep_in_touch'])
-                App.ShowModal(modal_edit_contact)
-            },
-            error: data => {
-                App.NotificationError(this.message_error_edit_contact)
-            }
-        });
-
-
-    }
-
     searchPlaces() {
         const places = require('places.js');
         const fixedOptions = {
@@ -291,16 +134,11 @@ class App {
             container: document.querySelector('#input_city_contact')
         };
         const reconfigurableOptions = {
-            language: 'es', // Receives results in spanish
-            // countries: ['us', 'ru'], // Search in the United States of America and in the Russian Federation
-            type: 'city', // Search only for cities names
-            aroundLatLngViaIP: true // disable the extra search/boost around the source IP
+            language: 'es',
+            type: 'city',
+            aroundLatLngViaIP: true
         };
         const placesInstance = places(fixedOptions).configure(reconfigurableOptions);
-        // // dynamically reconfigure options
-        // placesInstance.configure({
-        //     countries: ['us'] // only search in the United States, the rest of the settings are unchanged: we're still searching for cities in German.
-        // })
     }
 
     jQueryValidators() {

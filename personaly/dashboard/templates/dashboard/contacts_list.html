@@ -15,20 +15,20 @@
                 <div id="title_contact_list"
                      class="card-title uk-flex uk-flex-between uk-flex-middle uk-margin-left uk-width">
                     <h1 class="uk-heading-medium">{% translate "Contactos" %}</h1>
-                    <button onclick="appJS.openModalCreateContact()"
+                    <button id="button_add_contact_card" onclick="contactJS.openModalCreateContact()"
                             class="uk-button uk-button-default uk-button-small uk-margin-small-right uk-text-middle">
                         <span uk-icon="icon: plus; ratio: 0.85"></span>&nbsp;&nbsp;{% translate "Añadir contacto" %}
                     </button>
                 </div>
 
-                <div id="text_contact_list" class="uk-container uk-hidden">
+                <div id="text_contact_list" class="uk-container uk-hidden uk-margin-small-left">
                     <div class="uk-flex-middle" uk-grid>
                         <div class="uk-width-2-3@m uk-flex-first">
                             <div class="uk-margin-left">
                                 <span>{% translate "Aún no tienes contactos en personaly, añádelos y empieza a simplificar tu vida." %}</span>
                             </div>
                             <div class="uk-text-center uk-margin-top">
-                                <button onclick="appJS.ShowModal(modal_create_contact)"
+                                <button onclick="contactJS.openModalCreateContact()"
                                         class="uk-button uk-button-secondary uk-button-large"
                                         type="button">{% translate "Añadir contacto" %}
                                 </button>
@@ -41,10 +41,6 @@
                         </div>
                     </div>
                 </div>
-                <script>
-                    appJS.textVisible(appJS.getCountContacts, '#text_contact_list')
-                </script>
-
                 <div id="component_all_contacts" class="uk-margin-small-left">
                     <div id="component_order_contacts" class="uk-margin-left uk-margin-bottom">
                          <span class="uk-text-meta"><span
@@ -53,14 +49,9 @@
 
                     <div id="item_contacts"></div>
                 </div>
-                <script>
-                    appJS.textInVisible(appJS.getCountContacts, '#component_all_contacts')
-                </script>
-
             </div>
         </div>
     </div>
-
 
     <script id="template_items_contact" type="text/x-handlebars-template">
         {{ "#contacts" | handlebars }}
@@ -83,7 +74,8 @@
                     <a class="uk-margin-left uk-margin-right" href={{ 'url' | handlebars }}><span
                             class="uk-h5 text-button-contact uk-text-middle">{{ 'name' | handlebars }} {{ 'surnames' | handlebars }}</span></a>
                 </div>
-                <div id="tags_contact" class="uk-visible@l uk-flex uk-flex-middle uk-panel uk-panel-box uk-text-truncate uk-width-medium uk-margin-small-left">
+                <div id="tags_contact"
+                     class="uk-visible@l uk-flex uk-flex-middle uk-panel uk-panel-box uk-text-truncate uk-width-medium uk-margin-small-left">
                     {{ "#tags" | handlebars }}
                     <div class="uk-flex uk-flex-inline">
                         <div class="uk-label tag-contact uk-text- uk-margin-small-right">
@@ -97,11 +89,13 @@
             <div id="iconnav_options_contact" class="uk-visible@l">
                 <ul class="uk-iconnav uk-invisible-hover">
                     <li>
-                        <a onclick="appJS.openModalDeleteContact('{{ 'id' | handlebars }}', '{{ 'name' | handlebars }}')"
+                        <a onclick="contactJS.openModalDeleteContact('{{ 'id' | handlebars }}')"
                            class="uk-icon-linl icon_trash" uk-icon="icon: trash" uk-tooltip="title: ; pos: bottom"></a>
-                    <li><a onclick="appJS.openModalEditContact('{{ 'id' | handlebars }}')" class="uk-icon-link icon_app"
+                    <li><a onclick="contactJS.openModalEditContact('{{ 'id' | handlebars }}')"
+                           class="uk-icon-link icon_app"
                            uk-icon="file-edit" uk-tooltip="title: ; pos: bottom"></a>
-                    <li><a href="#" class="uk-icon-link icon_app" uk-icon="future"
+                    <li><a onclick=""
+                           class="uk-icon-link icon_app" uk-icon="future"
                            uk-tooltip="title: {% translate 'Programar' %}; pos: bottom"></a>
                 </ul>
             </div>

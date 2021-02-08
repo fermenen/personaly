@@ -2,9 +2,6 @@
 {% load static %}
 {% load handlebars %}
 
-<script>
-    let reminderJS = new Reminder();
-</script>
 
 <div class="uk-margin-large-top">
     <ul class="uk-child-width-expand" uk-tab>
@@ -38,7 +35,7 @@
         {{ "#reminders" | handlebars }}
         <li id="{{ 'id_reminder'| handlebars }}">
             <div class="uk-flex uk-flex-middle uk-visible-toggle" tabindex="-1">
-                <div class="uk-margin-small-right"><input class="uk-checkbox" type="checkbox" onclick="appJS.completeReminder('{{ 'id_reminder'| handlebars }}')" uk-tooltip="{% translate 'Completar recordatorio' %}"  aria-expanded="false"></div>
+                <div class="uk-margin-small-right"><input class="uk-checkbox" type="checkbox" onclick="reminderJS.completeReminder('{{ 'id_reminder'| handlebars }}')" uk-tooltip="{% translate 'Completar recordatorio' %}"  aria-expanded="false"></div>
                 <div class="uk-flex uk-flex-column uk-width">
                     <div class="uk-width-expand uk-margin-small-right"><input
                             class="uk-input uk-form-blank uk-h3 uk-sticky" type="text" name="title"

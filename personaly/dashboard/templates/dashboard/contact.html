@@ -7,7 +7,7 @@
 {% block content_main %}
 
     <script>
-        let contactJS = new Contact(contact_id = '{{ contact.id }}');
+        contactJS.contactId('{{ contact.id }}');
         let contactTagJS = new ContactTag();
     </script>
 
@@ -15,13 +15,14 @@
         <div class="uk-flex uk-flex-center">
             <div class="card-app uk-card uk-card-default uk-card-body uk-animation-fade">
                 <ul class="uk-iconnav btn-actions-tittle uk-flex-right">
-                    <li><a class="uk-icon-link icon_trash" onclick="appJS.openModalDeleteContact('{{ contact.id }}')"
+                    <li><a class="uk-icon-link icon_trash"
+                           onclick="contactJS.openModalDeleteContact('{{ contact.id }}')"
                            uk-icon="icon: trash"
                            uk-tooltip="title: {% translate "Eliminar contacto" %}; pos: bottom-left"></a>
                     <li><a class="uk-icon-link" onclick="contactTagJS.openModalEditTags()"
                            uk-icon="icon: tag"
                            uk-tooltip="title: {% translate "Editar etiquetas" %}; pos: bottom-left"></a>
-                    <li><a class="uk-icon-link" onclick="appJS.openModalEditContact('{{ contact.id }}')"
+                    <li><a class="uk-icon-link" onclick="contactJS.openModalEditContact('{{ contact.id }}')"
                            uk-icon="icon: file-edit"
                            uk-tooltip="title: {% translate "Editar contacto" %}; pos: bottom-left"></a>
                 </ul>

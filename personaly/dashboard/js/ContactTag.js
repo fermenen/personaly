@@ -18,7 +18,6 @@ export default class ContactTag {
         this.configureFormModalTag();
         this.source_tags_edit = document.getElementById("template_tags_contact").innerHTML;
         this.template_tags_edit = Handlebars.compile(this.source_tags_edit);
-
         $(document).on('contact_tag_created', () => this.dataTags());
         $(document).on('contact_tag_deleted', () => this.dataTags());
         this.eventEmojiSelect();
@@ -51,8 +50,10 @@ export default class ContactTag {
 
 
     openModalEditTags() {
-        this.dataTags();
-        App.ShowModal(modal_edit_label);
+        if (appJS.actionOffline()) {
+            this.dataTags();
+            App.ShowModal(modal_edit_label);
+        }
     }
 
 

@@ -7,7 +7,6 @@ export default class ContactsList {
         $(document).on('contact_created', () => this.data_contacts());
         $(document).on('contact_deleted', () => this.data_contacts());
         $(document).on('contact_edited', () => this.data_contacts());
-
     }
 
     compileTemplate() {
@@ -17,8 +16,8 @@ export default class ContactsList {
     }
 
     data_contacts() {
-        let ajax = $.ajax({
-            url: window.reverse('api_v2:api_v2:contact-list', '?ordering=name'),
+        $.ajax({
+            url: window.reverse('api_v2:api_v2:contact-list', '?ordering=-name'),
             headers: {"X-CSRFToken": App.getCsrfToken()},
             type: 'GET',
             dataType: 'json',
@@ -46,8 +45,11 @@ export default class ContactsList {
                 }
                 let context = {contacts: contacts};
                 $("#item_contacts").html(this.template(context));
-                App.page_ready()
                 App.textVisible(0, '#contact_list_page')
+                App.textVisible(this.count_contact, '#text_contact_list')
+                App.textInVisible(this.count_contact, '#button_add_contact_card')
+                App.textInVisible(this.count_contact, '#component_all_contacts')
+                App.page_ready()
             },
             error: data => {
                 App.NotificationError(gettext('Error al obtener lista de contactos.'));

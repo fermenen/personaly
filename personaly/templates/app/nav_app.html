@@ -5,16 +5,31 @@
     <div class="uk-container">
         <nav class="" data-uk-navbar>
             <div class="uk-navbar-left">
-                <a class="uk-navbar-item uk-logo" href="{% url 'app' %}"><img class="uk-preserve" src="{% static 'img/personaly-1.svg' %}" width="180" alt="personaly" uk-svg></a>
+                <a class="uk-navbar-item uk-logo" href="{% url 'app' %}"><img class="uk-preserve"
+                                                                              src="{% static 'img/personaly-1.svg' %}"
+                                                                              width="180" alt="personaly" uk-svg></a>
             </div>
             <div class="uk-navbar-right">
+                <div id="mode_offline_warning" class="uk-margin-right uk-text-warning uk-hidden">
+                    <a href="" uk-icon="icon: warning; ratio: 1.2"
+                       uk-tooltip="title: {% translate "Modo offline activado, los cambios no tendrán efecto hasta que recuperes la conexión." %}; pos: bottom"></a>
+                </div>
                 <ul class="uk-navbar-nav uk-visible@m">
-                    <li><a class="navbar-item" href="{% url 'app' %}"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: home"></span>{% translate "Inicio" %}</a></li>
-                    <li><a class="navbar-item" href="{% url 'contacts' %}"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: users"></span>{% translate "Contactos" %}</a></li>
-                    <li><a class="navbar-item" href="{% url 'settings' %}"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: settings"></span>{% translate "Ajustes" %}</a></li>
-                    <li><a class="navbar-item" href="{% url 'logout' %}"><span class="uk-margin-small-right uk-icon" data-uk-icon="icon: sign-out"></span>{% translate "Cerrar Sesión" %}</a></li>
-                    </ul>
-                <div class="uk-hidden@m"><a class="uk-navbar-toggle navbar-item" data-uk-toggle data-uk-navbar-toggle-icon href="#offcanvas-nav"></a></div>
+                    <li><a class="navbar-item" href="{% url 'app' %}"><span class="uk-margin-small-right uk-icon"
+                                                                            data-uk-icon="icon: home"></span>{% translate "Inicio" %}
+                    </a></li>
+                    <li><a class="navbar-item" href="{% url 'contacts' %}"><span class="uk-margin-small-right uk-icon"
+                                                                                 data-uk-icon="icon: users"></span>{% translate "Contactos" %}
+                    </a></li>
+                    <li><a class="navbar-item" href="{% url 'settings' %}"><span class="uk-margin-small-right uk-icon"
+                                                                                 data-uk-icon="icon: settings"></span>{% translate "Ajustes" %}
+                    </a></li>
+                    <li><a class="navbar-item" href="{% url 'logout' %}"><span class="uk-margin-small-right uk-icon"
+                                                                               data-uk-icon="icon: sign-out"></span>{% translate "Cerrar Sesión" %}
+                    </a></li>
+                </ul>
+                <div class="uk-hidden@m"><a class="uk-navbar-toggle navbar-item" data-uk-toggle
+                                            data-uk-navbar-toggle-icon href="#offcanvas-nav"></a></div>
             </div>
         </nav>
     </div>
@@ -25,11 +40,19 @@
         <button class="uk-offcanvas-close uk-close uk-icon navbar-item" type="button" data-uk-close></button>
         <ul class="uk-nav uk-nav-default">
             <li class="uk-nav-header navbar-item-canvas uk-margin-small-bottom">{% translate "Menú" %}</li>
-            <li><a class="navbar-item navbar-item-canvas" href="{% url 'app' %}"><span class="uk-margin-small-right uk-margin-small-bottom uk-icon" data-uk-icon="icon: home"></span>{% translate "Inicio" %}</a></li>
-            <li><a class="navbar-item navbar-item-canvas" href="{% url 'contacts' %}"><span class="uk-margin-small-right uk-margin-small-bottom uk-icon" data-uk-icon="icon: users"></span>{% translate "Contactos" %}</a></li>
-            <li><a class="navbar-item navbar-item-canvas" href="{% url 'settings' %}"><span class="uk-margin-small-right uk-margin-small-bottom uk-icon" data-uk-icon="icon: settings"></span>{% translate "Ajustes" %}</a></li>
+            <li><a class="navbar-item navbar-item-canvas" href="{% url 'app' %}"><span
+                    class="uk-margin-small-right uk-margin-small-bottom uk-icon"
+                    data-uk-icon="icon: home"></span>{% translate "Inicio" %}</a></li>
+            <li><a class="navbar-item navbar-item-canvas" href="{% url 'contacts' %}"><span
+                    class="uk-margin-small-right uk-margin-small-bottom uk-icon"
+                    data-uk-icon="icon: users"></span>{% translate "Contactos" %}</a></li>
+            <li><a class="navbar-item navbar-item-canvas" href="{% url 'settings' %}"><span
+                    class="uk-margin-small-right uk-margin-small-bottom uk-icon"
+                    data-uk-icon="icon: settings"></span>{% translate "Ajustes" %}</a></li>
             <li class="uk-nav-divider uk-margin-small-bottom"></li>
-            <li><a class="navbar-item navbar-item-canvas" href="{% url 'logout' %}"><span class="uk-margin-small-right uk-margin-small-bottom uk-icon" data-uk-icon="icon: sign-out"></span>{% translate "Cerrar Sesión" %}</a></li>
+            <li><a class="navbar-item navbar-item-canvas" href="{% url 'logout' %}"><span
+                    class="uk-margin-small-right uk-margin-small-bottom uk-icon"
+                    data-uk-icon="icon: sign-out"></span>{% translate "Cerrar Sesión" %}</a></li>
         </ul>
     </div>
 </div>

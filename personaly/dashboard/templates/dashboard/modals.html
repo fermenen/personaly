@@ -52,50 +52,11 @@
             <button class="uk-button uk-button-default uk-modal-close"
                     type="button">{% translate "Cancelar" %}</button>
             <button id="button_create_contact" class="uk-button uk-button-primary"
-                    data-value='{% translate "Crear contacto" %}' onclick="appJS.createContact()"
+                    data-value='{% translate "Crear contacto" %}' onclick="contactJS.createContact()"
                     type="button">{% translate "Crear contacto" %}</button>
         </div>
     </div>
 </div>
-
-
-<script>
-    $(document).ready(function () {
-        $('#form_modal_create_contact').validate({
-                errorClass: "uk-form-danger uk-text-small",
-                rules: {
-                    name_contact: {
-                        required: true,
-                        minlength: 3,
-                        lettersonly: true
-                    },
-                    surname_contact: {
-                        required: false,
-                        minlength: 3,
-                        lettersonly: true
-                    },
-                    keep_in_touch: {
-                        required: true
-                    }
-                },
-                messages: {
-                    name_contact: {
-                        required: '{% translate "Campo obligatorio." %}',
-                        minlength: '{% translate "Mínimo 3 caracteres." %}',
-                        lettersonly: '{% translate "Caracteres no permitidos." %}'
-                    },
-                    surname_contact: {
-                        minlength: '{% translate "Mínimo 3 caracteres." %}',
-                        lettersonly: '{% translate "Caracteres no permitidos." %}'
-                    },
-                    keep_in_touch: {
-                        required: '{% translate "Campo obligatorio." %}'
-                    }
-                }
-            }
-        )
-    });
-</script>
 {# END CREAR CONTACTO #}
 {# BORRAR CONTACTO #}
 <div id="modal_delete_contact" uk-modal>
@@ -114,7 +75,7 @@
         <div class="uk-modal-footer uk-text-right">
             <button class="uk-button uk-button-default uk-modal-close"
                     type="button">{% translate "Cancelar" %}</button>
-            <button onclick="appJS.deleteContact()" id="button_create_contact" class="uk-button uk-button-danger"
+            <button onclick="contactJS.deleteContact()" id="button_delete_contact" class="uk-button uk-button-danger"
                     data-value='{% translate "Eliminar contacto" %}' onclick=""
                     type="button"><span class="uk-margin-small-right"
                                         uk-icon="trash"></span>{% translate "Eliminar contacto" %}</button>
@@ -214,7 +175,9 @@
                                 <input id="input_date" class="uk-input" type="date" placeholder="">
                             </div>
                             <div class="uk-margin-left">
-                                <label class="uk-text-meta"><input id="remember_birthday" class="uk-checkbox uk-margin-small-right" type="checkbox" checked>Recordar cumpleaños</label>
+                                <label class="uk-text-meta"><input id="remember_birthday"
+                                                                   class="uk-checkbox uk-margin-small-right"
+                                                                   type="checkbox" checked>Recordar cumpleaños</label>
                             </div>
 
                         </div>
@@ -240,47 +203,34 @@
             <button class="uk-button uk-button-default uk-modal-close"
                     type="button">{% translate "Cancelar" %}</button>
             <button id="button_save_edit_contact" class="uk-button uk-button-primary"
-                    data-value='{% translate "Guardar Cambios" %}' onclick="appJS.editContact()"
+                    data-value='{% translate "Guardar Cambios" %}' onclick="contactJS.editContact()"
                     type="button">{% translate "Guardar Cambios" %}</button>
         </div>
     </div>
 </div>
+{#END EDITAR CONTACTO#}
+
+<div id="modal_schedule_reminder" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">Headline 1</h2>
+        </div>
+        <div class="uk-modal-body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum.</p>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+            <a href="#modal-group-2" class="uk-button uk-button-primary" uk-toggle>Next</a>
+        </div>
+    </div>
+</div>
+
 
 <script>
-    $(document).ready(function () {
-        $('#form_modal_edit_contact').validate({
-                errorClass: "uk-form-danger uk-text-small",
-                rules: {
-                    name_contact: {
-                        required: true,
-                        minlength: 3,
-                        lettersonly: true
-                    },
-                    surname_contact: {
-                        required: false,
-                        minlength: 3,
-                        lettersonly: true
-                    },
-                    keep_in_touch: {
-                        required: true
-                    }
-                },
-                messages: {
-                    name_contact: {
-                        required: '{% translate "Campo obligatorio." %}',
-                        minlength: '{% translate "Mínimo 3 caracteres." %}',
-                        lettersonly: '{% translate "Caracteres no permitidos." %}'
-                    },
-                    surname_contact: {
-                        minlength: '{% translate "Mínimo 3 caracteres." %}',
-                        lettersonly: '{% translate "Caracteres no permitidos." %}'
-                    },
-                    keep_in_touch: {
-                        required: '{% translate "Campo obligatorio." %}'
-                    }
-                }
-            }
-        )
-    });
+    contactJS.configureValidatorContact();
 </script>
-{#END EDITAR CONTACTO#}

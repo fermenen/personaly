@@ -7,25 +7,17 @@
 
     <head>
         <!-- start:css -->
-        <link rel="stylesheet" href="/dist/css/personaly.app.8d3b7347caf9447060de.css"/>
+        <link rel="stylesheet" href="/dist/css/personaly.app.37f22a2a7b77901121f1.css"/>
         <!-- end:css -->
     </head>
 
     <!-- start:js -->
-    <script src="/dist/js/personaly.app.1305d4700dca566a122b.js"></script>
+    <script src="/dist/js/personaly.app.4548d739490df1b571fb.js"></script>
     <script src="/dist/js/personaly.vendors.93202141ccabff5670ca.js"></script>
     <!-- end:js -->
 
     <script>
-        let appJS = new App(
-            owner = '{{ owner.id }}',
-            url_api_contact = '{% url 'api_v2:contact-list' %}',
-            url_api_reminder = '{% url 'api_v2:reminder_contact-list' %}',
-            message_error_create = 'Error al crear el contacto',
-            message_success_delete_contact = 'Contacto borrado con exito',
-            message_error_delete_contact = 'Error al borrar el contacto',
-            message_error_edit_contact = 'Error al editar el contacto'
-        )
+        let appJS = new App(owner = '{{ owner.id }}')
     </script>
 
     {% include "app/nav_app.html" %}
