@@ -72,7 +72,7 @@
                     <div class="uk-flex uk-flex-column uk-width">
                         <div class="uk-flex uk-flex-inline uk-flex-middle uk-width">
                             <div class="uk-width-medium">
-                                <div class="uk-text-truncate text-blue3"><a data-href="contact_href"
+                                <div class="uk-text-truncate text-blue3"><a href="{{ 'contact_href'| handlebars }}"
                                                                             class="text-blue3">{{ 'contact_name'| handlebars }}&nbsp;{{ 'contact_surname'| handlebars }}</a>
                                 </div>
                             </div>
@@ -89,10 +89,10 @@
                     </div>
 
                     <ul class="uk-iconnav uk-invisible-hover uk-width-small uk-flex-right">
-                        <li><a onclick="reminderJS.deleteReminder('{{ 'id' | handlebars }}')"
+                        <li><a onclick="reminderJS.deleteReminder('{{ 'id_reminder' | handlebars }}')"
                                class="uk-icon-link icon_trash"
                                uk-icon="icon: trash"></a></li>
-                        <li><a onclick="reminderJS.openModalSchedule('{{ 'id' | handlebars }}')"
+                        <li><a onclick="reminderJS.openModalSchedule('{{ 'id_reminder' | handlebars }}')"
                                class="uk-icon-link icon_app" uk-icon="future"
                                uk-tooltip="title: {% translate 'Programar' %}; pos: bottom"></a>
                     </ul>
@@ -133,7 +133,9 @@
                     </div>
 
                     <ul class="uk-iconnav uk-invisible-hover uk-width-small uk-flex-right">
-                        <li><a href="#" class="icon_trash" uk-icon="icon: trash"></a></li>
+                        <li><a onclick="reminderJS.deleteReminder('{{ 'id_reminder' | handlebars }}')"
+                               class="uk-icon-link icon_trash"
+                               uk-icon="icon: trash"></a></li>
                         <li><a href="#" class="icon_app" uk-icon="icon: future"></a></li>
                     </ul>
                 </div>

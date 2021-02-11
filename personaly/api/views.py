@@ -117,7 +117,6 @@ class TagContactView(viewsets.ModelViewSet):
         return TagContact.objects.filter(owner=self.request.user, active=True)
 
 
-
 class ReminderContactFilter(PropertyFilterSet):
     lte_days = PropertyNumberFilter(field_name='days', lookup_expr='lte')
     gte_days = PropertyNumberFilter(field_name='days', lookup_expr='gte')
@@ -139,8 +138,7 @@ class ReminderContactView(viewsets.ModelViewSet):
     http_method_names = ['get', 'post', 'put', 'patch', 'delete']
 
     def get_queryset(self):
-        queryset = ReminderContact.objects.filter(owner=self.request.user, active=True)
-        return queryset
+        return ReminderContact.objects.filter(owner=self.request.user, active=True)
 
 
 # Note Contact_001
@@ -148,7 +146,6 @@ class NoteContactView(viewsets.ModelViewSet):
     serializer_class = NoteContactSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_fields = ['contact']
-
     http_method_names = ['get', 'post', 'patch', 'delete']
 
     def get_queryset(self):

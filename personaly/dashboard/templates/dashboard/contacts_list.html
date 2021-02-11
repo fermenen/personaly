@@ -90,13 +90,14 @@
                 <ul class="uk-iconnav uk-invisible-hover">
                     <li>
                         <a onclick="contactJS.openModalDeleteContact('{{ 'id' | handlebars }}')"
-                           class="uk-icon-linl icon_trash" uk-icon="icon: trash" uk-tooltip="title: ; pos: bottom"></a>
+                           class="uk-icon-linl icon_trash" uk-icon="icon: trash"
+                           uk-tooltip="title: {% translate 'Borrar contacto' %} ; pos: bottom"></a>
                     <li><a onclick="contactJS.openModalEditContact('{{ 'id' | handlebars }}')"
                            class="uk-icon-link icon_app"
-                           uk-icon="file-edit" uk-tooltip="title: ; pos: bottom"></a>
-                    <li><a onclick=""
-                           class="uk-icon-link icon_app" uk-icon="future"
-                           uk-tooltip="title: {% translate 'Programar' %}; pos: bottom"></a>
+                           uk-icon="file-edit" uk-tooltip="title: {% translate 'Editar contacto' %}; pos: bottom"></a>
+                    <li><a onclick="reminderJS.openModalCreateReminder()"
+                           class="uk-icon-link icon_app" uk-icon="calendar"
+                           uk-tooltip="title: {% translate 'Crear recordatorio' %}; pos: bottom"></a>
                 </ul>
             </div>
         </div>

@@ -1,8 +1,13 @@
+{% load i18n %}
 <!DOCTYPE html>
 {% load static %}
 <html lang="es">
 <head>
-    <noscript>Please enable JavaScript to continue using this application</noscript>
+    <noscript>
+        <div class="uk-flex uk-flex-center">
+            <span class="uk-text-danger uk-text-center uk-text-large">{% translate "El uso de javascript es necesario para el correcto funcionamiento de personaly." %}</span>
+        </div>
+    </noscript>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>

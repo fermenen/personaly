@@ -6,8 +6,8 @@ from django.db.models import UUIDField, AutoField
 
 
 class User(AbstractUser):
-    id = AutoField(primary_key=True, unique=True, editable=False)
-    # id = UUIDField(primary_key=True, default=uuid.uuid4, unique=True, editable=False)
+    # id = AutoField(primary_key=True, unique=True, editable=False)
+    id = UUIDField(primary_key=True, default=uuid.uuid4, unique=True, editable=False)
     # username = None
     email = models.EmailField('email address', unique=True)
     validated_mail = models.BooleanField(default=False, blank=True, null=True)

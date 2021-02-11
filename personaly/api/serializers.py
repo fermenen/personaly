@@ -6,6 +6,7 @@ from accounts.models import User
 
 from dashboard.models import NoteContact, ThingCommonContact, MusicContact, FamilyContact, Contact, ReminderContact, \
     TagContact
+from rest_framework.fields import IntegerField
 from spotipy import SpotifyClientCredentials
 
 
@@ -117,16 +118,16 @@ class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
         fields = (
-        'id', 'name', 'surnames', 'image_contact', 'location', 'phone', 'email', 'birthday', 'remember_birthday',
-        'keep_in_touch', 'url', 'contact_tag', 'owner')
+            'id', 'name', 'surnames', 'image_contact', 'location', 'phone', 'email', 'birthday', 'remember_birthday',
+            'keep_in_touch', 'url', 'contact_tag', 'owner')
 
 
 class ReminderContactSerializer(serializers.ModelSerializer):
-    contact = ContactSerializer(read_only=True)
+    contact_info = ContactSerializer(source='contact', read_only=True)
 
     class Meta:
         model = ReminderContact
-        fields = ('id', 'text', 'completed', 'deadline', 'days', 'past', 'today', 'future', 'contact')
+        fields = ('id', 'text', 'completed', 'deadline', 'days', 'past', 'today', 'future', 'contact', 'owner', 'contact_info')
 
 
 class NoteContactSerializer(serializers.ModelSerializer):
@@ -163,7 +164,8 @@ class MusicContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = MusicContact
         fields = (
-            'id', 'id_artist', 'name_artist', 'photo_artist', 'url_artist', 'get_list_tags', 'popularity', 'contact', 'owner')
+            'id', 'id_artist', 'name_artist', 'photo_artist', 'url_artist', 'get_list_tags', 'popularity', 'contact',
+            'owner')
 
     def create(self, validated_data):
         """
@@ -190,7 +192,7 @@ class MusicContactSerializer(serializers.ModelSerializer):
 class CommonContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = ThingCommonContact
-        fields = ('id', 'text', 'created_at', 'contact', 'owner' )
+        fields = ('id', 'text', 'created_at', 'contact', 'owner')
 
     def create(self, validated_data):
         """

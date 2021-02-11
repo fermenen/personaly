@@ -7,6 +7,7 @@ import App from "./Application";
 export default class Dashboard {
 
     constructor() {
+        $(document).on('reminder_deleted', () => this.refresh());
     }
 
     set_next() {
@@ -25,14 +26,17 @@ export default class Dashboard {
         let source_next = document.getElementById("template_items_reminder_next").innerHTML;
         this.template_today = Handlebars.compile(source_today);
         this.template_next = Handlebars.compile(source_next);
+        this.refresh();
+    }
+
+    refresh() {
         this.data_reminder_today();
         this.data_reminder_next();
     }
 
-
     data_reminder_today() {
         let ajax = $.ajax({
-            url: window.reverse('api_v2:reminder_contact-list', '?lte_days=0&ordering=deadline'),
+            url: window.reverse('api_v2:reminder_contact-list', '?lte_days=0&ordering=deadline&completed=false'),
             headers: {"X-CSRFToken": App.getCsrfToken()},
             type: 'GET',
             dataType: 'json',
@@ -44,10 +48,10 @@ export default class Dashboard {
                         reminders.push({
                             id_reminder: data['results'][reminder]['id'],
                             reminder_text: data['results'][reminder]['text'],
-                            contact_name: data['results'][reminder]['contact']['name'],
-                            contact_surname: data['results'][reminder]['contact']['surnames'],
+                            contact_name: data['results'][reminder]['contact_info']['name'],
+                            contact_surname: data['results'][reminder]['contact_info']['surnames'],
                             past: data['results'][reminder]['past'],
-                            contact_href: window.reverse('contact', data['results'][reminder]['contact']['url']),
+                            contact_href: window.reverse('contact', data['results'][reminder]['contact_info']['url']),
                         })
                     }
                     let context = {reminders: reminders};
@@ -78,9 +82,9 @@ export default class Dashboard {
                         reminders.push({
                             id_reminder: data['results'][reminder]['id'],
                             reminder_text: data['results'][reminder]['text'],
-                            contact_name: data['results'][reminder]['contact']['name'],
-                            contact_surname: data['results'][reminder]['contact']['surnames'],
-                            contact_href: window.reverse('contact', data['results'][reminder]['contact']['url']),
+                            contact_name: data['results'][reminder]['contact_info']['name'],
+                            contact_surname: data['results'][reminder]['contact_info']['surnames'],
+                            contact_href: window.reverse('contact', data['results'][reminder]['contact_info']['url']),
                             days: data['results'][reminder]['days'],
                             date: DateTime.fromISO(data['results'][reminder]['deadline']).toLocaleString(DateTime.DATE_FULL),
                             // date: data['results'][reminder]['deadline'],

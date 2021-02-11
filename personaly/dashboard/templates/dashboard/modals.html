@@ -214,18 +214,56 @@
     <div class="uk-modal-dialog">
         <button class="uk-modal-close-default" type="button" uk-close></button>
         <div class="uk-modal-header">
-            <h2 class="uk-modal-title">Headline 1</h2>
+            <h2 class="uk-modal-title">{% translate "Reprogramar recordatorio" %}</h2>
         </div>
         <div class="uk-modal-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.</p>
+            <form id="form_modal_edit_reminder">
+                <input id="reminder_id" class="uk-hidden">
+                <fieldset class="uk-fieldset">
+                    <div class="uk-margin">
+                        <input id="deadline_reminder" class="uk-input" type="date" placeholder="Input">
+                    </div>
+                </fieldset>
+            </form>
         </div>
         <div class="uk-modal-footer uk-text-right">
-            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-            <a href="#modal-group-2" class="uk-button uk-button-primary" uk-toggle>Next</a>
+            <button class="uk-button uk-button-default uk-modal-close"
+                    type="button">{% translate "Cancelar" %}</button>
+            <button id="button_save_create_reminder" onclick="reminderJS.changeDeadLineReminder()"
+                    class="uk-button uk-button-primary"
+                    data-value='{% translate "Reprogramar" %}'
+                    type="button">{% translate "Reprogramar" %}</button>
+        </div>
+    </div>
+</div>
+
+<div id="modal_create_reminder" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">{% translate "Añadir recordatorio" %}</h2>
+        </div>
+        <div class="uk-modal-body">
+            <form id="form_modal_create_reminder">
+                <fieldset class="uk-fieldset">
+
+                    <div class="uk-margin">
+                        <input id="text_reminder" class="uk-input" type="text" placeholder="Input">
+                    </div>
+                    <div class="uk-margin">
+                        <input id="deadline_reminder" class="uk-input" type="date" placeholder="Input">
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close"
+                    type="button">{% translate "Cancelar" %}</button>
+            <button id="button_save_create_reminder" onclick="reminderJS.createReminder()"
+                    class="uk-button uk-button-primary"
+                    data-value='{% translate "Crear recordatorio" %}'
+                    type="button">{% translate "Crear recordatorio" %}</button>
         </div>
     </div>
 </div>
