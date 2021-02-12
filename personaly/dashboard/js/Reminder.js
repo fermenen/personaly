@@ -6,13 +6,13 @@ import {DateTime} from "luxon";
 export default class Reminder {
 
     constructor() {
-        $(document).on('reminder_created', () => this.data_reminder_no_completed());
-        $(document).on('reminder_edited', () => this.data_reminder_no_completed());
-        $(document).on('reminder_edited', () => this.data_reminder_completed());
-        $(document).on('reminder_completed', () => this.data_reminder_no_completed());
-        $(document).on('reminder_completed', () => this.data_reminder_completed());
-        $(document).on('reminder_deleted', () => this.data_reminder_no_completed());
-        $(document).on('reminder_deleted', () => this.data_reminder_completed());
+        // $(document).on('reminder_created', () => this.data_reminder_no_completed());
+        // $(document).on('reminder_edited', () => this.data_reminder_no_completed());
+        // $(document).on('reminder_edited', () => this.data_reminder_completed());
+        // $(document).on('reminder_completed', () => this.data_reminder_no_completed());
+        // $(document).on('reminder_completed', () => this.data_reminder_completed());
+        // $(document).on('reminder_deleted', () => this.data_reminder_no_completed());
+        // $(document).on('reminder_deleted', () => this.data_reminder_completed());
     }
 
 
@@ -216,7 +216,7 @@ export default class Reminder {
                 headers: {"X-CSRFToken": App.getCsrfToken()},
                 data: {
                     owner: App.getOwner(),
-                    text: $('#' + id_reminder).val(),
+                    text: $('#text_reminder_' + id_reminder).val(),
                 },
                 type: 'PATCH',
                 dataType: 'json',

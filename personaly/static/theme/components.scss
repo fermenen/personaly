@@ -22,3 +22,7 @@ img {
 .uk-animation-fade {
   animation-duration: 0.3s !important;
 }
+
+.darkmode--activated .uk-input:focus {
+  background-color: $color-black !important;
+}

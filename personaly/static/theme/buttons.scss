@@ -40,6 +40,10 @@
 
 }
 
+.darkmode--activated .uk-button {
+  color: $color-gray-1 !important;
+}
+
 .text-line:before {
   border-bottom: 1px solid $color-blue-2 !important;
 }
