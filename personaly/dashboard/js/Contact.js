@@ -181,6 +181,7 @@ export default class Contact {
                 data: {
                     name: $("#form_modal_edit_contact input[id=input_edit_name_contact]").val(),
                     surnames: $("#form_modal_edit_contact input[id=input_edit_surnames_contact]").val(),
+                    image_contact: $("#form_modal_edit_contact input[id=public_url_photo]").val(),
                     location: $("#form_modal_edit_contact input[id=input_city_contact]").val(),
                     phone: $("#form_modal_edit_contact input[id=input_phone]").val(),
                     email: $("#form_modal_edit_contact input[id=input_mail]").val(),
@@ -206,6 +207,27 @@ export default class Contact {
                 }
             });
         }
+    }
+
+
+    uploadPhotoProfile() {
+        let uploadPhoto = UIkit.upload('.js-upload', {
+            url: window.reverse('api_v2:api_upload_photo'),
+            multiple: false,
+            params: {
+                csrfmiddlewaretoken: App.getCsrfToken()
+            },
+            completeAll: function (response) {
+                let pathPublicPhoto = JSON.parse(response['response']).file
+                $("#image_upload").attr("src", pathPublicPhoto)
+                $("#form_modal_edit_contact div[id=div_image]").removeClass('uk-hidden')
+                $("#form_modal_edit_contact div[id=div_upload_image]").addClass('uk-hidden')
+                $("#form_modal_edit_contact input[id=public_url_photo]").val(pathPublicPhoto)
+            },
+            error: data => {
+                App.NotificationError(gettext('Error al subir imagen.'))
+            },
+        });
     }
 
 

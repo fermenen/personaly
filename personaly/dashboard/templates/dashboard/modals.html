@@ -115,14 +115,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="uk-margin-small-top">
+                <div class="uk-margin-small-top js-upload">
                     <label for="input_photo" class="uk-form-label ">{% translate "Foto de perfil" %}</label>
-                    <div uk-form-custom="target: true">
+                    <div id="div_image" class="uk-hidden">
+                        <img id="image_upload" class="uk-border-circle image-contact" width="50" height="50" uk-img>
+                        <button class="uk-button uk-button-danger uk-button-small uk-margin-small-left">{% translate "Eliminar imagen" %}
+                        </button>
+                        <input id="public_url_photo" class="uk-hidden">
+                    </div>
+                    <div id="div_upload_image" uk-form-custom="target: true">
                         <input type="file">
                         <input id="input_photo" class="uk-input uk-form-width-medium" type="text"
                                placeholder="Selecciona un fichero" disabled>
                     </div>
-
+                    <script>
+                        contactJS.uploadPhotoProfile()
+                    </script>
                 </div>
                 <hr>
                 <div class="uk-margin">
@@ -246,7 +254,7 @@
         <div class="uk-modal-body">
             <form id="form_modal_create_reminder">
                 <fieldset class="uk-fieldset">
-
+                    <input id="id_contact" class="uk-hidden" type="text">
                     <div class="uk-margin">
                         <input id="text_reminder" class="uk-input" type="text" placeholder="Input">
                     </div>

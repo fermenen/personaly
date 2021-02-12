@@ -62,7 +62,7 @@
                 <div id="photo_contact">
                     {{ '#if image_contact' | handlebars }}
                     <a href=""><img class="uk-border-circle image-contact" width="50" height="50"
-                                    data-src="/media{{ 'image_contact' | handlebars }}"
+                                    data-src="{{ 'image_contact' | handlebars }}"
                                     alt="{{ contact.name }} {{ contact.surnames }}" uk-img></a>
                     {{ 'else' | handlebars }}
                     <a href=""><img class="uk-border-circle image-contact" width="50" height="50"
@@ -95,7 +95,7 @@
                     <li><a onclick="contactJS.openModalEditContact('{{ 'id' | handlebars }}')"
                            class="uk-icon-link icon_app"
                            uk-icon="file-edit" uk-tooltip="title: {% translate 'Editar contacto' %}; pos: bottom"></a>
-                    <li><a onclick="reminderJS.openModalCreateReminder()"
+                    <li><a onclick="reminderJS.openModalCreateReminder('{{ 'id' | handlebars }}')"
                            class="uk-icon-link icon_app" uk-icon="calendar"
                            uk-tooltip="title: {% translate 'Crear recordatorio' %}; pos: bottom"></a>
                 </ul>

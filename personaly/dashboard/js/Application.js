@@ -149,33 +149,6 @@ class App {
     }
 
 
-    uploadPhoto() {
-
-        var bar = document.getElementById('js-progressbar');
-
-        let uploadPhoto = UIkit.upload('.js-upload', {
-
-            url: '/api/v1/contact/upload_photo',
-            multiple: false,
-            params: {
-                csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
-            },
-
-            completeAll: function (response) {
-
-                var parsed_data = JSON.parse(response['response']);
-                console.log(parsed_data);
-                let pathPhoto = parsed_data.file
-
-                $("#image_edit_contact_modal").attr("src", '/media/' + pathPhoto);
-                $('#upload_photo_edit_contact').addClass('uk-hidden')
-
-
-            },
-
-        });
-
-    }
 
     static getCsrfToken() {
         return $("input[name=csrfmiddlewaretoken]").val();

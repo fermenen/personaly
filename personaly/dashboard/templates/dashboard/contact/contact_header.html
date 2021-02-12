@@ -5,7 +5,7 @@
     <div id="contact_header" class="uk-flex uk-margin-small-left">
         <div class="uk-width-small">
             {{ '#if image_contact' | handlebars }}
-            <img class="uk-border-rounded" width="120" height="120" data-src="/media{{ 'image_contact' | handlebars }}"
+            <img class="uk-border-rounded" width="120" height="120" data-src="{{ 'image_contact' | handlebars }}"
                  alt="" uk-img>
             {{ 'else' | handlebars }}
             <img class="uk-border-rounded" width="120" height="120" data-src="{% static 'img/app/contact_holder.jpg' %}"

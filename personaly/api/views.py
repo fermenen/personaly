@@ -1,7 +1,9 @@
 import os
+from uuid import uuid4
 
 import django_filters
 import spotipy
+from PIL import Image
 from django_filters.rest_framework import DjangoFilterBackend
 from django_filters import rest_framework as filters
 from rest_framework import status
@@ -24,6 +26,8 @@ from django.contrib.auth.models import User
 from dashboard.services import send_code_user
 from accounts.models import User
 from dashboard.models import *
+
+from dashboard.Storage import StorageGoogle
 
 
 class UserCreate(APIView):
@@ -70,9 +74,24 @@ class UploadPhoto(APIView):
 
     def post(self, request):
         data = request.data['files[]']
-        path = default_storage.save(f'images_contacts/{data.name}', ContentFile(data.read()))
+        path = default_storage.save(f'images/{data.name}', ContentFile(data.read()))
         tmp_file = os.path.join(settings.MEDIA_ROOT, path)
-        return JsonResponse({'ok': 'true', 'file': path}, status=200)
+        tmp_new = self.get_transform_image(tmp_file)
+        public_url = StorageGoogle(f'public/{request.user.id}{tmp_new}').upload('./' + tmp_new)
+        os.remove('./' + tmp_file)
+        os.remove('./' + tmp_new)
+        return JsonResponse({'ok': 'true', 'file': public_url}, status=200)
+
+    def get_transform_image(self, image_path):
+        basewidth = 400
+        quality = 75
+        img = Image.open(image_path)
+        wpercent = (basewidth / float(img.size[0]))
+        hsize = int((float(img.size[1]) * float(wpercent)))
+        img_new = img.resize((basewidth, hsize))
+        image_name = '{}.{}'.format(uuid4().hex, 'jpg')
+        img_new.save(os.path.join('images/', image_name), quality=quality, optimize=True)
+        return os.path.join('/images/', image_name)
 
 
 # Contact_001 View - GET - POST - PUT - DELETE

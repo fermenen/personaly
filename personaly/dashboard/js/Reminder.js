@@ -62,8 +62,9 @@ export default class Reminder {
         }
     }
 
-    openModalCreateReminder() {
+    openModalCreateReminder(contact_id) {
         if (appJS.actionOffline()) {
+            $("#form_modal_create_reminder input[id=id_contact]").val(contact_id)
             App.ShowModal(modal_create_reminder)
         }
     }
@@ -186,7 +187,7 @@ export default class Reminder {
                 data: {
                     text: $("#form_modal_create_reminder input[id=text_reminder]").val(),
                     deadline: $("#form_modal_create_reminder input[id=deadline_reminder]").val(),
-                    contact: Contact.getContactId(),
+                    contact: $("#form_modal_create_reminder input[id=id_contact]").val(),
                     owner: App.getOwner(),
                 },
                 type: 'POST',

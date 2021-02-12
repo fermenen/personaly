@@ -1,21 +1,20 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 import datetime
-from datetime import date
-from django.conf import settings
+
 from dashboard.models import *
 from .forms import RelationTypeForm, KeepTouchForm
 from django.shortcuts import get_object_or_404
 from django.utils import translation
-from django.utils.translation import to_locale, get_language
-from django.utils.translation import get_language_info
 
+from django.utils.translation import get_language_info
 
 
 @login_required
 def index(request):
+    owner = request.user
     date = datetime.date.today()
-    return render(request, 'dashboard/index.html', {'date_today': date})
+    return render(request, 'dashboard/index.html', {'owner': owner, 'date_today': date})
 
 
 @login_required
@@ -51,8 +50,6 @@ def contact_view(request, url):
 
 @login_required
 def settings_view(request):
-
-
     li = get_language_info(translation.get_language())
 
     data = {'user': request.user,
