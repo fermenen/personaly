@@ -62,80 +62,51 @@
         </div>
     </div>
 
-    <script id="template_items_reminder_today" type="text/x-handlebars-template">
+    <script id="template_items_reminder" type="text/x-handlebars-template">
         <ul class="uk-list uk-list-divider">
             {{ "#reminders" | handlebars }}
             <li id="{{ 'id_reminder'| handlebars }}">
                 <div class="uk-flex uk-flex-middle uk-visible-toggle" tabindex="-1">
-                    <div class="uk-margin-right"><input class="uk-checkbox" type="checkbox"
-                                                        onclick="reminderJS.completeReminder('{{ 'id_reminder'| handlebars }}')"
-                                                        uk-tooltip="title: {% translate 'Completar recordatorio' %}; pos: bottom"
-                                                        aria-expanded="false"></div>
+                    <div class="uk-margin-right">
+                        <input class="uk-checkbox" type="checkbox"
+                               onclick="reminderJS.completeReminder('{{ 'id_reminder'| handlebars }}')"
+                               uk-tooltip="title: {% translate 'Completar recordatorio' %}; pos: bottom"
+                               aria-expanded="false"></div>
                     <div class="uk-flex uk-flex-column uk-width">
                         <div class="uk-flex uk-flex-inline uk-flex-middle uk-width">
-                            <div class="uk-width-medium">
+                            <div class="uk-width-medium uk-visible@s uk-margin-small-right">
                                 <div class="uk-text-truncate text-blue3"><a href="{{ 'contact_href'| handlebars }}"
                                                                             class="text-blue3">{{ 'contact_name'| handlebars }}&nbsp;{{ 'contact_surname'| handlebars }}</a>
                                 </div>
                             </div>
-                            <div class="uk-width uk-margin-small-left uk-margin-small-right">
+                            <div class="uk-width uk-margin-small-right">
                                 <input id="text_reminder_{{ 'id_reminder'| handlebars }}"
                                        onchange="reminderJS.changeTextReminder('{{ 'id_reminder'| handlebars }}', '{{ 'reminder_text'| handlebars }}')"
                                        class="uk-input uk-form-blank uk-h5 uk-sticky" type="text"
                                        value="{{ 'reminder_text'| handlebars }}">
                             </div>
                         </div>
-                        {{ '#if past' | handlebars }}
-                        <span class="uk-text-meta uk-text-warning">{% translate 'Recordatorio retrasado' %}</span>
-                        {{ '/if' | handlebars }}
-                    </div>
-                    <ul class="uk-iconnav uk-invisible-hover uk-width-small uk-flex-right">
-                        <li><a onclick="reminderJS.deleteReminder('{{ 'id_reminder'| handlebars }}')"
-                               class="uk-icon-link icon_trash"
-                               uk-icon="icon: trash"
-                               uk-tooltip="title: {% translate 'Eliminar recordatorio' %}; pos: bottom"></a></li>
-                        <li><a onclick="reminderJS.openModalSchedule('{{ 'id_reminder'| handlebars }}')"
-                               class="uk-icon-link icon_app"
-                               uk-icon="icon: future"
-                               uk-tooltip="title: {% translate 'Reprogramar recordatorio' %}; pos: bottom"></a></li>
-                    </ul>
-                </div>
-            </li>
-            {{ "/reminders" | handlebars }}
-    </script>
-
-    <script id="template_items_reminder_next" type="text/x-handlebars-template">
-        <ul class="uk-list uk-list-divider">
-            {{ "#reminders" | handlebars }}
-            <li id="{{ 'id_reminder'| handlebars }}">
-                <div class="uk-flex uk-flex-middle uk-visible-toggle" tabindex="-1">
-                    <div class="uk-margin-right"><input class="uk-checkbox" type="checkbox"
-                                                        onclick="reminderJS.completeReminder('{{ 'id_reminder'| handlebars }}')"
-                                                        uk-tooltip="title: {% translate 'Completar recordatorio' %}; pos: bottom"
-                                                        aria-expanded="false"></div>
-                    <div class="uk-flex uk-flex-column uk-width">
-                        <div>
-                            <div class="uk-flex uk-flex-inline uk-flex-middle uk-width">
-                                <div class="uk-width-medium">
-                                    <div class="uk-text-truncate text-blue3"><a href="{{ 'contact_href'| handlebars }}"
-                                                                                class="text-blue3">{{ 'contact_name'| handlebars }}&nbsp;{{ 'contact_surname'| handlebars }}</a>
-                                    </div>
-                                </div>
-                                <div class="uk-width uk-margin-small-left uk-margin-small-right">
-                                    <input id="text_reminder_{{ 'id_reminder'| handlebars }}"
-                                           onchange="reminderJS.changeTextReminder('{{ 'id_reminder'| handlebars }}', '{{ 'reminder_text'| handlebars }}')"
-                                           class="uk-input uk-form-blank uk-h5 uk-sticky" type="text"
-                                           value="{{ 'reminder_text'| handlebars }}">
-                                </div>
+                        <div class="uk-flex uk-flex-middle">
+                            <div class="uk-text-truncate text-blue3 uk-hidden@s uk-margin-small-left uk-margin-right"><a
+                                    href="{{ 'contact_href'| handlebars }}"
+                                    class="text-blue3 uk-text-capitalize">{{ 'contact_name'| handlebars }}&nbsp;{{ 'contact_surname'| handlebars }}</a>
                             </div>
+                            {{ '#if past' | handlebars }}
+                            <span uk-icon="icon: history" class="uk-text-warning uk-hidden@s"
+                                  uk-tooltip="title: {% translate 'Recordatorio retrasado' %}; pos: bottom"></span>
+                            <span class="uk-text-meta uk-text-warning uk-visible@s">{% translate 'Recordatorio retrasado' %}</span>
+                            {{ '/if' | handlebars }}
+                            {{ '#if future' | handlebars }}
+                            <div class="uk-flex uk-flex-inline uk-flex-middle">
+                                <span class="uk-text-meta uk-visible@s">{{ 'date'| handlebars }}&nbsp;-&nbsp;</span>
+                                <span class="uk-text-meta">{% translate "Quedan" %}&nbsp;<span
+                                        class="uk-text-bold">{{ 'days'| handlebars }}</span>&nbsp;{% translate "días." %}</span>
+                            </div>
+                            {{ '/if' | handlebars }}
                         </div>
-                        <div class="uk-flex uk-flex-inline uk-flex-middle">
-                            <span class="uk-text-meta">{{ 'date'| handlebars }}&nbsp;-&nbsp;</span>
-                            <span class="uk-text-meta">{% translate "Quedan" %}&nbsp;<span
-                                    class="uk-text-bold">{{ 'days'| handlebars }}</span>&nbsp;{% translate "días." %}</span>
-                        </div>
+
                     </div>
-                    <ul class="uk-iconnav uk-invisible-hover uk-width-small uk-flex-right">
+                    <ul class="uk-iconnav uk-invisible-hover uk-flex-right uk-visible@s" style="width: 90px">
                         <li><a onclick="reminderJS.deleteReminder('{{ 'id_reminder'| handlebars }}')"
                                class="uk-icon-link icon_trash"
                                uk-icon="icon: trash"
@@ -148,6 +119,7 @@
                 </div>
             </li>
             {{ "/reminders" | handlebars }}
+        </ul>
     </script>
 
     <script>

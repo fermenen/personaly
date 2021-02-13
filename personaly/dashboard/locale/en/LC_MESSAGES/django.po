@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-04 12:21+0100\n"
+"POT-Creation-Date: 2021-02-13 12:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,264 +38,217 @@ msgstr ""
 msgid "No recordar"
 msgstr ""
 
-#: dashboard/models.py:178
+#: dashboard/models.py:166
 msgid "Relaciones amorosas"
 msgstr "Love relationships"
 
-#: dashboard/models.py:179
+#: dashboard/models.py:167
 msgid "Esposo / esposa"
 msgstr ""
 
-#: dashboard/models.py:180
+#: dashboard/models.py:168
 #, fuzzy
 #| msgid "amante"
 msgid "Amante"
 msgstr "lover"
 
-#: dashboard/models.py:181
+#: dashboard/models.py:169
 #, fuzzy
 #| msgid "ex - novio"
 msgid "Ex - novio / novia"
 msgstr "ex - boyfriend"
 
-#: dashboard/models.py:184
+#: dashboard/models.py:172
 #, fuzzy
 #| msgid "Relaciones amorosas"
 msgid "Relaciones familiares"
 msgstr "Love relationships"
 
-#: dashboard/models.py:185
+#: dashboard/models.py:173
 msgid "Hijo / hija"
 msgstr ""
 
-#: dashboard/models.py:186
+#: dashboard/models.py:174
 msgid "Hermano / hermana"
 msgstr ""
 
-#: dashboard/models.py:187
+#: dashboard/models.py:175
 msgid "Abuelo / abuela"
 msgstr ""
 
-#: dashboard/models.py:188
+#: dashboard/models.py:176
 msgid "Nieto / nieta"
 msgstr ""
 
-#: dashboard/models.py:189
+#: dashboard/models.py:177
 msgid "Tío / tía"
 msgstr ""
 
-#: dashboard/models.py:190
+#: dashboard/models.py:178
 msgid "Sobrino / sobrina"
 msgstr ""
 
-#: dashboard/models.py:191
+#: dashboard/models.py:179
 msgid "Primo / prima"
 msgstr ""
 
-#: dashboard/models.py:192
+#: dashboard/models.py:180
 msgid "Padrino / madrina"
 msgstr ""
 
-#: dashboard/models.py:193
+#: dashboard/models.py:181
 msgid "Ahijado / ahijada"
 msgstr ""
 
-#: dashboard/models.py:194
+#: dashboard/models.py:182
 msgid "Padrastro / madrastra"
 msgstr ""
 
-#: dashboard/models.py:195
+#: dashboard/models.py:183
 msgid "Hijastro / hijastra"
 msgstr ""
 
-#: dashboard/models.py:198
+#: dashboard/models.py:186
 #, fuzzy
 #| msgid "Relaciones amorosas"
 msgid "Relaciones de amistad"
 msgstr "Love relationships"
 
-#: dashboard/models.py:199
+#: dashboard/models.py:187
 msgid "Amigo / amiga"
 msgstr ""
 
-#: dashboard/models.py:200
+#: dashboard/models.py:188
 msgid "Mejor amigo / amiga"
 msgstr ""
 
-#: dashboard/models.py:201
+#: dashboard/models.py:189
 #, fuzzy
 #| msgid "ex - novio"
 msgid "Ex - novio"
 msgstr "ex - boyfriend"
 
-#: dashboard/models.py:204
+#: dashboard/models.py:192
 #, fuzzy
 #| msgid "Relaciones amorosas"
 msgid "Relaciones de laborales"
 msgstr "Love relationships"
 
-#: dashboard/models.py:205
+#: dashboard/models.py:193
 msgid "Compañero / compañera"
 msgstr ""
 
-#: dashboard/models.py:206
+#: dashboard/models.py:194
 msgid "Jefe / jefa"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:27
-#: dashboard/templates/dashboard/modals.html:105
-#: dashboard/templates/dashboard/modals.html:118
-#: dashboard/templates/dashboard/modals.html:120
+#: dashboard/templates/dashboard/contact.html:21
+#: dashboard/templates/dashboard/modals.html:66
+#: dashboard/templates/dashboard/modals.html:79
+#: dashboard/templates/dashboard/modals.html:81
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Eliminar contacto"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contact.html:31
-#: dashboard/templates/dashboard/contact.html:78
+#: dashboard/templates/dashboard/contact.html:24
+#: dashboard/templates/dashboard/contact.html:70
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Editar etiquetas"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contact.html:35
-#: dashboard/templates/dashboard/modals.html:130
+#: dashboard/templates/dashboard/contact.html:27
+#: dashboard/templates/dashboard/contacts_list.html:97
+#: dashboard/templates/dashboard/modals.html:91
 msgid "Editar contacto"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contact.html:46
+#: dashboard/templates/dashboard/contact.html:38
 msgid "Notas"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:48
+#: dashboard/templates/dashboard/contact.html:40
 msgid "En común"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:51
+#: dashboard/templates/dashboard/contact.html:43
 msgid "Experiencias"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:54
+#: dashboard/templates/dashboard/contact.html:46
 msgid "Música"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:57
+#: dashboard/templates/dashboard/contact.html:49
 msgid "Familia"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact.html:108
+#: dashboard/templates/dashboard/contact.html:100
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Añadir nueva etiqueta"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contact/contact_common.html:11
-#, fuzzy
-#| msgid "Editar contacto"
-msgid "¡Cosa en común creada con éxito!"
-msgstr "Edit contact"
-
 #: dashboard/templates/dashboard/contact/contact_common.html:12
-#, fuzzy
-#| msgid "Editar contacto"
-msgid "¡Cosa en común eliminada con éxito!"
-msgstr "Edit contact"
-
-#: dashboard/templates/dashboard/contact/contact_common.html:13
-msgid "Error al crear la cosa en común, inténtalo de nuevo."
-msgstr ""
-
-#: dashboard/templates/dashboard/contact/contact_common.html:14
-msgid "Ocurrió un problema al borrar la cosa en común."
-msgstr ""
-
-#: dashboard/templates/dashboard/contact/contact_common.html:21
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Añadir cosa en común"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contact/contact_common.html:24
+#: dashboard/templates/dashboard/contact/contact_common.html:15
 msgid "Registra cosas en común que tengas con"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_common.html:35
-#: dashboard/templates/dashboard/contact/contact_family.html:49
-#: dashboard/templates/dashboard/contact/contact_music.html:68
+#: dashboard/templates/dashboard/contact/contact_common.html:26
+#: dashboard/templates/dashboard/contact/contact_family.html:36
+#: dashboard/templates/dashboard/contact/contact_music.html:63
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Eliminar"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contact/contact_common.html:49
+#: dashboard/templates/dashboard/contact/contact_common.html:37
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Añadir cosa en comun"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contact/contact_common.html:57
+#: dashboard/templates/dashboard/contact/contact_common.html:45
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Cosa en común con"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contact/contact_common.html:58
+#: dashboard/templates/dashboard/contact/contact_common.html:46
 msgid "Yoga, escalada, cine ..."
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_common.html:66
+#: dashboard/templates/dashboard/contact/contact_common.html:54
 #: dashboard/templates/dashboard/contact/contact_experiences.html:86
-#: dashboard/templates/dashboard/contact/contact_family.html:111
-#: dashboard/templates/dashboard/contact/contact_music.html:122
-#: dashboard/templates/dashboard/contact/contact_notes.html:97
-#: dashboard/templates/dashboard/contact/contact_notes.html:127
+#: dashboard/templates/dashboard/contact/contact_family.html:95
+#: dashboard/templates/dashboard/contact/contact_music.html:114
+#: dashboard/templates/dashboard/contact/contact_notes.html:83
+#: dashboard/templates/dashboard/contact/contact_notes.html:111
 #: dashboard/templates/dashboard/modals.html:53
-#: dashboard/templates/dashboard/modals.html:116
-#: dashboard/templates/dashboard/modals.html:241
+#: dashboard/templates/dashboard/modals.html:77
+#: dashboard/templates/dashboard/modals.html:212
+#: dashboard/templates/dashboard/modals.html:239
+#: dashboard/templates/dashboard/modals.html:270
 msgid "Cancelar"
 msgstr "Cancel"
 
-#: dashboard/templates/dashboard/contact/contact_common.html:68
-#: dashboard/templates/dashboard/contact/contact_common.html:69
+#: dashboard/templates/dashboard/contact/contact_common.html:56
+#: dashboard/templates/dashboard/contact/contact_common.html:57
 #: dashboard/templates/dashboard/contact/contact_experiences.html:88
 #: dashboard/templates/dashboard/contact/contact_experiences.html:89
-#: dashboard/templates/dashboard/contact/contact_family.html:113
-#: dashboard/templates/dashboard/contact/contact_family.html:114
-#: dashboard/templates/dashboard/contact/contact_notes.html:99
-#: dashboard/templates/dashboard/contact/contact_notes.html:100
-#: dashboard/templates/dashboard/contact/contact_notes.html:129
-#: dashboard/templates/dashboard/contact/contact_notes.html:130
+#: dashboard/templates/dashboard/contact/contact_family.html:97
+#: dashboard/templates/dashboard/contact/contact_family.html:98
+#: dashboard/templates/dashboard/contact/contact_notes.html:85
+#: dashboard/templates/dashboard/contact/contact_notes.html:86
+#: dashboard/templates/dashboard/contact/contact_notes.html:113
+#: dashboard/templates/dashboard/contact/contact_notes.html:114
 msgid "Guardar"
-msgstr ""
-
-#: dashboard/templates/dashboard/contact/contact_common.html:110
-#: dashboard/templates/dashboard/contact/contact_family.html:137
-#: dashboard/templates/dashboard/contact/contact_family.html:141
-#: dashboard/templates/dashboard/contact/contact_music.html:145
-#: dashboard/templates/dashboard/contact/contact_notes.html:151
-#: dashboard/templates/dashboard/contact/contact_notes.html:174
-#: dashboard/templates/dashboard/modals.html:83
-#: dashboard/templates/dashboard/modals.html:92
-#: dashboard/templates/dashboard/modals.html:270
-#: dashboard/templates/dashboard/modals.html:279
-msgid "Campo obligatorio."
-msgstr ""
-
-#: dashboard/templates/dashboard/contact/contact_common.html:111
-#: dashboard/templates/dashboard/contact/contact_family.html:138
-#: dashboard/templates/dashboard/contact/contact_family.html:144
-#: dashboard/templates/dashboard/contact/contact_music.html:146
-#: dashboard/templates/dashboard/contact/contact_notes.html:152
-#: dashboard/templates/dashboard/contact/contact_notes.html:175
-#: dashboard/templates/dashboard/modals.html:84
-#: dashboard/templates/dashboard/modals.html:88
-#: dashboard/templates/dashboard/modals.html:271
-#: dashboard/templates/dashboard/modals.html:275
-msgid "Mínimo 3 caracteres."
-msgstr ""
-
-#: dashboard/templates/dashboard/contact/contact_common.html:112
-msgid "Maximo 23 caracteres."
 msgstr ""
 
 #: dashboard/templates/dashboard/contact/contact_experiences.html:5
@@ -311,183 +264,131 @@ msgstr ""
 msgid "en el pasado."
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_family.html:11
-#: dashboard/templates/dashboard/contact/contact_family.html:23
+#: dashboard/templates/dashboard/contact/contact_family.html:12
 msgid "Añadir relación familiar/amorosa"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_family.html:12
-#, fuzzy
-#| msgid "Editar contacto"
-msgid "Editar relación con "
-msgstr "Edit contact"
-
-#: dashboard/templates/dashboard/contact/contact_family.html:14
-msgid "Ocurrió un problema al guardar el contacto"
-msgstr ""
-
-#: dashboard/templates/dashboard/contact/contact_family.html:15
-msgid "¡Borrado con éxito!"
-msgstr ""
-
 #: dashboard/templates/dashboard/contact/contact_family.html:16
-msgid ""
-"Ocurrió un problema al eliminarlo. Inténtelo de nuevo en unos instantes."
-msgstr ""
-
-#: dashboard/templates/dashboard/contact/contact_family.html:17
-msgid "Ocurrió un problema al actualizar el contacto"
-msgstr ""
-
-#: dashboard/templates/dashboard/contact/contact_family.html:27
 msgid " Añade las relaciones familiares o de pareja de "
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_family.html:53
+#: dashboard/templates/dashboard/contact/contact_family.html:40
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Editar"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contact/contact_family.html:80
+#: dashboard/templates/dashboard/contact/contact_family.html:64
 #: dashboard/templates/dashboard/modals.html:17
-#: dashboard/templates/dashboard/modals.html:138
-#: dashboard/templates/dashboard/settings.html:46
+#: dashboard/templates/dashboard/modals.html:99
+#: dashboard/templates/dashboard/settings/Account.html:8
 msgid "Nombre"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_family.html:89
+#: dashboard/templates/dashboard/contact/contact_family.html:73
 #: dashboard/templates/dashboard/modals.html:26
-#: dashboard/templates/dashboard/modals.html:147
+#: dashboard/templates/dashboard/modals.html:108
 msgid "Apellidos"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_family.html:91
+#: dashboard/templates/dashboard/contact/contact_family.html:75
 #: dashboard/templates/dashboard/modals.html:28
-#: dashboard/templates/dashboard/modals.html:149
-#: dashboard/templates/dashboard/modals.html:172
-#: dashboard/templates/dashboard/modals.html:185
-#: dashboard/templates/dashboard/modals.html:197
+#: dashboard/templates/dashboard/modals.html:110
+#: dashboard/templates/dashboard/modals.html:141
+#: dashboard/templates/dashboard/modals.html:154
+#: dashboard/templates/dashboard/modals.html:166
 msgid "Opcional"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_family.html:100
+#: dashboard/templates/dashboard/contact/contact_family.html:84
 msgid "Tipo de relación"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_music.html:16
-#: dashboard/templates/dashboard/contact/contact_music.html:86
+#: dashboard/templates/dashboard/contact/contact_music.html:11
+#: dashboard/templates/dashboard/contact/contact_music.html:78
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Añadir música"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contact/contact_music.html:20
+#: dashboard/templates/dashboard/contact/contact_music.html:15
 msgid "Añade la música que más le gusta a"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_music.html:40
+#: dashboard/templates/dashboard/contact/contact_music.html:35
 msgid "Popularidad"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_music.html:62
+#: dashboard/templates/dashboard/contact/contact_music.html:57
 msgid "Abrir"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_music.html:62
+#: dashboard/templates/dashboard/contact/contact_music.html:57
 msgid "en Spotify"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_music.html:96
+#: dashboard/templates/dashboard/contact/contact_music.html:88
 msgid "Nombre del artista, grupo ..."
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_music.html:105
+#: dashboard/templates/dashboard/contact/contact_music.html:97
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Añadir"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contact/contact_music.html:107
+#: dashboard/templates/dashboard/contact/contact_music.html:99
 msgid "de forma manual"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_music.html:118
+#: dashboard/templates/dashboard/contact/contact_music.html:110
 msgid "Propulsado por Spotify"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_notes.html:10
-msgid "¡Nota creada con éxito!"
-msgstr ""
-
-#: dashboard/templates/dashboard/contact/contact_notes.html:11
-msgid "¡Nota editada con éxito!"
-msgstr ""
-
 #: dashboard/templates/dashboard/contact/contact_notes.html:12
-msgid "¡Nota eliminada con éxito!"
-msgstr ""
-
-#: dashboard/templates/dashboard/contact/contact_notes.html:13
-msgid "Error al crear la nota, inténtalo de nuevo."
-msgstr ""
-
-#: dashboard/templates/dashboard/contact/contact_notes.html:14
-msgid "Error al editar la nota, inténtalo de nuevo."
-msgstr ""
-
-#: dashboard/templates/dashboard/contact/contact_notes.html:15
-msgid "Ocurrió un problema al borrar la nota."
-msgstr ""
-
-#: dashboard/templates/dashboard/contact/contact_notes.html:22
-#: dashboard/templates/dashboard/contact/contact_notes.html:89
+#: dashboard/templates/dashboard/contact/contact_notes.html:75
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Añadir nota"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contact/contact_notes.html:25
+#: dashboard/templates/dashboard/contact/contact_notes.html:15
 msgid "¿Hay algo que quieras recordar sobre"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_notes.html:33
+#: dashboard/templates/dashboard/contact/contact_notes.html:22
 msgid "Orden - Fecha de creación"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_notes.html:52
-#: dashboard/templates/dashboard/contact/contact_notes.html:111
+#: dashboard/templates/dashboard/contact/contact_notes.html:41
+#: dashboard/templates/dashboard/contact/contact_notes.html:95
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Editar nota"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contact/contact_notes.html:58
+#: dashboard/templates/dashboard/contact/contact_notes.html:47
 msgid "Eliminar nota"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_notes.html:80
+#: dashboard/templates/dashboard/contact/contact_notes.html:66
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Crear nota"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contact/contact_notes.html:153
-#: dashboard/templates/dashboard/contact/contact_notes.html:176
-msgid "Maximo 350 caracteres."
-msgstr ""
-
-#: dashboard/templates/dashboard/contact/contact_reminders.html:16
+#: dashboard/templates/dashboard/contact/contact_reminders.html:8
 msgid "Recordatorios"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_reminders.html:22
+#: dashboard/templates/dashboard/contact/contact_reminders.html:17
+#: dashboard/templates/dashboard/modals.html:252
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Añadir recordatorio"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/contact/contact_reminders.html:23
+#: dashboard/templates/dashboard/contact/contact_reminders.html:21
 msgid "Completados"
 msgstr ""
 
@@ -495,83 +396,120 @@ msgstr ""
 msgid "Sin completar"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_reminders.html:46
-#: dashboard/templates/dashboard/contact/contact_reminders.html:82
-msgid "Completar recordatorio"
+#: dashboard/templates/dashboard/contact/contact_reminders.html:31
+msgid "Mantén un seguimiento con"
 msgstr ""
 
-#: dashboard/templates/dashboard/contact/contact_reminders.html:56
-#: dashboard/templates/dashboard/index.html:19
-#: dashboard/templates/dashboard/index.html:54
+#: dashboard/templates/dashboard/contact/contact_reminders.html:31
+#, fuzzy
+#| msgid "Editar contacto"
+msgid "creando un recordatorio."
+msgstr "Edit contact"
+
+#: dashboard/templates/dashboard/contact/contact_reminders.html:49
+#: dashboard/templates/dashboard/contact/contact_reminders.html:94
+#: dashboard/templates/dashboard/index.html:73
+msgid "Completar recordatorio"
+msgstr "Complete reminder"
+
+#: dashboard/templates/dashboard/contact/contact_reminders.html:63
+#: dashboard/templates/dashboard/index.html:16
+#: dashboard/templates/dashboard/index.html:51
 msgid "Hoy"
 msgstr "Today"
 
-#: dashboard/templates/dashboard/contact/contact_reminders.html:59
-#: dashboard/templates/dashboard/index.html:128
+#: dashboard/templates/dashboard/contact/contact_reminders.html:66
+#: dashboard/templates/dashboard/index.html:102
 msgid "Quedan"
-msgstr ""
+msgstr " "
 
-#: dashboard/templates/dashboard/contact/contact_reminders.html:60
+#: dashboard/templates/dashboard/contact/contact_reminders.html:67
 msgid "días"
-msgstr ""
+msgstr "days left"
 
-#: dashboard/templates/dashboard/contact/contact_reminders.html:63
-#: dashboard/templates/dashboard/index.html:89
+#: dashboard/templates/dashboard/contact/contact_reminders.html:70
+#: dashboard/templates/dashboard/index.html:96
+#: dashboard/templates/dashboard/index.html:97
 msgid "Recordatorio retrasado"
-msgstr ""
+msgstr "Delayed reminder"
+
+#: dashboard/templates/dashboard/contact/contact_reminders.html:78
+#: dashboard/templates/dashboard/index.html:113
+#, fuzzy
+#| msgid "Editar contacto"
+msgid "Eliminar recordatorio"
+msgstr "Edit contact"
+
+#: dashboard/templates/dashboard/contact/contact_reminders.html:81
+#: dashboard/templates/dashboard/index.html:117
+#: dashboard/templates/dashboard/modals.html:225
+#, fuzzy
+#| msgid "Editar contacto"
+msgid "Reprogramar recordatorio"
+msgstr "Delete reminder"
 
 #: dashboard/templates/dashboard/contacts_list.html:5
-#: dashboard/templates/dashboard/contacts_list.html:22
+#: dashboard/templates/dashboard/contacts_list.html:17
 msgid "Contactos"
 msgstr "Contacts"
 
-#: dashboard/templates/dashboard/contacts_list.html:25
-#: dashboard/templates/dashboard/contacts_list.html:38
+#: dashboard/templates/dashboard/contacts_list.html:20
+#: dashboard/templates/dashboard/contacts_list.html:33
 #: dashboard/templates/dashboard/modals.html:7
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Añadir contacto"
-msgstr "Edit contact"
+msgstr "Add contact"
 
-#: dashboard/templates/dashboard/contacts_list.html:33
+#: dashboard/templates/dashboard/contacts_list.html:28
 msgid ""
 "Aún no tienes contactos en personaly, añádelos y empieza a simplificar tu "
 "vida."
 msgstr ""
 
-#: dashboard/templates/dashboard/contacts_list.html:56
+#: dashboard/templates/dashboard/contacts_list.html:47
 msgid "Orden - Nombre [A-Z]"
 msgstr "Order - Name [A-Z]"
 
-#: dashboard/templates/dashboard/contacts_list.html:110
-msgid "Programar"
-msgstr "Schedule"
+#: dashboard/templates/dashboard/contacts_list.html:94
+#, fuzzy
+#| msgid "Editar contacto"
+msgid "Borrar contacto"
+msgstr "Edit contact"
+
+#: dashboard/templates/dashboard/contacts_list.html:100
+#: dashboard/templates/dashboard/modals.html:273
+#: dashboard/templates/dashboard/modals.html:274
+#, fuzzy
+#| msgid "Editar contacto"
+msgid "Crear recordatorio"
+msgstr "Edit contact"
 
 #: dashboard/templates/dashboard/index.html:5
 msgid "Inicio"
 msgstr "Dashboard"
 
-#: dashboard/templates/dashboard/index.html:25
+#: dashboard/templates/dashboard/index.html:22
 msgid "Próximos"
 msgstr "Upcoming"
 
-#: dashboard/templates/dashboard/index.html:34
+#: dashboard/templates/dashboard/index.html:31
 msgid "No tienes ningún recordatorio para hoy, descansa y disfruta del día."
 msgstr "You don't have any reminders for today, rest and enjoy the day."
 
-#: dashboard/templates/dashboard/index.html:49
+#: dashboard/templates/dashboard/index.html:46
 #, fuzzy
 #| msgid "Próximos"
 msgid "Próximo"
 msgstr "Upcoming"
 
-#: dashboard/templates/dashboard/index.html:59
+#: dashboard/templates/dashboard/index.html:56
 msgid "Orden - Fecha de vencimiento"
-msgstr ""
+msgstr "Order - Expiry date"
 
-#: dashboard/templates/dashboard/index.html:129
+#: dashboard/templates/dashboard/index.html:103
 msgid "días."
-msgstr ""
+msgstr "days."
 
 #: dashboard/templates/dashboard/legal/code_conduct.html:4
 #: dashboard/templates/dashboard/legal/code_conduct.html:12
@@ -589,7 +527,7 @@ msgid "Política de Privacidad"
 msgstr ""
 
 #: dashboard/templates/dashboard/modals.html:40
-#: dashboard/templates/dashboard/modals.html:229
+#: dashboard/templates/dashboard/modals.html:200
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Estar en contacto"
@@ -600,153 +538,189 @@ msgstr "Edit contact"
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Crear contacto"
-msgstr "Edit contact"
+msgstr "Create contact"
 
-#: dashboard/templates/dashboard/modals.html:85
-#: dashboard/templates/dashboard/modals.html:89
-#: dashboard/templates/dashboard/modals.html:272
-#: dashboard/templates/dashboard/modals.html:276
-msgid "Caracteres no permitidos."
-msgstr ""
-
-#: dashboard/templates/dashboard/modals.html:109
+#: dashboard/templates/dashboard/modals.html:70
 msgid "¿Estás seguro que quieres eliminar a"
 msgstr ""
 
-#: dashboard/templates/dashboard/modals.html:111
+#: dashboard/templates/dashboard/modals.html:72
 msgid ""
 "Todos los datos relacionados serán eliminados y esta acción no puede "
 "deshacerse."
 msgstr ""
 
-#: dashboard/templates/dashboard/modals.html:112
+#: dashboard/templates/dashboard/modals.html:73
 msgid ""
 " 'Un verdadero amigo es aquel que llega cuando todos se han ido.' Albert "
 "Camus"
 msgstr ""
 
-#: dashboard/templates/dashboard/modals.html:158
+#: dashboard/templates/dashboard/modals.html:119
 msgid "Foto de perfil"
 msgstr ""
 
-#: dashboard/templates/dashboard/modals.html:170
+#: dashboard/templates/dashboard/modals.html:122
+#, fuzzy
+#| msgid "Editar contacto"
+msgid "Eliminar imagen"
+msgstr "Edit contact"
+
+#: dashboard/templates/dashboard/modals.html:139
 msgid "Ciudad"
 msgstr ""
 
-#: dashboard/templates/dashboard/modals.html:183
+#: dashboard/templates/dashboard/modals.html:152
 msgid "Telefono"
 msgstr ""
 
-#: dashboard/templates/dashboard/modals.html:195
+#: dashboard/templates/dashboard/modals.html:164
 msgid "Correo electonico"
 msgstr ""
 
-#: dashboard/templates/dashboard/modals.html:210
+#: dashboard/templates/dashboard/modals.html:179
 msgid "Fecha de nacimiento"
 msgstr ""
 
-#: dashboard/templates/dashboard/modals.html:243
-#: dashboard/templates/dashboard/modals.html:244
+#: dashboard/templates/dashboard/modals.html:214
+#: dashboard/templates/dashboard/modals.html:215
 msgid "Guardar Cambios"
 msgstr ""
 
+#: dashboard/templates/dashboard/modals.html:242
+#: dashboard/templates/dashboard/modals.html:243
+#, fuzzy
+#| msgid "Programar"
+msgid "Reprogramar"
+msgstr "Schedule"
+
 #: dashboard/templates/dashboard/settings.html:4
-#: dashboard/templates/dashboard/settings.html:14
+#: dashboard/templates/dashboard/settings.html:16
 msgid "Ajustes"
 msgstr "Settings"
 
-#: dashboard/templates/dashboard/settings.html:43
+#: dashboard/templates/dashboard/settings.html:22
+msgid "Cuenta"
+msgstr ""
+
+#: dashboard/templates/dashboard/settings.html:25
+#: dashboard/templates/dashboard/settings/General.html:5
+msgid "General"
+msgstr ""
+
+#: dashboard/templates/dashboard/settings.html:28
+msgid "Suscripción"
+msgstr ""
+
+#: dashboard/templates/dashboard/settings.html:31
+#: dashboard/templates/dashboard/settings/Notifications.html:5
+msgid "Notificaciones"
+msgstr ""
+
+#: dashboard/templates/dashboard/settings.html:34
+#: dashboard/templates/dashboard/settings/Support.html:5
+msgid "Soporte"
+msgstr ""
+
+#: dashboard/templates/dashboard/settings.html:38
+msgid "Atajos de teclado"
+msgstr ""
+
+#: dashboard/templates/dashboard/settings/Account.html:5
 msgid "Información personal"
 msgstr ""
 
-#: dashboard/templates/dashboard/settings.html:50
+#: dashboard/templates/dashboard/settings/Account.html:12
 msgid "Email"
 msgstr ""
 
-#: dashboard/templates/dashboard/settings.html:54
+#: dashboard/templates/dashboard/settings/Account.html:16
 #, fuzzy
 #| msgid "Contactos"
 msgid "Contraseña"
 msgstr "Contacts"
 
-#: dashboard/templates/dashboard/settings.html:55
+#: dashboard/templates/dashboard/settings/Account.html:17
 msgid "Cambiar contraseña"
 msgstr ""
 
-#: dashboard/templates/dashboard/settings.html:61
+#: dashboard/templates/dashboard/settings/Account.html:23
 msgid "Conectar cuentas de las redes sociales"
 msgstr ""
 
-#: dashboard/templates/dashboard/settings.html:62
+#: dashboard/templates/dashboard/settings/Account.html:24
 msgid ""
 "Utiliza tus cuentas de las redes sociales para iniciar sesión en personaly."
 msgstr ""
 
-#: dashboard/templates/dashboard/settings.html:69
+#: dashboard/templates/dashboard/settings/Account.html:31
 #, fuzzy
 #| msgid "Editar contacto"
 msgid "Eliminar mi cuenta personaly"
 msgstr "Edit contact"
 
-#: dashboard/templates/dashboard/settings.html:71
+#: dashboard/templates/dashboard/settings/Account.html:33
 msgid ""
 "Eliminar tu cuenta es algo permanente. Se borrarán todos tus datos "
 "inmediatamente y no podrás recuperarlos. Requiere contraseña."
 msgstr ""
 
-#: dashboard/templates/dashboard/settings.html:81
-msgid "General"
-msgstr ""
-
-#: dashboard/templates/dashboard/settings.html:83
+#: dashboard/templates/dashboard/settings/General.html:7
 msgid "Idioma"
 msgstr ""
 
-#: dashboard/templates/dashboard/settings.html:88
+#: dashboard/templates/dashboard/settings/General.html:13
 msgid "Modo noche"
 msgstr ""
 
-#: dashboard/templates/dashboard/settings.html:96
-msgid "Plan"
-msgstr ""
-
-#: dashboard/templates/dashboard/settings.html:98
-msgid "Actualmente estás en nuestro plan Basic."
-msgstr ""
-
-#: dashboard/templates/dashboard/settings.html:108
-msgid "Notificaciones"
-msgstr ""
-
-#: dashboard/templates/dashboard/settings.html:112
-msgid "Notificaciones web"
-msgstr ""
-
-#: dashboard/templates/dashboard/settings.html:116
-msgid "Sí, notifícame en la versión web"
-msgstr ""
-
-#: dashboard/templates/dashboard/settings.html:117
-msgid "No, no me notifiques en la versión web"
-msgstr ""
-
-#: dashboard/templates/dashboard/settings.html:129
-msgid "Soporte"
-msgstr ""
-
-#: dashboard/templates/dashboard/settings.html:131
-msgid "Contacta con nosotros en "
-msgstr ""
-
-#: dashboard/templates/dashboard/settings.html:132
-msgid "soporte@personaly.app"
-msgstr ""
-
-#: dashboard/templates/dashboard/settings.html:140
+#: dashboard/templates/dashboard/settings/Keyboard_shortcuts.html:3
 #, fuzzy
 #| msgid "Próximos"
 msgid "Próximamente!"
 msgstr "Upcoming"
+
+#: dashboard/templates/dashboard/settings/Notifications.html:9
+msgid "Notificaciones web"
+msgstr ""
+
+#: dashboard/templates/dashboard/settings/Notifications.html:13
+msgid "Sí, notifícame en la versión web"
+msgstr ""
+
+#: dashboard/templates/dashboard/settings/Notifications.html:14
+msgid "No, no me notifiques en la versión web"
+msgstr ""
+
+#: dashboard/templates/dashboard/settings/Subscription.html:5
+msgid "Plan"
+msgstr ""
+
+#: dashboard/templates/dashboard/settings/Subscription.html:6
+msgid "Actualmente estás en nuestro plan Basic."
+msgstr ""
+
+#: dashboard/templates/dashboard/settings/Support.html:6
+msgid "Contacta con nosotros en "
+msgstr ""
+
+#: dashboard/templates/dashboard/settings/Support.html:7
+msgid "soporte@personaly.app"
+msgstr ""
+
+#, fuzzy
+#~| msgid "Editar contacto"
+#~ msgid "¡Cosa en común creada con éxito!"
+#~ msgstr "Edit contact"
+
+#, fuzzy
+#~| msgid "Editar contacto"
+#~ msgid "¡Cosa en común eliminada con éxito!"
+#~ msgstr "Edit contact"
+
+#, fuzzy
+#~| msgid "Editar contacto"
+#~ msgid "Editar relación con "
+#~ msgstr "Edit contact"
 
 #, fuzzy
 #~| msgid "Contactos"

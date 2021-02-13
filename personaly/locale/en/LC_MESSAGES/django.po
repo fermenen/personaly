@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-04 12:21+0100\n"
+"POT-Creation-Date: 2021-02-13 12:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,24 +30,40 @@ msgstr ""
 msgid "Código de Conducta"
 msgstr ""
 
-#: templates/app/nav_app.html:12 templates/app/nav_app.html:28
+#: templates/app/nav_app.html:15
+msgid ""
+"Modo offline activado, los cambios no tendrán efecto hasta que recuperes la "
+"conexión."
+msgstr ""
+
+#: templates/app/nav_app.html:19 templates/app/nav_app.html:45
 msgid "Inicio"
 msgstr ""
 
-#: templates/app/nav_app.html:13 templates/app/nav_app.html:29
+#: templates/app/nav_app.html:22 templates/app/nav_app.html:48
 msgid "Contactos"
 msgstr ""
 
-#: templates/app/nav_app.html:14 templates/app/nav_app.html:30
+#: templates/app/nav_app.html:25 templates/app/nav_app.html:51
 msgid "Ajustes"
 msgstr ""
 
-#: templates/app/nav_app.html:15 templates/app/nav_app.html:32
+#: templates/app/nav_app.html:28 templates/app/nav_app.html:55
 msgid "Cerrar Sesión"
 msgstr ""
 
-#: templates/app/nav_app.html:27 templates/web/nav_web.html:26
+#: templates/app/nav_app.html:42 templates/web/nav_web.html:26
 msgid "Menú"
+msgstr ""
+
+#: templates/minimal.html:8
+msgid ""
+"El uso de javascript es necesario para el correcto funcionamiento de "
+"personaly."
+msgstr ""
+
+#: templates/minimal.html:26
+msgid "personaly"
 msgstr ""
 
 #: templates/web/footer_web.html:21

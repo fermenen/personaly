@@ -29,10 +29,8 @@ export default class Dashboard {
     }
 
     compileTemplate() {
-        let source_today = document.getElementById("template_items_reminder_today").innerHTML;
-        let source_next = document.getElementById("template_items_reminder_next").innerHTML;
-        this.template_today = Handlebars.compile(source_today);
-        this.template_next = Handlebars.compile(source_next);
+        let source = document.getElementById("template_items_reminder").innerHTML;
+        this.template = Handlebars.compile(source);
         this.refresh();
     }
 
@@ -58,14 +56,13 @@ export default class Dashboard {
                     }
                 }
                 let context = {reminders: reminders};
-                $("#list_reminder_dashboard_today").html(this.template_today(context));
+                $("#list_reminder_dashboard_today").html(this.template(context));
                 App.textVisible(this.count_reminder_today, '#text_reminder_dashboard')
                 App.textInVisible(this.count_reminder_today, '#component_all_reminder')
                 if (!this.future) {
                     App.textVisible(0, '#dashboard_today')
                 }
                 App.page_ready()
-
             },
             error: data => {
                 App.NotificationError(gettext('Ocurrió un problema al actualizar los recordatorios.'));
@@ -90,13 +87,14 @@ export default class Dashboard {
                             contact_name: data['results'][reminder]['contact_info']['name'],
                             contact_surname: data['results'][reminder]['contact_info']['surnames'],
                             contact_href: window.reverse('contact', data['results'][reminder]['contact_info']['url']),
+                            future: data['results'][reminder]['future'],
                             days: data['results'][reminder]['days'],
                             date: DateTime.fromISO(data['results'][reminder]['deadline']).toLocaleString(DateTime.DATE_FULL),
                         })
                     }
                 }
                 let context = {reminders: reminders};
-                $("#list_reminder_dashboard_next").html(this.template_next(context));
+                $("#list_reminder_dashboard_next").html(this.template(context));
                 App.textInVisible(this.count_reminder_next, '#button_dashboard_next')
             },
             error: data => {
