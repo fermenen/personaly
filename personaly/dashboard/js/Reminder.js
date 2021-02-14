@@ -76,8 +76,8 @@ export default class Reminder {
             type: 'GET',
             dataType: 'json',
             success: data => {
-                this.count_reminder_today = data['count']
-                if (this.count_reminder_today > 0) {
+                this.count_reminder_no_completed = data['count']
+                if (this.count_reminder_no_completed > 0) {
                     var reminders = []
                     for (let reminder in data['results']) {
                         let deadline = data['results'][reminder]['deadline']
@@ -96,8 +96,10 @@ export default class Reminder {
                     }
                 }
                 let context = {reminders: reminders};
-                $("#component_all_reminder_no_completed").html(this.template_no_completed(context));
-                App.textVisible(this.count_reminder_today, '#text_reminder_contact')
+                $('#total_reminder_no_completed').text(this.count_reminder_no_completed)
+                $("#component_all_reminder_no_completed_items").html(this.template_no_completed(context));
+                App.textVisible(this.count_reminder_no_completed, '#text_reminder_contact')
+                App.textInVisible(this.count_reminder_no_completed, '#component_all_reminder_no_completed')
             },
         });
     }
@@ -126,7 +128,9 @@ export default class Reminder {
                     }
                 }
                 let context = {reminders: reminders};
-                $("#component_all_reminder_completed").html(this.template_completed(context));
+                $('#total_reminder_completed').text(this.count_reminder_completed)
+                $("#component_all_reminder_completed_items").html(this.template_completed(context));
+                App.textInVisible(this.count_reminder_completed, '#text_reminder_completed')
             },
         });
     }

@@ -1,6 +1,7 @@
 {% load static %}
 {% load handlebars %}
-<div id="component_contact_header"></div>
+<div id="component_contact_header" class="uk-margin-top"></div>
+
 <script id="template_contact_header" type="text/x-handlebars-template">
     <div id="contact_header" class="uk-flex uk-margin-small-left">
         <div class="uk-width-small">
@@ -14,7 +15,7 @@
         </div>
 
         <div class="uk-flex uk-flex-column uk-flex-between uk-flex-center uk-margin-small-left">
-            <div class=""><span class="uk-heading-medium uk-h1">{{ 'name' | handlebars }} {{ 'surnames' | handlebars }}</span></div>
+            <div class=""><span class="uk-heading-medium uk-h1 uk-text-capitalize">{{ 'name' | handlebars }} {{ 'surnames' | handlebars }}</span></div>
             <div class="uk-flex uk-flex-inline uk-margin-small-top">
                 {{ '#if phone' | handlebars }}
                 <div class="uk-margin-right"><span class="uk-margin-small-right" uk-icon="icon: receiver"></span>{{ 'phone' | handlebars }}</div>

@@ -11,42 +11,59 @@
         let contactTagJS = new ContactTag();
     </script>
 
-    <div class="container-app uk-container uk-container-large ">
+    <div id="component_contact" class="container-app uk-container uk-container-large uk-hidden">
         <div class="uk-flex uk-flex-center">
             <div class="card-app uk-card uk-card-default uk-card-body uk-animation-fade">
                 <ul class="uk-iconnav btn-actions-tittle uk-flex-right">
-                    <li><a class="uk-icon-link icon_trash"
-                           onclick="contactJS.openModalDeleteContact('{{ contact.id }}')"
-                           uk-icon="icon: trash"
-                           uk-tooltip="title: {% translate "Eliminar contacto" %}; pos: bottom-left"></a>
-                    <li><a class="uk-icon-link" onclick="contactTagJS.openModalEditTags()"
-                           uk-icon="icon: tag"
-                           uk-tooltip="title: {% translate "Editar etiquetas" %}; pos: bottom-left"></a>
-                    <li><a class="uk-icon-link" onclick="contactJS.openModalEditContact('{{ contact.id }}')"
-                           uk-icon="icon: file-edit"
-                           uk-tooltip="title: {% translate "Editar contacto" %}; pos: bottom-left"></a>
+                    <div class="uk-button-group">
+                        <button onclick="contactJS.openModalDeleteContact('{{ contact.id }}')"
+                                class="uk-button uk-button-default uk-button-small icon_trash"
+                                uk-tooltip="title: {% translate "Eliminar contacto" %};pos: bottom"><span
+                                uk-icon="icon: trash; ratio: 0.9"></span></button>
+                        <button onclick="contactTagJS.openModalEditTags()"
+                                class="uk-button uk-button-default uk-button-small icon_app"
+                                uk-tooltip="title: {% translate "Editar etiquetas" %};pos: bottom"><span
+                                uk-icon="icon: tag; ratio: 0.9"></span></button>
+                        <button onclick="contactJS.openModalEditContact('{{ contact.id }}')"
+                                class="uk-button uk-button-default uk-button-small icon_app"
+                                uk-tooltip="title: {% translate "Editar contacto" %};pos: bottom"><span
+                                uk-icon="icon: file-edit; ratio: 0.9"></span></button>
+                    </div>
                 </ul>
 
                 {% include "dashboard/contact/contact_header.html" %}
                 {% include "dashboard/contact/contact_reminders.html" %}
 
+                <hr>
 
                 <div class="uk-margin-large-top">
                     <ul id="tab_contact" class="uk-tab uk-child-width-expand"
                         data-uk-tab="{connect:'#switcher_contact'}">
-                        <li id="notes"><a href="#notes"><span class="uk-margin-small-right"
-                                                              uk-icon="comments"></span>{% translate "Notas" %}</a></li>
-                        <li id="common"><a href="#common"><span class="uk-margin-small-right"
-                                                                uk-icon="bolt"></span>{% translate "En común" %}</a>
-                        </li>
-                        <li id="experiences"><a href="#experiences"><span class="uk-margin-small-right"
-                                                                          uk-icon="world"></span>{% translate "Experiencias" %}
+                        <li id="notes"><a href="#notes">
+                            <div class="uk-flex uk-flex-inline uk-flex-middle"><span class="uk-margin-small-right"
+                                                                                     uk-icon="icon: comments; ratio: 0.9"></span>{% translate "Notas" %}
+                            </div>
                         </a></li>
-                        <li id="music"><a href="#music"><span class="uk-margin-small-right"
-                                                              uk-icon="play-circle"></span>{% translate "Música" %}</a>
-                        </li>
-                        <li id="family"><a href="#family"><span class="uk-margin-small-right"
-                                                                uk-icon="user"></span>{% translate "Familia" %}</a></li>
+                        <li id="common"><a href="#common">
+                            <div class="uk-flex uk-flex-inline uk-flex-middle"><span class="uk-margin-small-right"
+                                                                                     uk-icon="icon: bolt; ratio: 0.9"></span>{% translate "En común" %}
+                            </div>
+                        </a></li>
+                        <li id="experiences"><a href="#experiences">
+                            <div class="uk-flex uk-flex-inline uk-flex-middle"><span class="uk-margin-small-right"
+                                                                                     uk-icon="icon: world; ratio: 0.9"></span>{% translate "Experiencias" %}
+                            </div>
+                        </a></li>
+                        <li id="music"><a href="#music">
+                            <div class="uk-flex uk-flex-inline uk-flex-middle"><span class="uk-margin-small-right"
+                                                                                     uk-icon="icon: play-circle; ratio: 0.9"></span>{% translate "Música" %}
+                            </div>
+                        </a></li>
+                        <li id="family"><a href="#family">
+                            <div class="uk-flex uk-flex-inline uk-flex-middle"><span class="uk-margin-small-right"
+                                                                                     uk-icon="icon: user; ratio: 0.9"></span>{% translate "Familia" %}
+                            </div>
+                        </a></li>
                     </ul>
                     <ul id="switcher_contact" class="uk-switcher uk-margin">
                         <li>{% include "dashboard/contact/contact_notes.html" %}</li>

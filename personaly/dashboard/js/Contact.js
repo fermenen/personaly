@@ -16,7 +16,6 @@ export default class Contact {
         this.source = document.getElementById("template_contact_header").innerHTML;
         this.template = Handlebars.compile(this.source);
         this.data_contact_header();
-        App.page_ready();
     }
 
 
@@ -42,12 +41,12 @@ export default class Contact {
                     phone: data['phone'],
                     location: data['location'],
                     tags: tags
-
                 }
                 $("#component_contact_header").html(this.template(contact));
+                App.page_ready();
+                App.textVisible(0, '#component_contact')
             }
         });
-
     }
 
 

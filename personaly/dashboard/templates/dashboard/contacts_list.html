@@ -12,13 +12,22 @@
     <div id="contact_list_page" class="container-app uk-container uk-container-large uk-hidden">
         <div class="uk-flex uk-flex-center">
             <div class="card-app uk-card uk-card-default uk-card-body uk-animation-fade">
-                <div id="title_contact_list"
-                     class="card-title uk-flex uk-flex-between uk-flex-middle uk-margin-left uk-width">
-                    <h1 class="uk-heading-medium">{% translate "Contactos" %}</h1>
-                    <button id="button_add_contact_card" onclick="contactJS.openModalCreateContact()"
-                            class="uk-button uk-button-default uk-button-small uk-margin-small-right uk-text-middle">
-                        <span uk-icon="icon: plus; ratio: 0.85"></span>&nbsp;&nbsp;{% translate "Añadir contacto" %}
-                    </button>
+                <div id="title_contact_list" class="card-title uk-width uk-flex uk-flex-between  uk-margin-left">
+                    <div class="uk-text-middle">
+                        <h1 class="uk-heading-medium">{% translate "Contactos" %}</h1>
+                    </div>
+                    <div>
+                        <button id="button_add_contact_card_desktop" onclick="contactJS.openModalCreateContact()"
+                                class="uk-visible@s uk-button uk-button-default uk-button-small uk-margin-small-right uk-text-middle">
+                            <span uk-icon="icon: plus; ratio: 0.85"></span>&nbsp;&nbsp;{% translate "Añadir contacto" %}
+                        </button>
+                        <button id="button_add_contact_card_mobile"
+                                uk-tooltip="title: {% translate 'Añadir contacto' %}; pos: bottom"
+                                onclick="contactJS.openModalCreateContact()"
+                                class="uk-hidden@s uk-button uk-button-default uk-button-small uk-margin-small-right uk-text-middle">
+                            <span uk-icon="icon: plus; ratio: 0.85"></span>
+                        </button>
+                    </div>
                 </div>
 
                 <div id="text_contact_list" class="uk-container uk-hidden uk-margin-small-left">
@@ -43,8 +52,10 @@
                 </div>
                 <div id="component_all_contacts" class="uk-margin-small-left">
                     <div id="component_order_contacts" class="uk-margin-left uk-margin-bottom">
-                         <span class="uk-text-meta"><span
-                                 uk-icon="arrow-down"></span><span>{% translate "Orden - Nombre [A-Z]" %}</span></span>
+                        <span class="uk-text-meta"><span
+                                uk-icon="arrow-down"></span><span>{% translate "Orden - Nombre [A-Z]" %}</span></span>
+                        <span class="uk-text-meta">| <span
+                                id="total_contacts"></span> {% translate " en total" %}</span>
                     </div>
 
                     <div id="item_contacts"></div>
@@ -61,18 +72,18 @@
             <div id="photo_name_tags_contact" class="uk-margin-left uk-flex">
                 <div id="photo_contact">
                     {{ '#if image_contact' | handlebars }}
-                    <a href=""><img class="uk-border-circle image-contact" width="50" height="50"
-                                    data-src="{{ 'image_contact' | handlebars }}"
-                                    alt="{{ contact.name }} {{ contact.surnames }}" uk-img></a>
+                    <a href={{ 'url' | handlebars }}><img class="uk-border-circle image-contact" width="50" height="50"
+                                                          data-src="{{ 'image_contact' | handlebars }}"
+                                                          alt="{{ contact.name }} {{ contact.surnames }}" uk-img></a>
                     {{ 'else' | handlebars }}
-                    <a href=""><img class="uk-border-circle image-contact" width="50" height="50"
-                                    data-src="{% static 'img/app/contact_holder.jpg' %}"
-                                    alt="{{ name }} {{ surnames }}" uk-img></a>
+                    <a href={{ 'url' | handlebars }}><img class="uk-border-circle image-contact" width="50" height="50"
+                                                          data-src="{% static 'img/app/contact_holder.jpg' %}"
+                                                          alt="{{ name }} {{ surnames }}" uk-img></a>
                     {{ '/if' | handlebars }}
                 </div>
                 <div id="name_contact" class="uk-flex uk-flex-middle uk-text-break">
                     <a class="uk-margin-left uk-margin-right" href={{ 'url' | handlebars }}><span
-                            class="uk-h5 text-button-contact uk-text-middle">{{ 'name' | handlebars }} {{ 'surnames' | handlebars }}</span></a>
+                            class="uk-h5 text-button-contact uk-text-middle uk-text-capitalize">{{ 'name' | handlebars }} {{ 'surnames' | handlebars }}</span></a>
                 </div>
                 <div id="tags_contact"
                      class="uk-visible@l uk-flex uk-flex-middle uk-panel uk-panel-box uk-text-truncate uk-width-medium uk-margin-small-left">

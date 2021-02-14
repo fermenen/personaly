@@ -11,29 +11,36 @@
 
     <ul class="uk-switcher uk-margin">
         <div>
-            <div class="uk-flex uk-flex-inline uk-width">
+            <div class="uk-button-group uk-flex uk-flex-inline uk-width">
                 <button onclick="reminderJS.openModalCreateReminder()"
                         class="uk-button uk-button-default uk-margin-small-bottom uk-width-3-4"><span
                         class="uk-margin-small-right" uk-icon="plus"></span>{% translate 'Añadir recordatorio' %}
                 </button>
                 <button id="button_show_completed_reminders" onclick="reminderJS.show_completed()"
-                        class="uk-button uk-button-default uk-margin-small-bottom uk-width-1-4 uk-text-meta"><span
+                        class="uk-visible@s uk-button uk-button-default uk-margin-small-bottom uk-width-1-4 uk-text-meta"><span
                         class="uk-margin-small-right" uk-icon="check"></span>{% translate 'Completados' %}</button>
+                <button id="button_show_completed_reminders" onclick="reminderJS.show_completed()"
+                        class="uk-hidden@s uk-button uk-button-default uk-margin-small-bottom uk-width-1-4 uk-text-meta"><span
+                        class="uk-margin-small-right" uk-icon="check"></span></button>
                 <button id="button_show_no_completed_reminders" onclick="reminderJS.show_no_completed()"
                         class="uk-button uk-button-default uk-margin-small-bottom uk-width-1-4 uk-text-meta uk-hidden">
                     <span class="uk-margin-small-right" uk-icon="history"></span>{% translate 'Sin completar' %}
                 </button>
             </div>
 
-
             <div id="reminder_no_completed" class="uk-margin-top">
                 <div id="text_reminder_contact" class="uk-text-center uk-margin-top uk-hidden">
                     <span>{% translate "Mantén un seguimiento con" %} {{ contact.name }} {% translate "creando un recordatorio." %}</span>
                 </div>
-                <div id="component_all_reminder_no_completed"></div>
+                <div id="component_all_reminder_no_completed">
+                    <span class="uk-text-meta"><span id="total_reminder_no_completed"></span>{% translate " recordatorios no completados" %}</span>
+                    <div id="component_all_reminder_no_completed_items" class="uk-margin-small-top"></div>
+                </div>
             </div>
-            <div id="component_all_reminder_completed" class="uk-margin-top uk-hidden"></div>
-
+            <div id="component_all_reminder_completed" class="uk-margin-top uk-hidden">
+                <span id="text_reminder_completed" class="uk-text-meta uk-hidden"><span id="total_reminder_completed"></span>{% translate " recordatorios completados" %}</span>
+                <div id="component_all_reminder_completed_items" class="uk-margin-small-top"></div>
+            </div>
         </div>
 
     </ul>

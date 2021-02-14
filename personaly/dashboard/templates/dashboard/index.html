@@ -11,7 +11,7 @@
     <div id="dashboard_today" class="container-app uk-container uk-container-large uk-hidden">
         <div class="uk-flex uk-flex-center">
             <div class="card-app uk-card uk-card-default uk-card-body uk-animation-fade">
-                <div class="card-title uk-width uk-flex uk-flex-inline uk-flex-between uk-margin-left uk-margin-bottom uk-flex-middle">
+                <div class="card-title uk-width uk-flex uk-flex-inline uk-flex-between uk-flex-middle uk-margin-left uk-margin-bottom">
                     <div class="uk-flex uk-flex-middle">
                         <div><span class="uk-heading-medium uk-h1">{% translate "Hoy" %}</span></div>
                         <div><span class="uk-margin-small-left">{{ date_today | date:"D j b" | lower }}</span></div>
@@ -75,7 +75,7 @@
                     <div class="uk-flex uk-flex-column uk-width">
                         <div class="uk-flex uk-flex-inline uk-flex-middle uk-width">
                             <div class="uk-width-medium uk-visible@s uk-margin-small-right">
-                                <div class="uk-text-truncate text-blue3"><a href="{{ 'contact_href'| handlebars }}"
+                                <div class="uk-text-truncate text-blue3 uk-text-capitalize"><a href="{{ 'contact_href'| handlebars }}"
                                                                             class="text-blue3">{{ 'contact_name'| handlebars }}&nbsp;{{ 'contact_surname'| handlebars }}</a>
                                 </div>
                             </div>

@@ -44,10 +44,12 @@ export default class ContactsList {
                     }
                 }
                 let context = {contacts: contacts};
+                $('#total_contacts').text(this.count_contact)
                 $("#item_contacts").html(this.template(context));
                 App.textVisible(0, '#contact_list_page')
                 App.textVisible(this.count_contact, '#text_contact_list')
-                App.textInVisible(this.count_contact, '#button_add_contact_card')
+                App.textInVisible(this.count_contact, '#button_add_contact_card_desktop')
+                App.textInVisible(this.count_contact, '#button_add_contact_card_mobile')
                 App.textInVisible(this.count_contact, '#component_all_contacts')
                 App.page_ready()
             },
