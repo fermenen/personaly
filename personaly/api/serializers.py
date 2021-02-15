@@ -114,26 +114,29 @@ class TagContactSerializer(serializers.ModelSerializer):
 
 class ContactSerializer(serializers.ModelSerializer):
     contact_tag = TagContactSerializer(many=True, read_only=True)
+    url = serializers.CharField(read_only=True)
 
     class Meta:
         model = Contact
         fields = (
             'id', 'name', 'surnames', 'image_contact', 'location', 'phone', 'email', 'birthday', 'remember_birthday',
-            'keep_in_touch', 'url', 'contact_tag', 'owner')
+            'keep_in_touch', 'url', 'contact_tag')
 
 
 class ReminderContactSerializer(serializers.ModelSerializer):
     contact_info = ContactSerializer(source='contact', read_only=True)
 
+    # owner = serializers.CharField(read_only=True)
+
     class Meta:
         model = ReminderContact
-        fields = ('id', 'text', 'completed', 'deadline', 'days', 'past', 'today', 'future', 'contact', 'owner', 'contact_info')
+        fields = ('id', 'text', 'completed', 'deadline', 'days', 'past', 'today', 'future', 'contact', 'contact_info')
 
 
 class NoteContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = NoteContact
-        fields = ('id', 'text', 'created_at', 'contact', 'owner')
+        fields = ('id', 'text', 'created_at', 'contact')
 
 
 class FamilyContactSerializer(serializers.ModelSerializer):

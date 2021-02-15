@@ -1,3 +1,4 @@
+"use strict";
 import Handlebars from "handlebars";
 import {DateTime} from 'luxon';
 import App from "./Application";

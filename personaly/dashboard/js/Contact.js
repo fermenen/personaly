@@ -1,3 +1,4 @@
+"use strict";
 import App from "./Application";
 import Handlebars from 'handlebars';
 
@@ -119,7 +120,6 @@ export default class Contact {
                     name: $('#input_name_contact').val(),
                     surnames: $('#input_surnames_contact').val(),
                     keep_in_touch: $('#id_keep_in_touch').val(),
-                    owner: App.getOwner(),
                 },
                 type: 'POST',
                 dataType: 'json',

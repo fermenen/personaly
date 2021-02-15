@@ -1,19 +1,10 @@
+"use strict";
 import Handlebars from 'handlebars';
 import Contact from "./Contact";
 import App from "./Application";
 import {DateTime} from "luxon";
 
 export default class Reminder {
-
-    constructor() {
-        // $(document).on('reminder_created', () => this.data_reminder_no_completed());
-        // $(document).on('reminder_edited', () => this.data_reminder_no_completed());
-        // $(document).on('reminder_edited', () => this.data_reminder_completed());
-        // $(document).on('reminder_completed', () => this.data_reminder_no_completed());
-        // $(document).on('reminder_completed', () => this.data_reminder_completed());
-        // $(document).on('reminder_deleted', () => this.data_reminder_no_completed());
-        // $(document).on('reminder_deleted', () => this.data_reminder_completed());
-    }
 
 
     compileTemplate() {
@@ -51,8 +42,8 @@ export default class Reminder {
                 type: 'GET',
                 dataType: 'json',
                 success: data => {
-                    $("#form_modal_edit_reminder input[id=reminder_id]").val(id_reminder)
-                    $("#form_modal_edit_reminder input[id=deadline_reminder]").val(data['deadline'])
+                    $("#form_modal_edit_schedule_reminder input[id=reminder_id_schedule]").val(id_reminder)
+                    $("#form_modal_edit_schedule_reminder input[id=deadline_reminder_schedule]").val(data['deadline'])
                     App.ShowModal(modal_schedule_reminder)
                 },
                 error: data => {
@@ -137,24 +128,26 @@ export default class Reminder {
 
 
     completeReminder(id_reminder) {
-        $.ajax({
-            url: window.reverse('api_v2:api_v2:reminder_contact-detail', id_reminder, ''),
-            headers: {"X-CSRFToken": App.getCsrfToken()},
-            data: {
-                owner: App.getOwner(),
-                completed: true,
-            },
-            type: 'PATCH',
-            dataType: 'json',
-            success: data => {
-                App.HideModal(modal_delete_contact)
-                App.NotificationSuccess(gettext('¡Recordatorio completado!'))
-                jQuery.event.trigger('reminder_completed');
-            },
-            error: data => {
-                App.NotificationError(gettext('Ocurrió un problema al completar el recordatorio.'))
-            },
-        });
+        if (appJS.actionOffline()) {
+            $.ajax({
+                url: window.reverse('api_v2:api_v2:reminder_contact-detail', id_reminder, ''),
+                headers: {"X-CSRFToken": App.getCsrfToken()},
+                data: {
+                    owner: App.getOwner(),
+                    completed: true,
+                },
+                type: 'PATCH',
+                dataType: 'json',
+                success: data => {
+                    App.HideModal(modal_delete_contact)
+                    App.NotificationSuccess(gettext('¡Recordatorio completado!'))
+                    jQuery.event.trigger('reminder_completed');
+                },
+                error: data => {
+                    App.NotificationError(gettext('Ocurrió un problema al completar el recordatorio.'))
+                },
+            });
+        }
     }
 
     deleteReminder(id_reminder) {
@@ -239,13 +232,14 @@ export default class Reminder {
     }
 
     changeDeadLineReminder() {
-        if (appJS.actionOffline()) {
+        if ($('#form_modal_edit_schedule_reminder').valid() && appJS.actionOffline()) {
+            let reminder_id = $("#form_modal_edit_schedule_reminder input[id=reminder_id_schedule]").val()
             $.ajax({
-                url: window.reverse('api_v2:api_v2:reminder_contact-detail', $("#form_modal_edit_reminder input[id=reminder_id]").val(), ''),
+                url: window.reverse('api_v2:api_v2:reminder_contact-detail', reminder_id, ''),
                 headers: {"X-CSRFToken": App.getCsrfToken()},
                 data: {
                     owner: App.getOwner(),
-                    deadline: $("#form_modal_edit_reminder input[id=deadline_reminder]").val(),
+                    deadline: $("#form_modal_edit_schedule_reminder input[id=deadline_reminder_schedule]").val(),
                 },
                 type: 'PATCH',
                 dataType: 'json',
@@ -266,4 +260,30 @@ export default class Reminder {
     }
 
 
-}
+    configureScheduleReminder() {
+        $("#form_modal_edit_schedule_reminder").on('submit', function (evt) {
+            evt.preventDefault();
+        });
+        $(document).ready(function () {
+            $('#form_modal_edit_schedule_reminder').validate({
+                    errorClass: "uk-form-danger uk-text-small",
+                    rules: {
+                        deadline_reminder_schedule: {
+                            required: true,
+                            dateISO: true,
+                        }
+                    },
+                    messages: {
+                        deadline_reminder_schedule: {
+                            required: gettext('Campo obligatorio.'),
+                            dateISO: gettext('Fecha no valida.'),
+                        }
+                    }
+                }
+            )
+        });
+
+    }
+
+
+};

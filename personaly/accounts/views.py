@@ -12,6 +12,7 @@ def login_view(request):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
+
             if next_url != "None":
                 return redirect(next_url)
             return redirect("app")

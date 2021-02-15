@@ -1,9 +1,10 @@
 import os
 from uuid import uuid4
-
+from rest_framework.permissions import IsAuthenticated
 import django_filters
 import spotipy
 from PIL import Image
+from rest_framework.decorators import api_view, permission_classes
 from django_filters.rest_framework import DjangoFilterBackend
 from django_filters import rest_framework as filters
 from rest_framework import status
@@ -13,7 +14,7 @@ from rest_framework.views import APIView
 from rest_framework import viewsets
 from django_property_filter import PropertyFilterSet, PropertyNumberFilter, PropertyBooleanFilter
 from spotipy.oauth2 import SpotifyClientCredentials
-
+from rest_framework import permissions
 from django.contrib.auth import login
 from .serializers import *
 from django.http import JsonResponse
@@ -28,6 +29,18 @@ from accounts.models import User
 from dashboard.models import *
 
 from dashboard.Storage import StorageGoogle
+
+
+class IsOwner(permissions.BasePermission):
+    """
+    Only owner has permission
+    """
+
+    def has_object_permission(self, request, view, obj):
+        if obj.owner == request.user:
+            return True
+        else:
+            return False
 
 
 class UserCreate(APIView):
@@ -70,6 +83,7 @@ class CheckCodeMailUser(APIView):
             return JsonResponse({'ok': 'codigo incorrecto'}, status=404)
 
 
+@permission_classes([IsAuthenticated])
 class UploadPhoto(APIView):
 
     def post(self, request):
@@ -94,7 +108,9 @@ class UploadPhoto(APIView):
         return os.path.join('/images/', image_name)
 
 
-# Contact_001 View - GET - POST - PUT - DELETE
+# - - - - - - - - -
+
+@permission_classes([IsAuthenticated])
 class ContactView(viewsets.ModelViewSet):
     serializer_class = ContactSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -104,27 +120,23 @@ class ContactView(viewsets.ModelViewSet):
     def get_queryset(self):
         return Contact.objects.filter(owner=self.request.user, active=True)
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
+    def perform_create(self, serializer):
         serializer.is_valid(raise_exception=True)
-        user = request.user
+        user = self.request.user
         user.contacts_active += 1
-        contact = serializer.save()
+        user.contacts_created += 1
         user.save()
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        return serializer.save(owner=user)
 
-    def destroy(self, request, *args, **kwargs):
-        contact = self.get_object()
-        contact.active = False
-        user = request.user
+    def perform_destroy(self, instance):
+        instance.active = False
+        user = self.request.user
         user.contacts_active -= 1
         user.save()
-        contact.save()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return instance.save()
 
 
-# TagContact View
+@permission_classes([IsAuthenticated])
 class TagContactView(viewsets.ModelViewSet):
     serializer_class = TagContactSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -149,6 +161,7 @@ class ReminderContactFilter(PropertyFilterSet):
 
 
 # Reminder Contact_001
+@permission_classes([IsAuthenticated])
 class ReminderContactView(viewsets.ModelViewSet):
     serializer_class = ReminderContactSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -159,8 +172,13 @@ class ReminderContactView(viewsets.ModelViewSet):
     def get_queryset(self):
         return ReminderContact.objects.filter(owner=self.request.user, active=True)
 
+    def perform_create(self, serializer):
+        reminder = serializer.save(owner=self.request.user)
+        return reminder
+
 
 # Note Contact_001
+@permission_classes([IsAuthenticated])
 class NoteContactView(viewsets.ModelViewSet):
     serializer_class = NoteContactSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -175,7 +193,8 @@ class NoteContactView(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         user = request.user
         user.note_active += 1
-        note = serializer.save()
+        note = serializer.save(owner=self.request.user)
+        note.save()
         user.save()
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
@@ -191,6 +210,7 @@ class NoteContactView(viewsets.ModelViewSet):
 
 
 # Common Contact_001
+@permission_classes([IsAuthenticated])
 class CommonContactView(viewsets.ModelViewSet):
     serializer_class = CommonContactSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -221,6 +241,7 @@ class CommonContactView(viewsets.ModelViewSet):
 
 
 # Music Contact_001 - GET - POST - DELETE
+@permission_classes([IsAuthenticated])
 class MusicContactView(viewsets.ModelViewSet):
     serializer_class = MusicContactSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -250,6 +271,7 @@ class MusicContactView(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+@permission_classes([IsAuthenticated])
 class SearchArtist(APIView):
 
     def post(self, request):
@@ -268,6 +290,7 @@ class SearchArtist(APIView):
 
 
 # Family Contact_001 - GET - POST - PUT - DELETE
+@permission_classes([IsAuthenticated])
 class FamilyContactView(viewsets.ModelViewSet):
     serializer_class = FamilyContactSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]

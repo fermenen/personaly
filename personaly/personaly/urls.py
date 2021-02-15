@@ -30,8 +30,7 @@ urlpatterns = [
     path('api/', include('api.urls')),
     path('accounts/', include('allauth.urls')),
     url(r'^js-urls/$', JsUrlsView.as_view(), name='js_urls'),
-    url(r'^sw.js', (TemplateView.as_view(template_name="sw.js", content_type='application/javascript', )),
-        name='sw.js'),
+    url(r'^sw.js', (TemplateView.as_view(template_name="sw.js", content_type='application/javascript', )),name='sw.js'),
 
 ]
 

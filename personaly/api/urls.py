@@ -2,7 +2,7 @@ from django.conf.urls import url
 from . import views
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-
+from rest_framework.authtoken import views as auth
 
 app_name = 'api_v2'
 
@@ -17,6 +17,7 @@ router.register(r'family_contact', views.FamilyContactView, basename='family_con
 
 
 urlpatterns = [
+    # path('api-token-auth/', auth.obtain_auth_token),
 
     path(r'v2/', include((router.urls, app_name), namespace='api_v2')),
 

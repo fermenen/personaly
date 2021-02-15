@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'django_property_filter',
     'js_urls',
     'django_js_reverse',
-    'encrypted_fields'
+    'encrypted_fields',
 
 ]
 
@@ -158,7 +158,11 @@ DATABASES = {
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+
 }
 
 # Password validation

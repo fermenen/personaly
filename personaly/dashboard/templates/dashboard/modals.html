@@ -225,11 +225,14 @@
             <h2 class="uk-modal-title">{% translate "Reprogramar recordatorio" %}</h2>
         </div>
         <div class="uk-modal-body">
-            <form id="form_modal_edit_reminder">
-                <input id="reminder_id" class="uk-hidden">
+            <form id="form_modal_edit_schedule_reminder" class="uk-form-stacked">
+                <input id="reminder_id_schedule" class="uk-hidden">
                 <fieldset class="uk-fieldset">
-                    <div class="uk-margin">
-                        <input id="deadline_reminder" class="uk-input" type="date" placeholder="Input">
+                    <div class="uk-form-controls uk-flex uk-flex-column">
+                        <label for="deadline_reminder_schedule"
+                               class="uk-form-label ">{% translate "Nueva fecha" %}</label>
+                        <input id="deadline_reminder_schedule" name="deadline_reminder_schedule" class="uk-input"
+                               type="date">
                     </div>
                 </fieldset>
             </form>
@@ -245,6 +248,7 @@
     </div>
 </div>
 
+
 <div id="modal_create_reminder" uk-modal>
     <div class="uk-modal-dialog">
         <button class="uk-modal-close-default" type="button" uk-close></button>
@@ -254,7 +258,7 @@
         <div class="uk-modal-body">
             <form id="form_modal_create_reminder">
                 <fieldset class="uk-fieldset">
-                    <input id="id_contact" class="uk-hidden" type="text">
+                    <input id="id_contact_create_reminder" class="uk-hidden" type="text">
                     <div class="uk-margin">
                         <input id="text_reminder" class="uk-input" type="text" placeholder="Input">
                     </div>
@@ -279,4 +283,5 @@
 
 <script>
     contactJS.configureValidatorContact();
+    reminderJS.configureScheduleReminder();
 </script>
