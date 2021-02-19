@@ -1,3 +1,4 @@
+"use strict";
 import Darkmode from 'darkmode-js';
 
 class App {

@@ -45,23 +45,6 @@ class Contact(models.Model):
         return f"{self.name} {self.surnames}"
 
 
-class TagContact(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    icon = models.CharField(blank=False, max_length=10)
-    text = models.TextField(blank=False, max_length=20)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    contact = models.ForeignKey(Contact, related_name='contact_tag', on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    active = models.BooleanField(default=True)
-
-    def delete(self, using=None, keep_parents=False):
-        self.active = False
-        self.save()
-
-    def __str__(self):
-        return f"({self.icon} - {self.text})"
-
-
 class ReminderContact(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     text = models.TextField(blank=False, max_length=255)
@@ -99,6 +82,23 @@ class ReminderContact(models.Model):
             return self.days > 0
         else:
             return None
+
+
+class TagContact(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    icon = models.CharField(blank=False, max_length=10)
+    text = models.TextField(blank=False, max_length=20)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    contact = models.ForeignKey(Contact, related_name='contact_tag', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+
+    def delete(self, using=None, keep_parents=False):
+        self.active = False
+        self.save()
+
+    def __str__(self):
+        return f"({self.icon} - {self.text})"
 
 
 class NoteContact(models.Model):

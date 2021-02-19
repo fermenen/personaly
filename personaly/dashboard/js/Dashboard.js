@@ -36,7 +36,7 @@ export default class Dashboard {
     }
 
     data_reminder_today() {
-        let ajax = $.ajax({
+        $.ajax({
             url: window.reverse('api_v2:reminder_contact-list', '?lte_days=0&ordering=deadline&completed=false'),
             headers: {"X-CSRFToken": App.getCsrfToken()},
             type: 'GET',
@@ -65,14 +65,14 @@ export default class Dashboard {
                 }
                 App.page_ready()
             },
-            error: data => {
+            error: function () {
                 App.NotificationError(gettext('Ocurrió un problema al actualizar los recordatorios.'));
             }
         });
     }
 
     data_reminder_next() {
-        let ajax = $.ajax({
+        $.ajax({
             url: window.reverse('api_v2:reminder_contact-list', '?gte_days=1&ordering=deadline&completed=false'),
             headers: {"X-CSRFToken": App.getCsrfToken()},
             type: 'GET',
@@ -98,7 +98,7 @@ export default class Dashboard {
                 $("#list_reminder_dashboard_next").html(this.template(context));
                 App.textInVisible(this.count_reminder_next, '#button_dashboard_next')
             },
-            error: data => {
+            error: function () {
                 App.NotificationError(gettext('Ocurrió un problema al actualizar los recordatorios.'));
             }
         });

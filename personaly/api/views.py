@@ -1,33 +1,27 @@
-import os
 from uuid import uuid4
-from rest_framework.permissions import IsAuthenticated
-import django_filters
-import spotipy
 from PIL import Image
-from rest_framework.decorators import api_view, permission_classes
+
 from django_filters.rest_framework import DjangoFilterBackend
-from django_filters import rest_framework as filters
-from rest_framework import status
-from rest_framework.filters import SearchFilter, OrderingFilter
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework import viewsets
 from django_property_filter import PropertyFilterSet, PropertyNumberFilter, PropertyBooleanFilter
-from spotipy.oauth2 import SpotifyClientCredentials
-from rest_framework import permissions
-from django.contrib.auth import login
-from .serializers import *
-from django.http import JsonResponse
-from django.core import serializers
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.contrib.auth import login
+from django.http import JsonResponse
+
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import permission_classes
+from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework.views import APIView
+from rest_framework import viewsets
+from rest_framework import permissions
+
+from .serializers import *
 
 from dashboard.services import send_code_user
 from accounts.models import User
 from dashboard.models import *
-
 from dashboard.Storage import StorageGoogle
 
 
@@ -132,8 +126,32 @@ class ContactView(viewsets.ModelViewSet):
         instance.active = False
         user = self.request.user
         user.contacts_active -= 1
+        self.delete_data(user)
         user.save()
         return instance.save()
+
+    def delete_data(self, user):
+        for reminder in ReminderContact.objects.filter(owner=user):
+            reminder.active = False
+            reminder.save()
+        for tag in TagContact.objects.filter(owner=user):
+            tag.active = False
+            tag.save()
+        for note in NoteContact.objects.filter(owner=user):
+            note.active = False
+            note.save()
+        for common in ThingCommonContact.objects.filter(owner=user):
+            common.active = False
+            common.save()
+        for experience in ExperienceContact.objects.filter(owner=user):
+            experience.active = False
+            experience.save()
+        for music in MusicContact.objects.filter(owner=user):
+            music.active = False
+            music.save()
+        for family in FamilyContact.objects.filter(owner=user):
+            family.active = False
+            family.save()
 
 
 @permission_classes([IsAuthenticated])
@@ -146,6 +164,14 @@ class TagContactView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return TagContact.objects.filter(owner=self.request.user, active=True)
+
+    def perform_create(self, serializer):
+        tag = serializer.save(owner=self.request.user)
+        return tag
+
+    def perform_destroy(self, instance):
+        instance.active = False
+        return instance.save()
 
 
 class ReminderContactFilter(PropertyFilterSet):
@@ -160,7 +186,6 @@ class ReminderContactFilter(PropertyFilterSet):
         fields = ['completed', 'gte_days', 'lte_days', 'days', 'contact', 'past', 'future']
 
 
-# Reminder Contact_001
 @permission_classes([IsAuthenticated])
 class ReminderContactView(viewsets.ModelViewSet):
     serializer_class = ReminderContactSerializer
@@ -176,8 +201,11 @@ class ReminderContactView(viewsets.ModelViewSet):
         reminder = serializer.save(owner=self.request.user)
         return reminder
 
+    def perform_destroy(self, instance):
+        instance.active = False
+        return instance.save()
 
-# Note Contact_001
+
 @permission_classes([IsAuthenticated])
 class NoteContactView(viewsets.ModelViewSet):
     serializer_class = NoteContactSerializer
@@ -188,28 +216,21 @@ class NoteContactView(viewsets.ModelViewSet):
     def get_queryset(self):
         return NoteContact.objects.filter(owner=self.request.user, active=True)
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
+    def perform_create(self, serializer):
         serializer.is_valid(raise_exception=True)
-        user = request.user
+        user = self.request.user
         user.note_active += 1
-        note = serializer.save(owner=self.request.user)
-        note.save()
         user.save()
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        return serializer.save(owner=user)
 
-    def destroy(self, request, *args, **kwargs):
-        note = self.get_object()
-        note.active = False
-        user = request.user
+    def perform_destroy(self, instance):
+        instance.active = False
+        user = self.request.user
         user.note_active -= 1
         user.save()
-        note.save()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return instance.save()
 
 
-# Common Contact_001
 @permission_classes([IsAuthenticated])
 class CommonContactView(viewsets.ModelViewSet):
     serializer_class = CommonContactSerializer
@@ -220,27 +241,22 @@ class CommonContactView(viewsets.ModelViewSet):
     def get_queryset(self):
         return ThingCommonContact.objects.filter(owner=self.request.user, active=True)
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = request.user
-        user.common_active += 1
-        common = serializer.save()
-        user.save()
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
-    def destroy(self, request, *args, **kwargs):
-        common = self.get_object()
-        common.active = False
-        user = request.user
+    def perform_create(self, serializer):
+        serializer.is_valid(raise_exception=True)
+        user = self.request.user
+        user.common_active += 1
+        user.save()
+        return serializer.save(owner=user)
+
+    def perform_destroy(self, instance):
+        instance.active = False
+        user = self.request.user
         user.common_active -= 1
         user.save()
-        common.save()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return instance.save()
 
 
-# Music Contact_001 - GET - POST - DELETE
 @permission_classes([IsAuthenticated])
 class MusicContactView(viewsets.ModelViewSet):
     serializer_class = MusicContactSerializer
@@ -251,24 +267,19 @@ class MusicContactView(viewsets.ModelViewSet):
     def get_queryset(self):
         return MusicContact.objects.filter(owner=self.request.user, active=True)
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
+    def perform_create(self, serializer):
         serializer.is_valid(raise_exception=True)
-        user = request.user
+        user = self.request.user
         user.music_active += 1
-        music = serializer.save()
         user.save()
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        return serializer.save(owner=user)
 
-    def destroy(self, request, *args, **kwargs):
-        music = self.get_object()
-        music.active = False
-        user = request.user
+    def perform_destroy(self, instance):
+        instance.active = False
+        user = self.request.user
         user.music_active -= 1
         user.save()
-        music.save()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return instance.save()
 
 
 @permission_classes([IsAuthenticated])
@@ -300,21 +311,16 @@ class FamilyContactView(viewsets.ModelViewSet):
     def get_queryset(self):
         return FamilyContact.objects.filter(owner=self.request.user, active=True)
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
+    def perform_create(self, serializer):
         serializer.is_valid(raise_exception=True)
-        user = request.user
+        user = self.request.user
         user.family_active += 1
         user.save()
-        family = serializer.save()
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+        return serializer.save(owner=user)
 
-    def destroy(self, request, *args, **kwargs):
-        family = self.get_object()
-        family.active = False
-        user = request.user
+    def perform_destroy(self, instance):
+        instance.active = False
+        user = self.request.user
         user.family_active -= 1
         user.save()
-        family.save()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return instance.save()

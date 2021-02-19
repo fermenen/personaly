@@ -1,3 +1,4 @@
+"use strict";
 import Handlebars from 'handlebars';
 import App from "./Application";
 import Contact from "./Contact";
@@ -17,7 +18,7 @@ export default class ContactCommon {
     }
 
     data_contact_common() {
-        let ajax = $.ajax({
+        $.ajax({
             url: window.reverse('api_v2:api_v2:common_contact-list', '?contact=' + Contact.getContactId() + '&ordering=-created_at'),
             headers: {"X-CSRFToken": App.getCsrfToken()},
             type: 'GET',
@@ -54,7 +55,6 @@ export default class ContactCommon {
                 data: {
                     text: $("#form_modal_add_common :input[name='text_common']").val(),
                     contact: Contact.getContactId(),
-                    owner: App.getOwner(),
                 },
                 type: 'POST',
                 dataType: 'json',
@@ -78,22 +78,15 @@ export default class ContactCommon {
 
     deleteCommonContact() {
         let commonId = $('#common_id_modal').val()
-        let StringDivID = '#' + commonId
         $.ajax({
             url: window.reverse('api_v2:api_v2:common_contact-detail', commonId, ''),
             headers: {"X-CSRFToken": App.getCsrfToken()},
-            data: {
-                contact: Contact.getContactId(),
-                owner: App.getOwner(),
-            },
             type: 'DELETE',
             dataType: 'json',
             success: data => {
+                jQuery.event.trigger('contact_common_deleted');
                 App.HideModal(modal_delete_common)
                 App.NotificationSuccess(gettext('¡Cosa en común eliminada con éxito!'))
-                $(StringDivID).addClass('uk-hidden')
-                this.count_common -= 1
-                App.textVisible(this.count_common, '#text_common_contact')
             },
             error: data => {
                 App.NotificationError(gettext('Ocurrió un problema al borrar la cosa en común.'))

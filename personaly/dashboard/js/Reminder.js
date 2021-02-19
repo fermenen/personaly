@@ -55,7 +55,7 @@ export default class Reminder {
 
     openModalCreateReminder(contact_id) {
         if (appJS.actionOffline()) {
-            $("#form_modal_create_reminder input[id=id_contact]").val(contact_id)
+            $("#form_modal_create_reminder input[id=id_contact_create_reminder]").val(contact_id)
             App.ShowModal(modal_create_reminder)
         }
     }
@@ -133,7 +133,6 @@ export default class Reminder {
                 url: window.reverse('api_v2:api_v2:reminder_contact-detail', id_reminder, ''),
                 headers: {"X-CSRFToken": App.getCsrfToken()},
                 data: {
-                    owner: App.getOwner(),
                     completed: true,
                 },
                 type: 'PATCH',
@@ -155,9 +154,6 @@ export default class Reminder {
             $.ajax({
                 url: window.reverse('api_v2:api_v2:reminder_contact-detail', id_reminder, ''),
                 headers: {"X-CSRFToken": App.getCsrfToken()},
-                data: {
-                    owner: App.getOwner(),
-                },
                 type: 'DELETE',
                 dataType: 'json',
                 success: data => {
@@ -184,21 +180,21 @@ export default class Reminder {
                 data: {
                     text: $("#form_modal_create_reminder input[id=text_reminder]").val(),
                     deadline: $("#form_modal_create_reminder input[id=deadline_reminder]").val(),
-                    contact: $("#form_modal_create_reminder input[id=id_contact]").val(),
-                    owner: App.getOwner(),
+                    contact: $("#form_modal_create_reminder input[id=id_contact_create_reminder]").val(),
                 },
                 type: 'POST',
                 dataType: 'json',
-                success: data => {
+                success: function () {
                     jQuery.event.trigger('reminder_created');
                     App.NotificationSuccess(gettext('¡Recordatorio creado con éxito!'))
                     App.HideModal(modal_create_reminder)
                     $("#form_modal_create_reminder input[id=text_reminder]").val("")
+                    $("#form_modal_create_reminder input[id=deadline_reminder]").val("")
                 },
-                error: data => {
+                error: function () {
                     App.NotificationError(gettext('Error al crear el recordatorio, inténtalo de nuevo.'))
                 },
-                complete: data => {
+                complete: function () {
                     App.AvailableButton(button_create_reminder)
                     App.AvailableloadingButton(button_create_reminder)
                 }
@@ -212,7 +208,6 @@ export default class Reminder {
                 url: window.reverse('api_v2:api_v2:reminder_contact-detail', id_reminder, ''),
                 headers: {"X-CSRFToken": App.getCsrfToken()},
                 data: {
-                    owner: App.getOwner(),
                     text: $('#text_reminder_' + id_reminder).val(),
                 },
                 type: 'PATCH',
@@ -238,7 +233,6 @@ export default class Reminder {
                 url: window.reverse('api_v2:api_v2:reminder_contact-detail', reminder_id, ''),
                 headers: {"X-CSRFToken": App.getCsrfToken()},
                 data: {
-                    owner: App.getOwner(),
                     deadline: $("#form_modal_edit_schedule_reminder input[id=deadline_reminder_schedule]").val(),
                 },
                 type: 'PATCH',
@@ -258,7 +252,6 @@ export default class Reminder {
             });
         }
     }
-
 
     configureScheduleReminder() {
         $("#form_modal_edit_schedule_reminder").on('submit', function (evt) {
@@ -284,6 +277,5 @@ export default class Reminder {
         });
 
     }
-
 
 };

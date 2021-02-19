@@ -1,3 +1,4 @@
+"use strict";
 import Handlebars from 'handlebars';
 import Contact from "./Contact";
 import App from "./Application";
@@ -19,7 +20,7 @@ export default class ContactMusic {
 
 
     data_contact_music() {
-        let ajax = $.ajax({
+        $.ajax({
             url: window.reverse('api_v2:api_v2:music_contact-list', '?contact=' + Contact.getContactId() + '&ordering=name_artist'),
             headers: {"X-CSRFToken": App.getCsrfToken()},
             type: 'GET',
@@ -100,7 +101,6 @@ export default class ContactMusic {
                 id_artist: id_artist,
                 name_artist: nameArtist,
                 contact: Contact.getContactId(),
-                owner: App.getOwner(),
             },
             type: 'POST',
             dataType: 'json',
@@ -121,16 +121,11 @@ export default class ContactMusic {
         $.ajax({
             url: window.reverse('api_v2:api_v2:music_contact-detail', music_id, ''),
             headers: {"X-CSRFToken": App.getCsrfToken()},
-            data: {
-                owner: App.getOwner(),
-            },
             type: 'DELETE',
             dataType: 'json',
             success: data => {
                 jQuery.event.trigger('contact_music_deleted');
                 App.NotificationSuccess(gettext('¡Artista, grupo eliminado con éxito!'))
-                this.count_music -= 1
-                App.textVisible(this.count_music, '#text_music_contact')
             },
             error: data => {
                 App.NotificationError(gettext('Ocurrió un problema al borrar el artista.'))

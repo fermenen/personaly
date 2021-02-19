@@ -1,3 +1,4 @@
+"use strict";
 import {DateTime} from 'luxon';
 import Handlebars from 'handlebars';
 import Contact from "./Contact";
@@ -20,7 +21,7 @@ export default class ContactNote {
     }
 
     data_contact_note() {
-        let ajax = $.ajax({
+        $.ajax({
             url: window.reverse('api_v2:api_v2:note_contact-list', '?contact=' + Contact.getContactId() + '&ordering=-created_at'),
             headers: {"X-CSRFToken": App.getCsrfToken()},
             type: 'GET',
@@ -83,7 +84,6 @@ export default class ContactNote {
                 data: {
                     text: $('#input_text_note').val(),
                     contact: Contact.getContactId(),
-                    owner: App.getOwner(),
                 },
                 type: 'POST',
                 dataType: 'json',
@@ -116,7 +116,6 @@ export default class ContactNote {
                 headers: {"X-CSRFToken": App.getCsrfToken()},
                 data: {
                     text: $("#form_modal_edit_note :input[name='text_note']").val(),
-                    owner: App.getOwner()
                 },
                 type: 'PATCH',
                 dataType: 'json',
@@ -141,9 +140,6 @@ export default class ContactNote {
         $.ajax({
             url: window.reverse('api_v2:api_v2:note_contact-detail', note_id, ''),
             headers: {"X-CSRFToken": App.getCsrfToken()},
-            data: {
-                owner: App.getOwner(),
-            },
             type: 'DELETE',
             dataType: 'json',
             success: data => {

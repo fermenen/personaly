@@ -1,3 +1,4 @@
+"use strict";
 import Handlebars from 'handlebars';
 import App from "./Application";
 
@@ -54,7 +55,7 @@ export default class ContactsList {
                 App.page_ready()
             },
             error: data => {
-                App.NotificationError(gettext('Error al obtener lista de contactos.'));
+                App.NotificationError(gettext('Error al obtener la lista de contactos.'));
             }
         });
     }

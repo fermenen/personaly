@@ -21,7 +21,7 @@ export default class Contact {
 
 
     data_contact_header() {
-        let ajax = $.ajax({
+        $.ajax({
             url: window.reverse('api_v2:api_v2:contact-detail', this.contact_id, ''),
             headers: {"X-CSRFToken": App.getCsrfToken()},
             type: 'GET',
@@ -105,8 +105,6 @@ export default class Contact {
     }
 
 
-    // ajax
-
     createContact() {
         let button_save = '#button_create_contact'
         let form_modal_contact = '#form_modal_create_contact'
@@ -149,9 +147,6 @@ export default class Contact {
             $.ajax({
                 url: window.reverse('api_v2:api_v2:contact-detail', contact_id, ''),
                 headers: {"X-CSRFToken": App.getCsrfToken()},
-                data: {
-                    owner: App.getOwner(),
-                },
                 type: 'DELETE',
                 dataType: 'json',
                 success: data => {
@@ -160,7 +155,7 @@ export default class Contact {
                     App.NotificationSuccess(gettext('¡Contacto borrado con éxito!'))
                 },
                 error: data => {
-                    App.NotificationError(gettext('Error al eliminar el contacto, inténtelo de nuevo.'))
+                    App.NotificationError(gettext('Error al borrar el contacto, inténtelo de nuevo.'))
                 },
             });
         }
@@ -188,7 +183,6 @@ export default class Contact {
                     remember_birthday: $("#form_modal_edit_contact input[id=remember_birthday]").val(),
                     keep_in_touch: $("#form_modal_edit_contact select[id=id_keep_in_touch]").val(),
                     contact: contact_id,
-                    owner: App.getOwner(),
                 },
                 type: 'PUT',
                 dataType: 'json',
@@ -210,7 +204,7 @@ export default class Contact {
 
 
     uploadPhotoProfile() {
-        let uploadPhoto = UIkit.upload('.js-upload', {
+        UIkit.upload('.js-upload', {
             url: window.reverse('api_v2:api_upload_photo'),
             multiple: false,
             params: {
@@ -312,7 +306,6 @@ export default class Contact {
         });
     }
 
-
     mobileAdapt() {
         $(window).on('load resize', function mobileContact() {
             let win = $(this);
@@ -323,6 +316,5 @@ export default class Contact {
             }
         })
     }
-
 
 };

@@ -1,13 +1,9 @@
 import os
 import spotipy
 from rest_framework import serializers
-
-from accounts.models import User
-
-from dashboard.models import NoteContact, ThingCommonContact, MusicContact, FamilyContact, Contact, ReminderContact, \
-    TagContact
-from rest_framework.fields import IntegerField
 from spotipy import SpotifyClientCredentials
+from accounts.models import User
+from dashboard.models import *
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -25,77 +21,6 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
-class NoteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = NoteContact
-        fields = ('text', 'contact', 'owner')
-
-    def create(self, validated_data):
-        note = NoteContact(**validated_data)
-        note.save()
-        return note
-
-
-class DeleteNoteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = NoteContact
-        fields = ('id', 'contact', 'owner')
-
-
-class DeleteMusicSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = NoteContact
-        fields = ('id', 'contact', 'owner')
-
-
-class DeleteCommonSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ThingCommonContact
-        fields = ('id', 'contact', 'owner')
-
-
-class AddMusicSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MusicContact
-        fields = ('id_artist', 'contact', 'owner')
-
-
-class AddMusicSerializerManual(serializers.ModelSerializer):
-    class Meta:
-        model = MusicContact
-        fields = ('name_artist', 'contact', 'owner')
-
-
-class CommonSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ThingCommonContact
-        fields = ('text', 'contact', 'owner')
-
-    def create(self, validated_data):
-        common = ThingCommonContact(**validated_data)
-        common.save()
-        return common
-
-
-class FamilySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FamilyContact
-        fields = ('name', 'relation_type', 'contact', 'owner')
-
-    def create(self, validated_data):
-        family = FamilyContact(**validated_data)
-        family.save()
-        return family
-
-
-class DeleteFamilySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FamilyContact
-        fields = ('id', 'contact', 'owner')
-
-
-# // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -- - - - - - - - -
-
 class IsActiveTag(serializers.ListSerializer):
 
     def to_representation(self, data):
@@ -104,17 +29,22 @@ class IsActiveTag(serializers.ListSerializer):
         data = data.filter(active=True)
         return super().to_representation(data)
 
+ # - - - - - -
+
 
 class TagContactSerializer(serializers.ModelSerializer):
+    id = serializers.CharField(read_only=True)
+
     class Meta:
         model = TagContact
         list_serializer_class = IsActiveTag
-        fields = ('id', 'icon', 'text', 'contact', 'owner', 'created_at')
+        fields = ('id', 'icon', 'text', 'contact', 'created_at')
 
 
 class ContactSerializer(serializers.ModelSerializer):
     contact_tag = TagContactSerializer(many=True, read_only=True)
     url = serializers.CharField(read_only=True)
+    id = serializers.CharField(read_only=True)
 
     class Meta:
         model = Contact
@@ -125,8 +55,7 @@ class ContactSerializer(serializers.ModelSerializer):
 
 class ReminderContactSerializer(serializers.ModelSerializer):
     contact_info = ContactSerializer(source='contact', read_only=True)
-
-    # owner = serializers.CharField(read_only=True)
+    id = serializers.CharField(read_only=True)
 
     class Meta:
         model = ReminderContact
@@ -134,41 +63,29 @@ class ReminderContactSerializer(serializers.ModelSerializer):
 
 
 class NoteContactSerializer(serializers.ModelSerializer):
+    id = serializers.CharField(read_only=True)
+
     class Meta:
         model = NoteContact
         fields = ('id', 'text', 'created_at', 'contact')
 
 
 class FamilyContactSerializer(serializers.ModelSerializer):
+    id = serializers.CharField(read_only=True)
+
     class Meta:
         model = FamilyContact
-        fields = ('id', 'name', 'surnames', 'relation_type', 'relation_name', 'contact', 'owner')
-
-    def create(self, validated_data):
-        """
-        Create and return a new `FamilyContact` instance, given the validated data.
-        """
-        return FamilyContact.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        """
-        Update and return an existing `FamilyContact` instance, given the validated data.
-        """
-        instance.name = validated_data.get('name', instance.name)
-        instance.surnames = validated_data.get('surnames', instance.surnames)
-        instance.relation_type = validated_data.get('relation_type', instance.relation_type)
-        instance.save()
-        return instance
+        fields = ('id', 'name', 'surnames', 'relation_type', 'relation_name', 'contact')
 
 
 class MusicContactSerializer(serializers.ModelSerializer):
     name_artist = serializers.CharField(required=False)
+    id = serializers.CharField(read_only=True)
 
     class Meta:
         model = MusicContact
         fields = (
-            'id', 'id_artist', 'name_artist', 'photo_artist', 'url_artist', 'get_list_tags', 'popularity', 'contact',
-            'owner')
+            'id', 'id_artist', 'name_artist', 'photo_artist', 'url_artist', 'get_list_tags', 'popularity', 'contact')
 
     def create(self, validated_data):
         """
@@ -193,20 +110,8 @@ class MusicContactSerializer(serializers.ModelSerializer):
 
 
 class CommonContactSerializer(serializers.ModelSerializer):
+    id = serializers.CharField(read_only=True)
+
     class Meta:
         model = ThingCommonContact
-        fields = ('id', 'text', 'created_at', 'contact', 'owner')
-
-    def create(self, validated_data):
-        """
-        Create and return a new `ThingCommonContact` instance, given the validated data.
-        """
-        return ThingCommonContact.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        """
-        Update and return an existing `ThingCommonContact` instance, given the validated data.
-        """
-        instance.text = validated_data.get('text', instance.name)
-        instance.save()
-        return instance
+        fields = ('id', 'text', 'created_at', 'contact')
