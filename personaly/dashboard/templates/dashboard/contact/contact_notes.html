@@ -26,33 +26,30 @@
         <div class="uk-flex uk-flex-center uk-flex-between">
             <div>
                 <span>{{ "note_text" | handlebars }}</span>
-                <span class="uk-text-light uk-text-primary uk-text-meta">({{ "note_date" | handlebars }})</span>
+                <span class="uk-text-light uk-text-primary uk-text-meta uk-margin-small-left">({{ "note_date" | handlebars }})</span>
             </div>
             <div>
-                <div id="component_option_note" style="width: 20px">
-                    <div class="uk-inline">
-                        <a data-uk-icon="icon:more-vertical"></a>
-                        <div data-uk-dropdown="mode: click; pos:bottom-right">
-                            <ul class="uk-nav uk-dropdown-nav uk-dropdown-close">
-                                <li class="uk-text-middle">
-                                    <a class="icon_app"
-                                       onclick="notesJS.open_modal_edit_note('{{ "note_id" | handlebars }}')"><span
-                                            class="uk-margin-small-right"
-                                            data-uk-icon="icon: pencil; ratio: 0.9"></span>{% translate "Editar nota" %}
-                                    </a>
-                                </li>
-                                <li class="uk-text-middle">
-                                    <a class="icon_trash"
-                                       onclick="notesJS.delete_contact_note('{{ "note_id" | handlebars }}')"><span
-                                            class="uk-margin-small-right" data-uk-icon="icon: trash; ratio: 0.9"></span><span>{% translate "Eliminar nota" %}</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                <div class="uk-inline" style="width: 20px">
+                    <a data-uk-icon="icon:more-vertical"></a>
+                    <div data-uk-dropdown="mode: click; pos:bottom">
+                        <ul class="uk-nav uk-dropdown-nav uk-dropdown-close">
+                            <li class="uk-text-middle">
+                                <a class="icon_app"
+                                   onclick="notesJS.open_modal_edit_note('{{ "note_id" | handlebars }}')"><span
+                                        class="uk-margin-small-right"
+                                        data-uk-icon="icon: pencil; ratio: 0.9"></span>{% translate "Editar nota" %}
+                                </a>
+                            </li>
+                            <li class="uk-text-middle">
+                                <a class="icon_trash"
+                                   onclick="notesJS.delete_contact_note('{{ "note_id" | handlebars }}')"><span
+                                        class="uk-margin-small-right"
+                                        data-uk-icon="icon: trash; ratio: 0.9"></span><span>{% translate "Eliminar nota" %}</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>

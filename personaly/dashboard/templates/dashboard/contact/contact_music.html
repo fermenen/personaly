@@ -47,20 +47,20 @@
                 <div class="uk-width-expand uk-margin-left">
                     <h3 class="uk-card-title uk-margin-remove-bottom">{{ 'name_artist'| handlebars }}</h3>
                     {{ "#genre" | handlebars }}
-                        <span class="uk-text uk-margin-remove uk-label">{{ 'name_genre'| handlebars }}</span>
+                    <span class="uk-text uk-margin-remove uk-label">{{ 'name_genre'| handlebars }}</span>
                     {{ "/genre" | handlebars }}
                 </div>
                 <div>
                     <ul class="uk-iconnav">
                         {{ '#if url_artist' | handlebars }}
                         <li><a href="{{ 'url_artist' | handlebars }}" target="_blank" class="icon_spotify"
-                               uk-tooltip="title:{% translate "Abrir" %} {{ 'name_artist'| handlebars }} {% translate "en Spotify" %}; pos: bottom-left"
+                               uk-tooltip="title:{% translate "Abrir" %} {{ 'name_artist'| handlebars }} {% translate "en Spotify" %}; pos: bottom"
                                uk-icon="icon:  play-circle"></a></li>
 
                         {{ '/if' | handlebars }}
                         <li><a class="icon_trash" uk-icon="icon: trash"
                                onclick="musicJS.deleteMusicContact('{{ 'music_id'| handlebars }}')"
-                               uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom-left"></a></li>
+                               uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom"></a></li>
                     </ul>
                 </div>
             </div>

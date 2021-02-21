@@ -1,3 +1,4 @@
+"use strict";
 import Handlebars from 'handlebars';
 import Contact from "./Contact";
 import App from "./Application";
@@ -19,7 +20,7 @@ export default class ContactFamily {
     }
 
     data_contact_family() {
-        let ajax = $.ajax({
+        $.ajax({
             url: window.reverse('api_v2:api_v2:family_contact-list', '?contact=' + Contact.getContactId() + '&ordering=-created_at'),
             headers: {"X-CSRFToken": App.getCsrfToken()},
             type: 'GET',
@@ -33,7 +34,6 @@ export default class ContactFamily {
                         family_name: data['results'][f]['name'],
                         family_surnames: data['results'][f]['surnames'],
                         family_relation_name: data['results'][f]['relation_name'],
-
                     })
                 }
                 let context = {family: family};
@@ -47,43 +47,45 @@ export default class ContactFamily {
     }
 
     modalCreateFamily() {
-        $('#title_modal_family').text(gettext('Añadir relación familiar/amorosa'))
-        $('#name_contact_modal_family').text('')
-        $('#input_name_family').val('')
-        $('#input_surnames_family').val('')
-        $('#id_relation_type').val('')
-        $("#button_save_contact_family").attr("onclick", "familyJS.createFamilyContact()");
-        App.ShowModal(modal_family)
-
+        if (appJS.actionOffline()) {
+            $('#title_modal_family').text(gettext('Añadir relación familiar/amorosa'))
+            $('#name_contact_modal_family').text('')
+            $('#input_name_family').val('')
+            $('#input_surnames_family').val('')
+            $('#id_relation_type').val('')
+            $("#button_save_contact_family").attr("onclick", "familyJS.createFamilyContact()");
+            App.ShowModal(modal_family)
+        }
     }
 
 
     modalEditFamily(family_id) {
-        $.ajax({
-            url: window.reverse('api_v2:api_v2:family_contact-detail', family_id, ''),
-            headers: {"X-CSRFToken": App.getCsrfToken()},
-            type: 'GET',
-            dataType: 'json',
-            success: data => {
-                $('#title_modal_family').text(gettext('Editar relación con '))
-                $("#form_modal_family_create_edit :input[name='name_family']").val(data['name']);
-                $("#form_modal_family_create_edit :input[name='surname_family']").val(data['surnames']);
-                $("#form_modal_family_create_edit :input[name='relation_type']").val(data['relation_type']);
-                $("#button_save_contact_family").attr("onclick", "familyJS.editFamilyContact('" + family_id + "')");
-                App.ShowModal(modal_family)
-            },
-            error: data => {
-                App.NotificationError(gettext('Ocurrió un problema al actualizar el contacto'))
-            }
-        });
-
+        if (appJS.actionOffline()) {
+            $.ajax({
+                url: window.reverse('api_v2:api_v2:family_contact-detail', family_id, ''),
+                headers: {"X-CSRFToken": App.getCsrfToken()},
+                type: 'GET',
+                dataType: 'json',
+                success: data => {
+                    $('#title_modal_family').text(gettext('Editar relación con '))
+                    $("#form_modal_family_create_edit :input[name='name_family']").val(data['name']);
+                    $("#form_modal_family_create_edit :input[name='surname_family']").val(data['surnames']);
+                    $("#form_modal_family_create_edit :input[name='relation_type']").val(data['relation_type']);
+                    $("#button_save_contact_family").attr("onclick", "familyJS.editFamilyContact('" + family_id + "')");
+                    App.ShowModal(modal_family)
+                },
+                error: function () {
+                    App.NotificationError(gettext('Ocurrió un problema al actualizar el contacto'))
+                }
+            });
+        }
     }
 
 
     createFamilyContact() {
         let button_save = '#button_save_contact_family'
         let form_modal_family = '#form_modal_family_create_edit'
-        if ($(form_modal_family).valid()) {
+        if ($(form_modal_family).valid() && appJS.actionOffline()) {
             App.DisabledButton(button_save)
             App.LoadingButton(button_save)
             $.ajax({
@@ -94,22 +96,23 @@ export default class ContactFamily {
                     surnames: $('#input_surnames_family').val(),
                     relation_type: $('#id_relation_type').val(),
                     contact: Contact.getContactId(),
-                    owner: App.getOwner(),
                 },
                 type: 'POST',
                 dataType: 'json',
-                success: data => {
+                success: function () {
                     jQuery.event.trigger('contact_family_created');
-                    App.NotificationSuccess(gettext('Contacto añadido con exito!'))
+                    App.NotificationSuccess(gettext('¡Contacto añadido con éxito!'))
                     App.HideModal(modal_family)
                 },
-                error: data => {
-                    App.NotificationError(gettext('Ocurrió un problema al guardar el contacto'))
+                error: function () {
+                    App.NotificationError(gettext('Ocurrió un problema al guardar el contacto, inténtelo de nuevo.'))
+
+                },
+                complete: function () {
                     App.AvailableButton(button_save)
                     App.AvailableloadingButton(button_save)
                 },
             });
-        } else {
         }
     }
 
@@ -117,7 +120,7 @@ export default class ContactFamily {
     editFamilyContact(family_id) {
         let button_save = '#button_save_contact_family'
         let form_modal_family = '#form_modal_family_create_edit'
-        if ($(form_modal_family).valid()) {
+        if ($(form_modal_family).valid() && appJS.actionOffline()) {
             App.DisabledButton(button_save)
             App.LoadingButton(button_save)
             $.ajax({
@@ -128,19 +131,18 @@ export default class ContactFamily {
                     surnames: $('#input_surnames_family').val(),
                     relation_type: $('#id_relation_type').val(),
                     contact: Contact.getContactId(),
-                    owner: App.getOwner(),
                 },
                 type: 'PUT',
                 dataType: 'json',
-                success: data => {
+                success: function () {
                     App.NotificationSuccess(gettext('¡Contacto editado con éxito!'))
                     jQuery.event.trigger('contact_family_edited');
                     App.HideModal(modal_family)
                 },
-                error: data => {
+                error: function () {
                     App.NotificationError(gettext('Error al editar el contacto.'))
                 },
-                complete: data => {
+                complete: function () {
                     App.AvailableButton(button_save)
                     App.AvailableloadingButton(button_save)
                 }
@@ -149,24 +151,23 @@ export default class ContactFamily {
     }
 
     deleteFamilyContact(family_id) {
-        $.ajax({
-            url: window.reverse('api_v2:api_v2:family_contact-detail', family_id, ''),
-            headers: {"X-CSRFToken": App.getCsrfToken()},
-            data: {
-                owner: App.getOwner(),
-            },
-            type: 'DELETE',
-            dataType: 'json',
-            success: data => {
-                jQuery.event.trigger('contact_family_deleted');
-                App.NotificationSuccess(gettext('¡Contacto eliminado con éxito!'))
-                this.count_family -= 1
-                App.textVisible(this.count_family, '#text_family_contact')
-            },
-            error: data => {
-                App.NotificationError(gettext('Ocurrió un problema al borrar el contacto'))
-            },
-        });
+        if (appJS.actionOffline()) {
+            $.ajax({
+                url: window.reverse('api_v2:api_v2:family_contact-detail', family_id, ''),
+                headers: {"X-CSRFToken": App.getCsrfToken()},
+                type: 'DELETE',
+                dataType: 'json',
+                success: function () {
+                    jQuery.event.trigger('contact_family_deleted');
+                    App.NotificationSuccess(gettext('¡Contacto eliminado con éxito!'))
+                    this.count_family -= 1
+                    App.textVisible(this.count_family, '#text_family_contact')
+                },
+                error: function () {
+                    App.NotificationError(gettext('Ocurrió un problema al borrar el contacto'))
+                },
+            });
+        }
     }
 
 

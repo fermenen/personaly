@@ -1,8 +1,6 @@
-from django.conf.urls import url
 from . import views
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from rest_framework.authtoken import views as auth
 
 app_name = 'api_v2'
 
@@ -13,8 +11,9 @@ router.register(r'reminder_contact', views.ReminderContactView, basename='remind
 router.register(r'note_contact', views.NoteContactView, basename='note_contact')
 router.register(r'common_contact', views.CommonContactView, basename='common_contact')
 router.register(r'music_contact', views.MusicContactView, basename='music_contact')
+router.register(r'experience_contact', views.ExperienceContactView, basename='experience_contact')
 router.register(r'family_contact', views.FamilyContactView, basename='family_contact')
-
+router.register(r'image', views.ImageView, basename='image')
 
 urlpatterns = [
     # path('api-token-auth/', auth.obtain_auth_token),

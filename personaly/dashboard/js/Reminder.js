@@ -203,26 +203,27 @@ export default class Reminder {
     }
 
     changeTextReminder(id_reminder, original_text) {
+        let input_text_reminder = $('#text_reminder_' + id_reminder)
         if (appJS.actionOffline()) {
             $.ajax({
                 url: window.reverse('api_v2:api_v2:reminder_contact-detail', id_reminder, ''),
                 headers: {"X-CSRFToken": App.getCsrfToken()},
                 data: {
-                    text: $('#text_reminder_' + id_reminder).val(),
+                    text: input_text_reminder.val(),
                 },
                 type: 'PATCH',
                 dataType: 'json',
-                success: data => {
+                success: function () {
                     App.NotificationSuccess(gettext('¡Recordatorio actualizado con éxito!'))
                     jQuery.event.trigger('reminder_edited');
                 },
-                error: data => {
+                error: function () {
                     App.NotificationError(gettext('Ocurrió un problema al actualizar el recordatorio.'))
-                    $('#' + id_reminder).val(original_text)
+                    input_text_reminder.val(original_text)
                 },
             });
         } else {
-            $('#' + id_reminder).val(original_text)
+            input_text_reminder.val(original_text)
         }
     }
 

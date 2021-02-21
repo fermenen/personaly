@@ -258,6 +258,32 @@ class CommonContactView(viewsets.ModelViewSet):
 
 
 @permission_classes([IsAuthenticated])
+class ExperienceContactView(viewsets.ModelViewSet):
+    serializer_class = ExperienceContactSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_fields = ['contact']
+    http_method_names = ['get', 'post', 'delete']
+
+    def get_queryset(self):
+        return ExperienceContact.objects.filter(owner=self.request.user, active=True)
+
+    def perform_create(self, serializer):
+        serializer.is_valid(raise_exception=True)
+        user = self.request.user
+        user.experience_active += 1
+        user.save()
+        return serializer.save(owner=user)
+
+    def perform_destroy(self, instance):
+        instance.active = False
+        user = self.request.user
+        user.experience_active -= 1
+        user.save()
+        return instance.save()
+
+
+
+@permission_classes([IsAuthenticated])
 class MusicContactView(viewsets.ModelViewSet):
     serializer_class = MusicContactSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -323,4 +349,22 @@ class FamilyContactView(viewsets.ModelViewSet):
         user = self.request.user
         user.family_active -= 1
         user.save()
+        return instance.save()
+
+
+@permission_classes([IsAuthenticated])
+class ImageView(viewsets.ModelViewSet):
+    serializer_class = ImageSerializer
+    http_method_names = ['get', 'post', 'delete']
+
+    def get_queryset(self):
+        return ImageModel.objects.filter(owner=self.request.user, active=True)
+
+    def perform_create(self, serializer):
+        serializer.is_valid(raise_exception=True)
+        user = self.request.user
+        return serializer.save(owner=user)
+
+    def perform_destroy(self, instance):
+        instance.active = False
         return instance.save()

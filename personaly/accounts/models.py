@@ -17,6 +17,7 @@ class User(AbstractUser):
     note_active = models.IntegerField(default=0, editable=False)
     common_active = models.IntegerField(default=0, editable=False)
     music_active = models.IntegerField(default=0, editable=False)
+    experience_active = models.IntegerField(default=0, editable=False)
     family_active = models.IntegerField(default=0, editable=False)
 
     USERNAME_FIELD = 'email'

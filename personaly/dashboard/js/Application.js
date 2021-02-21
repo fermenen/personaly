@@ -69,6 +69,14 @@ class App {
         return owner;
     }
 
+    static lang(){
+        return $('#lang').text();
+    }
+
+    static urlLang(){
+        return '/' + this.lang();
+    }
+
     get getCountContacts() {
         return this.count_contact;
     }

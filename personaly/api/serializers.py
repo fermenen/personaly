@@ -29,6 +29,14 @@ class IsActiveTag(serializers.ListSerializer):
         data = data.filter(active=True)
         return super().to_representation(data)
 
+
+class ImageSerializer(serializers.ModelSerializer):
+    id = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = ImageModel
+        fields = ('id', 'image')
+
  # - - - - - -
 
 
@@ -78,6 +86,15 @@ class FamilyContactSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'surnames', 'relation_type', 'relation_name', 'contact')
 
 
+class ExperienceContactSerializer(serializers.ModelSerializer):
+    id = serializers.CharField(read_only=True)
+    images = ImageSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = ExperienceContact
+        fields = ('id', 'tittle', 'location', 'date', 'images', 'created_at', 'contact')
+
+
 class MusicContactSerializer(serializers.ModelSerializer):
     name_artist = serializers.CharField(required=False)
     id = serializers.CharField(read_only=True)
@@ -115,3 +132,4 @@ class CommonContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = ThingCommonContact
         fields = ('id', 'text', 'created_at', 'contact')
+

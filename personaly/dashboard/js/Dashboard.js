@@ -52,7 +52,7 @@ export default class Dashboard {
                             contact_name: data['results'][reminder]['contact_info']['name'],
                             contact_surname: data['results'][reminder]['contact_info']['surnames'],
                             past: data['results'][reminder]['past'],
-                            contact_href: window.reverse('contact', data['results'][reminder]['contact_info']['url']),
+                            contact_href: App.urlLang() + window.reverse('contact', data['results'][reminder]['contact_info']['url']),
                         })
                     }
                 }
@@ -87,7 +87,7 @@ export default class Dashboard {
                             reminder_text: data['results'][reminder]['text'],
                             contact_name: data['results'][reminder]['contact_info']['name'],
                             contact_surname: data['results'][reminder]['contact_info']['surnames'],
-                            contact_href: window.reverse('contact', data['results'][reminder]['contact_info']['url']),
+                            contact_href: App.urlLang() + window.reverse('contact', data['results'][reminder]['contact_info']['url']),
                             future: data['results'][reminder]['future'],
                             days: data['results'][reminder]['days'],
                             date: DateTime.fromISO(data['results'][reminder]['deadline']).toLocaleString(DateTime.DATE_FULL),

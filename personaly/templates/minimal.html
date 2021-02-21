@@ -1,12 +1,15 @@
 {% load i18n %}
-<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
 {% load static %}
-<html lang="es">
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<span id="lang" class="uk-hidden" style="display: none">{{ LANGUAGE_CODE }}</span>
 <head>
     <noscript>
-        <div class="uk-flex uk-flex-center">
-            <span class="uk-text-danger uk-text-center uk-text-large">{% translate "El uso de javascript es necesario para el correcto funcionamiento de personaly." %}</span>
-        </div>
+        <pre>
+            <span class="uk-text-danger">{% translate "El uso de javascript es necesario para el correcto funcionamiento de personaly." %}</span>
+        </pre>
     </noscript>
 
     <meta charset="utf-8">

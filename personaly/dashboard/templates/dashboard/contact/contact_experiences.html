@@ -1,46 +1,75 @@
+{% load handlebars %}
+{% load static %}
 {% load i18n %}
-<div id="component_experiences_contact">
-    <button id="button_add_experiences_contact" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
-            uk-toggle="target: #modal_create_experiences"><span class="uk-margin-small-right"
-                                                                uk-icon="plus"></span>{% translate "Añadir experiencia" %}
+
+<script>
+    let experienceJS = new ContactExperience();
+</script>
+
+<div id="component_family_contact">
+    <button id="button_add_family" onclick="experienceJS.modalCreateExperience()"
+            class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"><span class="uk-margin-small-right"
+                                                                                          uk-icon="plus"></span>{% translate "Añadir experiencia" %}
     </button>
     <div>
-        <input id="count_notes_experiences" class="uk-hidden" type="number" value="{{ count_list_experiences }}">
-        <div id="text_experiences_contact" class="uk-text-center uk-margin-top">
-            <span>&#127758; {% translate "Registra viajes y experiencias que has hecho con" %} {{ contact.name }} {% translate "en el pasado." %}</span>
+        <div id="text_experience_contact" class="uk-text-center uk-margin-top uk-hidden">
+            <span>&#127758; {% translate "Registra viajes y experiencias que has hecho con" %} {{ contact.name | capfirst }} {% translate "en el pasado." %}</span>
         </div>
-        <script>
-            textVisible('#count_notes_experiences', '#text_experiences_contact');
-        </script>
     </div>
-    <div id="component_all_experiences" class="uk-margin-top">
-        {% for experience in list_experiences %}
-            <div class="uk-card uk-card-default uk-card-body uk-width-1-1 uk-margin-top">
-                <h3 class="uk-card-title">{{ experience.tittle }} | {{ experience.location }}
-                    | {{ experience.date }}</h3>
+    <div id="component_all_experiences" class="uk-margin-top"></div>
+</div>
 
-                <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="center: true">
-                    <ul class="uk-slider-items uk-grid">
-                        {% for photo in experience.get_list_photos %}
 
-                            <li class="uk-width-1-2">
-                                <div class="uk-panel panel-experience">
-                                    <img class="experience-image-size" src="{{ photo }}" alt="">
-                                </div>
-                            </li>
+<script id="template_contact_experience" type="text/x-handlebars-template">
+    {{ "#experiences" | handlebars }}
+    <div id="{{ "experience_id" | handlebars }}"
+         class="uk-card uk-card-default uk-card-body uk-width-1-1 uk-margin-top">
 
-                        {% endfor %}
+        <div class="uk-card-title uk-flex uk-flex-column uk-margin-bottom">
+            <div class="uk-flex uk-flex-between">
+                <div><span class="uk-text-capitalize">{{ "experience_tittle" | handlebars }}</span><span class="uk-text-light uk-text-primary uk-margin-small-left uk-h3">{{ "experience_year" | handlebars }}</span>
+                </div>
+                <div>
+                    <ul class="uk-iconnav uk-width-auto uk-margin-right">
+                        <li><a onclick=""
+                               class="icon_app"
+                               uk-tooltip="title:{% translate "Editar" %}; pos: bottom"
+                               uk-icon="icon:  file-edit"></a></li>
+                        <li><a onclick=""
+                               class="icon_trash"
+                               uk-icon="icon: trash"
+                               uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom"></a></li>
                     </ul>
-                    <a class="uk-position-center-left uk-position-small " href="#" uk-slidenav-previous
-                       uk-slider-item="previous"></a>
-                    <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
-                       uk-slider-item="next"></a>
-
                 </div>
             </div>
-        {% endfor %}
+
+            <span class="uk-text-meta uk-margin-small-top"><span
+                    uk-icon="location"></span>{{ "experience_location" | handlebars }}</span>
+        </div>
+
+
+        <div id="image_slider_{{ "experience_id" | handlebars }}" class="splide">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    {#                    <li class="splide__slide">#}
+                    {#                        <img width="300" height="300"#}
+                    {#                             src="https://maps.geoapify.com/v1/staticmap?style=klokantech-basic&width=300&height=300&center=lonlat:-5.8448989,43.3605977&zoom=8&apiKey=350aff7909c74306ae9c39848d54a916">#}
+                    {#                    </li>#}
+                    {{ "#images" | handlebars }}
+                    <li class="splide__slide">
+                        <img style="height: 300px" src="{{ "url_image" | handlebars }}"
+                             alt="{{ "experience_tittle" | handlebars }}">
+                    </li>
+                    {{ "/images" | handlebars }}
+                </ul>
+            </div>
+        </div>
+
     </div>
-</div>
+    {{ "/experiences" | handlebars }}
+</script>
+
+
 {#ANADIR EXPERIENCIA #}
 <div id="modal_create_experiences" uk-modal>
     <div class="uk-modal-dialog">
@@ -91,3 +120,7 @@
     </div>
 </div>
 {#END ANADIR EXPERIENCIA#}
+
+<script>
+    experienceJS.compileTemplate();
+</script>

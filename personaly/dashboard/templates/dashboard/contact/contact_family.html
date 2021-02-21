@@ -30,21 +30,19 @@
                 <span class="uk-text-capitalize uk-h4">{{ "family_name" | handlebars }} {{ "family_surnames" | handlebars }}</span>
                 <span class="uk-text-light uk-text-primary"> ({{ "family_relation_name" | handlebars }})</span>
             </div>
-            <ul class="uk-iconnav uk-width-auto">
+            <ul class="uk-iconnav uk-width-auto uk-margin-right">
+                <li><a onclick="familyJS.modalEditFamily('{{ "family_id" | handlebars }}' )"
+                       class="icon_app"
+                       uk-tooltip="title:{% translate "Editar" %}; pos: bottom"
+                       uk-icon="icon:  file-edit"></a></li>
                 <li><a onclick="familyJS.deleteFamilyContact('{{ "family_id" | handlebars }}')" class="icon_trash"
                        uk-icon="icon: trash"
-                       uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom-left"></a></li>
-                <li>
-                    <a onclick="familyJS.modalEditFamily('{{ "family_id" | handlebars }}' )"
-                       class="icon_app"
-                       uk-tooltip="title:{% translate "Editar" %}; pos: bottom-left"
-                       uk-icon="icon:  file-edit"></a></li>
+                       uk-tooltip="title:{% translate "Eliminar" %}; pos: bottom"></a></li>
             </ul>
         </li>
         {{ "/family" | handlebars }}
     </ul>
 </script>
-
 
 {# MODAL FAMILY #}
 <div id="modal_family" uk-modal>

@@ -1,4 +1,6 @@
+"use strict";
 import '../../static/theme/app.scss';
+import '@splidejs/splide/dist/css/themes/splide-skyblue.min.css';
 
 const $ = require('jquery');
 const validate = require('jquery-validation');
@@ -10,6 +12,7 @@ import Contact from "./Contact"
 import ContactNote from "./ContactNote"
 import ContactCommon from "./ContactCommon"
 import ContactMusic from "./ContactMusic"
+import ContactExperience from "./ContactExperience";
 import ContactFamily from "./ContactFamily"
 import ContactTag from "./ContactTag";
 import Settings from "./Settings";
@@ -22,9 +25,9 @@ window.$ = $;
 window.validate = validate;
 window.App = Application
 window.Dashboard = Dashboard
-
 window.ContactNote = ContactNote
 window.ContactCommon = ContactCommon
+window.ContactExperience = ContactExperience
 window.ContactMusic = ContactMusic
 window.ContactsList = ContactsList
 window.ContactFamily = ContactFamily

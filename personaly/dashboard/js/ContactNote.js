@@ -48,26 +48,29 @@ export default class ContactNote {
 
 
     open_modal_create_note() {
-        App.ShowModal(modal_contact_create_note)
+        if (appJS.actionOffline()) {
+            App.ShowModal(modal_contact_create_note)
+        }
 
     }
 
     open_modal_edit_note(note_id) {
-        $("#form_modal_edit_note :input[id='id_note_input']").text(note_id);
-        $.ajax({
-            url: window.reverse('api_v2:api_v2:note_contact-detail', note_id, ''),
-            headers: {"X-CSRFToken": App.getCsrfToken()},
-            type: 'GET',
-            dataType: 'json',
-            success: data => {
-                $("#form_modal_edit_note :input[name='text_note']").val(data['text']);
-                App.ShowModal(modal_contact_edit_note)
-            },
-            error: data => {
-                App.NotificationError(gettext('Error al editar la nota, inténtalo de nuevo.'))
-            }
-        });
-
+        if (appJS.actionOffline()) {
+            $("#form_modal_edit_note :input[id='id_note_input']").text(note_id);
+            $.ajax({
+                url: window.reverse('api_v2:api_v2:note_contact-detail', note_id, ''),
+                headers: {"X-CSRFToken": App.getCsrfToken()},
+                type: 'GET',
+                dataType: 'json',
+                success: data => {
+                    $("#form_modal_edit_note :input[name='text_note']").val(data['text']);
+                    App.ShowModal(modal_contact_edit_note)
+                },
+                error: data => {
+                    App.NotificationError(gettext('Error al editar la nota, inténtalo de nuevo.'))
+                }
+            });
+        }
 
     }
 
@@ -75,7 +78,7 @@ export default class ContactNote {
     create_contact_note() {
         let button_save = '#button_save_contact_note'
         let form_modal_note = '#form_modal_note'
-        if ($(form_modal_note).valid()) {
+        if ($(form_modal_note).valid() && appJS.actionOffline()) {
             App.DisabledButton(button_save)
             App.LoadingButton(button_save)
             $.ajax({
@@ -107,7 +110,7 @@ export default class ContactNote {
     edit_contact_note() {
         let button_save_edit_note = '#button_save_contact_edit_note'
         let form_modal_edit_note = '#form_modal_edit_note'
-        if ($(form_modal_edit_note).valid()) {
+        if ($(form_modal_edit_note).valid() && appJS.actionOffline()) {
             App.DisabledButton(button_save_edit_note)
             App.LoadingButton(button_save_edit_note)
             let id_note = $("#form_modal_edit_note :input[id='id_note_input']").text();
@@ -137,21 +140,23 @@ export default class ContactNote {
 
 
     delete_contact_note(note_id) {
-        $.ajax({
-            url: window.reverse('api_v2:api_v2:note_contact-detail', note_id, ''),
-            headers: {"X-CSRFToken": App.getCsrfToken()},
-            type: 'DELETE',
-            dataType: 'json',
-            success: data => {
-                jQuery.event.trigger('contact_note_deleted');
-                App.NotificationSuccess(gettext('¡Nota eliminada con éxito!'))
-                this.count_notes -= 1
-                App.textVisible(this.count_notes, '#text_note_contact')
-            },
-            error: data => {
-                App.NotificationError(gettext('Ocurrió un problema al borrar la nota.'))
-            },
-        });
+        if (appJS.actionOffline()) {
+            $.ajax({
+                url: window.reverse('api_v2:api_v2:note_contact-detail', note_id, ''),
+                headers: {"X-CSRFToken": App.getCsrfToken()},
+                type: 'DELETE',
+                dataType: 'json',
+                success: data => {
+                    jQuery.event.trigger('contact_note_deleted');
+                    App.NotificationSuccess(gettext('¡Nota eliminada con éxito!'))
+                    this.count_notes -= 1
+                    App.textVisible(this.count_notes, '#text_note_contact')
+                },
+                error: data => {
+                    App.NotificationError(gettext('Ocurrió un problema al borrar la nota.'))
+                },
+            });
+        }
     }
 
 

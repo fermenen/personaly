@@ -58,7 +58,7 @@ export default class ContactMusic {
 
     search_artist() {
         let inputSearch = $('#input_name_artist')
-        if ($('#form_modal_music').valid()) {
+        if ($('#form_modal_music').valid() && appJS.actionOffline()) {
             $.ajax({
                 url: window.reverse('api_v2:api_search_artist', ''),
                 data: {
@@ -93,44 +93,47 @@ export default class ContactMusic {
 
 
     create_contact_music(id_artist) {
-        let nameArtist = $('#name_artist_manual').text()
-        $.ajax({
-            url: window.reverse('api_v2:api_v2:music_contact-list', ''),
-            headers: {"X-CSRFToken": App.getCsrfToken()},
-            data: {
-                id_artist: id_artist,
-                name_artist: nameArtist,
-                contact: Contact.getContactId(),
-            },
-            type: 'POST',
-            dataType: 'json',
-            success: data => {
-                jQuery.event.trigger('contact_music_created');
-                App.NotificationSuccess(gettext('¡Artista, grupo añadido con éxito!'))
-                App.HideModal(modal_add_music)
-            },
-            error: data => {
-                App.NotificationError(gettext('Error al añadir artista, grupo, inténtelo de nuevo.'))
-            }
-        });
-
+        if (appJS.actionOffline()) {
+            let nameArtist = $('#name_artist_manual').text()
+            $.ajax({
+                url: window.reverse('api_v2:api_v2:music_contact-list', ''),
+                headers: {"X-CSRFToken": App.getCsrfToken()},
+                data: {
+                    id_artist: id_artist,
+                    name_artist: nameArtist,
+                    contact: Contact.getContactId(),
+                },
+                type: 'POST',
+                dataType: 'json',
+                success: data => {
+                    jQuery.event.trigger('contact_music_created');
+                    App.NotificationSuccess(gettext('¡Artista, grupo añadido con éxito!'))
+                    App.HideModal(modal_add_music)
+                },
+                error: data => {
+                    App.NotificationError(gettext('Error al añadir artista, grupo, inténtelo de nuevo.'))
+                }
+            });
+        }
     }
 
 
     deleteMusicContact(music_id) {
-        $.ajax({
-            url: window.reverse('api_v2:api_v2:music_contact-detail', music_id, ''),
-            headers: {"X-CSRFToken": App.getCsrfToken()},
-            type: 'DELETE',
-            dataType: 'json',
-            success: data => {
-                jQuery.event.trigger('contact_music_deleted');
-                App.NotificationSuccess(gettext('¡Artista, grupo eliminado con éxito!'))
-            },
-            error: data => {
-                App.NotificationError(gettext('Ocurrió un problema al borrar el artista.'))
-            },
-        });
+        if (appJS.actionOffline()) {
+            $.ajax({
+                url: window.reverse('api_v2:api_v2:music_contact-detail', music_id, ''),
+                headers: {"X-CSRFToken": App.getCsrfToken()},
+                type: 'DELETE',
+                dataType: 'json',
+                success: data => {
+                    jQuery.event.trigger('contact_music_deleted');
+                    App.NotificationSuccess(gettext('¡Artista, grupo eliminado con éxito!'))
+                },
+                error: data => {
+                    App.NotificationError(gettext('Ocurrió un problema al borrar el artista.'))
+                },
+            });
+        }
     }
 
 
@@ -150,7 +153,6 @@ export default class ContactMusic {
 
 
     configureValidationForms() {
-
         $("#form_modal_music").on('submit', function (evt) {
             evt.preventDefault();
             musicJS.search_artist();

@@ -4,12 +4,16 @@ from phone_field import PhoneField
 from datetime import date
 from django.utils.text import slugify
 from accounts.models import User
-import os
-from uuid import uuid4
-from PIL import Image
 import uuid
 from django.utils.translation import ugettext_lazy as _
 from encrypted_fields import fields
+
+
+class ImageModel(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    image = models.TextField(blank=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    active = models.BooleanField(default=True)
 
 
 class Contact(models.Model):
@@ -110,7 +114,6 @@ class NoteContact(models.Model):
     active = models.BooleanField(default=True)
 
 
-# Thing Common Contact_001 Model
 class ThingCommonContact(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     text = models.TextField()
@@ -129,16 +132,12 @@ class ExperienceContact(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     tittle = models.TextField()
     location = models.TextField()
-    date = models.DateTimeField(blank=True)
-    list_photos = models.TextField(blank=True)
+    date = models.DateField(blank=True)
+    images = models.ManyToManyField(ImageModel, related_name='images', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
 
-    def get_list_photos(self):
-        return self.list_photos.split(";")
 
-
-# Music Contact_001 Model
 class MusicContact(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     contact = models.ForeignKey(Contact, on_delete=models.CASCADE)

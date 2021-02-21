@@ -46,7 +46,7 @@ export default class ContactCommon {
     createContactCommon() {
         let button_save = '#button_save_contact_common'
         let form_modal_note = '#form_modal_add_common'
-        if ($(form_modal_note).valid()) {
+        if ($(form_modal_note).valid() && appJS.actionOffline()) {
             App.DisabledButton(button_save)
             App.LoadingButton(button_save)
             $.ajax({
@@ -60,11 +60,11 @@ export default class ContactCommon {
                 dataType: 'json',
                 success: data => {
                     jQuery.event.trigger('contact_common_created');
-                    App.NotificationSuccess(gettext('¡Cosa en común creada con éxito!'))
+                    App.NotificationSuccess(gettext('¡Afinidad creada con éxito!'))
                     App.HideModal(modal_create_common)
                 },
                 error: data => {
-                    App.NotificationError(gettext('Error al crear la cosa en común, inténtalo de nuevo.'))
+                    App.NotificationError(gettext('Error al crear afinidad en común, inténtalo de nuevo.'))
                 },
                 complete: data => {
                     $("#form_modal_add_common :input[name='text_common']").val("")
@@ -77,33 +77,38 @@ export default class ContactCommon {
 
 
     deleteCommonContact() {
-        let commonId = $('#common_id_modal').val()
-        $.ajax({
-            url: window.reverse('api_v2:api_v2:common_contact-detail', commonId, ''),
-            headers: {"X-CSRFToken": App.getCsrfToken()},
-            type: 'DELETE',
-            dataType: 'json',
-            success: data => {
-                jQuery.event.trigger('contact_common_deleted');
-                App.HideModal(modal_delete_common)
-                App.NotificationSuccess(gettext('¡Cosa en común eliminada con éxito!'))
-            },
-            error: data => {
-                App.NotificationError(gettext('Ocurrió un problema al borrar la cosa en común.'))
-            },
-        });
+        if (appJS.actionOffline()) {
+            let commonId = $('#common_id_modal').val()
+            $.ajax({
+                url: window.reverse('api_v2:api_v2:common_contact-detail', commonId, ''),
+                headers: {"X-CSRFToken": App.getCsrfToken()},
+                type: 'DELETE',
+                dataType: 'json',
+                success: data => {
+                    jQuery.event.trigger('contact_common_deleted');
+                    App.HideModal(modal_delete_common)
+                    App.NotificationSuccess(gettext('¡Afinidad eliminada con éxito!'))
+                },
+                error: data => {
+                    App.NotificationError(gettext('Ocurrió un problema al borrar la afinidad.'))
+                },
+            });
+        }
     }
 
 
     open_modal_create_common() {
-        App.ShowModal(modal_create_common)
+        if (appJS.actionOffline()) {
+            App.ShowModal(modal_create_common)
+        }
     }
 
     openModalDeleteCommon(id, text) {
-        $('#common_text').text(text)
-        $('#common_id_modal').val(id)
-        App.ShowModal(modal_delete_common)
-
+        if (appJS.actionOffline()) {
+            $('#common_text').text(text)
+            $('#common_id_modal').val(id)
+            App.ShowModal(modal_delete_common)
+        }
     }
 
     configureValidationForms() {
