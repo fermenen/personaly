@@ -1,10 +1,11 @@
 from django.contrib import admin
 
 from dashboard.models import Contact, ThingCommonContact, MusicContact, FamilyContact, TagContact, NoteContact, \
-    ExperienceContact, ReminderContact
+    ExperienceContact, ReminderContact, ImageModel
 
 admin.site.register(TagContact)
 admin.site.register(ExperienceContact)
+admin.site.register(ImageModel)
 
 
 @admin.register(Contact)

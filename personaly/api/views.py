@@ -241,7 +241,6 @@ class CommonContactView(viewsets.ModelViewSet):
     def get_queryset(self):
         return ThingCommonContact.objects.filter(owner=self.request.user, active=True)
 
-
     def perform_create(self, serializer):
         serializer.is_valid(raise_exception=True)
         user = self.request.user
@@ -280,7 +279,6 @@ class ExperienceContactView(viewsets.ModelViewSet):
         user.experience_active -= 1
         user.save()
         return instance.save()
-
 
 
 @permission_classes([IsAuthenticated])
@@ -363,8 +361,28 @@ class ImageView(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.is_valid(raise_exception=True)
         user = self.request.user
-        return serializer.save(owner=user)
+        data = self.request.data['files[]']
+        path = default_storage.save(f'images/{data.name}', ContentFile(data.read()))
+        tmp_file = os.path.join(settings.MEDIA_ROOT, path)
+        tmp_new = self.get_transform_image(tmp_file)
+        public_url = StorageGoogle(f'public/{user.id}{tmp_new}').upload('./' + tmp_new)
+        os.remove('./' + tmp_file)
+        os.remove('./' + tmp_new)
+        image = serializer.save(owner=user)
+        image.image = public_url
+        return image.save()
 
     def perform_destroy(self, instance):
         instance.active = False
         return instance.save()
+
+    def get_transform_image(self, image_path):
+        basewidth = 400
+        quality = 75
+        img = Image.open(image_path)
+        wpercent = (basewidth / float(img.size[0]))
+        hsize = int((float(img.size[1]) * float(wpercent)))
+        img_new = img.resize((basewidth, hsize))
+        image_name = '{}.{}'.format(uuid4().hex, 'jpg')
+        img_new.save(os.path.join('images/', image_name), quality=quality, optimize=True)
+        return os.path.join('/images/', image_name)

@@ -40,16 +40,17 @@ export default class ContactExperience {
                         experience_id: data['results'][experience]['id'],
                         experience_tittle: data['results'][experience]['tittle'],
                         experience_location: data['results'][experience]['location'],
-                        experience_year:  DateTime.fromISO(data['results'][experience]['date']).year,
+                        experience_year: DateTime.fromISO(data['results'][experience]['date']).year,
                         images: imagesA,
                     })
                 }
                 let context = {experiences: experiences};
                 $("#component_all_experiences").html(this.template(context));
                 experiences.forEach(experience => {
-                    slideImages(experience['experience_id'])
+                    if (experience['images'].length > 0) {
+                        slideImages(experience['experience_id'])
+                    }
                 });
-
             },
             complete: data => {
                 App.textVisible(this.count_experience, '#text_experience_contact')
@@ -60,7 +61,28 @@ export default class ContactExperience {
 
 
     modalCreateExperience() {
+        if (appJS.actionOffline()) {
+            App.ShowModal(modal_create_experience)
+        }
+    }
 
+
+    uploadImage() {
+        UIkit.upload('.images_experience', {
+            url: window.reverse('api_v2:image-list', ''),
+            multiple: false,
+            params: {
+                csrfmiddlewaretoken: App.getCsrfToken()
+            },
+            completeAll: data => {
+                $("#image_upload_1").attr("src", data['response'].image)
+                $("#form_create_experience div[id=div_image]").removeClass('uk-hidden')
+                $("#form_create_experience input[id=public_url_photo]").val(data['response'].id)
+            },
+            error: data => {
+                App.NotificationError(gettext('Error al subir imagen.'))
+            },
+        });
     }
 
 

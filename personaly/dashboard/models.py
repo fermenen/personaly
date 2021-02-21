@@ -13,6 +13,7 @@ class ImageModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     image = models.TextField(blank=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    upload_at = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
 
 
