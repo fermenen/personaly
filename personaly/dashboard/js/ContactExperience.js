@@ -8,7 +8,7 @@ import {DateTime} from "luxon";
 export default class ContactExperience {
 
     constructor() {
-        $(document).on('contact_note_created', () => this.data_contact_experience());
+        $(document).on('contact_experience_created', () => this.data_contact_experience());
         $(document).on('contact_note_updated', () => this.data_contact_experience());
         $(document).on('contact_note_deleted', () => this.data_contact_experience());
     }
@@ -74,17 +74,66 @@ export default class ContactExperience {
             params: {
                 csrfmiddlewaretoken: App.getCsrfToken()
             },
-            completeAll: data => {
-                $("#image_upload_1").attr("src", data['response'].image)
-                $("#form_create_experience div[id=div_image]").removeClass('uk-hidden')
-                $("#form_create_experience input[id=public_url_photo]").val(data['response'].id)
+            completeAll: function (data) {
+                let response = JSON.parse(data['response'])
+                let textDelete = gettext('Borrar')
+                let html = `<li id='${response.id}'><div class="uk-flex uk-flex-inline"><img src='${response.image}' style="height: 45px"><button onclick="experienceJS.deleteImageModal('${response.id}')" class="uk-button uk-button-danger uk-button-small uk-margin-small-left">${textDelete}</div></li>`
+                $('#list_images').append(html)
             },
-            error: data => {
+            error: function () {
                 App.NotificationError(gettext('Error al subir imagen.'))
             },
         });
     }
 
+
+    createContactExperience() {
+        if (appJS.actionOffline()) {
+            let images = []
+            $('#list_images').each(item_list => {
+                images.push($('#list_images li').get(item_list).id)
+            })
+            $.ajax({
+                url: window.reverse('api_v2:api_v2:experience_contact-list', ''),
+                headers: {"X-CSRFToken": App.getCsrfToken()},
+                data: {
+                    tittle: $('#form_create_experience input[name=tittle]').val(),
+                    location: $('#form_create_experience input[name=location]').val(),
+                    date: $('#form_create_experience input[name=date]').val(),
+                    images: images,
+                    contact: Contact.getContactId(),
+                },
+                type: 'POST',
+                dataType: 'json',
+                success: data => {
+                    jQuery.event.trigger('contact_experience_created');
+                    App.NotificationSuccess(gettext('¡Experiencia añadida con éxito!'))
+                    App.HideModal(modal_create_experience)
+                },
+                error: data => {
+                    App.NotificationError(gettext('Error téntelo de nuevo.'))
+                }
+            });
+        }
+    }
+
+
+    deleteImageModal(id_image) {
+        if (appJS.actionOffline()) {
+            $.ajax({
+                url: window.reverse('api_v2:api_v2:image-detail', id_image, ''),
+                headers: {"X-CSRFToken": App.getCsrfToken()},
+                type: 'DELETE',
+                dataType: 'json',
+                success: function () {
+                    $('#' + id_image).remove()
+                },
+                error: function () {
+                    App.NotificationError(gettext('Ocurrió un problema al borrar la imagen.'))
+                },
+            });
+        }
+    }
 
 }
 

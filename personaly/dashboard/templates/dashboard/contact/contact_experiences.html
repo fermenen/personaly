@@ -77,36 +77,33 @@
         <div class="uk-modal-body">
             <form id="form_create_experience">
                 <div class="uk-width-2-1 uk-flex-first">
-                    <label class="uk-form-label ">¿Qué hiciste con xxx?</label>
+                    <label class="uk-form-label ">
+                        {% translate "Que hiciste con " %}{{ contact.name | capfirst }}</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input " type="text" required>
+                        <input class="uk-input" name="tittle" type="text" required>
                     </div>
                 </div>
                 <div class="uk-width-2-1 uk-flex-last">
-                    <label class="uk-form-label ">¿Donde?</label>
+                    <label class="uk-form-label ">{% translate "Donde" %}</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" type="text" required>
+                        <input class="uk-input" name="location" type="text" required>
                     </div>
                 </div>
 
                 <div class="uk-width-2-1 uk-flex-first">
-                    <label class="uk-form-label " for="{{ form.name.id_for_label }}">¿Cuando?</label>
+                    <label class="uk-form-label" for="form_create_experience_date">{% translate "Cuando" %}</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input " type="date" required>
+                        <input class="uk-input" id="form_create_experience_date" name="date" type="date" required>
                     </div>
                 </div>
-                <div class="uk-margin-small-top images_experience">
-                    <label for="input_photo" class="uk-form-label ">{% translate "Foto de perfil" %}</label>
-                    <div id="div_image" class="uk-hidden">
-                        <img id="image_upload_1" height="50" uk-img>
-                        <button class="uk-button uk-button-danger uk-button-small uk-margin-small-left">{% translate "Eliminar imagen" %}
-                        </button>
-                        <input id="public_url_photo" class="uk-hidden">
-                    </div>
+                <div class="uk-margin-small-top images_experience uk-width-1-1">
+                    <label class="uk-form-label">{% translate "Imagenes" %}</label>
+                    <ul id="list_images" class="uk-list uk-margin-small-left"></ul>
                     <div id="div_upload_image" uk-form-custom="target: true">
                         <input type="file">
-                        <input id="input_photo" class="uk-input uk-form-width-medium" type="text"
-                               placeholder="Selecciona un fichero" disabled>
+                        <button class="uk-button uk-button-secondary uk-width-1-1"><span
+                                uk-icon="icon: image; ratio: 0.9"></span><span
+                                class="uk-margin-small-left">{% translate " Seleccionar imágenes" %}</span></button>
                     </div>
                     <script>
                         experienceJS.uploadImage()
@@ -120,7 +117,7 @@
             <button class="uk-button uk-button-default uk-modal-close"
                     type="button">{% translate "Cancelar" %}</button>
             <button id="button_save_contact_common" class="uk-button uk-button-primary"
-                    data-value='{% translate "Guardar" %}' onclick=""
+                    data-value='{% translate "Guardar" %}' onclick="experienceJS.createContactExperience()"
                     type="button">{% translate "Guardar" %}</button>
         </div>
     </div>
