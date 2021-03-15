@@ -13,6 +13,10 @@ export default class Reminder {
         this.template_no_completed = Handlebars.compile(source_no_completed);
         this.template_completed = Handlebars.compile(source_completed);
 
+        $(document).on('contact_edited', () => this.data_reminder_no_completed());
+        $(document).on('contact_edited', () => this.data_reminder_completed());
+
+
         this.data_reminder_no_completed();
         this.data_reminder_completed();
     }
@@ -205,22 +209,41 @@ export default class Reminder {
     changeTextReminder(id_reminder, original_text) {
         let input_text_reminder = $('#text_reminder_' + id_reminder)
         if (appJS.actionOffline()) {
+            let recursive
             $.ajax({
                 url: window.reverse('api_v2:api_v2:reminder_contact-detail', id_reminder, ''),
                 headers: {"X-CSRFToken": App.getCsrfToken()},
-                data: {
-                    text: input_text_reminder.val(),
-                },
-                type: 'PATCH',
+                type: 'GET',
                 dataType: 'json',
-                success: function () {
-                    App.NotificationSuccess(gettext('¡Recordatorio actualizado con éxito!'))
-                    jQuery.event.trigger('reminder_edited');
+                success: data => {
+                    recursive = data['recursive']
+                    if (recursive === false) {
+                        $.ajax({
+                            url: window.reverse('api_v2:api_v2:reminder_contact-detail', id_reminder, ''),
+                            headers: {"X-CSRFToken": App.getCsrfToken()},
+                            data: {
+                                text: input_text_reminder.val(),
+                            },
+                            type: 'PATCH',
+                            dataType: 'json',
+                            success: function () {
+                                App.NotificationSuccess(gettext('¡Recordatorio actualizado con éxito!'))
+                                jQuery.event.trigger('reminder_edited');
+                            },
+                            error: function () {
+                                App.NotificationError(gettext('Ocurrió un problema al actualizar el recordatorio.'))
+                                input_text_reminder.val(original_text)
+                            },
+                        });
+                    } else {
+                        input_text_reminder.val(original_text)
+                        App.NotificationError(gettext('No se puede editar un recordatorio periódico.'))
+                    }
                 },
-                error: function () {
+                error: data => {
                     App.NotificationError(gettext('Ocurrió un problema al actualizar el recordatorio.'))
                     input_text_reminder.val(original_text)
-                },
+                }
             });
         } else {
             input_text_reminder.val(original_text)

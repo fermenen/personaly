@@ -89,10 +89,7 @@ export default class ContactExperience {
 
     createContactExperience() {
         if (appJS.actionOffline()) {
-            let images = []
-            $('#list_images').each(item_list => {
-                images.push($('#list_images li').get(item_list).id)
-            })
+            let lis = $('#list_images')[0].getElementsByTagName("li")
             $.ajax({
                 url: window.reverse('api_v2:api_v2:experience_contact-list', ''),
                 headers: {"X-CSRFToken": App.getCsrfToken()},
@@ -100,7 +97,7 @@ export default class ContactExperience {
                     tittle: $('#form_create_experience input[name=tittle]').val(),
                     location: $('#form_create_experience input[name=location]').val(),
                     date: $('#form_create_experience input[name=date]').val(),
-                    images: images,
+                    images: Array.from(lis),
                     contact: Contact.getContactId(),
                 },
                 type: 'POST',
@@ -147,4 +144,13 @@ function slideImages(experience_id) {
         focus: 'center',
         autoWidth: true,
     }).mount();
+}
+
+function getImages() {
+    let images = []
+    $('#list_images').each(item_list => {
+        images.push($('#list_images li').get(item_list).id)
+    })
+    console.log(images)
+    return images
 }

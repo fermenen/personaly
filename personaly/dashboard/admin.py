@@ -16,8 +16,8 @@ class ContactAdmin(admin.ModelAdmin):
 
 @admin.register(ReminderContact)
 class ReminderContact(admin.ModelAdmin):
-    list_display = ("id", "text", "completed", 'deadline', "created_at", "active", "owner")
-    list_filter = ("owner", "active", "completed")
+    list_display = ("id", "text", "completed", "type", "deadline", "created_at", "active", "owner")
+    list_filter = ("owner", "active", "completed", "recursive")
 
 
 @admin.register(NoteContact)

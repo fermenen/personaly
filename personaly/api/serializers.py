@@ -67,7 +67,7 @@ class ReminderContactSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ReminderContact
-        fields = ('id', 'text', 'completed', 'deadline', 'days', 'past', 'today', 'future', 'contact', 'contact_info')
+        fields = ('id', 'text', 'completed', 'deadline', 'days', 'past', 'today', 'future', 'recursive', 'contact', 'contact_info')
 
 
 class NoteContactSerializer(serializers.ModelSerializer):

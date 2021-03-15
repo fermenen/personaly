@@ -14,6 +14,7 @@ from pathlib import Path
 from django.contrib.messages import constants as messages
 from django.urls import reverse
 from dotenv import load_dotenv
+import django
 
 load_dotenv()
 
@@ -34,6 +35,8 @@ ALLOWED_HOSTS = ['localhost', '192.168.3.18', '*']
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
+    'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.sites',
@@ -44,7 +47,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'phone_field',
     'dashboard',
-    'accounts',
     'web',
     'robots',
     'allauth',

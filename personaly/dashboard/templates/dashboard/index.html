@@ -75,8 +75,9 @@
                     <div class="uk-flex uk-flex-column uk-width">
                         <div class="uk-flex uk-flex-inline uk-flex-middle uk-width">
                             <div class="uk-width-medium uk-visible@s uk-margin-small-right">
-                                <div class="uk-text-truncate text-blue3 uk-text-capitalize"><a href="{{ 'contact_href'| handlebars }}"
-                                                                            class="text-blue3">{{ 'contact_name'| handlebars }}&nbsp;{{ 'contact_surname'| handlebars }}</a>
+                                <div class="uk-text-truncate text-blue3 uk-text-capitalize"><a
+                                        href="{{ 'contact_href'| handlebars }}"
+                                        class="text-blue3">{{ 'contact_name'| handlebars }}&nbsp;{{ 'contact_surname'| handlebars }}</a>
                                 </div>
                             </div>
                             <div class="uk-width uk-margin-small-right">
@@ -107,6 +108,7 @@
 
                     </div>
                     <ul class="uk-iconnav uk-invisible-hover uk-flex-right uk-visible@s" style="width: 90px">
+                        {{ '#unless recursive' | handlebars }}
                         <li><a onclick="reminderJS.deleteReminder('{{ 'id_reminder'| handlebars }}')"
                                class="uk-icon-link icon_trash"
                                uk-icon="icon: trash"
@@ -115,6 +117,7 @@
                                class="uk-icon-link icon_app"
                                uk-icon="icon: future"
                                uk-tooltip="title: {% translate 'Reprogramar recordatorio' %}; pos: bottom"></a></li>
+                        {{ '/unless' | handlebars }}
                     </ul>
                 </div>
             </li>

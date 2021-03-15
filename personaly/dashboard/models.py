@@ -1,12 +1,11 @@
 from django.db import models
-
 from phone_field import PhoneField
 from datetime import date
 from django.utils.text import slugify
-from accounts.models import User
 import uuid
 from django.utils.translation import ugettext_lazy as _
 from encrypted_fields import fields
+from accounts.models import *
 
 
 class ImageModel(models.Model):
@@ -19,10 +18,10 @@ class ImageModel(models.Model):
 
 class Contact(models.Model):
     in_touch = [
-        ('001', _('Cada semana')),
-        ('001', _('Cada dos semana')),
-        ('003', _('Una vez al mes')),
-        ('004', _('Cada dos meses')),
+        ('007', _('Cada semana')),
+        ('014', _('Cada dos semana')),
+        ('030', _('Una vez al mes')),
+        ('060', _('Cada dos meses')),
         ('000', _('No recordar')),
     ]
 
@@ -43,22 +42,65 @@ class Contact(models.Model):
 
     def save(self, *args, **kwargs):
         user = User.objects.get(id=self.owner.id)
-        self.url = slugify(f"{self.name}-{self.surnames}-{user.contacts_created}")
+        if not self.url:
+            self.url = slugify(f"{self.name}-{self.surnames}-{user.contacts_created}")
+        self.reminder_management()
         super(Contact, self).save(*args, **kwargs)
+
+    def reminder_management(self):
+        import datetime
+        if self.keep_in_touch != '000':
+            change = False
+            reminder_touch_future = ReminderContact.objects.filter(contact=self, owner=self.owner, active=True, type='TC')
+            if reminder_touch_future.exists():
+                for reminder in reminder_touch_future:
+                    if reminder.future:
+                        reminder.days_recursive = int(self.keep_in_touch)
+                        reminder.deadline = date.today() + datetime.timedelta(days=reminder.days_recursive)
+                        reminder.save()
+                        change = True
+            if not change:
+                reminder_touch = ReminderContact.objects.create(contact=self, owner=self.owner, type='TC')
+                reminder_touch.days_recursive = int(self.keep_in_touch)
+                reminder_touch.deadline = date.today() + datetime.timedelta(days=reminder_touch.days_recursive)
+                reminder_touch.active = True
+                reminder_touch.save()
+        else:
+            reminder_touch = ReminderContact.objects.filter(contact=self, owner=self.owner, type='TC')
+            if reminder_touch.exists():
+                for reminder in reminder_touch:
+                    if reminder.future:
+                        reminder.active = False
+                        reminder.save()
 
     def __str__(self):
         return f"{self.name} {self.surnames}"
 
 
 class ReminderContact(models.Model):
+    types = [
+        ('MN', 'MANUAL'),
+        ('TC', 'TOCH'),
+        ('BT', 'BIRTHDAY'),
+    ]
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     text = models.TextField(blank=False, max_length=255)
     completed = models.BooleanField(default=False)
     deadline = models.DateField(blank=True, null=True)
     contact = models.ForeignKey(Contact, related_name='contact', on_delete=models.CASCADE)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    recursive = models.BooleanField(default=False)
+    days_recursive = models.IntegerField(blank=True, null=True)
+    type = models.CharField(max_length=2, choices=types, default='MN')
     created_at = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
+
+    def save(self, *args, **kwargs):
+        if self.type == 'TC':
+            self.text = _('Recordatorio para estar en contacto')
+            self.recursive = True
+        super(ReminderContact, self).save(*args, **kwargs)
 
     @property
     def days(self):

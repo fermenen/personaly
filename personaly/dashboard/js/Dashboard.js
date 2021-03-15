@@ -52,6 +52,7 @@ export default class Dashboard {
                             contact_name: data['results'][reminder]['contact_info']['name'],
                             contact_surname: data['results'][reminder]['contact_info']['surnames'],
                             past: data['results'][reminder]['past'],
+                            recursive: data['results'][reminder]['recursive'],
                             contact_href: App.urlLang() + window.reverse('contact', data['results'][reminder]['contact_info']['url']),
                         })
                     }
@@ -90,6 +91,7 @@ export default class Dashboard {
                             contact_href: App.urlLang() + window.reverse('contact', data['results'][reminder]['contact_info']['url']),
                             future: data['results'][reminder]['future'],
                             days: data['results'][reminder]['days'],
+                            recursive: data['results'][reminder]['recursive'],
                             date: DateTime.fromISO(data['results'][reminder]['deadline']).toLocaleString(DateTime.DATE_FULL),
                         })
                     }
