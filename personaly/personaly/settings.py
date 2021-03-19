@@ -231,6 +231,14 @@ SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
 # LOGIN_REDIRECT_URL = reverse('my:app')
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_FORMS = {'login': 'accounts.forms.LoginForm', 'signup': 'accounts.forms.SignupForm',
+                 'reset_password': 'accounts.forms.ResetPasswordForm'}
 
 FIELD_ENCRYPTION_KEYS = [
     "f164ec6bd6fbc4aef5647abc15199da0f9badcc1d2127bde2087ae0d794a9a0b"

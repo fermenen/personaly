@@ -26,3 +26,7 @@ img {
 .darkmode--activated .uk-input:focus {
   background-color: $color-black !important;
 }
+
+.darkmode--activated  .uk-tab > .uk-active > a {
+  color: $color-blue-3 !important;
+}

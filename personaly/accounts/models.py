@@ -39,7 +39,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     id = UUIDField(primary_key=True, default=uuid.uuid4, unique=True, editable=False)
-    email = models.EmailField(_('email address'), unique=True)
+    email = models.EmailField(_('email address'), unique=True, max_length=255)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=60, blank=True)
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
@@ -47,10 +47,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
 
     # id = AutoField(primary_key=True, unique=True, editable=False)
-    # username = None
 
     validated_mail = models.BooleanField(default=False, blank=True, null=True)
-    code_validated_mail = models.SmallIntegerField(blank=True, null=True)
 
     contacts_created = models.IntegerField(default=0, editable=False)
     contacts_active = models.IntegerField(default=0, editable=False)

@@ -1,0 +1,111 @@
+{% extends 'web/base_web.html' %}
+{% load static %}
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block title %}{% trans "Signup" %} | {% endblock %}
+
+{% block content_main %}
+
+    <div class="uk-container uk-container-large" style="margin-top: 70px">
+        <div class="uk-flex uk-flex-center">
+            <div class="uk-card card-contact-list uk-card-default uk-card-body uk-width-1-2@m">
+                <div class="uk-flex uk-flex-column uk-flex-center">
+                    <div class="card-title uk-text-center uk-margin-left uk-margin-bottom">
+                        <h1 class="uk-heading-medium">{% trans "Signup" %}</h1>
+                    </div>
+                    <div class="uk-flex uk-flex-center uk-animation-fade uk-width-large" style="margin: 0 auto">
+                        <div>
+                            <div class="uk-margin" style="margin-bottom: 35px">
+                                <div class="card-plan-signup uk-card uk-card-default uk-card-body">
+                                    <div class="uk-card-title uk-flex uk-flex-between">
+                                        <div>{% translate "Plan Basic" %}</div>
+                                        <div class="text-blue3 uk-animation-fade uk-margin-small-right">{% translate "0€/mes" %}</div>
+                                    </div>
+                                    <ul class="uk-list uk-list-bullet">
+                                        <li>{% translate "Hasta 80 contactos" %}</li>
+                                        <li>{% translate "Notas ilimitadas" %}</li>
+                                        <li>{% translate "Notificaciones vía email" %}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="social_register" class="uk-margin uk-flex uk-flex-column">
+                                <a class="uk-button uk-button-default uk-button-large uk-width-1-1"
+                                   href="{% provider_login_url 'google' %}"><span
+                                        class="uk-margin-small-right"></span><img class="uk-margin-small-right"
+                                                                                  width="16" height="16"
+                                                                                  src="{% static 'img/web/google-ico.svg' %}">{% translate "Continuar con Google" %}
+                                </a>
+                                <a class="uk-button uk-button-default uk-button-large uk-width-1-1 uk-margin-small-top"
+                                   href="{% provider_login_url 'google' %}"><span
+                                        class="uk-margin-small-right"></span><img class="uk-margin-small-right"
+                                                                                  width="16" height="16"
+                                                                                  src="{% static 'img/web/apple-ico.svg' %}">{% translate "Continuar con Apple" %}
+                                </a>
+                            </div>
+                            <p class="uk-heading-line uk-text-center"><span>{% trans "O" %}</span></p>
+                            <div id="email_register">
+                                <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                                    {% csrf_token %}
+                                    <div class="uk-margin uk-flex uk-flex-column">
+                                        <div class="uk-inline">
+                                            <span class="uk-form-icon" uk-icon="icon: mail"></span>
+                                            {{ form.email }}
+                                        </div>
+                                        {% if form.email.errors %}
+                                            {% for error in form.email.errors %}
+                                                <div>
+                                                    <span class="uk-text-light uk-text-danger uk-text-truncate">{{ error|escape }}</span>
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="uk-margin uk-flex uk-flex-column">
+                                        <div class="uk-inline">
+                                            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                                            {{ form.password1 }}
+                                        </div>
+                                        {% if form.password1.errors %}
+                                            {% for error in form.password1.errors %}
+                                                <div>
+                                                    <span class="uk-text-light uk-text-danger uk-text-truncate">{{ error|escape }}</span>
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="uk-margin uk-flex uk-flex-column">
+                                        <div class="uk-inline">
+                                            <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                                            {{ form.password2 }}
+                                        </div>
+                                        {% if form.password2.errors %}
+                                            {% for error in form.password2.errors %}
+                                                <div>
+                                                    <span class="uk-text-light uk-text-danger uk-text-truncate">{{ error|escape }}</span>
+                                                </div>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                    {% if redirect_field_value %}
+                                        <input type="hidden" name="{{ redirect_field_name }}"
+                                               value="{{ redirect_field_value }}"/>
+                                    {% endif %}
+                                    <button type="submit"
+                                            class="uk-button uk-button-primary uk-button-large uk-width-1-1">{% trans "Registrarse con email" %}</button>
+                                </form>
+                            </div>
+                            <hr class="uk-divider-small uk-text-center">
+                            <div class=" uk-text-center">
+                                <p class="uk-text-meta uk-text-small">
+                                    {% translate "Al continuar con Google, Apple o tu email, aceptas los "%}<a href="#">{% translate "Términos de servicio" %}</a>{% translate " y " %}<a href="#">{% translate "Política de privacidad" %}</a>{% translate " de personaly." %}
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

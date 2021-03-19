@@ -17,27 +17,31 @@
                 </div>
                 <div class="uk-flex uk-flex-row">
                     <div class="uk-margin-left">
-                        <ul class="uk-tab-right" uk-tab="connect: #ajustes;">
+                        <ul class="uk-tab-right" uk-tab="connect: #ajustes;" style="min-width: 140px">
                             <li class="uk-active uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right"
                                                                                            uk-icon="user"></span>{% translate "Cuenta" %}
                             </a></li>
                             <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right"
                                                                                  uk-icon="cog"></span>{% translate "General" %}
                             </a></li>
+
+
                             <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right"
                                                                                  uk-icon="credit-card"></span>{% translate "Suscripción" %}
                             </a></li>
-                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right"
-                                                                                 uk-icon="bell"></span>{% translate "Notificaciones" %}
-                            </a></li>
+
+
+                            {#                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right"#}
+                            {#                                                                                 uk-icon="bell"></span>{% translate "Notificaciones" %}#}
+                            {#                            </a></li>#}
                             <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right"
                                                                                  uk-icon="lifesaver"></span>{% translate "Soporte" %}
                             </a>
                             </li>
-                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right"
-                                                                                 uk-icon="info"></span>{% translate "Atajos de teclado" %}
-                            </a>
-                            </li>
+                            {#                            <li class="uk-margin-small-bottom"><a href="#"><span class="uk-margin-small-right"#}
+                            {#                                                                                 uk-icon="info"></span>{% translate "Atajos de teclado" %}#}
+                            {#                            </a>#}
+                            {#                            </li>#}
                         </ul>
                     </div>
                     <div>
@@ -45,9 +49,9 @@
                             <li>{% include "dashboard/settings/Account.html" %}</li>
                             <li>{% include "dashboard/settings/General.html" %}</li>
                             <li>{% include "dashboard/settings/Subscription.html" %}</li>
-                            <li>{% include "dashboard/settings/Notifications.html" %}</li>
+                            {#                            <li>{% include "dashboard/settings/Notifications.html" %}</li>#}
                             <li>{% include "dashboard/settings/Support.html" %}</li>
-                            <li>{% include "dashboard/settings/Keyboard_shortcuts.html" %}</li>
+                            {#                            <li>{% include "dashboard/settings/Keyboard_shortcuts.html" %}</li>#}
                         </ul>
                     </div>
 
