@@ -7,3 +7,5 @@ django-admin.py makemessages -en
 django-admin compilemessages --use-fuzzy
 
 npx webpack
+
+python manage.py runscript reminder_touch

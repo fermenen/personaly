@@ -10,6 +10,10 @@ from django.utils import translation
 from django.utils.translation import get_language_info
 
 
+from allauth.socialaccount.models import SocialAccount
+
+
+
 @login_required
 def index(request):
     owner = request.user
@@ -51,8 +55,20 @@ def contact_view(request, url):
 @login_required
 def settings_view(request):
     li = get_language_info(translation.get_language())
+    account_data = []
+    for account in SocialAccount.objects.filter(user=request.user):
+        provider_account = account.get_provider_account()
+        account_data.append(
+            {
+                "id": account.pk,
+                "uid": account.uid,
+                "provider": account.provider,
+                "name": provider_account.to_str(),
+            }
+        )
 
     data = {'user': request.user,
+            'account_data': account_data,
             'LANGUAGE': li['name_local'],
             }
 

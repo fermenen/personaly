@@ -69,11 +69,11 @@ class App {
         return owner;
     }
 
-    static lang(){
+    static lang() {
         return $('#lang').text();
     }
 
-    static urlLang(){
+    static urlLang() {
         return '/' + this.lang();
     }
 
@@ -158,11 +158,14 @@ class App {
     }
 
 
-
     static getCsrfToken() {
         return $("input[name=csrfmiddlewaretoken]").val();
     }
 
+    page_ready() {
+        $('#loading_app').addClass('uk-hidden')
+    }
 }
+
 
 export default App

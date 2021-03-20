@@ -31,3 +31,4 @@ class ResetPasswordForm(ResetPasswordForm):
         self.fields['email'].widget = forms.TextInput(
             attrs={'type': 'email', 'class': 'uk-input uk-form-large', 'placeholder': self.fields['email'].label})
         self.fields['email'].label = ''
+

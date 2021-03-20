@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load socialaccount %}
 
 <div class="uk-flex uk-flex-column uk-margin-large-left">
     <div class="uk-margin-small-bottom"><span
@@ -14,7 +15,8 @@
         </div>
         <div class="uk-flex uk-margin-small-bottom">
             <span class="uk-margin-right">{% translate "Contraseña" %}:</span>
-            <a class="uk-button uk-button-primary uk-button-small" href="{% url 'account_change_password' %}">{% translate "Cambiar contraseña" %}</a>
+            <a class="uk-button uk-button-primary uk-button-small"
+               href="{% url 'account_change_password' %}">{% translate "Cambiar contraseña" %}</a>
         </div>
     </div>
     <hr>
@@ -22,6 +24,18 @@
         <div class="uk-margin-small-bottom uk-flex uk-flex-column">
             <span class="uk-text-bold">{% translate "Conectar cuentas de las redes sociales" %}</span>
             <span class="">{% translate "Utiliza tus cuentas de las redes sociales para iniciar sesión en personaly." %}</span>
+
+
+            <div>
+                {% for social in account_data %}
+                    <span>{% translate "Te hemos conectado con tu ID de " %}{{ social.provider }}: </span><span class="uk-text-bold">{{ social.uid }} ({{ social.name }})</span>
+                {% endfor %}
+
+
+            </div>
+
+
+
         </div>
 
     </div>
