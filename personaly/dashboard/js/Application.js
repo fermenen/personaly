@@ -22,6 +22,10 @@ class App {
         this.darkmode = new Darkmode(options);
     }
 
+    get darkMode(){
+        return this.darkmode
+    }
+
     darkToggle() {
         this.darkmode.toggle();
     }

@@ -55,6 +55,17 @@ def contact_view(request, url):
 @login_required
 def settings_view(request):
     li = get_language_info(translation.get_language())
+    email_data = []
+    for email in request.user.emailaddress_set.all():
+        email_data.append(
+            {
+                "id": email.pk,
+                "email": email.email,
+                "verified": email.verified,
+                "primary": email.primary,
+            }
+        )
+
     account_data = []
     for account in SocialAccount.objects.filter(user=request.user):
         provider_account = account.get_provider_account()
@@ -68,6 +79,7 @@ def settings_view(request):
         )
 
     data = {'user': request.user,
+            'email_data': email_data,
             'account_data': account_data,
             'LANGUAGE': li['name_local'],
             }

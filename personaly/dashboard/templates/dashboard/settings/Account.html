@@ -3,28 +3,35 @@
 {% load socialaccount %}
 
 <div class="uk-flex uk-flex-column uk-margin-large-left">
-    <div class="uk-margin-small-bottom"><span
-            class="uk-text-bold">{% translate "Información personal" %}</span></div>
+    <div class="uk-margin-small-bottom"><span class="uk-text-lead">{% translate "Información personal" %}</span></div>
     <div id="personal-data">
-        <div class="uk-flex uk-margin-small-bottom">
-            <span class="uk-margin-right">{% translate "Nombre" %}:</span>
+        <div class="uk-flex uk-margin-small-bottom uk-flex-middle">
+            <span class="uk-margin-right uk-text-meta">{% translate "Nombre" %}:</span>
             <span>{{ user.first_name }} {{ user.last_name }} </span>
+            <a><span class="uk-margin-small-left uk-text-primary uk-text-meta">{% translate "Editar" %}</span></a>
         </div>
-        <div class="uk-flex uk-margin-small-bottom">
-            <span class="uk-margin-right">{% translate "Email" %}:</span>
-            <span>{{ user.email }}</span>
+        <div class="uk-flex uk-margin-small-bottom uk-flex-middle">
+            <span class="uk-margin-right uk-text-meta">{% translate "Email" %}:</span>
+            {% if email_data %}
+                {{ email_data.0.email }}
+                {% if not email_data.0.verified %}
+                    <span class="uk-text-meta uk-text-warning uk-margin-small-left">{% translate "Sin verificar" %}</span>
+                {% endif %}
+            {% endif %}
+
         </div>
-        <div class="uk-flex uk-margin-small-bottom">
-            <span class="uk-margin-right">{% translate "Contraseña" %}:</span>
-            <a class="uk-button uk-button-primary uk-button-small"
+        <div class="uk-flex uk-margin-small-bottom uk-flex-middle">
+            <span class="uk-margin-right uk-text-meta">{% translate "Contraseña" %}:</span>
+            <a class="uk-button uk-button-default uk-button-small"
                href="{% url 'account_change_password' %}">{% translate "Cambiar contraseña" %}</a>
         </div>
     </div>
     <hr>
-    <div>
-        <div class="uk-margin-small-bottom uk-flex uk-flex-column">
-            <span class="uk-text-bold">{% translate "Conectar cuentas de las redes sociales" %}</span>
-            <span class="">{% translate "Utiliza tus cuentas de las redes sociales para iniciar sesión en personaly." %}</span>
+    <div id="social">
+        <div class="uk-flex uk-flex-column">
+            <div class="uk-margin-small-bottom"><span
+                    class="uk-text-lead">{% translate "Conectar cuentas de las redes sociales" %}</span></div>
+            <span class="uk-text-meta">{% translate "Utiliza tus cuentas de las redes sociales para iniciar sesión en personaly." %}</span>
 
             {% if account_data %}
                 <div id="social_login_users">
@@ -32,7 +39,7 @@
                         {% for social in account_data %}
                             <li>
                                 <span>{% translate "Te hemos conectado con tu ID de " %}{{ social.provider }}: </span>
-                                <span class="uk-text-bold">{{ social.uid }} ({{ social.name }})</span>
+                                <span class="uk-text-bold uk-text-small">{{ social.uid }} ({{ social.name }})</span>
                             </li>
                         {% endfor %}
                     </ul>
@@ -40,23 +47,33 @@
             {% else %}
                 <div>
                     <a class="uk-button uk-button-default uk-button-small uk-margin-small-top"
-                       href="{% provider_login_url 'google' %}?process=connect"><span><img class="uk-margin-small-right" width="16"
-                                                                           height="16"
-                                                                           src="{% static 'img/web/google-ico.svg' %}">{% translate "Conectar con mi cuenta de Google" %}</span>
+                       href="{% provider_login_url 'google' %}?process=connect"><span><img class="uk-margin-small-right"
+                                                                                           width="16"
+                                                                                           height="16"
+                                                                                           src="{% static 'img/web/google-ico.svg' %}">{% translate "Conectar con mi cuenta de Google" %}</span>
                     </a>
                 </div>
             {% endif %}
-
-
         </div>
-
     </div>
     <hr>
-    <div class="uk-flex uk-flex-column">
-        <div>
-            <button class="uk-button uk-button-danger uk-button-small">{% translate "Eliminar mi cuenta personaly" %}</button>
+    <div id="data" class="uk-flex uk-flex-column">
+        <div class="uk-margin-small-bottom"><span
+                class="uk-text-lead">{% translate "Descargar un archivo con tus datos" %}</span></div>
+        <span class="uk-text-meta">{% translate "Puedes solicitar un archivo ZIP con los datos que creemos que son más importantes para ti. Recibirás una notificación vía email cuando el archivo de tus datos esté disponible para descargarse." %}</span>
+        <div class="uk-margin-small-top">
+            <a class="uk-button uk-button-default uk-button-small"
+               href="">{% translate "Solicitar archivo" %}</a>
         </div>
-        <span class="uk-text-meta uk-margin-small-top">{% translate "Eliminar tu cuenta es algo permanente. Se borrarán todos tus datos inmediatamente y no podrás recuperarlos. Requiere contraseña." %}</span>
     </div>
-
+    <hr>
+    <div id="delete_account" class="uk-flex uk-flex-column">
+        <div class="uk-margin-small-bottom"><span
+                class="uk-text-lead">{% translate "Eliminar mi cuenta" %}</span></div>
+        <span class="uk-text-meta">{% translate "Eliminar tu cuenta es algo permanente. Se borrarán todos tus datos inmediatamente y no podrás recuperarlos." %}</span>
+        <div class="uk-margin-small-top">
+            <a class="uk-button uk-button-danger uk-button-small"
+               href="">{% translate "Eliminar mi cuenta" %}</a>
+        </div>
+    </div>
 </div>

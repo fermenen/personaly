@@ -1,9 +1,14 @@
 {% load i18n %}
 
 <div class="uk-flex uk-flex-column uk-margin-large-left">
-    <div class="uk-margin-small-bottom"><span
-            class="uk-text-bold">{% translate "Soporte" %}</span></div>
-    <span>{% translate "Contacta con nosotros en " %}  <button
-            class="uk-button uk-button-text">{% translate "soporte@personaly.app" %}</button></span>
-
+    <div class="uk-margin-small-bottom"><span class="uk-text-lead">{% translate "Soporte" %}</span></div>
+    <div>
+         <span>{% translate "Contacta con nosotros en " %}  <button
+                 class="uk-button uk-button-text">{% translate "soporte@personaly.app" %}</button>
+             {% translate " o a través de nuestro perfil en " %}</span>
+        <a href="https://twitter.com/personaly_app" target="_blank">
+            <button class="uk-button uk-button-text">{% translate "Twitter" %}</button>
+        </a>
+        <span>.</span>
+    </div>
 </div>
